@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "github-platform-skills",
+  "description": "Claude Code skills for working at the GitHub platform / organization level: well-architected guidance, rulesets, governance, scaling, migrations.",
+  "owner": {
+    "name": "Declaratus"
+  },
+  "plugins": [
+    {
+      "name": "github-well-architected",
+      "source": "./plugins/github-well-architected",
+      "description": "Apply GitHub's Well-Architected Framework — prescriptive design thinking for deploying GitHub Enterprise at scale across five pillars (Productivity, Collaboration, Application Security, Governance, Architecture). Bundles curated guidance for repository rulesets, GHAS rollout, Copilot adoption, polyrepo vs monorepo, ADO migrations, and governance policies.",
+      "license": "MIT",
+      "homepage": "https://github.com/github/github-well-architected",
+      "category": "platform",
+      "tags": ["github", "governance", "well-architected", "enterprise", "rulesets", "ghas"]
+    }
+  ]
+}

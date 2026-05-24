@@ -1,0 +1,9 @@
+{
+  "name": "github-well-architected",
+  "description": "GitHub Well-Architected Framework skill — prescriptive design thinking for GitHub Enterprise deployments across five pillars.",
+  "author": {
+    "name": "Declaratus"
+  },
+  "homepage": "https://github.com/github/github-well-architected",
+  "license": "MIT"
+}
