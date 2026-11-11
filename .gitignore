@@ -2,3 +2,9 @@
 *.swp
 .DS_Store
 __pycache__/
+*.py[cod]
+
+# Raw run output belongs under .build-cache, not in source control.
+*.[lL][oO][gG]
+/test-evidence/*
+!/test-evidence/README.md

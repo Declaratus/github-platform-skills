@@ -11,13 +11,10 @@ import sys
 import unittest
 
 ROOT = Path(__file__).resolve().parents[2]
-E = Path(__file__).resolve().parent
-label = sys.argv[1] if len(sys.argv) > 1 else ''
-if label and not re.fullmatch('[a-zA-Z0-9_-]+', label):
-    raise ValueError('Validation label must contain only letters, digits, _ or -')
-if label:
-    E = E / label
-    E.mkdir(parents=True, exist_ok=True)
+from output_paths import output_directory
+
+label = sys.argv[1] if len(sys.argv) > 1 else 'implementation'
+E = output_directory(ROOT, label)
 REFS = ROOT / 'plugins/github-copilot-docs/skills/github-copilot-docs/references'
 PIN = '7c3387d3b513ed43ea26c9b2e4c0e1b12234c010'
 BASE = '875c75bc9c8bbf9f010e16633ef0c25475a3e1b3'
@@ -50,6 +47,7 @@ def inventory(root):
             for p in root.rglob('*') if p.is_file()}
 
 
+command('repository-hygiene', [sys.executable, 'build/check_repository_hygiene.py'])
 command('pinned-rebuild', [sys.executable, 'build/lib/rebuild_copilot_docs.py', '--revision', PIN])
 first = inventory(REFS)
 command('pinned-repeat', [sys.executable, 'build/lib/rebuild_copilot_docs.py', '--revision', PIN])

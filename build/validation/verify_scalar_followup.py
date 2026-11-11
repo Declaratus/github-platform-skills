@@ -8,8 +8,10 @@ import sys
 import types
 import unittest
 
-ROOT = Path(__file__).resolve().parents[3]
-OUT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[2]
+from output_paths import output_directory
+
+OUT = output_directory(ROOT, sys.argv[1] if len(sys.argv) > 1 else 'scalar-followup')
 sys.path.insert(0, str(ROOT / 'build/tests'))
 sys.path.insert(0, str(ROOT / 'build/lib'))
 import yaml
@@ -25,7 +27,7 @@ def git(*args):
     return subprocess.check_output(['git', '-c', 'core.longpaths=true', *args], cwd=ROOT).decode('utf-8').replace('\r\n', '\n')
 def check(name, expected, actual):
     checks.append(dict(id=name, expected=expected, actual=actual, status='PASS' if expected == actual else 'FAIL',
-                       command='python test-evidence/implementation/followup-scalar/verify_followup.py'))
+                       command='python build/validation/verify_scalar_followup.py'))
     assert expected == actual, checks[-1]
 
 def front(text):

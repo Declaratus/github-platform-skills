@@ -72,6 +72,45 @@ claude plugin validate .
 
 Checks `marketplace.json` syntax, plugin names, source paths, and version coherence.
 
+### Keep generated validation output out of Git
+
+Commit source, reusable tests and the bundled references/provenance. Raw logs,
+per-run JSON results and temporary build files belong in ignored `.build-cache/`.
+The concise [validation summary](test-evidence/README.md) records the completed
+checks and their limitations.
+
+After staging changes, run the same dependency-free guard used in CI:
+
+```bash
+python build/check_repository_hygiene.py
+python -m unittest discover -s build/tests -p test_repository_hygiene.py -v
+```
+
+The guard checks the Git index, including force-added files. It rejects run logs,
+Python caches/compiled output, and raw evidence under `test-evidence/`; only the
+curated summary is retained there. Intentionally reviewed **input** log fixtures
+may live under `build/tests/fixtures/` (explicitly add them with `git add -f`).
+Bundled documentation and `SOURCE.json` remain normal tracked product content.
+The `Repository hygiene` workflow runs on pull requests and pushes to `main`.
+It reports failures; it does not change repository branch-protection settings.
+
+For the full pinned rebuild validation, after installing the build dependencies
+and making the Claude CLI available:
+
+```bash
+python build/validation/run_validation.py unique-run-label
+# Optional historical regression reproduction, after the pinned rebuild:
+python build/validation/verify_scalar_followup.py unique-scalar-label
+```
+
+Both scripts write to `.build-cache/validation-results/<label>/` and refuse to
+overwrite an existing run. Use a new label for each run. The scalar script is
+specific to the original PR regression and requires its historical Git commits;
+it is not a general current-version acceptance test. Review output for credentials
+and machine-specific paths before sharing it as a CI artifact or review attachment.
+Ignoring files does not remove previously committed copies from Git history.
+
+
 ## License
 
 MIT. Bundled upstream content remains under its own license, with attribution in each skill's `SKILL.md`. `github-well-architected` is MIT. `github-copilot-docs` is CC BY 4.0 (GitHub Docs content) and ships the upstream `LICENSE` in its `references/`.
