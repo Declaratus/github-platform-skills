@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "C:\Users\barry\Documents\GitHub-Skills-PR1-Tests-2026-11-11\source\.fix\impl\build\lib\rebuild_copilot_docs.py", line 18, in <module>
+    import liquid
+ModuleNotFoundError: No module named 'liquid'

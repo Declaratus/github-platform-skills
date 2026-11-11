@@ -1,0 +1,264 @@
+[
+  {
+    "id": "pinned-rebuild",
+    "status": "PASS",
+    "expected": 0,
+    "actual": 0,
+    "command": [
+      "C:\\Users\\barry\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+      "build/lib/rebuild_copilot_docs.py",
+      "--revision",
+      "7c3387d3b513ed43ea26c9b2e4c0e1b12234c010"
+    ]
+  },
+  {
+    "id": "pinned-repeat",
+    "status": "PASS",
+    "expected": 0,
+    "actual": 0,
+    "command": [
+      "C:\\Users\\barry\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+      "build/lib/rebuild_copilot_docs.py",
+      "--revision",
+      "7c3387d3b513ed43ea26c9b2e4c0e1b12234c010"
+    ]
+  },
+  {
+    "id": "repeat-byte-idempotence",
+    "status": "PASS",
+    "expected": {
+      "files": 570,
+      "sha256_inventory": "7b4d05733f28ed5d488cd26e447d08b061334c0a48ace1c8bc066aa31615cf35"
+    },
+    "actual": {
+      "files": 570,
+      "sha256_inventory": "7b4d05733f28ed5d488cd26e447d08b061334c0a48ace1c8bc066aa31615cf35"
+    },
+    "command": "SHA-256 inventory before/after second pinned rebuild"
+  },
+  {
+    "id": "cold-pinned-rebuild",
+    "status": "PASS",
+    "expected": 0,
+    "actual": 0,
+    "command": [
+      "C:\\Users\\barry\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+      "build/lib/rebuild_copilot_docs.py",
+      "--repo-root",
+      "C:\\Users\\barry\\Documents\\GitHub-Skills-PR1-Tests-2026-11-11\\source\\.fix\\impl\\.build-cache\\validation-cold-root-followup-r2"
+    ]
+  },
+  {
+    "id": "cold-byte-equivalence",
+    "status": "PASS",
+    "expected": {
+      "files": 570,
+      "sha256_inventory": "7b4d05733f28ed5d488cd26e447d08b061334c0a48ace1c8bc066aa31615cf35"
+    },
+    "actual": {
+      "files": 570,
+      "sha256_inventory": "7b4d05733f28ed5d488cd26e447d08b061334c0a48ace1c8bc066aa31615cf35"
+    },
+    "command": "SHA-256 full cold build vs existing-cache build"
+  },
+  {
+    "id": "cold-cache-refresh",
+    "status": "PASS",
+    "expected": 0,
+    "actual": 0,
+    "command": [
+      "C:\\Users\\barry\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+      "build/lib/rebuild_copilot_docs.py",
+      "--repo-root",
+      "C:\\Users\\barry\\Documents\\GitHub-Skills-PR1-Tests-2026-11-11\\source\\.fix\\impl\\.build-cache\\validation-cold-root-followup-r2"
+    ]
+  },
+  {
+    "id": "refresh-byte-equivalence",
+    "status": "PASS",
+    "expected": {
+      "files": 570,
+      "sha256_inventory": "7b4d05733f28ed5d488cd26e447d08b061334c0a48ace1c8bc066aa31615cf35"
+    },
+    "actual": {
+      "files": 570,
+      "sha256_inventory": "7b4d05733f28ed5d488cd26e447d08b061334c0a48ace1c8bc066aa31615cf35"
+    },
+    "command": "SHA-256 refresh vs cold build"
+  },
+  {
+    "id": "real-missing-dependencies",
+    "status": "PASS",
+    "expected": 1,
+    "actual": 1,
+    "command": [
+      "C:\\Users\\barry\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+      "-S",
+      "build/lib/rebuild_copilot_docs.py"
+    ]
+  },
+  {
+    "id": "real-failure-preserves-568-pages",
+    "status": "PASS",
+    "expected": {
+      "files": 570,
+      "sha256_inventory": "7b4d05733f28ed5d488cd26e447d08b061334c0a48ace1c8bc066aa31615cf35"
+    },
+    "actual": {
+      "files": 570,
+      "sha256_inventory": "7b4d05733f28ed5d488cd26e447d08b061334c0a48ace1c8bc066aa31615cf35"
+    },
+    "command": "SHA-256 full previous references after actual import failure"
+  },
+  {
+    "id": "bash-dispatcher-syntax",
+    "status": "PASS",
+    "expected": 0,
+    "actual": 0,
+    "command": [
+      "C:/Program Files/Git/bin/bash.exe",
+      "-n",
+      "build/build.sh"
+    ]
+  },
+  {
+    "id": "bash-recipe-syntax",
+    "status": "PASS",
+    "expected": 0,
+    "actual": 0,
+    "command": [
+      "C:/Program Files/Git/bin/bash.exe",
+      "-n",
+      "build/recipes/github-copilot-docs.sh"
+    ]
+  },
+  {
+    "id": "shell-pinned-rebuild",
+    "status": "PASS",
+    "expected": 0,
+    "actual": 0,
+    "command": [
+      "C:/Program Files/Git/bin/bash.exe",
+      "build/build.sh",
+      "github-copilot-docs",
+      "--revision",
+      "7c3387d3b513ed43ea26c9b2e4c0e1b12234c010"
+    ]
+  },
+  {
+    "id": "shell-byte-equivalence",
+    "status": "PASS",
+    "expected": {
+      "files": 570,
+      "sha256_inventory": "7b4d05733f28ed5d488cd26e447d08b061334c0a48ace1c8bc066aa31615cf35"
+    },
+    "actual": {
+      "files": 570,
+      "sha256_inventory": "7b4d05733f28ed5d488cd26e447d08b061334c0a48ace1c8bc066aa31615cf35"
+    },
+    "command": "SHA-256 shell supported pinned path vs Python path"
+  },
+  {
+    "id": "marketplace-validation",
+    "status": "PASS",
+    "expected": 0,
+    "actual": 0,
+    "command": [
+      "claude",
+      "plugin",
+      "validate",
+      "."
+    ]
+  },
+  {
+    "id": "plugin-validation",
+    "status": "PASS",
+    "expected": 0,
+    "actual": 0,
+    "command": [
+      "claude",
+      "plugin",
+      "validate",
+      "./plugins/github-copilot-docs"
+    ]
+  },
+  {
+    "id": "diff-whitespace",
+    "status": "PASS",
+    "expected": 0,
+    "actual": 0,
+    "command": [
+      "git",
+      "-c",
+      "core.longpaths=true",
+      "-c",
+      "core.autocrlf=false",
+      "diff",
+      "--check"
+    ]
+  },
+  {
+    "id": "full-permanent-suite",
+    "status": "PASS",
+    "expected": {
+      "success": true,
+      "skips": 0
+    },
+    "actual": {
+      "success": true,
+      "skips": 0
+    },
+    "command": "python -m unittest discover -s build/tests -v (same discovery executed with JSON summary)"
+  },
+  {
+    "id": "only-intended-body-changes",
+    "status": "PASS",
+    "expected": [
+      "how-tos/copilot-in-your-ide/copilot-for-common-tasks/get-ide-code-suggestions.md",
+      "how-tos/use-copilot-agents/cloud-agent/use-cloud-agent-via-the-api.md"
+    ],
+    "actual": [
+      "how-tos/copilot-in-your-ide/copilot-for-common-tasks/get-ide-code-suggestions.md",
+      "how-tos/use-copilot-agents/cloud-agent/use-cloud-agent-via-the-api.md"
+    ],
+    "command": "Git blob comparison splitting frontmatter/body for all 568 pages"
+  },
+  {
+    "id": "license-unchanged",
+    "status": "PASS",
+    "expected": true,
+    "actual": true,
+    "command": "Byte comparison of license against original Git blob"
+  },
+  {
+    "id": "original-15-YAML-errors-repaired",
+    "status": "PASS",
+    "expected": 15,
+    "actual": 15,
+    "command": "Parse old metadata to identify 15 old errors; all new metadata parsed above"
+  },
+  {
+    "id": "no-page-additions-removals",
+    "status": "PASS",
+    "expected": [
+      568,
+      [
+        "SOURCE.json"
+      ]
+    ],
+    "actual": [
+      568,
+      [
+        "SOURCE.json"
+      ]
+    ],
+    "command": "Compare original tree paths with regenerated tree"
+  },
+  {
+    "id": "postvalidation-no-staging-debris",
+    "status": "PASS",
+    "expected": [],
+    "actual": [],
+    "command": "List sibling build locks/staging directories after successful and failed runs"
+  }
+]

@@ -125,7 +125,8 @@ record('original-15-YAML-errors-repaired', 15, len(old_invalid), 'Parse old meta
 record('no-page-additions-removals', [568, ['SOURCE.json']],
        [len(list(REFS.rglob('*.md'))), comparison['new_files']], 'Compare original tree paths with regenerated tree')
 record('postvalidation-no-staging-debris', [],
-       [p.name for p in REFS.parent.iterdir() if p.name.startswith('.references-stage-') or p.name == '.references-build-lock'],
+       [p.name for p in REFS.parent.iterdir() if p.name.startswith('.references-stage-') or p.name == '.references-build-lock']
+       + [p.name for p in (ROOT / '.build-cache/github-copilot-docs-staging').glob('.references-stage-*')],
        'List sibling build locks/staging directories after successful and failed runs')
 print(json.dumps({'checks': len(checks), 'suite': suite,
                   'corpus_markdown_preserved': comparison['markdown_preserved'],

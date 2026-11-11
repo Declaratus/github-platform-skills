@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "baseline": "b8e4636e546167f8aba832a5972cc4b3645cf7b2",
+  "command": [
+    "git",
+    "-c",
+    "core.longpaths=true",
+    "ls-tree",
+    "-r",
+    "b8e4636e546167f8aba832a5972cc4b3645cf7b2",
+    "--",
+    "plugins/github-copilot-docs/skills/github-copilot-docs/references/"
+  ],
+  "comparison": "Exact Git blob SHA-1 against current bytes, without newline normalization",
+  "markdown_preserved": 568,
+  "markdown_changed": 0,
+  "all_changed_references": [
+    "SOURCE.json"
+  ]
+}

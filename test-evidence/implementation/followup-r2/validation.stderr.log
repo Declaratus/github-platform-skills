@@ -1,0 +1,89 @@
+warning: filtering not recognized by server, ignoring
+From C:\Users\barry\Documents\GitHub-Skills-PR1-Tests-2026-11-11\source\.fix\impl\.build-cache\test-temp\tmpd03zecwn\upstream
+ * branch            8b2636ee170cd7d947ad66c08de9deb13d0c38cf -> FETCH_HEAD
+HEAD is now at 8b2636e fixture
+warning: filtering not recognized by server, ignoring
+From C:\Users\barry\Documents\GitHub-Skills-PR1-Tests-2026-11-11\source\.fix\impl\.build-cache\test-temp\tmphgf4zvk8\upstream
+ * branch            a9f3c768d4f16ddaf0e8dd370ec96e50a02b0fe9 -> FETCH_HEAD
+HEAD is now at a9f3c76 fixture
+warning: filtering not recognized by server, ignoring
+fatal: git upload-pack: not our ref 0000000000000000000000000000000000000000
+fatal: remote error: upload-pack: not our ref 0000000000000000000000000000000000000000
+warning: filtering not recognized by server, ignoring
+From C:\Users\barry\Documents\GitHub-Skills-PR1-Tests-2026-11-11\source\.fix\impl\.build-cache\test-temp\tmp95g4gxey\upstream
+ * branch            4fe67417e90f7b7f05f8feab46f648db86c55b95 -> FETCH_HEAD
+HEAD is now at 4fe6741 fixture
+warning: filtering not recognized by server, ignoring
+From C:\Users\barry\Documents\GitHub-Skills-PR1-Tests-2026-11-11\source\.fix\impl\.build-cache\test-temp\tmpn38cjwjb\upstream
+ * branch            f126d5caeaae02f404389d03ca4b03056bc391fe -> FETCH_HEAD
+HEAD is now at f126d5c fixture
+warning: filtering not recognized by server, ignoring
+From C:\Users\barry\Documents\GitHub-Skills-PR1-Tests-2026-11-11\source\.fix\impl\.build-cache\test-temp\tmp7fckx6vm\upstream
+ * branch            6778db3bea5c2b60f960e2a5efa44cbb98b59262 -> FETCH_HEAD
+HEAD is now at 6778db3 fixture
+warning: filtering not recognized by server, ignoring
+From C:\Users\barry\Documents\GitHub-Skills-PR1-Tests-2026-11-11\source\.fix\impl\.build-cache\test-temp\tmp7fckx6vm\upstream
+ * branch            6778db3bea5c2b60f960e2a5efa44cbb98b59262 -> FETCH_HEAD
+HEAD is now at 6778db3 fixture
+warning: filtering not recognized by server, ignoring
+From C:\Users\barry\Documents\GitHub-Skills-PR1-Tests-2026-11-11\source\.fix\impl\.build-cache\test-temp\tmp7fckx6vm\upstream
+ * branch            a24e3f7359f69412eba43b1c4c37153acaf33946 -> FETCH_HEAD
+Warning: you are leaving 1 commit behind, not connected to
+any of your branches:
+
+  6778db3 fixture
+
+If you want to keep it by creating a new branch, this may be a good time
+to do so with:
+
+ git branch <new-branch-name> 6778db3
+
+HEAD is now at a24e3f7 fixture
+warning: filtering not recognized by server, ignoring
+From C:\Users\barry\Documents\GitHub-Skills-PR1-Tests-2026-11-11\source\.fix\impl\.build-cache\test-temp\tmp5tf1og1c\upstream
+ * branch            a87165bf9efe337f1e7ef27654565484c9232ee0 -> FETCH_HEAD
+HEAD is now at a87165b fixture
+warning: filtering not recognized by server, ignoring
+From C:\Users\barry\Documents\GitHub-Skills-PR1-Tests-2026-11-11\source\.fix\impl\.build-cache\test-temp\tmp5tf1og1c\upstream
+ * branch            45161a3a9651380b14a35f424980bbe6977a07fe -> FETCH_HEAD
+Warning: you are leaving 1 commit behind, not connected to
+any of your branches:
+
+  a87165b fixture
+
+If you want to keep it by creating a new branch, this may be a good time
+to do so with:
+
+ git branch <new-branch-name> a87165b
+
+HEAD is now at 45161a3 fixture
+warning: filtering not recognized by server, ignoring
+From C:\Users\barry\Documents\GitHub-Skills-PR1-Tests-2026-11-11\source\.fix\impl\.build-cache\test-temp\tmposxguwtk\upstream
+ * branch            58fb6adcf2cfd58acbdf5bb79ffd205fb707872b -> FETCH_HEAD
+HEAD is now at 58fb6ad fixture
+warning: filtering not recognized by server, ignoring
+From C:\Users\barry\Documents\GitHub-Skills-PR1-Tests-2026-11-11\source\.fix\impl\.build-cache\test-temp\tmposxguwtk\upstream
+ * branch            c5696a9e92feae8b49a0649f5b9329810ab71ec4 -> FETCH_HEAD
+Warning: you are leaving 1 commit behind, not connected to
+any of your branches:
+
+  58fb6ad fixture
+
+If you want to keep it by creating a new branch, this may be a good time
+to do so with:
+
+ git branch <new-branch-name> 58fb6ad
+
+HEAD is now at c5696a9 fixture
+warning: filtering not recognized by server, ignoring
+From C:\Users\barry\Documents\GitHub-Skills-PR1-Tests-2026-11-11\source\.fix\impl\.build-cache\test-temp\tmpt1m6s1cb\upstream
+ * branch            7b16a85437c6ec9225c03b55fe062703f3de58de -> FETCH_HEAD
+HEAD is now at 7b16a85 fixture
+warning: filtering not recognized by server, ignoring
+From C:\Users\barry\Documents\GitHub-Skills-PR1-Tests-2026-11-11\source\.fix\impl\.build-cache\test-temp\tmplh_wnf81\upstream
+ * branch            e126b191d150ab32ca7565d6b002e157f1abee7e -> FETCH_HEAD
+HEAD is now at e126b19 fixture
+warning: filtering not recognized by server, ignoring
+From C:\Users\barry\Documents\GitHub-Skills-PR1-Tests-2026-11-11\source\.fix\impl\.build-cache\test-temp\tmpugpiv81c\upstream
+ * branch            c320fbcc2dace3046303599331b3c3e85be98a93 -> FETCH_HEAD
+HEAD is now at c320fbc fixture

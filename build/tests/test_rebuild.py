@@ -1,6 +1,7 @@
 import contextlib
 import io
 import json
+import os
 import subprocess
 import sys
 import tempfile
@@ -58,6 +59,7 @@ class RebuildTests(unittest.TestCase):
     def assert_clean(self):
         self.assertFalse((self.dest.parent / '.references-build-lock').exists())
         self.assertFalse(list(self.dest.parent.glob('.references-stage-*')))
+        self.assertFalse(list((self.target / '.build-cache/github-copilot-docs-staging').glob('.references-stage-*')))
 
     def test_cold_build_and_authoritative_default(self):
         self.build()
@@ -169,6 +171,85 @@ class RebuildTests(unittest.TestCase):
             b.publish(stage, self.dest, backup)
         self.assertEqual(inventory(self.dest), self.original)
         self.assertFalse(backup.exists())
+
+    def test_cross_filesystem_workspace_fails_before_fetch_or_publish(self):
+        workspace = self.target / '.build-cache/github-copilot-docs-staging'
+        workspace.mkdir(parents=True)
+        original_stat = Path.stat
+        def stat(path, *args, **kwargs):
+            result = original_stat(path, *args, **kwargs)
+            if path == workspace:
+                fields = list(result)
+                fields[2] = result.st_dev + 1
+                return os.stat_result(fields)
+            return result
+        with patch.object(Path, 'stat', stat), patch.object(b, 'git') as git_call:
+            with self.assertRaisesRegex(ValueError, 'same filesystem'):
+                self.build()
+        git_call.assert_not_called()
+        self.assertEqual(inventory(self.dest), self.original)
+        self.assert_clean()
+
+    def test_interrupted_568_page_stage_outside_package_and_safe_recovery(self):
+        # A real child process bypasses finally/TemporaryDirectory cleanup only
+        # after resolving all 568 pages and writing provenance, before publish.
+        for i in range(567):
+            self.write(f'content/copilot/page-{i}.md', '---\ntitle: Fixture\n---\nbody\n')
+        revision = self.commit()
+        subprocess.run(['git', '-C', str(self.target), 'init'], check=True, capture_output=True)
+        def untracked_plugin_files():
+            return subprocess.check_output(['git', '-C', str(self.target), 'ls-files',
+                                            '--others', '--exclude-standard', '--', b.PLUGIN])
+        before = untracked_plugin_files()
+        code = ("import os,sys;sys.path.insert(0,sys.argv[1]);"
+                "from pathlib import Path;import rebuild_copilot_docs as b;"
+                "b.publish=lambda *args:os._exit(9);"
+                "b.rebuild(Path(sys.argv[2]),sys.argv[3],sys.argv[4])")
+        process = subprocess.run([sys.executable, '-c', code, str(Path(b.__file__).parent),
+                                  str(self.target), revision, str(self.upstream)], capture_output=True)
+        self.assertEqual(process.returncode, 9, process.stderr)
+        self.assertEqual(inventory(self.dest), self.original)
+        self.assertEqual(untracked_plugin_files(), before)
+        self.assertFalse(list(self.dest.parent.glob('.references-stage-*')))
+        workspaces = list((self.target / '.build-cache/github-copilot-docs-staging').glob('.references-stage-*'))
+        self.assertEqual(len(workspaces), 1)
+        abandoned = workspaces[0]
+        self.assertEqual(len(list((abandoned / 'references').rglob('*.md'))), 568)
+        owner = json.loads((abandoned / 'BUILD.json').read_text())
+        self.assertEqual(owner['destination'], str(self.dest.resolve()))
+        self.assertEqual(owner['revision'], revision)
+        self.assertIsInstance(owner['pid'], int)
+        staged = inventory(abandoned)
+        lock = self.dest.parent / '.references-build-lock'
+        self.assertTrue(lock.is_dir())
+        with self.assertRaises(FileExistsError):
+            self.build(revision)
+        self.assertTrue(lock.is_dir())
+        self.assertEqual(inventory(abandoned), staged)
+        # This fixture's child is confirmed exited. Recover only its empty lock,
+        # retaining the abandoned workspace for inspection while retrying.
+        lock.rmdir()
+        self.build(revision)
+        self.assertFalse(lock.exists())
+        self.assertEqual(len(list(self.dest.rglob('*.md'))), 568)
+        self.assertEqual(inventory(abandoned), staged)
+        self.assertEqual(list(abandoned.parent.glob('.references-stage-*')), [abandoned])
+        self.assertFalse(list(self.dest.parent.glob('.references-stage-*')))
+
+    def test_stage_and_backup_are_outside_package_on_same_filesystem(self):
+        original_publish = b.publish
+        def publish(stage, destination, backup):
+            workspace = self.target / '.build-cache/github-copilot-docs-staging'
+            self.assertTrue(stage.is_relative_to(workspace))
+            self.assertEqual(stage.parent, backup.parent)
+            self.assertEqual(stage.stat().st_dev, destination.parent.stat().st_dev)
+            original_publish(stage, destination, backup)
+            # Previous references wait outside the package until cleanup.
+            self.assertEqual(inventory(backup), self.original)
+            self.assertFalse(list(destination.parent.glob('.references-stage-*')))
+        with patch.object(b, 'publish', publish):
+            self.build()
+        self.assert_clean()
 
     def test_existing_lock_preserves_previous_and_lock(self):
         lock = self.dest.parent / '.references-build-lock'; lock.mkdir()

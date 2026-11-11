@@ -2,11 +2,12 @@
 """Stage and validate a pinned Copilot snapshot before publishing references.
 
 Dependency imports happen before any cache or destination mutation. Publication
-uses sibling renames with rollback on replacement failure, not delete/copy.
+uses same-filesystem renames with rollback on replacement failure, not delete/copy.
 """
 import argparse
 import hashlib
 import json
+import os
 import re
 import shutil
 import subprocess
@@ -49,6 +50,12 @@ def rebuild(root, revision, upstream):
     cache = root / '.build-cache/github-copilot-docs'
     destination = root / PLUGIN / 'references'
     destination.parent.mkdir(parents=True, exist_ok=True)
+    # Corpora must never be staged inside the packaged plugin. An interrupted
+    # process may leave this ignored workspace behind; do not adopt/delete it.
+    workspace = root / '.build-cache/github-copilot-docs-staging'
+    workspace.mkdir(parents=True, exist_ok=True)
+    if workspace.stat().st_dev != destination.parent.stat().st_dev:
+        raise ValueError('Build workspace and references must be on the same filesystem')
     # Serialize builds in this checkout. Never reuse another build's stage.
     lock = destination.parent / '.references-build-lock'
     lock.mkdir()
@@ -66,8 +73,12 @@ def rebuild(root, revision, upstream):
         if git(cache, 'rev-parse', 'HEAD') != revision:
             raise ValueError('Fetched upstream revision mismatch')
         context = site_context(cache)
-        with tempfile.TemporaryDirectory(prefix='.references-stage-', dir=destination.parent) as temp:
+        with tempfile.TemporaryDirectory(prefix='.references-stage-', dir=workspace) as temp:
             temp = Path(temp)
+            (temp / 'BUILD.json').write_text(json.dumps({
+                'pid': os.getpid(), 'destination': str(destination.resolve()),
+                'revision': revision,
+            }, indent=2) + '\n', encoding='utf-8', newline='\n')
             stage = temp / 'references'
             shutil.copytree(cache / 'content/copilot', stage)
             # Exact Git object avoids platform checkout line-ending differences.
