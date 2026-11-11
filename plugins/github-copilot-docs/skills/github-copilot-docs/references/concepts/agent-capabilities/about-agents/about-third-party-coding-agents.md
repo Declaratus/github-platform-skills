@@ -1,0 +1,124 @@
+---
+title: Third-party coding agents
+allowTitleToDifferFromFilename: true
+shortTitle: Third-party coding agents
+intro: 'You can use third-party coding agents alongside Copilot to work asynchronously on your development tasks on GitHub.'
+product: 'Available for all paid [Copilot plans](/copilot/get-started/plans).<br><a href="https://github.com/features/copilot/plans?ref_product=copilot&ref_type=purchase&ref_style=button" target="_blank" class="btn btn-primary mt-3 mr-3 no-underline"><span>Sign up for Copilot</span> (icon: link-external)</a>'
+versions:
+  feature: copilot
+contentType: concepts
+redirect_from:
+  - /copilot/concepts/agents/about-third-party-agents
+  - /copilot/concepts/agents/about-third-party-coding-agents
+  - /copilot/concepts/agents/anthropic-claude
+  - /copilot/concepts/agents/openai-codex
+---
+
+> [!NOTE] Third-party coding agents are currently in public preview.
+
+## Introduction
+
+You can use third-party coding agents alongside Copilot to work asynchronously on your development tasks. You can assign an existing issue or give a prompt to an agent, which will work on the required changes and create artifact, such as a pull request. When the agent finishes, it will tell you, and a pull request was created it will request a review from you. You can then leave comments asking the agent to iterate.
+
+Coding agents are subject to the same security protections, mitigations, and limitations as Copilot. To learn more about how you can use coding agents, see [AUTOTITLE](/copilot/concepts/copilot-surfaces/copilot-on-github).
+
+### Where you can use coding agents
+
+You can kick off tasks with coding agents in the following locations:
+
+* **The Agents tab**: In the Agents tab of a repository (`https://github.com/OWNER/REPO_NAME/agents`), click (icon: copilot) under the prompt box to select an agent, then kick off a new task and watch the agent get to work.
+* **Issues**: Assign the agent to an existing issue in a repository.
+* **Pull requests**: Mention `@AGENT_NAME` in a comment on an existing pull request to ask it to make changes.
+* On [**GitHub Mobile**](/copilot/how-tos/copilot-on-github/chat-with-copilot/chat-in-mobile): From the **Home** view, click (icon: plus) to start a new agent session.
+* In [**Visual Studio Code**](https://code.visualstudio.com/docs/copilot/agents/overview#_create-an-agent-session): Start a new session in the chat view, or delegate an existing session to a different agent.
+
+### Making coding agents available
+
+Before you can assign tasks to coding agents on GitHub, they must be enabled in your account settings, your organization policies, or the "Agents" section of an enterprise's AI controls.
+
+* For **GitHub Copilot Pro, GitHub Copilot Pro+, and GitHub Copilot Max subscribers**, see [AUTOTITLE](/free-pro-team@latest/copilot/how-tos/manage-your-account/manage-policies).
+* For **GitHub Copilot Business and GitHub Copilot Enterprise subscribers**, see [AUTOTITLE](/copilot/how-tos/administer-copilot/manage-for-organization/manage-policies) or [AUTOTITLE](/enterprise-cloud@latest/copilot/how-tos/administer-copilot/manage-for-enterprise/manage-enterprise-policies).
+
+These policies do not apply to **local** agents in Visual Studio Code. To configure agent settings in Visual Studio Code, see [Types of agents](https://code.visualstudio.com/docs/copilot/agents/overview#_types-of-agents) in the Visual Studio Code documentation. To adjust enterprise agent settings in Visual Studio Code, see [Enable or disable the use of agents](https://code.visualstudio.com/docs/enterprise/ai-settings#_enable-or-disable-the-use-of-agents) in the Visual Studio Code documentation.
+
+## Supported coding agents
+
+When starting a task with a third-party agent, you can select the AI model used by the agent. You may find that different models perform better, or provide more useful responses, depending on the type of task. For help deciding which model to use, see [AUTOTITLE](/copilot/reference/ai-models/model-comparison).
+
+The following third-party agents are supported on GitHub.
+
+### Anthropic Claude
+
+> [!NOTE]
+> The Anthropic Claude coding agent is currently in public preview.
+
+The Anthropic Claude coding agent uses the Claude Agent SDK and can be powered by your existing Copilot subscription. For information about Anthropic Claude, see the [Anthropic Claude documentation](https://platform.claude.com/docs/en/agent-sdk/overview).
+
+#### Anthropic Claude supported models
+
+* Auto
+* Claude Sonnet 4.6
+* Claude Sonnet 5
+* Claude Opus 4.8
+* Claude Opus 4.8 (fast mode) (preview)
+* Claude Opus 5
+* Claude Fable 5.1
+* Claude Fable 5.2
+
+If you select **Auto**, it will choose one of the available models listed above. **Auto** in Anthropic Claude coding agent does **not** leverage Copilot auto model selection.
+
+### OpenAI Codex
+
+> [!NOTE]
+> OpenAI Codex integration is currently in public preview.
+
+The OpenAI Codex coding agent and the VS Code OpenAI Codex integration use the Codex SDK and can be powered by your existing Copilot subscription. For more information about how OpenAI Codex works, see the [OpenAI Codex documentation](https://developers.openai.com/codex).
+
+#### OpenAI Codex supported models
+
+* Auto
+* GPT-5.3-Codex
+* GPT-5.4 nano
+
+If you select **Auto**, it will choose one of the available models listed above. **Auto** in OpenAI Codex coding agent does **not** leverage Copilot auto model selection.
+
+#### VS Code extension
+
+> [!NOTE]
+> The "Sign in with Copilot" option in the OpenAI Codex VS Code extension is only available to GitHub Copilot Pro+ and Copilot Max subscribers.
+
+Use "Sign in with Copilot" when launching the extension. You can see this integration in the [Agent Sessions view](https://code.visualstudio.com/docs/copilot/chat/chat-sessions#_agent-sessions-view) in VS Code Insiders along with progress on their running tasks. All usage is subject to GitHub rate limits and billing.
+
+A subset of available models may only be available in the OpenAI Codex extension. Model availability and visibility is not governed by Copilot model configuration policies.
+
+## Security validation
+
+When a third-party coding agent creates or modifies code, GitHub automatically scans the generated code for security issues and attempts to resolve them before the pull request is finalized. This reduces the likelihood of the agent introducing problems such as hardcoded secrets, insecure dependencies, and other vulnerabilities.
+
+The following tools and processes scan for security issues:
+
+* **CodeQL code scanning** identifies code security issues.
+* **Secret scanning** detects sensitive information such as API keys, tokens, and other secrets.
+* Newly introduced dependencies are checked against the **GitHub Advisory Database** for malware advisories and CVSS-rated High or Critical vulnerabilities.
+
+Security validation does not require a GitHub Advanced Security license.
+
+## Usage costs
+
+Coding agents consume **GitHub Actions minutes** and **AI credits**. Each agent session consumes AI credits based on the model used and the number of tokens processed.
+
+Within your included GitHub Actions minutes and AI credits, you can use agents without incurring additional costs. See [AUTOTITLE](/copilot/concepts/billing-and-usage/organizations-and-enterprises/billing).
+
+## Partner agents
+
+When enabling partner agents in your user or organization Copilot settings, a GitHub App will be installed for the corresponding agent.
+
+* **Allow Claude coding agent** will install `anthropic code agent`
+* **Allow Codex coding agent** will install `openai code agent`
+
+Actions taken by these GitHub Apps will be visible in your audit log, but the GitHub Apps themselves will not be visible in your account's list of GitHub App installations.
+
+## Next steps
+
+* To start managing agents, see [AUTOTITLE](/copilot/how-tos/copilot-on-github/use-copilot-agents/manage-and-track-agents).
+* To learn how AI models are hosted and served, see [AUTOTITLE](/copilot/reference/ai-models/model-hosting).

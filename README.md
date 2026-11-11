@@ -17,8 +17,7 @@ Then ask Claude anything that fits the skill's scope (organization-level decisio
 | Plugin | What it gives Claude |
 |---|---|
 | [`github-well-architected`](plugins/github-well-architected/) | The five pillars + recommendations from [github/github-well-architected](https://github.com/github/github-well-architected). Use for ruleset design, GHAS rollout, polyrepo vs monorepo, ADO migrations, governance policies. |
-
-More to come.
+| [`github-copilot-docs`](plugins/github-copilot-docs/) | The full Copilot section of [GitHub Docs](https://docs.github.com/en/copilot) (`content/copilot` from [github/docs](https://github.com/github/docs)). Use for Copilot policies, billing and budgets, models, content exclusion, MCP, cloud agent, CLI, customization, metrics. |
 
 ## Repo layout
 
@@ -75,4 +74,6 @@ Checks `marketplace.json` syntax, plugin names, source paths, and version cohere
 
 ## License
 
-MIT. Bundled upstream content remains under its own license — currently all MIT — with attribution in each skill's `SKILL.md`.
+MIT. Bundled upstream content remains under its own license, with attribution in each skill's `SKILL.md`. `github-well-architected` is MIT. `github-copilot-docs` is CC BY 4.0 (GitHub Docs content) and ships the upstream `LICENSE` in its `references/`.
+
+The `github-copilot-docs` recipe needs `python3` with PyYAML to resolve Liquid tags (`build/lib/resolve_liquid.py`).

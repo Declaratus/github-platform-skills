@@ -1,0 +1,28 @@
+---
+title: Setting up GitHub Copilot for yourself
+shortTitle: Set up for self
+intro: 'Start using GitHub Copilot to write code faster on GitHub.'
+versions:
+  feature: copilot
+contentType: how-tos
+category:
+  - Configure Copilot
+---
+
+## Get access to GitHub Copilot
+
+Copilot Free gives you up to 2,000 code completions and limited access to select Copilot features, allowing you to try AI-powered coding assistance at no cost. [Start using Copilot Free](https://github.com/copilot?ref_product=copilot&ref_type=engagement&ref_style=text&ref_plan=free).
+
+For higher limits and access to more models, subscribe to **Copilot Pro**, **Copilot Pro+**, or **Copilot Max**. See [AUTOTITLE](/copilot/how-tos/manage-your-account/get-started-with-a-copilot-plan) for details on all plans, including free options for students, teachers, and open source maintainers.
+
+## Configure settings (optional)
+
+If you have your own Copilot plan, manage your policies and feature access from your [Copilot settings](https://github.com/settings/copilot?ref_product=copilot&ref_type=engagement&ref_style=text&utm_source=enable-individual-settings&utm_medium=docs&utm_campaign=universe-2026). On paid plans, you can also manage Copilot Memory, which lets Copilot remember repository facts and your preferences. For defaults and settings, see [AUTOTITLE](/copilot/concepts/prompting-and-context/copilot-memory#default-settings).
+
+## Set up personal custom instructions (optional)
+
+Personal custom instructions tell Copilot Chat about your preferences — such as your preferred language, coding style, or response format. To add them, open any Copilot Chat conversation on GitHub, click your profile picture, and select **Personal instructions**. For more information, see [AUTOTITLE](/copilot/how-tos/copilot-on-github/customize-copilot/add-custom-instructions/add-personal-instructions).
+
+## Next step
+
+[Chat with Copilot on GitHub](/copilot/how-tos/copilot-on-github/chat-with-copilot) to get answers about your code, repositories, and development questions.

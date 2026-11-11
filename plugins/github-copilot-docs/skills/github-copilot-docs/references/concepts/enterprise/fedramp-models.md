@@ -1,0 +1,64 @@
+---
+title: FedRAMP-compliant models for GitHub Copilot
+shortTitle: FedRAMP models
+intro: Restrict users to models with FedRAMP Moderate certification.
+versions:
+  feature: copilot
+product: 'GitHub Enterprise Cloud with data residency'
+contentType: concepts
+redirect_from:
+  - /copilot/concepts/fedramp-models
+  - /copilot/concepts/models/fedramp-models
+---
+
+If your enterprise uses GitHub Enterprise Cloud with data residency in the US, you can enable a policy to ensure that users on your Copilot plan can only use models with **FedRAMP Moderate** certification.
+
+## Available models
+
+Users will be able to see available models for your region in the model selector in their Copilot interface.
+
+> [!NOTE]
+> Model availability changes over time. New models released on GitHub.com may take additional time to become available as providers deploy regional infrastructure and obtain necessary certifications.
+
+Enabling the FedRAMP policy restricts users to the following models:
+
+<!-- Note: US data resident and FedRAMP compliant models are currently the same, but this may not always be the case. However, we should be able to add new models after this reusable reference in the relevant article -->
+* GPT-4o mini
+* GPT-4o
+* GPT-4.1
+* GPT-5.2
+* GPT-5.3-Codex
+* Claude Haiku 4.5
+* Claude Haiku 5.5
+* Claude Sonnet 5
+* Claude Sonnet 5.5
+* Claude Opus 4.8
+* Claude Opus 5
+* Claude Opus 5.5
+* Gemini 4 Argon
+
+## Client version requirements
+
+To use Copilot with model enforcement, developers must use compatible client versions. Generally, any Copilot extension or CLI version released in 2025 or later includes the necessary policy enforcement capabilities.
+
+If a user attempts to use Copilot with an older, incompatible client, they will be prompted to update their extension or CLI to continue.
+
+## Supported Copilot features
+
+All generally available Copilot features work with this enforcement. The availability of features is visible under Copilot policy controls, see [AUTOTITLE](/copilot/how-tos/administer-copilot/manage-for-enterprise/manage-enterprise-policies).
+
+Preview features that reach general availability will be supported with compliant model alternatives at the time of their GA release.
+
+## Pricing changes
+
+Copilot requests processed with this enforcement in place include a 10% increase on AI credits consumption. This reflects the additional infrastructure costs that model providers charge for regional and compliance-certified endpoints.
+
+For example, if an interaction would normally consume 100 AI credits, the same interaction processed with this enforcement enabled consumes 110 AI credits. This pricing applies to all compliant model requests across all providers.
+
+See [AUTOTITLE](/copilot/concepts/billing-and-usage/organizations-and-enterprises/billing).
+
+## Policy controls
+
+To enable this policy, use the **Restrict Copilot to FedRAMP models** policy in the "Features" section of your enterprise's Copilot policies. This policy is disabled by default, and enabling it will affect your pricing for Copilot requests.
+
+For instructions on finding your policies page, see [AUTOTITLE](/copilot/how-tos/administer-copilot/manage-for-enterprise/manage-enterprise-policies).

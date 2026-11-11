@@ -1,0 +1,301 @@
+---
+title: Plans for GitHub Copilot
+intro: 'Discover the plans available for Copilot.'
+versions:
+  feature: copilot
+shortTitle: Plans
+redirect_from:
+  - /copilot/about-github-copilot/subscription-plans-for-github-copilot
+  - /copilot/about-github-copilot/plans-for-github-copilot
+  - /copilot/get-started/plans-for-github-copilot
+  - /copilot/concepts/billing/individual-plans
+contentType: get-started
+category:
+  - Learn about Copilot
+---
+
+## GitHub Copilot plans
+
+GitHub offers a variety of plans for Copilot. Choose between them depending on your needs and whether you're using Copilot as an individual or as part of an organization or enterprise.
+
+**Copilot Free**: [Start using Copilot Free](https://github.com/copilot?ref_product=copilot&ref_type=engagement&ref_style=text&ref_plan=free&utm_source=get-started-plans-doc-web&utm_medium=docs&utm_campaign=universe-2026).
+
+* This plan includes limited access to a selection of Copilot features allowing you to try AI-powered coding assistance at no cost.
+
+**Copilot Student**: [Get access to Copilot Student](/copilot/how-tos/copilot-on-github/set-up-copilot/enable-copilot/set-up-for-students).
+
+* Available to verified students. Get access to Copilot's features for free.
+
+**GitHub Copilot Pro**: [Subscribe to Copilot Pro](https://github.com/github-copilot/pro/signup?ref_product=copilot&ref_type=purchase&ref_style=text&ref_plan=pro&utm_source=get-started-plans-doc-signup-pro&utm_medium=docs&utm_campaign=universe-2026).
+
+* Designed for individuals who want more flexibility with access to a selection of models and a monthly allowance of AI credits.
+
+**GitHub Copilot Pro+**: [Subscribe to Copilot Pro+](https://github.com/github-copilot/pro-plus/signup?ref_product=copilot&ref_type=purchase&ref_style=text&ref_plan=pro-plus&utm_source=get-started-plans-doc-signup-pro-plan&utm_medium=docs&utm_campaign=universe-2026).
+
+* Ideal for AI power users who want access to the most advanced capabilities. This paid plan includes everything in GitHub Copilot Pro and a higher monthly allowance of AI credits.
+
+**GitHub Copilot Max**: [Upgrade to Copilot Max](https://github.com/settings/billing/licensing?ref_product=copilot&ref_type=purchase&ref_style=text&ref_plan=max&utm_source=get-started-plans-doc-max-licensing-billing-settings&utm_medium=docs&utm_campaign=universe-2026).
+
+* Ideal for sustained, high-volume AI power users who want access to the most AI credits available to them. This paid plan includes everything in Copilot Pro+, plus our highest individual monthly allowance of AI credits.
+
+**GitHub Copilot Business**: [Subscribe to Copilot Business](https://github.com/github-copilot/purchase?ref_product=copilot&ref_type=purchase&ref_style=button&ref_plan=business&utm_source=get-started-plans-section-activates-business-purchase&utm_medium=docs&utm_campaign=universe-2026).
+
+* Made for organizations and enterprises, this plan offers centralized management and Copilot policy control for organization members.
+
+**GitHub Copilot Enterprise**: [Subscribe to Copilot Enterprise](https://github.com/github-copilot/purchase?ref_product=copilot&ref_type=purchase&ref_style=button&ref_plan=enterprise&utm_source=getting-started-plans-doc-purchase-enterprise-cta&utm_medium=docs&utm_campaign=universe-2026).
+
+* Designed for enterprises using GitHub Enterprise Cloud. This plan includes all the features of Copilot Business, offers a larger monthly pool of AI credits, plus additional enterprise-grade capabilities.
+
+**Copilot access**: Available to eligible enterprises.
+
+* Provides the same feature and model eligibility as Copilot Enterprise, with a $0 seat charge for users with a GitHub Enterprise Cloud license or $10 USD per user per month for Copilot Standalone. Metered usage is billed separately, with no included allowance.
+
+> [!NOTE]
+> Copilot is not currently available for GitHub Enterprise Server.
+
+## Copilot plans overview
+
+The table below compares pricing, usage allowances, agents, and models. All plans include Copilot CLI and the Copilot app.
+
+{% rowheaders %}
+
+| Plan                                                  | Pricing                                                                             | GitHub AI Credits | Agents                                                                     | Models                            |
+| ----------------------------------------------------- | ----------------------------------------------------------------------------------- | --------------- | -------------------------------------------------------------------------- | --------------------------------- |
+| Copilot Free       | Free                                                                                | An allowance of GitHub AI Credits                | Limited                                                                    | Auto model selection only         |
+| Copilot Student    | Free                                                                                | An allowance of GitHub AI Credits                | (icon: check)<br>Excludes third-party agents | Auto model selection only         |
+| Copilot Pro        | $10 USD per month<br>(free for some users) | Base: 1,000                | (icon: check)                                | A selection of models             |
+| Copilot Pro+   | $39 USD per month.                         | Base: 3,900                | (icon: check)                                | Access to premium models          |
+| Copilot Max        | $100 USD per month                           | Base: 10,000                | (icon: check)                                | Priority access to premium models |
+| Copilot Business   | $19 USD per granted seat per month         | Total per user per month: 1,900                | (icon: check)                                | Access to premium models          |
+| Copilot Enterprise | $39 USD per granted seat per month          | Total per user per month: 3,900                | (icon: check)                                | Priority access to premium models |
+| Copilot access | $0 for licensed users of GitHub Enterprise Cloud<br><br>$10 USD per user per month for Copilot Standalone (users with no GitHub Enterprise Cloud license) | No included allowance | (icon: check) | Priority access to premium models |
+
+{% endrowheaders %}
+
+For more information about how GitHub AI Credits work, see [AUTOTITLE](/copilot/concepts/billing-and-usage/individuals/billing) and [AUTOTITLE](/copilot/concepts/billing-and-usage/organizations-and-enterprises/billing).
+
+Feature and model availability is subject to administrator policies and spending controls.
+
+For more detail on what's uniquely available in each plan, see the following sections:
+* [Individual plans](#individual-plans)
+* [Organization and enterprise plans](#organization-and-enterprise-plans)
+
+## Individual plans
+
+The individual plans available are:
+* Free plans including Copilot Free and Copilot Student.
+* Paid plans including Copilot Pro, Copilot Pro+, and Copilot Max.
+
+With these plans you'll receive access to the following features and capabilities.
+
+> [!NOTE]
+> * Copilot Free plans are only available to individual developers who don't have access to Copilot through an organization or enterprise.
+> * Verified teachers and maintainers of popular open source projects may be eligible for free access to Copilot Pro.
+> * Users on paid plans have access to Copilot in the cloud, subject to applicable organization and enterprise policies. Copilot Free users can continue to use Copilot Chat on GitHub.com and GitHub Mobile, and can upgrade to a paid plan to access Copilot in the cloud.
+
+### GitHub AI Credits allowance by plan
+
+The following table shows what's included with each paid plan.
+
+| Plan | Price per month | Base credits | Flex allotment | Total monthly AI credits |
+| --- | --- | --- | --- | --- |
+| Copilot Pro | $10 USD | 1,000 | 500 | 1,500 |
+| Copilot Pro+ | $39 USD | 3,900 | 3,100 | 7,000 |
+| Copilot Max | $100 USD | 10,000 | 10,000 | 20,000 |
+
+Copilot Free and Copilot Student both have an allowance of AI credits.
+
+For more information on how GitHub AI Credits work, see [AUTOTITLE](/copilot/concepts/billing-and-usage/individuals/billing)
+
+### Inline suggestions and Copilot Chat
+
+Inline suggestions are real-time code suggestions with included models in IDEs and Next edit suggestions.
+* Limited to 2000 completions per month on Copilot Free.
+
+**Copilot Chat** features available include:
+* Copilot Chat in IDEs
+* Inline chat
+* Slash commands
+* Copilot Chat in GitHub Mobile
+* Copilot Chat in GitHub
+* Copilot Chat in Windows Terminal
+* Copilot Chat skills in IDEs.[^1] (Not available in Copilot Free).
+
+### Models
+
+On Copilot Free and Copilot Student plans, access to models is available through auto model selection only.
+
+{% rowheaders %}
+
+| Available models                               | Copilot Pro  | Copilot Pro+ | Copilot Max |
+|---------------------------------------------------------|-------------------------------------------------|-----------------------------------------------------|------------------------------------------------|
+| {% for model in tables.copilot.model-supported-plans %} |
+| {{ model.name }}{% if model.name == 'GPT-5.4 nano' %}[^gpt54nano]{% endif %}{% if model.name == 'Claude Fable 5' or model.name == 'Claude Fable 5.1' or model.name == 'Claude Fable 5.2' %}[^claude-fable-5]{% endif %} | {% if model.pro == true %}(icon: check){% else %}(icon: x){% endif %} | {% if model.pro_plus == true %}(icon: check){% else %}(icon: x){% endif %} | {% if model.max == true %}(icon: check){% else %}(icon: x){% endif %} |
+| {% endfor %}                                            |
+
+{% endrowheaders %}
+
+### Agents
+
+{% rowheaders %}
+
+| Agents                                                                  | Copilot Free                                   | Copilot Student | Copilot Pro | Copilot Pro+ | Copilot Max |
+| ----------------------------------------------------------------------- | --------------------------------------------------------------------------------- | -------------------------------------------------- | ---------------------------------------------- | --------------------------------------------------- | ---------------------------------------------- |
+| Copilot in the cloud                        | (icon: x)                                       | (icon: check)        | (icon: check)    | (icon: check)         | (icon: check)    |
+| Agent mode                                                              | (icon: check)                                       | (icon: check)        | (icon: check)    | (icon: check)         | (icon: check)    |
+| Copilot code review         | Only "Review selection" in VS Code | (icon: check)        | (icon: check)    | (icon: check)         | (icon: check)    |
+| Model Context Protocol (MCP)                                            | (icon: check)                                       | (icon: check)        | (icon: check)    | (icon: check)         | (icon: check)    |
+| Third-party Agents (public preview) | (icon: x)                                       | (icon: x)        | (icon: check)    | (icon: check)         | (icon: check)    |
+
+{% endrowheaders %}
+
+### Customization
+
+{% rowheaders %}
+
+| Customization                                                                    | Copilot Free | Copilot Student | Copilot Pro | Copilot Pro+ | Copilot Max |
+| -------------------------------------------------------------------------------- | ----------------------------------------------- | -------------------------------------------------- | ---------------------------------------------- | --------------------------------------------------- | ---------------------------------------------- |
+| Repository and personal custom instructions                                      | (icon: check)     | (icon: check)        | (icon: check)    | (icon: check)         | (icon: check)    |
+| Organization custom instructions                                                 | (icon: x)     | (icon: x)        | (icon: x)    | (icon: x)         | (icon: x)    |
+| Prompt files                                                                     | (icon: check)     | (icon: check)        | (icon: check)    | (icon: check)         | (icon: check)    |
+| Model Context Protocol (MCP)                                                     | (icon: check)     | (icon: check)        | (icon: check)    | (icon: check)         | (icon: check)    |
+| Block suggestions matching public code                                           | (icon: check)     | (icon: check)        | (icon: check)    | (icon: check)         | (icon: check)    |
+| Exclude specified files from Copilot | (icon: x)     | (icon: x)        | (icon: x)    | (icon: x)         | (icon: x)    |
+| Organization-wide policy management                                              | (icon: x)     | (icon: x)        | (icon: x)    | (icon: x)         | (icon: x)    |
+
+{% endrowheaders %}
+
+### Other features
+
+{% rowheaders %}
+
+|                                                                                                  | Copilot Free | Copilot Student | Copilot Pro | Copilot Pro+ | Copilot Max |
+| ------------------------------------------------------------------------------------------------ | ----------------------------------------------- | -------------------------------------------------- | ---------------------------------------------- | --------------------------------------------------- | ---------------------------------------------- |
+| Copilot pull request summaries                                                     | (icon: x)     | (icon: check)        | (icon: check)    | (icon: check)         | (icon: check)    |
+| Audit logs                                                                                       | (icon: x)     | (icon: x)        | (icon: x)    | (icon: check)         | (icon: check)    |
+| Content exclusion                                                                                | (icon: x)     | (icon: x)        | (icon: x)    | (icon: x)         | (icon: x)    |
+| Copilot CLI                                                   | (icon: check)     | (icon: check)        | (icon: check)    | (icon: check)         | (icon: check)    |
+| The Copilot app                                                   | (icon: check)     | (icon: check)        | (icon: check)    | (icon: check)         | (icon: check)    |
+
+{% endrowheaders %}
+
+## Organization and enterprise plans
+
+Organizations and enterprises can centrally manage access, policies, and usage controls with Copilot Business, Copilot Enterprise, or Copilot access for eligible enterprises.
+
+For organizations within an enterprise, enterprise owners make the plan decisions.
+
+### How the billing models differ
+
+There are two billing models:
+
+* **With included credits**: Copilot Business and Copilot Enterprise charge a monthly fee per seat and include a shared pool of AI credits. Copilot Enterprise includes more credits per seat and priority access to new models and features. Usage beyond the shared pool is billed separately.
+* **Without included credits**: Copilot access provides the same feature and model eligibility as Copilot Enterprise, but metered usage is billed from the first use.
+
+An enterprise must choose one billing model. Copilot access cannot coexist with Copilot Business or Copilot Enterprise seats in the same enterprise. Organizations within the enterprise cannot choose a different billing model.
+
+Eligible enterprises can provide Copilot access through two options:
+
+* **Through GitHub Enterprise Cloud**: Copilot access has a $0 seat cost for users with a GitHub Enterprise Cloud license.
+* **As Copilot Standalone**: Copilot access costs $10 USD per user per month, without requiring a GitHub Enterprise Cloud license for the user.
+
+An enterprise can use both access options. Existing Copilot Business and Copilot Enterprise plans remain supported, and transitioning is voluntary. For eligibility and transition details, see [AUTOTITLE](/copilot/get-started/whats-changing-with-github-enterprise-and-copilot).
+
+### GitHub AI Credits allowance by plan
+
+Copilot access does not include any GitHub AI Credits. Copilot Business and Copilot Enterprise include the following allowances:
+
+| Plan | Price per granted seat per month | GitHub AI Credits per user per month |
+| --- | --- | --- |
+| Copilot Business | $19 USD  | 1,900 |
+| Copilot Enterprise| $39 USD  | 3,900 |
+
+These licenses contribute credits to a shared pool, and usage beyond the pool is charged at $0.01 USD per AI credit.
+
+For a full explanation of how AI credits work, including pooling, additional usage, and what happens when credits run out, see [AUTOTITLE](/copilot/concepts/billing-and-usage/organizations-and-enterprises/billing).
+
+### Inline suggestions and GitHub Copilot in the cloud
+
+**Inline suggestions**: Inline suggestion features are available in all plans:
+
+* Real-time code suggestions with included models
+* Next edit suggestions
+
+These features are unlimited and do not consume credits, including when a user has a $0 USD budget or reaches an enforced spending limit.
+
+Chat features are available in all plans:
+
+* Copilot in IDEs
+* Inline chat
+* Slash commands
+* Copilot in GitHub
+* Copilot in GitHub Mobile
+* Copilot in Windows Terminal
+* Copilot skills in IDEs[^1]
+* GitHub Copilot in the cloud
+
+### Models
+
+{% rowheaders %}
+
+| Available models                               | Copilot Business | Copilot Enterprise and Copilot access |
+|---------------------------------------------------------|-----------------------------------------------------|-------------------------------------------------------|
+| {% for model in tables.copilot.model-supported-plans %} |
+| {{ model.name }}{% if model.name == 'GPT-5.4 nano' %}[^gpt54nano]{% endif %}{% if model.name == 'Claude Fable 5' or model.name == 'Claude Fable 5.1' or model.name == 'Claude Fable 5.2' %}[^claude-fable-5]{% endif %} | {% if model.business == true %}(icon: check){% else %}(icon: x){% endif %} | {% if model.enterprise == true %}(icon: check){% else %}(icon: x){% endif %} |
+| {% endfor %}                                            |
+
+{% endrowheaders %}
+
+[^gpt54nano]: GPT-5.4 nano is currently only available in the Codex Visual Studio Code extension (Copilot Pro+ only) and is not available in Copilot Chat.
+
+### Agents
+
+{% rowheaders %}
+
+| Agents                                                                  | Copilot Business | Copilot Enterprise and Copilot access |
+| ----------------------------------------------------------------------- | --------------------------------------------------- | ----------------------------------------------------- |
+| Copilot in the cloud                         | (icon: check)         | (icon: check)           |
+| Agent mode                                                              | (icon: check)         | (icon: check)           |
+| Copilot code review         | (icon: check)         | (icon: check)           |
+| Model Context Protocol (MCP)                                            | (icon: check)         | (icon: check)           |
+| Third-party Agents (public preview) | (icon: check)         | (icon: check)           |
+
+{% endrowheaders %}
+
+### Customization
+
+{% rowheaders %}
+
+| Customization                                                                    | Copilot Business | Copilot Enterprise and Copilot access |
+| -------------------------------------------------------------------------------- | --------------------------------------------------- | ----------------------------------------------------- |
+| Repository and personal custom instructions                                      | (icon: check)         | (icon: check)           |
+| Organization custom instructions                                                 | (icon: check)         | (icon: check)           |
+| Prompt files                                                                     | (icon: check)         | (icon: check)           |
+| Model Context Protocol (MCP)                                                     | (icon: check)         | (icon: check)           |
+| Block suggestions matching public code                                           | (icon: check)         | (icon: check)           |
+| Exclude specified files from Copilot | (icon: check)         | (icon: check)           |
+| Organization-wide policy management                                              | (icon: check)         | (icon: check)           |
+
+{% endrowheaders %}
+
+### Other features
+
+{% rowheaders %}
+
+|                                                                                                  | Copilot Business | Copilot Enterprise and Copilot access |
+| ------------------------------------------------------------------------------------------------ | --------------------------------------------------- | ----------------------------------------------------- |
+| Copilot pull request summaries                                                     | (icon: check)         | (icon: check)           |
+| Audit logs                                                                                       | (icon: check)         | (icon: check)           |
+| Content exclusion                                                                                | (icon: check)         | (icon: check)           |
+| Copilot CLI                                                   | (icon: check)         | (icon: check)           |
+| The Copilot app                                                  | (icon: check)         | (icon: check)           |
+
+{% endrowheaders %}
+
+## Further reading
+
+* To compare feature support across IDEs, see [AUTOTITLE](/copilot/reference/copilot-feature-matrix).
+* To compare models supported across plans, features, and IDEs, see [AUTOTITLE](/copilot/reference/ai-models/supported-models).
+
+[^1]: Copilot Chat skills in IDEs is available in Visual Studio Code and Visual Studio.
+[^claude-fable-5]: When Claude Fable 5, Claude Fable 5.1, or Claude Fable 5.2 is used, Anthropic retains data, including prompts and outputs, by default to operate safety classifiers that detect harmful use. Customers can request to use Claude Fable 5, Claude Fable 5.1, or Claude Fable 5.2 with zero data retention (ZDR) through the end of 2026 under a time-bound exemption while Anthropic rolls out Enterprise Frontier Safeguards (EFS). After that point, continued use of these models would require EFS, which will enable eligible customers to keep their data under their own control while also enabling automated safety monitoring. For an enterprise that has been approved and configured for this type of access, Claude Fable 5, Claude Fable 5.1, and Claude Fable 5.2 requests will use the ZDR endpoint through the end of 2026 when the models are enabled. To learn whether your enterprise is eligible and request access, contact your GitHub account team. Approval for access does not automatically enable Claude Fable 5, Claude Fable 5.1, or Claude Fable 5.2. An enterprise or organization administrator must still enable each model before users can access it. Other Claude models, except for Claude Fable 5, Claude Fable 5.1, and Claude Fable 5.2, continue to operate under ZDR. Customers who enable a Fable model with ZDR agree to use this model only for internal operations, including to develop and evaluate products for their own customers. They may not make the model endpoints or outputs available externally. To enable these models, see [AUTOTITLE](/copilot/how-tos/copilot-on-github/set-up-copilot/configure-access-to-ai-models).

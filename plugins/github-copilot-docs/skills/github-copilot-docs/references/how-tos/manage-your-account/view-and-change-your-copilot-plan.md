@@ -1,0 +1,80 @@
+---
+title: Viewing and changing your GitHub Copilot plan
+shortTitle: View and change your Copilot plan
+intro: 'Learn how to view, cancel, or update your Copilot plan.'
+versions:
+  feature: copilot
+redirect_from:
+  - /copilot/managing-copilot/managing-copilot-as-an-individual-subscriber/modifying-your-copilot-subscription-as-an-individual-user
+  - /copilot/managing-copilot/managing-copilot-as-an-individual-subscriber/managing-your-copilot-subscription/modifying-your-copilot-subscription-as-an-individual-user
+  - /copilot/managing-copilot/managing-copilot-as-an-individual-subscriber/managing-your-github-copilot-pro-subscription/modifying-your-copilot-pro-subscription-as-an-individual-user
+  - /copilot/managing-copilot/managing-copilot-as-an-individual-subscriber/managing-your-copilot-plan/modifying-your-copilot-pro-subscription-as-an-individual-user
+  - /copilot/managing-copilot/managing-copilot-as-an-individual-subscriber/canceling-copilot-as-an-individual-user
+  - /copilot/managing-copilot/managing-copilot-as-an-individual-subscriber/managing-your-copilot-subscription/canceling-copilot-as-an-individual-user
+  - /copilot/managing-copilot/managing-copilot-as-an-individual-subscriber/managing-your-github-copilot-pro-subscription/canceling-copilot-pro-as-an-individual-user
+  - /copilot/managing-copilot/managing-copilot-as-an-individual-subscriber/managing-your-copilot-plan/canceling-copilot-pro-as-an-individual-user
+  - /copilot/managing-copilot/managing-copilot-as-an-individual-subscriber/managing-your-copilot-plan/canceling-your-copilot-pro-trial-as-an-individual-user
+  - /copilot/managing-copilot/managing-copilot-as-an-individual-subscriber/canceling-your-copilot-trial-as-an-individual-user
+  - /copilot/managing-copilot/managing-copilot-as-an-individual-subscriber/managing-your-copilot-subscription/canceling-your-copilot-trial-as-an-individual-user
+  - /copilot/managing-copilot/managing-copilot-as-an-individual-subscriber/managing-your-github-copilot-pro-subscription/canceling-your-copilot-pro-trial-as-an-individual-user
+  - /copilot/managing-copilot/managing-copilot-as-an-individual-subscriber/managing-your-copilot-plan/canceling-your-copilot-plan
+  - /copilot/managing-copilot/managing-copilot-as-an-individual-subscriber/managing-your-copilot-plan/viewing-and-changing-your-copilot-plan
+  - /copilot/how-tos/manage-your-account/viewing-and-changing-your-copilot-plan
+contentType: how-tos
+category: 
+  - Configure Copilot
+---
+
+You can view your current plan details in your GitHub account settings. The billing and licensing steps described in this article apply only if you can sign in to the personal account billed for the plan.
+
+If you have access to GitHub Copilot through an organization or enterprise, your plan can be modified by an organization or enterprise owner. See [AUTOTITLE](/enterprise-cloud@latest/copilot/how-tos/administer-copilot).
+
+## Viewing your Copilot plan
+
+1. In the upper-right corner of any page on GitHub, click your profile picture, then click **(icon: gear) Settings**.
+1. In the "Access" section of the sidebar, click **(icon: credit-card) Billing & licensing** and then **Licensing** (new platform). Alternatively, click **(icon: credit-card) Billing and licensing**, then click **Plans and usage** (original platform).
+
+Under "Licensing" and "Current plan", you can see which license and plan you're currently using.
+
+## Changing your Copilot plan
+
+You can upgrade or downgrade your Copilot plan at any time from your account settings.
+
+### Upgrading your Copilot plan
+
+1. In the upper-right corner of any page on GitHub, click your profile picture, then click **(icon: gear) Settings**.
+1. In the "Access" section of the sidebar, click **(icon: credit-card) Billing & licensing** and then **Licensing** (new platform). Alternatively, click **(icon: credit-card) Billing and licensing**, then click **Plans and usage** (original platform).
+
+1. In the "GitHub Copilot" section, click the option to upgrade on the right.
+1. Follow the prompts to confirm your selection and billing details.
+
+### Downgrading your Copilot plan
+
+1. In the upper-right corner of any page on GitHub, click your profile picture, then click **(icon: gear) Settings**.
+1. In the "Access" section of the sidebar, click **(icon: credit-card) Billing & licensing** and then **Licensing** (new platform). Alternatively, click **(icon: credit-card) Billing and licensing**, then click **Plans and usage** (original platform).
+
+1. In the "GitHub Copilot" section, select the **Manage subscription** dropdown on the right and then click the downgrade option available to you.
+1. In the downgrade modal, you'll see options to:
+
+   * Keep your existing plan, which cancels the downgrade process.
+   * Downgrade to the plan level below your current plan, which switches you at the start of your next billing cycle.
+
+   Select the downgrade button to confirm.
+
+## Canceling your Copilot plan
+
+You can cancel your Copilot plan at any time. You’ll retain access to your current features until your billing cycle ends. You will automatically be downgraded to Copilot Free at the end of your billing cycle.
+
+If you have been granted free access to Copilot as a verified student, teacher, or maintainer of a popular open source project, you won’t be able to cancel your plan. If you have access to Copilot through an organization or enterprise, you will not be able to cancel your plan. In these cases, you can disable Copilot in your environment. See [AUTOTITLE](/copilot/how-tos/copilot-in-your-ide/set-up-copilot/configure-in-ide).
+
+If you have an active Copilot Pro, Copilot Pro+, or Copilot Max plan, and are then assigned a seat through Copilot Business, Copilot Enterprise, or Copilot access, your personal Copilot plan will be automatically canceled.
+
+1. In the upper-right corner of any page on GitHub, click your profile picture, then click **(icon: gear) Settings**.
+1. In the "Access" section of the sidebar, click **(icon: credit-card) Billing & licensing** and then **Licensing** (new platform). Alternatively, click **(icon: credit-card) Billing and licensing**, then click **Plans and usage** (original platform).
+
+1. In the "GitHub Copilot" section, select the **Manage subscription** dropdown on the right and then click **Cancel subscription**.
+1. Select **Cancel Copilot Pro/Copilot Pro+/Copilot Max** to cancel your plan at the end of your current billing cycle.
+
+If you can't sign in to the personal account billed for your plan—for example, because you no longer have access to its work or school email or are blocked by account recovery—try the available account recovery methods. See [AUTOTITLE](/authentication/securing-your-account-with-two-factor-authentication-2fa/recovering-your-account-if-you-lose-your-2fa-credentials). If you still can't access the account or identify which account is being charged, contact [GitHub Support](https://support.github.com) to request help stopping future Copilot charges or to request removal of the payment method from the locked account.
+
+For more information about billing in general, like adding a payment method or viewing your payment history, see [AUTOTITLE](/billing/get-started).

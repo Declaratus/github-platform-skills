@@ -1,0 +1,99 @@
+---
+title: GitHub Copilot app
+shortTitle: GitHub Copilot app
+intro: 'The GitHub Copilot app is a desktop application for agent-driven development that brings parallel workstreams, GitHub integration, and PR lifecycle management into one place.'
+product: 'The GitHub Copilot app is available for all Copilot plans.<br><a href="https://github.com/features/ai/github-app?utm_source=app-download-docs&utm_medium=docs&utm_campaign=universe-2026" target="_blank" class="btn btn-primary mt-3 mr-3 no-underline js-os-download" data-os-download-mac="https://gh.io/copilot-app-mac" data-os-download-mac-intel="https://gh.io/copilot-app-mac-intel" data-os-download-windows="https://gh.io/copilot-app-win64" data-os-download-windows-arm="https://gh.io/copilot-app-win-arm" data-os-download-linux="https://gh.io/copilot-app-linux" data-os-download-linux-arm="https://github.com/github/app/releases/latest/download/GitHub-Copilot-linux-arm64.AppImage">(icon: desktop-download) <span class="js-os-download-label">Download the GitHub Copilot app</span></a>'
+versions:
+  feature: copilot
+contentType: concepts
+redirect_from:
+  - /copilot/concepts/agents/github-app
+  - /copilot/concepts/agents/github-copilot-app
+category:
+  - Learn about Copilot
+---
+
+## Introduction
+
+The GitHub Copilot app is a desktop application purpose-built for agent-driven development. It gives you a single place to direct AI agents across parallel workstreams, work with GitHub issues and pull requests, and manage the full development lifecycle—without context-switching between terminals, IDEs, and browser tabs.
+
+The app is built on GitHub Copilot CLI and integrates natively with GitHub, so your repositories, branches, and CI pipelines work out of the box. It's designed for workflows where you want to run multiple agents in parallel and stay focused on directing work rather than doing it all yourself.
+
+## Availability
+
+The GitHub Copilot app is available for all Copilot plans. For Copilot Business and Copilot Enterprise users, the GitHub Copilot app policy must remain enabled. This policy is enabled by default and is separate from the Copilot CLI policy.
+
+## Supported operating systems
+
+The GitHub Copilot app supports the following operating systems:
+
+* macOS
+* Linux
+* Windows
+
+On Windows, you can also run agent sessions inside a Windows Subsystem for Linux (WSL) 2 distribution. See [AUTOTITLE](/copilot/how-tos/github-copilot-app/agent-sessions#running-sessions-in-wsl).
+
+## Benefits of using the GitHub Copilot app
+
+* **Work in parallel.** Run multiple agent sessions at the same time, each on its own branch, so you can make progress on several tasks without waiting for one to finish.
+* **Stay in one place.** Triage issues, direct agents, review changes, and land pull requests without switching between your terminal, IDE, and browser.
+* **Start fast.** The app connects to GitHub natively—your repositories, branches, issues and pull requests work out of the box with no additional setup.
+* **Stay in control.** Choose how much autonomy to give agents, from fully collaborative to fully autonomous, and adjust the model and reasoning effort for each session.
+* **Collaborate on a shared surface.** Use canvases to create custom interfaces where people and agents can collaborate.
+
+## What can I do with the GitHub Copilot app?
+
+* **Projects:** Give Copilot a goal and let it coordinate the work. Projects can span one or more repositories or focus on tasks that don't require a repository. Within a project, you can track progress, share context, review artifacts, and set up recurring tasks. For more information, see [AUTOTITLE](/copilot/how-tos/github-copilot-app/working-with-projects).
+* **Parallel workspaces:** Run multiple isolated agent sessions simultaneously, each with a dedicated git worktree and branch. You can run a session in a cloud sandbox, or configure a local sandbox to restrict the resources available to agent-run tools on your machine. For more information, see [AUTOTITLE](/copilot/how-tos/github-copilot-app/agent-sessions#using-cloud-and-local-sandboxes).
+* **Cloud sessions:** Run a session in a cloud sandbox so it doesn't use your machine. Because the session runs in the cloud, you can follow and steer it from any Copilot client. For example, you can start work in the GitHub Copilot app, steer it from GitHub Mobile while away, then pick it back up in the GitHub Copilot app or another client. For more information, see [AUTOTITLE](/copilot/concepts/security-governance-and-network-settings/about-cloud-sandboxes).
+* **Session modes:** Choose how you work with agents: Interactive (collaborative), Plan (agent plans, you approve), or Autopilot (fully autonomous). You can also select from multiple LLMs and adjust reasoning effort for each session.
+* **Model selection:** Select from multiple LLMs, including models from your own provider using bring your own key (BYOK), and adjust reasoning effort for each session.
+* **GitHub integration:** Browse and find issues, start sessions from them, create and close pull requests, review pull requests, view CI check results, and search across your repositories—all within the app.
+* **Customizations:** Configure and use global instructions, MCP servers, and agent skills.
+* **Automations:** Save recurring agent tasks and run them on a schedule or on demand.
+* **Chats:** Brainstorm in a conversation mode without creating a dedicated branch or workspace.
+* **Session history:** Use `/chronicle` to get insights from previous sessions, including work you started in the app.
+* **Canvases:** Open custom, agent-driven artifacts and interfaces where people and agents can collaborate.
+* **Computer use:** Allow local sessions on macOS and Windows to interact with desktop applications, including legacy and GUI-only software that do not provide an API, command-line interface, or MCP integration. For more information, see [AUTOTITLE](/copilot/concepts/agent-capabilities/agent-powered-workflows-and-operations/computer-use).
+
+## The GitHub Copilot app workflow
+
+Connect a repository or local folder to the app, then start agent sessions to work on it. Sessions are grouped by repository in the sidebar.
+
+A typical workflow in the GitHub Copilot app looks like this:
+
+1. Start a new agent session in a repository or local folder, or browse issues in a repository and start a session from an issue.
+1. Choose a session mode—Interactive, Plan, or Autopilot—and select a model.
+1. Describe the task and let the agent create a branch, write code, and run tests.
+1. Review the agent's changes, provide feedback, and iterate.
+1. Create a pull request, leave a review, check whether CI passed, and merge the PR—all from within the app.
+
+You can run several of these workflows in parallel, each in its own workspace, and switch between them as needed.
+
+## Optimizing AI usage in the GitHub Copilot app
+
+Follow these practices to use AI credits more efficiently in the app:
+
+* **Match model capability to task complexity.** Use lighter models for straightforward changes and higher-capability models for complex debugging, design decisions, and multi-step tasks.
+* **Choose the right session mode for the stage of work.** Use **Plan** mode to validate scope and approach, use **Interactive** mode when you want tighter steering, and move to **Autopilot** when the task is well-defined.
+* **Use chats to scope before opening a full session.** For early exploration, use **Chats** to clarify requirements and reduce rework before creating a dedicated session.
+* **Start a new session when you switch tasks.** A new session keeps context focused and avoids carrying irrelevant history into unrelated work.
+* **Use usage insights regularly.** Run `/chronicle cost tips` to find expensive patterns in your session usage and improve efficiency over time.
+
+For more detailed optimization tips, see [AUTOTITLE](/copilot/tutorials/optimize-ai-usage).
+
+## Providing feedback
+
+To share feedback, click the **Give feedback** icon in the bottom-left corner of the app.
+
+## Content exclusion
+
+For Copilot Business and Copilot Enterprise users, the GitHub Copilot app respects content exclusion policies configured at the enterprise, organization, and repository levels. Excluded files are not used as context. For more information, see [AUTOTITLE](/copilot/concepts/context/content-exclusion).
+
+## Public code
+
+The GitHub Copilot app may generate code that is a match or near match of publicly available code, even if the "Suggestions matching public code" policy is set to "Block." See [AUTOTITLE](/copilot/how-tos/manage-your-account/manage-policies#enabling-or-disabling-suggestions-matching-public-code).
+
+## Further reading
+
+* [AUTOTITLE](/copilot/get-started/quickstart-copilot-app)
