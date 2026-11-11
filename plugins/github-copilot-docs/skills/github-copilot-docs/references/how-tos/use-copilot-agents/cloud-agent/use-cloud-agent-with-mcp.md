@@ -2,9 +2,7 @@
 title: Using Copilot cloud agent via the GitHub MCP Server
 shortTitle: Use cloud agent via GitHub MCP Server
 intro: 'Start Copilot cloud agent sessions from any IDE or agentic tool that supports Model Context Protocol (MCP).'
-product: 'Copilot cloud agent is available for all paid Copilot plans.
-          
-          The agent is available in all repositories stored on GitHub, except repositories owned by managed user accounts and where it has been explicitly disabled.<br><a href="https://github.com/features/copilot/plans?ref_product=copilot&ref_type=purchase&ref_style=button" target="_blank" class="btn btn-primary mt-3 mr-3 no-underline"><span>Sign up for Copilot</span> (icon: link-external)</a>'
+product: "Copilot cloud agent is available for all paid Copilot plans.\n\nThe agent is available in all repositories stored on GitHub, except repositories owned by managed user accounts and where it has been explicitly disabled.<br><a href=\"https://github.com/features/copilot/plans?ref_product=copilot&ref_type=purchase&ref_style=button\" target=\"_blank\" class=\"btn btn-primary mt-3 mr-3 no-underline\"><span>Sign up for Copilot</span> (icon: link-external)</a>"
 versions:
   feature: copilot
 contentType: how-tos

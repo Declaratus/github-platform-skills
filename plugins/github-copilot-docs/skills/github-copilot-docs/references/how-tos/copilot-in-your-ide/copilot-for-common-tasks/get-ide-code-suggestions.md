@@ -100,7 +100,9 @@ For any given input, GitHub Copilot may offer multiple suggestions. You can sele
 
 For example, type the following line in a Java file, and press <kbd>Enter</kbd>:
 
-{% indented_data_reference reusables.copilot.java-int-snippet spaces=3 %}
+   ```java copy
+   private int calculateDaysBetweenDates(Date date1,
+   ```
 
 GitHub Copilot will show you a suggestion.
 
@@ -121,7 +123,9 @@ If you don't want to use any of the initial suggestions GitHub Copilot offers, y
 
 For example, type the following line in a Java file:
 
-{% indented_data_reference reusables.copilot.java-int-snippet spaces=3 %}
+   ```java copy
+   private int calculateDaysBetweenDates(Date date1,
+   ```
 
 GitHub Copilot will show you a suggestion.
 
@@ -140,7 +144,9 @@ If you don't want to accept an entire suggestion from GitHub Copilot, you can ac
 
 For example, type the following line in a Java file:
 
-{% indented_data_reference reusables.copilot.java-int-snippet spaces=3 %}
+   ```java copy
+   private int calculateDaysBetweenDates(Date date1,
+   ```
 
 GitHub Copilot will show a suggestion in grayed text. The exact suggestion may vary.
 

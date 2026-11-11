@@ -2,9 +2,7 @@
 title: Get started with Copilot agents on GitHub
 shortTitle: Get started
 intro: Try Copilot cloud agent end-to-end in about ten minutes.
-product: 'Copilot cloud agent is available for all paid Copilot plans.
-          
-          The agent is available in all repositories stored on GitHub, except repositories owned by managed user accounts and where it has been explicitly disabled.<br><a href="https://github.com/features/copilot/plans?ref_product=copilot&ref_type=purchase&ref_style=button" target="_blank" class="btn btn-primary mt-3 mr-3 no-underline"><span>Sign up for Copilot</span> (icon: link-external)</a>'
+product: "Copilot cloud agent is available for all paid Copilot plans.\n\nThe agent is available in all repositories stored on GitHub, except repositories owned by managed user accounts and where it has been explicitly disabled.<br><a href=\"https://github.com/features/copilot/plans?ref_product=copilot&ref_type=purchase&ref_style=button\" target=\"_blank\" class=\"btn btn-primary mt-3 mr-3 no-underline\"><span>Sign up for Copilot</span> (icon: link-external)</a>"
 allowTitleToDifferFromFilename: true
 versions:
   feature: copilot

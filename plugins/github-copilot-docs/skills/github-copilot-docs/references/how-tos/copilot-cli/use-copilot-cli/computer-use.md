@@ -2,7 +2,7 @@
 title: Using GitHub Copilot CLI to interact with desktop applications
 shortTitle: Computer use
 intro: 'With computer use, allow Copilot to interact with local desktop applications from GitHub Copilot CLI.'
-product: 'GitHub Copilot CLI is available with all Copilot plans. If you receive Copilot from an organization, the Copilot CLI policy must be enabled in the organization's settings.'
+product: "GitHub Copilot CLI is available with all Copilot plans. If you receive Copilot from an organization, the Copilot CLI policy must be enabled in the organization's settings."
 versions:
   feature: copilot
 contentType: how-tos

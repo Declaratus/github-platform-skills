@@ -2,7 +2,7 @@
 title: Steering agents in GitHub Copilot CLI
 shortTitle: Steer agents
 intro: Guide Copilot during task execution to keep work on track with your intent.
-product: 'GitHub Copilot CLI is available with all Copilot plans. If you receive Copilot from an organization, the Copilot CLI policy must be enabled in the organization's settings.'
+product: "GitHub Copilot CLI is available with all Copilot plans. If you receive Copilot from an organization, the Copilot CLI policy must be enabled in the organization's settings."
 versions:
   feature: copilot
 contentType: how-tos

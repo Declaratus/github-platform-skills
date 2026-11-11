@@ -3,7 +3,7 @@ title: Requesting a code review with GitHub Copilot CLI
 shortTitle: Agentic code review
 allowTitleToDifferFromFilename: true
 intro: 'Use Copilot CLI to review your code changes directly from the terminal.'
-product: 'GitHub Copilot CLI is available with all Copilot plans. If you receive Copilot from an organization, the Copilot CLI policy must be enabled in the organization's settings.'
+product: "GitHub Copilot CLI is available with all Copilot plans. If you receive Copilot from an organization, the Copilot CLI policy must be enabled in the organization's settings."
 versions:
   feature: copilot
 contentType: how-tos

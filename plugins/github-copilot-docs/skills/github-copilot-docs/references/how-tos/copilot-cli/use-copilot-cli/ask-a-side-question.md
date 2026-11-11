@@ -2,7 +2,7 @@
 title: Asking a side question in GitHub Copilot CLI
 shortTitle: Ask a side question
 intro: During a CLI session, you can ask Copilot a question without adding the prompt, or the answer, to your conversation history.
-product: 'GitHub Copilot CLI is available with all Copilot plans. If you receive Copilot from an organization, the Copilot CLI policy must be enabled in the organization's settings.'
+product: "GitHub Copilot CLI is available with all Copilot plans. If you receive Copilot from an organization, the Copilot CLI policy must be enabled in the organization's settings."
 versions:
   feature: copilot
 contentType: how-tos

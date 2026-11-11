@@ -2,7 +2,7 @@
 title: Automating tasks with Copilot CLI and GitHub Actions
 shortTitle: Automate with Actions
 intro: Integrate GitHub Copilot CLI into your GitHub Actions workflows.
-product: 'GitHub Copilot CLI is available with all Copilot plans. If you receive Copilot from an organization, the Copilot CLI policy must be enabled in the organization's settings.'
+product: "GitHub Copilot CLI is available with all Copilot plans. If you receive Copilot from an organization, the Copilot CLI policy must be enabled in the organization's settings."
 versions:
   feature: copilot
 contentType: how-tos

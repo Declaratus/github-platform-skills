@@ -2,9 +2,7 @@
 title: Research, plan, and iterate on code changes with Copilot
 shortTitle: Research, plan, iterate
 intro: "Perform deep research on a repository, create an implementation plan, and make iterative code changes on a branch, then create a pull request when you're ready."
-product: 'Copilot in the cloud is enabled by default for all paid Copilot plans.
-          
-          The agent is available in all repositories stored on GitHub, except repositories owned by managed user accounts and where it has been explicitly disabled.<br><a href="https://github.com/features/copilot/plans?ref_product=copilot&ref_type=purchase&ref_style=button&utm_source=research-plan-iterate-purchase&utm_medium=docs&utm_campaign=universe-2026" target="_blank" class="btn btn-primary mt-3 mr-3 no-underline"><span>Sign up for Copilot</span> (icon: link-external)</a>'
+product: "Copilot in the cloud is enabled by default for all paid Copilot plans.\n\nThe agent is available in all repositories stored on GitHub, except repositories owned by managed user accounts and where it has been explicitly disabled.<br><a href=\"https://github.com/features/copilot/plans?ref_product=copilot&ref_type=purchase&ref_style=button&utm_source=research-plan-iterate-purchase&utm_medium=docs&utm_campaign=universe-2026\" target=\"_blank\" class=\"btn btn-primary mt-3 mr-3 no-underline\"><span>Sign up for Copilot</span> (icon: link-external)</a>"
 versions:
   feature: copilot
 contentType: how-tos

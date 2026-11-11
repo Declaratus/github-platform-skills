@@ -9,10 +9,12 @@ Local copy of https://docs.github.com/en/copilot, built from `content/copilot` i
 
 Copilot changes fast. Prefer these docs over memory for feature names, policy names, model lists, and billing rules, and cite the page you used.
 
+Read `references/SOURCE.json` for the immutable upstream revision, source commit date, build inputs and dependencies. These pages are a snapshot, not a claim about today's availability or prices. Preserve plan, preview, client and deployment qualifications. If current behavior matters, explicitly identify what needs checking against the live page; do not silently substitute memory for the snapshot.
+
 ## How to find the right page
 
 1. Pick the section from the table below by question type.
-2. Read that section's `index.md`. Its `children:` frontmatter lists the pages in order, with an `intro:` on each child.
+2. Read that section's `index.md`. Its `children:` frontmatter lists the pages in order; read each relevant child's `intro:` and body.
 3. If the section is unclear, `Grep` the whole `references/` tree for the feature or setting name. File names match URL slugs.
 
 | Question type | Start in |
@@ -57,6 +59,10 @@ Copilot changes fast. Prefer these docs over memory for feature names, policy na
 - Plugins and marketplaces: `reference/plugin-and-marketplace-reference.md`
 - Example library: `tutorials/customization-library/`
 
+For customization semantics, also read `concepts/prompting-and-context/custom-instructions.md` and `concepts/customizations/`. Most clients, including CLI and VS Code, combine applicable instructions without a general override order. The personal/repository/organization precedence documented for GitHub.com Chat must not be applied to every client or cloud-agent feature. Read the exact surface row in `reference/custom-instructions-support.md`.
+
+For hook configuration, distinguish `reference/hooks-reference.md` (CLI/cloud schemas and execution environments) from VS Code preview behavior in `reference/customization-cheat-sheet.md` and the linked IDE documentation. Do not promise identical discovery, event names, payloads, commands or permission decisions across surfaces. Cloud runs non-interactively on Linux; CLI user/policy/settings sources do not automatically propagate. Check custom-agent field compatibility separately in `reference/custom-agents-configuration.md`.
+
 **Feature availability by plan and surface**: `reference/copilot-feature-matrix.md`
 
 **Rollout**: `tutorials/roll-out-at-scale/`
@@ -66,6 +72,7 @@ Copilot changes fast. Prefer these docs over memory for feature names, policy na
 Product-name variables and reusable snippets are already resolved at build time. A few github/docs conventions remain:
 
 - `[AUTOTITLE](/copilot/a/b)` is a link to another page. Map it to `references/a/b.md` or `references/a/b/index.md`. Links outside `/copilot/` are not bundled; cite them as `https://docs.github.com/en<path>`.
+- If that local path does not exist, search frontmatter `redirect_from:` for the original `/copilot/...` path, ignoring query/fragment while locating the file. Read the matching page and cite its current local path and mapped live URL. A redirect alias is not a missing page.
 - `{% ifversion fpt %}...{% else %}...{% endif %}` splits GitHub.com (`fpt`, `ghec`) from GitHub Enterprise Server (`ghes`) text. Use the branch matching the user's deployment.
 - `{% codetab %}` blocks are per-platform alternatives (Windows/macOS/Linux, or per-IDE).
 - `(icon: name)` marks a UI icon next to a button label.

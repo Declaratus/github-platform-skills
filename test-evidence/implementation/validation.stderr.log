@@ -1,0 +1,99 @@
+python : warning: filtering not recognized by server, ignoring
+At line:2 char:1
++ python test-evidence/implementation/run_validation.py final > test-ev ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (warning: filter...erver, ignoring:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+From C:\Users\barry\Documents\GitHub-Skills-PR1-Tests-2026-11-11\source\.fix\impl\.build-cache\test-temp\tmpr9ft4woy\up
+stream
+ * branch            a3edb022b6f29eb6083350430ba399716b8ac0cf -> FETCH_HEAD
+HEAD is now at a3edb02 fixture
+warning: filtering not recognized by server, ignoring
+From C:\Users\barry\Documents\GitHub-Skills-PR1-Tests-2026-11-11\source\.fix\impl\.build-cache\test-temp\tmpzm9jjm4e\up
+stream
+ * branch            37b1144bd0bbe7d02a85e4adf44179e917766872 -> FETCH_HEAD
+HEAD is now at 37b1144 fixture
+warning: filtering not recognized by server, ignoring
+fatal: git upload-pack: not our ref 0000000000000000000000000000000000000000
+fatal: remote error: upload-pack: not our ref 0000000000000000000000000000000000000000
+warning: filtering not recognized by server, ignoring
+From C:\Users\barry\Documents\GitHub-Skills-PR1-Tests-2026-11-11\source\.fix\impl\.build-cache\test-temp\tmpvewyvs_6\up
+stream
+ * branch            462220643baa45266c26f0d9b23a1fd6ad8cff7e -> FETCH_HEAD
+HEAD is now at 4622206 fixture
+warning: filtering not recognized by server, ignoring
+From C:\Users\barry\Documents\GitHub-Skills-PR1-Tests-2026-11-11\source\.fix\impl\.build-cache\test-temp\tmppkd9j9s4\up
+stream
+ * branch            f04c11946c73acf0a9d0bf3eb8d5d30d86829c6c -> FETCH_HEAD
+HEAD is now at f04c119 fixture
+warning: filtering not recognized by server, ignoring
+From C:\Users\barry\Documents\GitHub-Skills-PR1-Tests-2026-11-11\source\.fix\impl\.build-cache\test-temp\tmppkd9j9s4\up
+stream
+ * branch            f04c11946c73acf0a9d0bf3eb8d5d30d86829c6c -> FETCH_HEAD
+HEAD is now at f04c119 fixture
+warning: filtering not recognized by server, ignoring
+From C:\Users\barry\Documents\GitHub-Skills-PR1-Tests-2026-11-11\source\.fix\impl\.build-cache\test-temp\tmppkd9j9s4\up
+stream
+ * branch            74f43fe17ebf8a0daf71a52ee1009160fd5dbd1b -> FETCH_HEAD
+Warning: you are leaving 1 commit behind, not connected to
+any of your branches:
+
+  f04c119 fixture
+
+If you want to keep it by creating a new branch, this may be a good time
+to do so with:
+
+ git branch <new-branch-name> f04c119
+
+HEAD is now at 74f43fe fixture
+warning: filtering not recognized by server, ignoring
+From C:\Users\barry\Documents\GitHub-Skills-PR1-Tests-2026-11-11\source\.fix\impl\.build-cache\test-temp\tmpgmptipus\up
+stream
+ * branch            009ffaac68966ddf5c38789942403099380bab71 -> FETCH_HEAD
+HEAD is now at 009ffaa fixture
+warning: filtering not recognized by server, ignoring
+From C:\Users\barry\Documents\GitHub-Skills-PR1-Tests-2026-11-11\source\.fix\impl\.build-cache\test-temp\tmpgmptipus\up
+stream
+ * branch            2bd26356ad9c2adc847cec8ac01e876a95c6c346 -> FETCH_HEAD
+Warning: you are leaving 1 commit behind, not connected to
+any of your branches:
+
+  009ffaa fixture
+
+If you want to keep it by creating a new branch, this may be a good time
+to do so with:
+
+ git branch <new-branch-name> 009ffaa
+
+HEAD is now at 2bd2635 fixture
+warning: filtering not recognized by server, ignoring
+From C:\Users\barry\Documents\GitHub-Skills-PR1-Tests-2026-11-11\source\.fix\impl\.build-cache\test-temp\tmp3_qw9xwo\up
+stream
+ * branch            cd337bdc9aa42e2faee169249c5ccaac977fe90f -> FETCH_HEAD
+HEAD is now at cd337bd fixture
+warning: filtering not recognized by server, ignoring
+From C:\Users\barry\Documents\GitHub-Skills-PR1-Tests-2026-11-11\source\.fix\impl\.build-cache\test-temp\tmp3_qw9xwo\up
+stream
+ * branch            6c1c62d3c792a27bd2d7efa88f43f14d859f21ab -> FETCH_HEAD
+Warning: you are leaving 1 commit behind, not connected to
+any of your branches:
+
+  cd337bd fixture
+
+If you want to keep it by creating a new branch, this may be a good time
+to do so with:
+
+ git branch <new-branch-name> cd337bd
+
+HEAD is now at 6c1c62d fixture
+warning: filtering not recognized by server, ignoring
+From C:\Users\barry\Documents\GitHub-Skills-PR1-Tests-2026-11-11\source\.fix\impl\.build-cache\test-temp\tmpcm6h_kum\up
+stream
+ * branch            e2a8c250ae58c7f915d8ddd2b75091f95497e710 -> FETCH_HEAD
+HEAD is now at e2a8c25 fixture
+warning: filtering not recognized by server, ignoring
+From C:\Users\barry\Documents\GitHub-Skills-PR1-Tests-2026-11-11\source\.fix\impl\.build-cache\test-temp\tmp0i2m5miu\up
+stream
+ * branch            a63b4c1dafa4f1702327af97f42b2124b4bcdeaa -> FETCH_HEAD
+HEAD is now at a63b4c1 fixture

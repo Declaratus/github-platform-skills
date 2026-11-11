@@ -3,9 +3,7 @@ title: Using Copilot in the cloud on GitHub
 shortTitle: Use Copilot in the cloud on GitHub
 allowTitleToDifferFromFilename: true
 intro: 'Start Copilot in the cloud sessions directly on GitHub, then iterate on the results without leaving your browser.'
-product: 'Copilot in the cloud is enabled by default for all paid Copilot plans.
-          
-          The agent is available in all repositories stored on GitHub, except repositories owned by managed user accounts and where it has been explicitly disabled.<br><a href="https://github.com/features/copilot/plans?ref_product=copilot&ref_type=purchase&ref_style=button&utm_source=use-cloud-gh-purchase&utm_medium=docs&utm_campaign=universe-2026" target="_blank" class="btn btn-primary mt-3 mr-3 no-underline"><span>Sign up for Copilot</span> (icon: link-external)</a>'
+product: "Copilot in the cloud is enabled by default for all paid Copilot plans.\n\nThe agent is available in all repositories stored on GitHub, except repositories owned by managed user accounts and where it has been explicitly disabled.<br><a href=\"https://github.com/features/copilot/plans?ref_product=copilot&ref_type=purchase&ref_style=button&utm_source=use-cloud-gh-purchase&utm_medium=docs&utm_campaign=universe-2026\" target=\"_blank\" class=\"btn btn-primary mt-3 mr-3 no-underline\"><span>Sign up for Copilot</span> (icon: link-external)</a>"
 versions:
   feature: copilot
 redirect_from:

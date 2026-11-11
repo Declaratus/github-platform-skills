@@ -3,7 +3,7 @@ title: Researching with GitHub Copilot CLI
 shortTitle: Research with Copilot CLI
 allowTitleToDifferFromFilename: true
 intro: 'Use the `/research` slash command to investigate a complex topic and produce a cited report from your codebase, repositories on GitHub, and web sources.'
-product: 'GitHub Copilot CLI is available with all Copilot plans. If you receive Copilot from an organization, the Copilot CLI policy must be enabled in the organization's settings.'
+product: "GitHub Copilot CLI is available with all Copilot plans. If you receive Copilot from an organization, the Copilot CLI policy must be enabled in the organization's settings."
 versions:
   feature: copilot
 contentType: how-tos

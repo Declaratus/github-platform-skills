@@ -2,9 +2,7 @@
 title: Using Copilot cloud agent from the GitHub CLI
 shortTitle: Use cloud agent from the GitHub CLI
 intro: 'Start and track Copilot cloud agent sessions from the GitHub CLI.'
-product: 'Copilot cloud agent is available for all paid Copilot plans.
-          
-          The agent is available in all repositories stored on GitHub, except repositories owned by managed user accounts and where it has been explicitly disabled.<br><a href="https://github.com/features/copilot/plans?ref_product=copilot&ref_type=purchase&ref_style=button" target="_blank" class="btn btn-primary mt-3 mr-3 no-underline"><span>Sign up for Copilot</span> (icon: link-external)</a>'
+product: "Copilot cloud agent is available for all paid Copilot plans.\n\nThe agent is available in all repositories stored on GitHub, except repositories owned by managed user accounts and where it has been explicitly disabled.<br><a href=\"https://github.com/features/copilot/plans?ref_product=copilot&ref_type=purchase&ref_style=button\" target=\"_blank\" class=\"btn btn-primary mt-3 mr-3 no-underline\"><span>Sign up for Copilot</span> (icon: link-external)</a>"
 versions:
   feature: copilot
 contentType: how-tos

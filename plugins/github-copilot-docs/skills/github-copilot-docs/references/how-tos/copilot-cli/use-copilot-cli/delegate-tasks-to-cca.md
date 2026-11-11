@@ -3,7 +3,7 @@ title: Delegating tasks to Copilot
 shortTitle: Delegate tasks to Copilot
 intro: Use autopilot mode, or the `/delegate` slash command, to get Copilot to work autonomously on your behalf.
 allowTitleToDifferFromFilename: true
-product: 'GitHub Copilot CLI is available with all Copilot plans. If you receive Copilot from an organization, the Copilot CLI policy must be enabled in the organization's settings.'
+product: "GitHub Copilot CLI is available with all Copilot plans. If you receive Copilot from an organization, the Copilot CLI policy must be enabled in the organization's settings."
 versions:
   feature: copilot
 contentType: how-tos

@@ -4,9 +4,7 @@ shortTitle: Configure agent runners
 allowTitleToDifferFromFilename: true
 intro: 'Configure the GitHub Actions runners used by Copilot cloud agent and control whether repositories can customize the runner type.'
 permissions: Organization owners
-product: 'Copilot cloud agent is available for all paid Copilot plans.
-          
-          The agent is available in all repositories stored on GitHub, except repositories owned by managed user accounts and where it has been explicitly disabled.<br><a href="https://github.com/github-copilot/purchase?ref_product=copilot&ref_type=trial&ref_style=button&utm_source=configuring-runners-cca-your-org-doc-signup-cta&utm_medium=docs&utm_campaign=universe-2026" target="_blank" class="btn btn-primary mt-3 mr-3 no-underline"><span>Sign up for Copilot</span>(icon: link-external)</a>'
+product: "Copilot cloud agent is available for all paid Copilot plans.\n\nThe agent is available in all repositories stored on GitHub, except repositories owned by managed user accounts and where it has been explicitly disabled.<br><a href=\"https://github.com/github-copilot/purchase?ref_product=copilot&ref_type=trial&ref_style=button&utm_source=configuring-runners-cca-your-org-doc-signup-cta&utm_medium=docs&utm_campaign=universe-2026\" target=\"_blank\" class=\"btn btn-primary mt-3 mr-3 no-underline\"><span>Sign up for Copilot</span>(icon: link-external)</a>"
 versions:
   feature: copilot
 contentType: how-tos

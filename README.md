@@ -77,3 +77,27 @@ Checks `marketplace.json` syntax, plugin names, source paths, and version cohere
 MIT. Bundled upstream content remains under its own license, with attribution in each skill's `SKILL.md`. `github-well-architected` is MIT. `github-copilot-docs` is CC BY 4.0 (GitHub Docs content) and ships the upstream `LICENSE` in its `references/`.
 
 The `github-copilot-docs` recipe needs `python3` with PyYAML and python-liquid to resolve Liquid tags and expand table data (`build/lib/resolve_liquid.py`).
+
+### Reproducible Copilot references
+
+Use Python 3.11 or newer and install the tested build dependencies in an isolated environment:
+
+```bash
+python3 -m venv .build-cache/venv
+.build-cache/venv/bin/python -m pip install -r build/requirements.txt
+PYTHON=.build-cache/venv/bin/python ./build/build.sh github-copilot-docs
+```
+
+On Windows, use `.build-cache/venv/Scripts/python.exe`, or run the Python entry point directly:
+
+```powershell
+python build/lib/rebuild_copilot_docs.py
+python build/lib/rebuild_copilot_docs.py --revision 7c3387d3b513ed43ea26c9b2e4c0e1b12234c010
+python -m unittest discover -s build/tests -v
+```
+
+The default revision is pinned in `build/copilot-docs-source.json`; overrides must be full immutable commit SHAs. This recipe never substitutes mutable `main`. It sparsely fetches the content, data and REST context sources, resolves into a disposable sibling directory, validates every page, then publishes with rollback if replacement fails. Missing dependencies, fetch, rendering or validation errors exit nonzero and leave the previous references untouched. A build lock prevents concurrent replacements; an interrupted process may require inspecting and removing its empty `.references-build-lock` directory before retrying. Publication uses two directory renames, so readers may briefly observe a missing destination; it is not a transaction against power loss or filesystem failure during rollback.
+
+`references/SOURCE.json` records the upstream commit and commit date, generator hashes, dependency versions, authoritative REST context sources and page count. It intentionally omits wall-clock timestamps so identical inputs give identical output. Review that provenance when assessing freshness. Updating the pin and reviewing the regenerated diff is an explicit maintenance action.
+
+The resolver preserves deployment alternatives and literal raw blocks, rejects missing data, undefined table output/iteration, reusable cycles and expansion beyond 64 nested inclusions or 8 MB. Optional matrix `notApplicable` lists alone default to empty, matching upstream semantics. Other optional fields may be tested for truthiness; they cannot be printed or iterated when undefined. Unsupported source changes should fail for review, not produce an apparently successful partial snapshot.

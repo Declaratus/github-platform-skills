@@ -3,7 +3,7 @@ title: Getting started with GitHub Copilot CLI
 shortTitle: Copilot CLI quickstart
 intro: Quickly learn how to use GitHub Copilot CLI.
 allowTitleToDifferFromFilename: true
-product: 'GitHub Copilot CLI is available with all Copilot plans. If you receive Copilot from an organization, the Copilot CLI policy must be enabled in the organization's settings.'
+product: "GitHub Copilot CLI is available with all Copilot plans. If you receive Copilot from an organization, the Copilot CLI policy must be enabled in the organization's settings."
 versions:
   feature: copilot
 redirect_from:

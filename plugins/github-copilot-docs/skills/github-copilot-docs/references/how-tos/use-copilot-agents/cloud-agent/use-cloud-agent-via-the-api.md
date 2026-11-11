@@ -2,9 +2,7 @@
 title: Using Copilot cloud agent via the API
 shortTitle: Use cloud agent via the API
 intro: 'You can start and manage Copilot cloud agent tasks programmatically using the REST API.'
-product: 'Copilot cloud agent is available for all paid Copilot plans.
-          
-          The agent is available in all repositories stored on GitHub, except repositories owned by managed user accounts and where it has been explicitly disabled.<br><a href="https://github.com/features/copilot/plans?ref_product=copilot&ref_type=purchase&ref_style=button" target="_blank" class="btn btn-primary mt-3 mr-3 no-underline"><span>Sign up for Copilot</span> (icon: link-external)</a>'
+product: "Copilot cloud agent is available for all paid Copilot plans.\n\nThe agent is available in all repositories stored on GitHub, except repositories owned by managed user accounts and where it has been explicitly disabled.<br><a href=\"https://github.com/features/copilot/plans?ref_product=copilot&ref_type=purchase&ref_style=button\" target=\"_blank\" class=\"btn btn-primary mt-3 mr-3 no-underline\"><span>Sign up for Copilot</span> (icon: link-external)</a>"
 versions:
   feature: copilot
 contentType: how-tos
@@ -34,7 +32,7 @@ To start a new cloud agent task, send a `POST` request to `/agents/repos/{owner}
 ```shell copy
 curl -X POST \
   -H "Accept: application/vnd.github+json" \
-  -H "X-GitHub-Api-Version: {{ defaultRestApiVersion }}" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
   -H "Authorization: Bearer YOUR-TOKEN" \
   https://api.github.com/agents/repos/OWNER/REPO/tasks \
   -d '{
@@ -63,7 +61,7 @@ To list tasks for a specific repository:
 
 ```shell copy
 curl -H "Accept: application/vnd.github+json" \
-  -H "X-GitHub-Api-Version: {{ defaultRestApiVersion }}" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
   -H "Authorization: Bearer YOUR-TOKEN" \
   https://api.github.com/agents/repos/OWNER/REPO/tasks
 ```
@@ -72,7 +70,7 @@ To list your tasks across all repositories:
 
 ```shell copy
 curl -H "Accept: application/vnd.github+json" \
-  -H "X-GitHub-Api-Version: {{ defaultRestApiVersion }}" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
   -H "Authorization: Bearer YOUR-TOKEN" \
   https://api.github.com/agents/tasks
 ```
@@ -83,7 +81,7 @@ To check the status of a specific task, send a `GET` request with the task ID:
 
 ```shell copy
 curl -H "Accept: application/vnd.github+json" \
-  -H "X-GitHub-Api-Version: {{ defaultRestApiVersion }}" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
   -H "Authorization: Bearer YOUR-TOKEN" \
   https://api.github.com/agents/repos/OWNER/REPO/tasks/TASK-ID
 ```

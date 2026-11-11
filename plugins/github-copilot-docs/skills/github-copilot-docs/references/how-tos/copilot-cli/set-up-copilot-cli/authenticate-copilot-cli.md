@@ -2,7 +2,7 @@
 title: Authenticating GitHub Copilot CLI
 shortTitle: Authenticate Copilot CLI
 intro: Authenticate Copilot CLI so that you can use Copilot directly from the command line.
-product: 'GitHub Copilot CLI is available with all Copilot plans. If you receive Copilot from an organization, the Copilot CLI policy must be enabled in the organization's settings.'
+product: "GitHub Copilot CLI is available with all Copilot plans. If you receive Copilot from an organization, the Copilot CLI policy must be enabled in the organization's settings."
 versions:
   feature: copilot
 contentType: how-tos

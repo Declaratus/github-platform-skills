@@ -2,7 +2,7 @@
 title: Invoking custom agents
 shortTitle: Invoke custom agents
 intro: Use custom agents, skills, and MCP servers in Copilot CLI to extend its capabilities.
-product: 'GitHub Copilot CLI is available with all Copilot plans. If you receive Copilot from an organization, the Copilot CLI policy must be enabled in the organization's settings.'
+product: "GitHub Copilot CLI is available with all Copilot plans. If you receive Copilot from an organization, the Copilot CLI policy must be enabled in the organization's settings."
 versions:
   feature: copilot
 contentType: how-tos

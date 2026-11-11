@@ -2,9 +2,7 @@
 title: Quickstart for using GitHub Copilot on GitHub.com
 shortTitle: Copilot on GitHub.com
 intro: 'Understand code and work faster by asking questions and assigning coding tasks to Copilot in the cloud without leaving GitHub.'
-product: 'Copilot in the cloud is enabled by default for all paid Copilot plans.
-          
-          The agent is available in all repositories stored on GitHub, except repositories owned by managed user accounts and where it has been explicitly disabled.<br><a href="https://github.com/features/copilot/plans?ref_product=copilot&ref_type=purchase&ref_style=button&utm_source=dotcom-quickstart-purchase&utm_medium=docs&utm_campaign=universe-2026" target="_blank" class="btn btn-primary mt-3 mr-3 no-underline"><span>Sign up for Copilot</span> (icon: link-external)</a>'
+product: "Copilot in the cloud is enabled by default for all paid Copilot plans.\n\nThe agent is available in all repositories stored on GitHub, except repositories owned by managed user accounts and where it has been explicitly disabled.<br><a href=\"https://github.com/features/copilot/plans?ref_product=copilot&ref_type=purchase&ref_style=button&utm_source=dotcom-quickstart-purchase&utm_medium=docs&utm_campaign=universe-2026\" target=\"_blank\" class=\"btn btn-primary mt-3 mr-3 no-underline\"><span>Sign up for Copilot</span> (icon: link-external)</a>"
 allowTitleToDifferFromFilename: true
 versions:
   feature: copilot

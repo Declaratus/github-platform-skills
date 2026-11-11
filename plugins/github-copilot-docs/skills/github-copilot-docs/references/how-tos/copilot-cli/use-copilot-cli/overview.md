@@ -2,7 +2,7 @@
 title: Using GitHub Copilot CLI
 shortTitle: Overview
 intro: Learn how to use GitHub Copilot from the command line.
-product: 'GitHub Copilot CLI is available with all Copilot plans. If you receive Copilot from an organization, the Copilot CLI policy must be enabled in the organization's settings.'
+product: "GitHub Copilot CLI is available with all Copilot plans. If you receive Copilot from an organization, the Copilot CLI policy must be enabled in the organization's settings."
 redirect_from:
   - /copilot/how-tos/use-copilot-cli
   - /copilot/how-tos/use-copilot-agents/use-copilot-cli
