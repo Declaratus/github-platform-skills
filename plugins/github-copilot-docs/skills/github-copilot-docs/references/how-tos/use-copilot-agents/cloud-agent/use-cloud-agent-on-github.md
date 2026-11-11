@@ -1,0 +1,307 @@
+---
+title: Using Copilot in the cloud on GitHub
+shortTitle: Use Copilot in the cloud on GitHub
+allowTitleToDifferFromFilename: true
+intro: 'Start Copilot in the cloud sessions directly on GitHub, then iterate on the results without leaving your browser.'
+product: "Copilot in the cloud is enabled by default for all paid Copilot plans.\n\nThe agent is available in all repositories stored on GitHub, except repositories owned by managed user accounts and where it has been explicitly disabled.<br><a href=\"https://github.com/features/copilot/plans?ref_product=copilot&ref_type=purchase&ref_style=button&utm_source=use-cloud-gh-purchase&utm_medium=docs&utm_campaign=universe-2026\" target=\"_blank\" class=\"btn btn-primary mt-3 mr-3 no-underline\"><span>Sign up for Copilot</span> (icon: link-external)</a>"
+versions:
+  feature: copilot
+redirect_from:
+  - /copilot/how-tos/copilot-on-github/use-copilot-agents/iterate-with-copilot
+  - /copilot/how-tos/use-copilot-agents/coding-agent/make-changes-to-an-existing-pr
+  - /copilot/how-tos/use-copilot-agents/cloud-agent/make-changes-to-an-existing-pr
+contentType: how-tos
+category:
+  - Author and optimize with Copilot
+---
+
+## Introduction
+
+You can start GitHub Copilot in the cloud sessions from several places on GitHub. Once a session is running, you can monitor its progress, steer it with follow-up prompts, and iterate on the resulting pull request without leaving the browser.
+
+For more information about Copilot in the cloud, see [AUTOTITLE](/copilot/concepts/copilot-surfaces/copilot-on-github).
+
+You can also start partner-built agents from these same entry points using agent apps. For more information, see [AUTOTITLE](/copilot/how-tos/use-copilot-agents/cloud-agent/use-agent-apps).
+
+## Starting a Copilot in the cloud session
+
+You can start sessions from several different entry points.
+
+* Your Copilot (icon: home) home page at [github.com/copilot](https://github.com/copilot?ref_product=copilot&ref_type=engagement&ref_style=text&utm_source=cloud-gh-docs-home-cta&utm_medium=docs&utm_campaign=universe-2026).
+* Your (icon: mark-github) GitHub personal dashboard or (icon: home) home page when signed in at [https://github.com](https://github.com?ref_product=copilot&ref_type=engagement&ref_style=text).
+* The **(icon: agent) Agents** tab or panel in a repository.
+
+You can send a prompt immediately with the default settings, or configure the session to suit your task before sending a prompt.
+
+1. In the prompt box, describe what you want Copilot to do. Include the outcome you want and any constraints.
+
+   > [!TIP]
+   > You can also use slash commands in your prompt to perform specific actions, such as `/rubber-duck` to get an second opinion, `/security-review` to review a repository for vulnerabilities, or `/usage` to display usage information for your session.
+
+1. Optionally, click **(icon: plus) Attach** to give Copilot references for your request.
+
+   Select **Files and folders**, **Upload from computer**, **Repository**, or **Space** to provide context for your request.
+
+   For cloud sandbox sessions, you can provide additional context from third-party sources by configuring connectors and personal custom MCP servers, see [AUTOTITLE](/copilot/concepts/customizations/copilot-connectors) and [AUTOTITLE](/copilot/concepts/customizations/mcp#personal-mcp-servers).
+
+1. Open the **Mode** picker to choose how you want to collaborate with Copilot.
+
+   * **Interactive**: (default) Work with Copilot step by step.
+   * **Autopilot**: Delegate the task to Copilot for end-to-end execution.
+
+   In the same menu, use **Tool permissions** to control how tool requests are approved.
+
+   * Choose **Assisted** (default), which uses a safety check to decide whether to approve a request or ask you.
+   * Choose **Always ask** to require approval for each request.
+   * Choose **Allow all** to automatically approve all tool, path, and URL requests.
+
+1. Open the **Models** picker and select **Auto** (default) or a specific model. Models are grouped by their strengths to help you choose between speed and cost efficiency, versatility and intelligence, or capability for complex tasks. If the selected model supports configurable reasoning, such as **Balance**, you can also use the dropdown menu to select the reasoning level.
+
+1. Below the prompt box, use the **Chat** session context picker to choose the scope of your session (personal, organization, or repository).
+
+   * In the search box, type a repository name to search for a repository to add.
+   * Under **Ask anything across repositories**, choose **Chat** to ask questions across repositories. The default scope is your personal repositories. Click on the image to the right to open the account menu, and change the scope by selecting an organization, or searching by repository owner (either a user or an organization).
+   * Under **Work in a repository**, select a recent repository to work in. The repositories listed reflect the selected scope.
+
+   > [!NOTE]
+   > * Adding a repository through the **Attach** menu (an earlier step) provides a reference (context material) for your prompt. Whereas selecting it here under **Start a session** makes the repository the working repository (scope) for the session. At the start of the session, the cloud sandbox takes a copy of the repository and gives Copilot permission, within existing constraints, to work with its content.
+   > * If a repository isn't listed, it may be excluded from Copilot by your personal settings or an organization or enterprise policy.
+
+   Optionally and if you selected a repository above, you can also click **main** (or the default branch name listed) to choose a branch that Copilot uses as the working context and operates within.
+
+1. Open **(icon: sliders) Environment** to choose where Copilot runs.
+
+   * **Cloud**: (default) Run in a GitHub-hosted cloud sandbox.
+   * **Actions**: Run in an GitHub Actions-based environment. If you've previously selected a Chat session context, you cannot select this environment for the session.
+   * **Environments**: Expand the list and select one of the listed remote environments.
+
+1. Click **Send message** or press <kbd>Enter</kbd> to send the prompt and start the session.
+
+Copilot will respond to your prompt and start the session based on the selected context and environment. If requested, Copilot will generate a list of files changed, a pull request, artifacts it generated (such as a research plan), and any other relevant outputs.
+
+### Starting Copilot from within a file, issue, or pull request
+
+When you open a chat session with Copilot from a contextual page, the session begins with the context of your open file, issue, or pull request.
+
+You cannot start a new agent session from within the contextual panel itself; you need to initiate it from the Copilot page, your home page, or the agents tab.
+
+## Starting a session with Copilot cloud agent
+
+### Starting a session from the agents tab or panel
+
+You can start sessions from the agents tab and the agents panel. The only difference is the entry point—once you see the "New agent task" form, the steps are the same.
+
+1. Open the agents panel or tab:
+
+   * Open the **(icon: agent) Agents** tab in a repository.
+   * **Navigate to the GitHub Copilot all sessions page**: Go to [github.com/copilot](https://github.com/copilot?ref_product=copilot&ref_type=engagement&ref_style=text&utm_source=open-agent-panel-reusable-home&utm_medium=docs&utm_campaign=universe-2026). You can also get here by opening the GitHub Copilot menu in top navigation bar, then clicking **View all sessions**.
+   * **Open the agents panel**: From the code tab in a repository, click (icon: agent) to the right of the "Go to file" search bar.
+1. Using the dropdown menu in the prompt field, select the repository you want Copilot to work in.
+1. Open **(icon: sliders) Environment** to choose where Copilot runs.
+
+   * **Cloud**: (default) Run in a GitHub-hosted cloud sandbox.
+   * **Actions**: Run in an GitHub Actions-based environment. If you've previously selected a Chat session context, you cannot select this environment for the session.
+   * **Environments**: Expand the list and select one of the listed remote environments.
+1. Type a prompt describing your request. You can also add visual inputs like screenshots or UI mockups by pasting, dragging, or uploading an image. Files supported: image/png, image/jpeg, image/gif, image/webp.
+
+    For example, `Implement a user friendly message for common errors.`
+
+    If you want Copilot to open a pull request, you can ask in your prompt, for example `Open a pull request to implement a user friendly message for common errors.`
+
+1. Optionally, select a base branch for Copilot's changes. Copilot will create a new branch based on this branch.
+1. Optionally, you can click (icon: copilot) to open the agent dropdown menu, if you want to assign an agent or a custom agent with specialized behavior and tools. You can select an existing custom agent from your repository, organization, or enterprise. You can also click **(icon: plus) Create an agent** to create a new agent profile in your selected repository and branch. For more information, see [AUTOTITLE](/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/create-custom-agents).
+    > [!NOTE] Third-party coding agents are available for all paid [Copilot plans](/copilot/get-started/plans).
+1. Optionally, you can use the dropdown menu to select the model that Copilot will use. If the selected model supports configurable reasoning, you can also use the dropdown menu to select the reasoning level. For more information, see [AUTOTITLE](/copilot/how-tos/use-copilot-agents/cloud-agent/changing-the-ai-model).
+1. Click **(icon: paper-airplane)** or press <kbd>Enter</kbd>.
+
+    Copilot will start a new session, which will appear in the list below the prompt box. Copilot will work on the task and push any code changes.
+
+    You can track Copilot's work and open a pull request in one click from the session logs. For more information, see [AUTOTITLE](/copilot/how-tos/copilot-on-github/use-copilot-agents/manage-and-track-agents).
+
+### Starting a session from the dashboard
+
+You can ask Copilot to start work from the prompt box in the dashboard. The dashboard is your personalized overview of your activity on GitHub, seen when you visit [https://github.com](https://github.com) while logged in.
+
+1. Navigate to the dashboard at [https://github.com](https://github.com/?ref_product=desktop&ref_type=engagement&ref_style=text).
+1. Click the **(icon: agent) Task** button.
+1. Using the dropdown menu in the prompt field, select the repository you want Copilot to work in.
+1. Type a prompt describing your request.
+
+    For example, `Implement a user friendly message for common errors.`
+
+    If you want Copilot to open a pull request, you can ask in your prompt, for example `Open a pull request to implement a user friendly message for common errors.`
+
+1. Optionally, select a base branch for Copilot's pull request. Copilot will create a new branch based on this branch.
+1. Optionally, you can click (icon: copilot) to open the agent dropdown menu, if you want to assign an agent or a custom agent with specialized behavior and tools. You can select an existing custom agent from your repository, organization, or enterprise. You can also click **(icon: plus) Create an agent** to create a new agent profile in your selected repository and branch. For more information, see [AUTOTITLE](/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/create-custom-agents).
+    > [!NOTE] Third-party coding agents are available for all paid [Copilot plans](/copilot/get-started/plans).
+1. Click **(icon: paper-airplane) Send now** or press <kbd>Return</kbd>.
+
+   You will be taken to the agents tab, and Copilot will start a new session, which will appear in the "Recent sessions" list below the prompt box. Copilot will work on the task and push any code changes.
+
+   > [!NOTE]
+   > If you have enabled the **New Dashboard Experience** in feature preview, the new session will appear in "Agent sessions" under the prompt box in your dashboard. For more information, see [AUTOTITLE](/account-and-profile/reference/personal-dashboard#home-dashboard-view).
+
+### Starting from Copilot Chat
+
+When you start a task from Copilot Chat, the new Copilot cloud agent session incorporates the context of your current chat conversation. This means you don't need to restate details you have already shared with Copilot in your `/task` prompt.
+
+1. Open GitHub Copilot Chat on GitHub.com.
+1. Type `/task` to ask Copilot to create a pull request, and give details of what you want Copilot to change.
+
+   For example, `/task Create a pull request to put backticks around file names and variables in output.`
+
+1. Optionally, select a base branch for Copilot's pull request. Copilot will create a new branch based on this branch, then push the changes to a pull request targeting that branch.
+1. Optionally, you can click (icon: copilot) to open the agent dropdown menu, if you want to assign an agent or a custom agent with specialized behavior and tools. You can select an existing custom agent from your repository, organization, or enterprise. You can also click **(icon: plus) Create an agent** to create a new agent profile in your selected repository and branch. For more information, see [AUTOTITLE](/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/create-custom-agents).
+    > [!NOTE] Third-party coding agents are available for all paid [Copilot plans](/copilot/get-started/plans).
+1. Click **(icon: paper-airplane)** or press <kbd>Enter</kbd>.
+
+   Copilot will start a new session, which will appear in the list below the prompt box. Copilot will work on the task and push changes to its pull request, then add you as a reviewer when it has finished, triggering a notification.
+
+## Assigning an issue to Copilot
+
+You can ask Copilot to start working on an issue by assigning the issue to Copilot. Copilot will start working on the task, raise a pull request, then request a review from you when it's finished.
+
+> [!NOTE]
+> This feature is in public preview and subject to change.
+
+1. On GitHub, navigate to the main page of the repository.
+1. Under your repository name, click **(icon: issue-opened) Issues**.
+
+   ![Screenshot of the main page of a repository. In the horizontal navigation bar, a tab, labeled "Issues," is outlined in dark orange.](/assets/images/help/repository/repo-tabs-issues-global-nav-update.png)
+
+1. Open the issue that you want to assign to Copilot.
+1. In the right side menu, click **Assignees**.
+
+   ![Screenshot of the right sidebar of an issue. A header, labeled "Assignees", is outlined in dark orange.](/assets/images/help/issues/assignee-menu.png)
+
+1. Click **Copilot** from assignees list.
+
+   ![Screenshot of "Assignees" window on an issue. Copilot is available in the list.](/assets/images/help/copilot/cloud-agent/assign-to-copilot.png)
+
+   Additional options are displayed.
+
+   ![Screenshot of "Assign to Copilot" dialog showing options for target repository, starting branch, custom agent, and additional instructions.](/assets/images/help/copilot/cloud-agent/assign-to-copilot-dialog.png)
+
+1. In the **Optional prompt** field you can add specific guidance for Copilot. Add any context, constraints, or specific requirements that will help Copilot to understand and complete the task.
+
+   For example, you might include instructions about specific coding patterns or frameworks to use, testing requirements, code style preferences, files or directories that should or shouldn't be modified.
+
+   In addition to the details you supply here, Copilot will use any custom instructions that have been configured for the target repository. See [AUTOTITLE](/copilot/how-tos/copilot-on-github/customize-copilot/add-custom-instructions/add-repository-instructions).
+
+1. You can use the dropdown menus in the dialog to change the repository that Copilot will work in and the branch that it will branch off from.
+
+   All repositories where you have **at least** read access will be displayed in the repository dropdown menu. However, you can only select a repository if you have write access to it, **and** if Copilot cloud agent is enabled for that repository.
+
+   If you select a repository in a different organization than the issue's source organization, or if you select a public repository when the issue is in a private repository, a warning will be displayed.
+
+   If you don't specify a repository, Copilot will work in the same repository as the issue. If you don't specify a branch, Copilot will work from the default branch of the selected repository.
+
+   > [!TIP]
+   > When you assign an issue to Copilot, it gets sent the issue title, description, any comments that currently exist, and any additional instructions you provide. After assigning the issue, Copilot will not be aware of, and therefore won't react to, any further comments that are added to the issue. If you have more information, or changes to the original requirement, add this as a comment in the pull request that Copilot raises.
+
+1. Optionally, you can click (icon: copilot) to open the agent dropdown menu, if you want to assign an agent or a custom agent with specialized behavior and tools. You can select an existing custom agent from your repository, organization, or enterprise. You can also click **(icon: plus) Create an agent** to create a new agent profile in your selected repository and branch. For more information, see [AUTOTITLE](/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/create-custom-agents).
+    > [!NOTE] Third-party coding agents are available for all paid [Copilot plans](/copilot/get-started/plans).
+1. Optionally, you can use the dropdown menu to select the model that Copilot will use. If the selected model supports configurable reasoning, you can also use the dropdown menu to select the reasoning level. For more information, see [AUTOTITLE](/copilot/how-tos/use-copilot-agents/cloud-agent/changing-the-ai-model).
+
+You can also assign issues to Copilot from other places on GitHub.com:
+
+* From the list of issues on a repository's **(icon: issue-opened) Issues** page.
+* When viewing an issue in GitHub Projects.
+
+## Seeding a new repository
+
+When creating a new repository, you can ask Copilot to seed the new repository by entering a prompt.
+
+1. In the upper-right corner of any page, select (icon: plus), then click **New repository**.
+
+   ![Screenshot of a GitHub dropdown menu showing options to create new items. The menu item "New repository" is outlined in dark orange.](/assets/images/help/repository/repo-create-global-nav-update.png)
+1. Use the **Owner** dropdown menu to select the account you want to own the repository.
+   ![Screenshot of the owner menu for a new GitHub repository. The menu shows two options, octocat and github.](/assets/images/help/repository/create-repository-owner.png)
+1. In the **Prompt** field, enter a prompt describing what you want Copilot to build.
+
+    For example, `Create a Rust CLI for converting CSV spreadsheets to Markdown`
+1. Click **Create repository**.
+
+    Copilot will immediately open a draft pull request. Copilot will work on the task and push changes to its pull request, then add you as a reviewer when it has finished, triggering a notification.
+
+## Fixing a failing GitHub Actions workflow run
+
+When an GitHub Actions workflow run fails on a pull request branch, you can ask Copilot to investigate and fix the failure.
+
+1. On GitHub, navigate to the failing workflow run job page.
+1. Click the **(icon: agent) Fix with Copilot** button.
+
+   Copilot will start a new session, investigate the cause of the failure, and push a fix to your branch.
+
+## Continuing work on a pull request
+
+You can ask Copilot to make changes or address review comments on an existing pull request. You can then track the resulting session and provide follow-up instructions.
+
+### Asking Copilot to make changes
+
+You can mention `@copilot` in a comment on any pull request to ask Copilot to make changes. This works on pull requests created by Copilot and on pull requests you or others created.
+
+By default, Copilot pushes commits directly to the pull request branch. To create a separate pull request instead, describe that in your comment. You can also check out the branch and push changes yourself.
+
+When submitting a pull request comment (not a review or review comment) through the GitHub web interface, select a model with the model picker. Copilot uses the model from the original pull request by default.
+
+### Delegating review comments
+
+You can delegate review comments to have Copilot implement feedback from human reviewers and GitHub Copilot code review.
+
+1. In the pull request, open the **Files changed** tab.
+1. Navigate to the first review comment you want Copilot to implement.
+   * To delegate one comment, click **Fix with Copilot**.
+   * To delegate multiple comments, click **Add to batch**. Continue to add the comments you want Copilot to work on.
+1. In the **Manage batch** panel, add any additional instructions, and optionally select a model with the model picker.
+1. Choose how you want Copilot to apply the changes:
+   * To commit the changes directly to the branch, click **(icon: agent) Fix and commit**.
+   * To have Copilot create a new pull request with the changes, click **Fix and open pull request** from the dropdown menu.
+
+### Tracking and continuing a session
+
+Copilot only responds to comments from people who have write access to the repository.
+
+When Copilot starts a new session in response to your comment, an eyes emoji (👀) reaction appears on the comment. A "Copilot has started work" event appears in the pull request timeline.
+
+![Screenshot of a pull request timeline with a review comment with the eyes reaction and a "Copilot started work" timeline event.](/assets/images/help/copilot/cloud-agent/comment-to-agent-on-pr.png)
+
+Copilot remembers context from previous sessions on the same pull request, so follow-up requests are faster and more reliable. If the pull request was created by a custom agent, mentioning `@copilot` continues using that same agent.
+
+## Resolving merge conflicts
+
+You can ask Copilot to resolve merge conflicts on a pull request in two ways:
+
+* **Using the "Fix with Copilot" button**: If a pull request has merge conflicts, click the **Fix with Copilot** button that appears in the merge box.
+* **Using an @copilot mention**: Mention `@copilot` in a comment on the pull request and ask it to fix the conflicts—for example, "@copilot resolve the merge conflicts on this PR."
+
+Copilot analyzes the conflicting changes, resolves them, and verifies that the build, tests, and linter still pass. It then requests your review so you can confirm the resolution before merging.
+
+## Running Copilot automatically with automations
+
+You can set up automations to run Copilot automatically, on a schedule or in response to events such as an issue being opened. You create and manage automations from the **Automations** pane in the **Agents** tab of a repository. For more information, see [AUTOTITLE](/copilot/how-tos/use-copilot-agents/cloud-agent/create-automations).
+
+## Managing GitHub Actions workflow runs
+
+By default, GitHub Actions workflows will not run automatically when Copilot pushes changes to a pull request.
+
+GitHub Actions workflows can be privileged and have access to sensitive secrets. Inspect the proposed changes in the pull request and ensure that you are comfortable running your workflows on the pull request branch. You should be especially alert to any proposed changes in the `.github/workflows/` directory that affect workflow files.
+
+To allow GitHub Actions workflows to run, click the **Approve and run workflows** button in the pull request's merge box.
+
+![Screenshot of the merge box on a pull request from Copilot with the "Approve and run workflows" button.](/assets/images/help/copilot/cloud-agent/approve-and-run-workflows.png)
+
+Optionally, you can configure Copilot cloud agent to allow GitHub Actions workflows to run without human intervention. For more information, see [AUTOTITLE](/copilot/how-tos/use-copilot-agents/cloud-agent/configuring-agent-settings).
+
+## Giving feedback on Copilot's work
+
+Use the feedback buttons on Copilot's pull requests and comments to rate the output. Your feedback helps improve Copilot's quality.
+
+1. On a pull request or comment from Copilot, click the thumbs up (:+1:) or thumbs down (:-1:) button.
+1. If you click the thumbs down button, optionally select a reason and leave a comment, then click **Submit feedback**.
+
+## Further reading
+
+* [AUTOTITLE](/copilot/concepts/copilot-surfaces/copilot-on-github)
+* [AUTOTITLE](/copilot/tutorials/cloud-agent/get-the-best-results)
+* [AUTOTITLE](/copilot/how-tos/use-copilot-agents/cloud-agent/troubleshoot-cloud-agent)

@@ -1,0 +1,137 @@
+---
+title: Installing GitHub Copilot CLI
+shortTitle: Install Copilot CLI
+intro: Learn how to install Copilot CLI so that you can use Copilot directly from the command line.
+product: "GitHub Copilot CLI is available with all Copilot plans. If you receive Copilot from an organization, the Copilot CLI policy must be enabled in the organization's settings."
+versions:
+  feature: copilot
+redirect_from:
+  - /copilot/how-tos/set-up/install-copilot-in-the-cli
+  - /copilot/github-copilot-in-the-cli/enabling-github-copilot-in-the-cli
+  - /copilot/github-copilot-in-the-cli/setting-up-github-copilot-in-the-cli
+  - /copilot/github-copilot-in-the-cli/installing-github-copilot-in-the-cli
+  - /copilot/managing-copilot/configure-personal-settings/installing-github-copilot-in-the-cli
+  - /copilot/how-tos/personal-settings/installing-github-copilot-in-the-cli
+  - /copilot/how-tos/set-up/installing-github-copilot-in-the-cli
+  - /copilot/how-tos/set-up/install-copilot-cli
+  - /copilot/how-tos/copilot-cli/install-copilot-cli
+contentType: how-tos
+category:
+  - Configure Copilot # Copilot discovery page
+  - Configure Copilot CLI # Copilot CLI bespoke page
+docsTeamMetrics:
+  - copilot-cli
+---
+
+To find out about Copilot CLI before you install it, see [AUTOTITLE](/copilot/concepts/copilot-surfaces/copilot-cli).
+
+## Prerequisites
+
+* **An active GitHub Copilot subscription**. See [Copilot plans](https://github.com/features/copilot/plans?ref_product=copilot&ref_type=engagement&ref_style=text).
+* (On Windows) **PowerShell** v6 or higher
+
+If you have access to GitHub Copilot via your organization or enterprise, you cannot use Copilot CLI if your organization owner or enterprise administrator has disabled it in the organization or enterprise settings. See [AUTOTITLE](/copilot/how-tos/administer-copilot/manage-for-organization/manage-policies).
+
+## Installing or updating Copilot CLI
+
+You can install Copilot CLI using WinGet (Windows), Homebrew (macOS and Linux), npm (all platforms), or an install script (macOS and Linux).
+
+### Installing with npm (all platforms)
+
+Prerequisite: Node.js 22 or later.
+
+```shell copy
+npm install -g @github/copilot
+```
+
+> [!NOTE]
+> If you have `ignore-scripts=true` in your `~/.npmrc` file, you must use the command:
+>
+> ```shell copy
+> npm_config_ignore_scripts=false npm install -g @github/copilot
+> ```
+
+To install the prerelease version:
+
+```shell copy
+npm install -g @github/copilot@prerelease
+```
+
+### Installing with WinGet (Windows)
+
+```powershell copy
+winget install GitHub.Copilot
+```
+
+To install the prerelease version:
+
+```powershell copy
+winget install GitHub.Copilot.Prerelease
+```
+
+### Installing with Homebrew (macOS and Linux)
+
+```shell copy
+brew install --cask copilot-cli
+```
+
+To install the prerelease version:
+
+```shell copy
+brew install --cask copilot-cli@prerelease
+```
+
+### Installing with the install script (macOS and Linux)
+
+```shell copy
+curl -fsSL https://gh.io/copilot-install | bash
+```
+
+Or:
+
+```shell copy
+wget -qO- https://gh.io/copilot-install | bash
+```
+
+To run as root and install to `/usr/local/bin`, use `| sudo bash`.
+
+To install to a custom directory, set the `PREFIX` environment variable. It defaults to `/usr/local` when run as root or `$HOME/.local` when run as a non-root user.
+
+To install a specific version, set the `VERSION` environment variable. It defaults to the latest version.
+
+For example, to install version `v0.0.369` to a custom directory:
+
+```shell copy
+curl -fsSL https://gh.io/copilot-install | VERSION="v0.0.369" PREFIX="$HOME/custom" bash
+```
+
+### Download from GitHub.com
+
+You can download the executables directly from [the `copilot-cli` repository](https://github.com/github/copilot-cli/releases/).
+
+Download the executable for your platform, unpack it, and run.
+
+## Authenticating with Copilot CLI
+
+On first launch, if you're not currently logged in to GitHub, you'll be prompted to use the `/login` slash command. Enter this command and follow the on-screen instructions to authenticate. For more information on the authentication process, see [AUTOTITLE](/copilot/how-tos/copilot-cli/set-up-copilot-cli/authenticate-copilot-cli).
+
+### Authenticating with a personal access token
+
+You can also authenticate using a fine-grained personal access token with the "Copilot Requests" permission enabled.
+
+1. Visit [Fine-grained personal access tokens](https://github.com/settings/personal-access-tokens/new).
+1. Under **Resource owner**, select your **personal account**. Do not select an organization. The **Copilot Requests** permission is only available on user-owned fine-grained personal access tokens.
+1. Under **Repository access**, select the level of access appropriate for your use case:
+   * **Public repositories** if you only need to work with public repos.
+   * **All repositories** if you need access across all your current and future repos.
+   * **Only select repositories** if you want to restrict access to specific repos.
+1. Under **Permissions**, select the **Account** tab. 
+1. Click **Add permissions** and select **Copilot Requests**.
+1. Click **Generate token**.
+1. Export the token in your terminal or environment configuration. Use the `COPILOT_GITHUB_TOKEN`, `GH_TOKEN`, or `GITHUB_TOKEN` environment variable (in order of precedence).
+
+## Next steps
+
+You can now use Copilot from the command line. See [AUTOTITLE](/copilot/how-tos/copilot-cli/use-copilot-cli/overview).
+
+For a list of commands for Copilot CLI, including the command to update, see [AUTOTITLE](/copilot/reference/copilot-cli-reference/cli-command-reference).

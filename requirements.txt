@@ -1,0 +1,3 @@
+# Root entry point for the org Python dependency audit.
+# Keep dependency pins in build/requirements.txt, not duplicated here.
+-r build/requirements.txt

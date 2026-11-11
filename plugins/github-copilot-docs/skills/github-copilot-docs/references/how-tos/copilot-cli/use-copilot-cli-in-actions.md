@@ -1,0 +1,71 @@
+---
+title: Using Copilot CLI in GitHub Actions with GITHUB_TOKEN
+shortTitle: Copilot CLI in Actions
+intro: 'Run Copilot CLI in a GitHub Actions workflow using the built-in `GITHUB_TOKEN`, without a personal access token.'
+versions:
+  feature: copilot
+contentType: how-tos
+allowTitleToDifferFromFilename: true
+category:
+  - Manage Copilot for a team # Copilot discovery page
+  - Administer Copilot CLI # Copilot CLI bespoke landing page
+docsTeamMetrics:
+  - copilot-cli
+---
+
+For background on authentication options and how billing works when running Copilot CLI in GitHub Actions, see [AUTOTITLE](/copilot/concepts/agent-capabilities/agent-powered-workflows-and-operations/copilot-cli-in-github-actions).
+
+## Enabling the policy
+
+For workflows in your organization to use Copilot CLI with `GITHUB_TOKEN`, the policy must be enabled. This policy is enabled by default for organizations with Copilot CLI turned on, but you can confirm or change this setting in your organization's policy settings.
+
+1. Navigate to the policy settings for your organization. See [AUTOTITLE](/copilot/how-tos/administer-copilot/manage-for-organization/manage-policies).
+1. Under "Copilot CLI", confirm that **Allow use of Copilot CLI billed to the organization** is selected.
+
+## Recommended approach: GitHub Agentic Workflows
+
+For most automation use cases, we recommend using [GitHub Agentic Workflows](https://github.com/github/gh-aw) rather than invoking `copilot` directly in workflow steps. Agentic workflows use `GITHUB_TOKEN` authentication by default and include additional guardrails suited for automated environments.
+
+For setup instructions, see [Quick Start](https://github.github.com/gh-aw/setup/quick-start/) in the GitHub Agentic Workflows documentation. Your workflow must also grant the `copilot-requests: write` permission. See [Permissions](https://github.github.com/gh-aw/reference/permissions/) in the GitHub Agentic Workflows documentation.
+
+## Using Copilot CLI directly in a workflow
+
+If you need to invoke Copilot CLI directly in a workflow step, install the CLI with npm.
+
+> [!WARNING]
+> Invoking Copilot CLI directly in workflow steps gives it broad access to your workflow environment. Review your workflow triggers and permissions carefully before using this approach. Workflows triggered by pull requests from forks are particularly at risk.
+
+### Example workflow
+
+```yaml
+name: Copilot CLI example
+on: [push]
+
+permissions:
+  contents: read
+  copilot-requests: write
+
+jobs:
+  copilot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 2
+      - name: Install Copilot CLI
+        run: npm install -g @github/copilot
+      - name: Run Copilot
+        run: copilot -p "Use git show HEAD to summarize the changes in this commit" -s --allow-tool='shell(git show:*)'
+        env:
+          GITHUB_TOKEN: {% raw %}${{ github.token }}{% endraw %}
+```
+
+Key details about this example:
+
+* The `fetch-depth: 2` option fetches the current commit and its parent, allowing `git show HEAD` to calculate the changes introduced by the current commit.
+* The `--allow-tool='shell(git show:*)'` option allows Copilot CLI to run `git show` commands without requesting approval. Non-interactive (`-p`) runs can't display an interactive approval prompt, so any action that isn't pre-approved is denied automatically.
+* The `copilot-requests: write` permission is required for the workflow to make Copilot requests.
+* The `GITHUB_TOKEN` provided by GitHub Actions handles authentication automatically. No additional secrets are needed.
+
+> [!NOTE]
+> You must be on a recent version of Copilot CLI to use `GITHUB_TOKEN` authentication. Update with `copilot update`, or reinstall the latest version with `npm install -g @github/copilot`.

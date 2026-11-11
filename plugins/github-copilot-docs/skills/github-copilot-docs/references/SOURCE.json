@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "repository": "https://github.com/github/docs.git",
+  "revision": "7c3387d3b513ed43ea26c9b2e4c0e1b12234c010",
+  "upstream_committed_at": "2026-11-10T12:28:12-08:00",
+  "markdown_pages": 568,
+  "source_inputs": [
+    "content/copilot",
+    "data/variables",
+    "data/reusables",
+    "data/tables",
+    "src/rest/lib",
+    "src/frame/middleware/context",
+    "src/versions/lib"
+  ],
+  "site_context": {
+    "defaultRestApiVersion": "2022-11-28"
+  },
+  "site_context_sources": [
+    "src/rest/lib/config.json",
+    "src/frame/middleware/context/context.ts",
+    "src/versions/lib/all-versions.ts"
+  ],
+  "dependencies": {
+    "PyYAML": "6.0.3",
+    "python-liquid": "2.3.6"
+  },
+  "generator_sha256": {
+    "rebuild_copilot_docs.py": "ee927c0893c0e79e14640ffd076138826573f835833783ec166527548bc145f2",
+    "resolve_liquid.py": "98d87f7c02f03ffd37f5011809b1543c1ff32bd026585fe72a7e6f32cc503d86"
+  }
+}

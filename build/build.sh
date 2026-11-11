@@ -33,6 +33,7 @@ list_recipes() {
 
 run_recipe() {
   local name="$1"
+  shift
   local recipe="$RECIPE_DIR/$name.sh"
   if [[ ! -f "$recipe" ]]; then
     echo "ERROR: no recipe at $recipe" >&2
@@ -40,7 +41,7 @@ run_recipe() {
     return 1
   fi
   echo "→ $name"
-  bash "$recipe"
+  bash "$recipe" "$@"
 }
 
 case "${1:-}" in
@@ -58,6 +59,6 @@ case "${1:-}" in
     done < <(list_recipes)
     ;;
   *)
-    run_recipe "$1"
+    run_recipe "$@"
     ;;
 esac

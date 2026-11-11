@@ -1,0 +1,115 @@
+---
+title: About GitHub Copilot
+shortTitle: About Copilot
+intro: 'Understand how GitHub Copilot helps you ship software faster, how it works, and how to get access.'
+versions:
+  feature: copilot
+redirect_from:
+  - /copilot/copilot-individual
+  - /copilot/copilot-individual/about-github-copilot-individual
+  - /copilot/copilot-business/about-github-copilot-business
+  - /copilot/github-copilot-enterprise/about-github-copilot-enterprise
+  - /copilot/github-copilot-enterprise/overview
+  - /copilot/overview-of-github-copilot/about-github-copilot-for-individuals
+  - /copilot/overview-of-github-copilot/about-github-copilot
+  - /copilot/overview-of-github-copilot/about-github-copilot-individual
+  - /copilot/overview-of-github-copilot/about-github-copilot-for-business
+  - /copilot/overview-of-github-copilot/about-github-copilot-business
+  - /copilot/github-copilot-enterprise/overview/about-github-copilot-enterprise
+  - /copilot/configuring-github-copilot/configuring-github-copilot-settings-in-your-organization
+  - /copilot/managing-copilot-business
+  - /copilot/managing-copilot-for-business
+  - /copilot/github-copilot-enterprise
+  - /copilot/copilot-business
+  - /copilot/copilot-business/github-copilot-business-feature-set
+  - /copilot/copilot-individual/github-copilot-individual-feature-set
+  - /copilot/github-copilot-enterprise/github-copilot-enterprise-feature-set
+  - /copilot/about-github-copilot/github-copilot-features
+  - /copilot/get-started/github-copilot-features
+  - /copilot/get-started/features
+  - /copilot/about-github-copilot/what-is-github-copilot
+  - /copilot/get-started/what-is-github-copilot
+contentType: get-started
+category:
+  - Learn about Copilot
+---
+
+GitHub Copilot is an AI assistant that helps you write, understand, and ship software. It suggests code as you type, answers questions about a codebase, reviews your changes, and works on tasks you assign it.
+
+Because Copilot is built into GitHub, it works within the development workflow you already use:
+
+* Your code and its history.
+* The issues and pull requests you already use to track work.
+* The automations you run in your repository.
+
+A change can start as an issue, be picked up by an agent, return as a pull request, get reviewed for quality and security, and be merged.
+
+You and Copilot work on it in the same place, with the same context, instead of moving code into separate tools and back again.
+
+## How Copilot works
+
+Copilot's capabilities and supporting features fall into four categories:
+
+**Assistive.** Copilot responds while you work, suggesting code, answering questions, or explaining code. You review and apply each suggestion.
+
+**Agentic.** You describe a goal, and Copilot can work through multiple steps. It researches a repository, proposes a plan, edits files, reviews pull requests, runs tools, and prepares tasks for your review. You remain responsible for reviewing and approving.
+
+**Customizations.** You customize Copilot's responses with instructions, reusable prompts, repository context, external tools, agent skills, and custom agents. When Copilot understands your project's structure, conventions, and tooling, it gives you better responses.
+
+**External AI agents, models, and tools.** Coding agents, models, and tools, including MCP servers from other providers, work alongside Copilot. Third-party coding agents work asynchronously on development tasks and can make changes and open or update pull requests for your review. They are subject to the same security protections, mitigations, and limitations as Copilot.
+
+## What you can do with Copilot
+
+Copilot helps you throughout the software development lifecycle. For example:
+
+* **Understand code** by asking questions about files, repositories, and development concepts.
+* **Plan and implement tasks** with an agent that can research a repository, make changes, and prepare a pull request for your review.
+* **Customize responses** with instructions, reusable prompts, repository context, tools, and specialized agents.
+* **Write code** with inline suggestions and natural-language prompts.
+* **Build applications** from natural-language descriptions.
+* **Change code** by asking Copilot to edit, refactor, or fix code.
+* **Review code** and pull requests, including summaries and suggestions for potential improvements.
+
+The capabilities available to you depend on your Copilot plan, the client you use, and your organization's policies.
+
+## Get access
+
+You can start using Copilot in several ways, depending on your role and needs.
+
+### Individuals
+
+* **Try Copilot for free.** Use [Copilot Free](https://github.com/copilot?ref_product=copilot&ref_plan=free&ref_style=text&ref_type=engagement&utm_source=setup-guide-link-web-app&utm_medium=docs&utm_campaign=universe-2026) to explore core features with no paid plan required.
+* **Subscribe to a paid plan.** Upgrade to a paid plan for access to premium features, increased access to models, and a higher monthly allowance of AI credits. See [AUTOTITLE](/copilot/how-tos/manage-your-account/get-started-with-a-copilot-plan) for more information.
+* **Get free access if you're eligible.** Students, teachers, and open source maintainers may qualify for access to premium features at no cost. See [AUTOTITLE](/copilot/how-tos/copilot-on-github/set-up-copilot/enable-copilot/set-up-for-students) and [AUTOTITLE](/copilot/how-tos/copilot-on-github/set-up-copilot/enable-copilot/set-up-for-teachers-and-os-maintainers).
+
+### Members of an organization
+
+To use Copilot at the expense of your organization or enterprise, an administrator must assign you a seat, even if the right to use Copilot is included with your enterprise license.
+
+* **Request access from your organization.** Go to [https://github.com/settings/copilot](https://github.com/settings/copilot?utm_source=get-started-about-doc-settings&utm_medium=docs&utm_campaign=universe-2026) and, where available, request access under "Get Copilot from an organization."
+* **Ask your administrator.** If the request option is not available, ask your organization or enterprise administrator how to get access.
+
+Once access is assigned, sign in with that account. See [AUTOTITLE](/copilot/get-started/quickstart-for-using-github-copilot-in-your-ide).
+
+### Organization owners
+
+Owners of **organizations on GitHub Free or GitHub Team** can purchase Copilot Business for their organization. [Subscribe to Copilot Business](https://github.com/github-copilot/purchase?ref_product=copilot&ref_type=purchase&ref_style=button&ref_plan=business).
+
+If your organization is owned by an enterprise that has a Copilot subscription, you can ask your enterprise owner to enable Copilot for your organization. Go to [https://github.com/settings/copilot](https://github.com/settings/copilot) and request access under "Get Copilot from an organization."
+
+### Enterprise owners
+
+Choose a plan and prepare policies, budgets, and access assignment for your enterprise. See [AUTOTITLE](/copilot/how-tos/copilot-on-github/set-up-copilot/enable-copilot/set-up-for-enterprise).
+
+If you are on **GitHub Enterprise Server**, see [AUTOTITLE](/enterprise-server@latest/copilot/copilot-on-ghes/about-copilot-on-ghes).
+
+## Control for organizations and enterprises
+
+If you use Copilot through an organization or enterprise, administrators decide how it can be used. They control which members have access, set policies for which features are available, exclude files that Copilot shouldn't see, and review usage data and audit logs to understand how it's being used.
+
+These settings help administrators manage Copilot across the environments and features available to their organization or enterprise. Some settings and controls depend on the Copilot plan and the client where Copilot is used. See [AUTOTITLE](/copilot/how-tos/administer-copilot).
+
+## Next steps
+
+* Start using Copilot. See [AUTOTITLE](/copilot/get-started/where-to-use-github-copilot).
+* View the Copilot features available to you by navigating to your Copilot settings at [https://github.com/settings/copilot/features](https://github.com/settings/copilot/features?ref_product=copilot&ref_type=engagement&ref_style=text&utm_source=getting-started-overview-links-settings-feature&utm_medium=docs&utm_campaign=universe-2026).

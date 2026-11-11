@@ -14,6 +14,15 @@
       "homepage": "https://github.com/github/github-well-architected",
       "category": "platform",
       "tags": ["github", "governance", "well-architected", "enterprise", "rulesets", "ghas"]
+    },
+    {
+      "name": "github-copilot-docs",
+      "source": "./plugins/github-copilot-docs",
+      "description": "GitHub's official Copilot documentation, bundled locally from github/docs. Covers plans and billing, AI credits and budgets, enterprise and org policies, models, content exclusion, MCP management, cloud agent, Copilot CLI, customization (instructions, agents, hooks), usage metrics, and rollout.",
+      "license": "CC-BY-4.0",
+      "homepage": "https://docs.github.com/en/copilot",
+      "category": "platform",
+      "tags": ["github", "copilot", "docs", "enterprise", "ai", "governance"]
     }
   ]
 }

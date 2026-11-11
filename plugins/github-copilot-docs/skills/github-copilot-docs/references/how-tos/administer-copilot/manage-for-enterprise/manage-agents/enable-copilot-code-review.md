@@ -1,0 +1,53 @@
+---
+title: Enabling GitHub Copilot code review in your enterprise
+intro: Apply consistent standards by having Copilot review every pull request.
+allowTitleToDifferFromFilename: true
+permissions: Enterprise owners
+versions:
+  feature: copilot
+shortTitle: Enable Copilot code review
+redirect_from:
+  - /copilot/how-tos/administer-copilot/manage-for-enterprise/manage-copilot-code-review
+  - /copilot/how-tos/administer-copilot/manage-for-enterprise/manage-agents/manage-copilot-code-review
+contentType: how-tos
+category:
+  - Manage Copilot for a team
+docsTeamMetrics:
+  - ai-governance
+---
+
+GitHub Copilot can review pull requests in your enterprise. This can save time for human reviewers by detecting bugs or vulnerabilities and enforcing consistent coding standards.
+
+## Enabling Copilot code review for your Copilot subscribers
+
+The policy for Copilot code review allows your licensed users to request reviews from Copilot and use Copilot to generate pull request summaries.
+
+{%- ifversion ghes %}
+1. In the top-right corner of GitHub Enterprise Server, click your profile picture, then click **Enterprise settings**.
+{%- else %}
+1. Navigate to your enterprise. For example, from the [Enterprises](https://github.com/settings/enterprises?ref_product=ghec&ref_type=engagement&ref_style=text) page on GitHub.com.
+{%- endif %}
+1. At the top of the page, click **(icon: copilot) AI controls**.
+1. In the sidebar, click **(icon: copilot) Copilot**.
+1. Under "Features & clients", click **Configure features & clients**.
+1. Next to "Copilot code review", select a policy.
+1. Then choose which Copilot code review features to enable for your enterprise. For more information, see [AUTOTITLE](/copilot/how-tos/copilot-on-github/set-up-copilot/configure-code-review#configuring-automatic-code-review-for-an-enterprise).
+
+### Next steps
+
+* If you selected **Enabled everywhere**, tell organization owners that these features are enabled for all members.
+* If you selected **Let organizations decide**, discuss member enablement with organization owners.
+
+## Configuring automatic code review
+
+To apply standards consistently, you can configure Copilot code review to run automatically on all pull requests opened across your enterprise or in specific repositories.
+
+1. Create an enterprise-level branch ruleset. See [AUTOTITLE](/enterprise-cloud@latest/admin/enforcing-policies/enforcing-policies-for-your-enterprise/enforcing-policies-for-code-governance).
+1. Target the organizations and repositories where Copilot code review should run automatically. You may want to start with a small selection of repositories and run a trial to collect feedback.
+1. Enable the **Automatically request Copilot code review** policy.
+1. Optionally, enable the additional settings. By reviewing on every push and reviewing draft pull requests, you will add consistency to the review process. However, you will also create more noise for developers. If you're running a pilot, consider starting with the basic setting to allow developers to get used to the new process first.
+1. Click **Create**.
+
+## Customizing reviews
+
+Encourage organization and repository administrators to create custom instructions for Copilot code review so that reviews will be tailored to your coding standards and conventions. See [AUTOTITLE](/copilot/tutorials/customize-code-review).
