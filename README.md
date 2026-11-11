@@ -127,6 +127,14 @@ python3 -m venv .build-cache/venv
 PYTHON=.build-cache/venv/bin/python ./build/build.sh github-copilot-docs
 ```
 
+`build/requirements.txt` is the canonical dependency list. The root
+`requirements.txt` includes it so the org-required `org/security-baseline`
+workflow detects Python and runs `pip-audit` against the build dependencies
+and their resolved transitive dependencies. Keep pins in the build manifest
+only. CI checks that the root entry point still includes it. A successful
+workflow means its configured audit policy passed, not that no vulnerabilities
+exist; inspect the audit step and its summary for findings and warnings.
+
 On Windows, use `.build-cache/venv/Scripts/python.exe`, or run the Python entry point directly:
 
 ```powershell

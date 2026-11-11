@@ -20,3 +20,5 @@ jobs:
         run: python3 build/check_repository_hygiene.py
       - name: Test the artifact guard
         run: python3 -m unittest discover -s build/tests -p test_repository_hygiene.py -v
+      - name: Verify dependency audit discovery
+        run: python3 -m unittest discover -s build/tests -p test_dependency_manifest.py -v
