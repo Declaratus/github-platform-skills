@@ -1,0 +1,11 @@
+{
+  "checks": 22,
+  "suite": {
+    "tests": 52,
+    "failures": [],
+    "errors": [],
+    "skipped": []
+  },
+  "corpus_markdown_preserved": 531,
+  "corpus_markdown_changed": 37
+}

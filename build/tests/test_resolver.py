@@ -146,6 +146,36 @@ class ResolverTests(unittest.TestCase):
         self.assertEqual(parsed, {'product': self.variables['product']['text'], 'count': 3, 'items': ['one', 'two']})
         self.assertEqual(self.resolve(output), output)
 
+    def test_frontmatter_multiline_reusable_has_no_body_padding(self):
+        self.reusable('lines', 'Line one.\n\nLine two.')
+        self.reusable('nested', 'Nested: {% data reusables.lines %}')
+        for inclusion, expected in [
+                ('lines', 'Prefix text.<br>Line one.\n\nLine two.'),
+                ('nested', 'Prefix text.<br>Nested: Line one.\n\nLine two.')]:
+            with self.subTest(inclusion=inclusion):
+                source = '---\nproduct: "Prefix text.<br>{% data reusables.' + inclusion + ' %}"\n---\nBody\n'
+                output = self.resolve(source)
+                self.assertEqual(yaml.safe_load(r.FRONT.match(output)[1]), {'product': expected})
+                self.assertEqual(self.resolve(output), output)
+
+    def test_frontmatter_preserves_existing_scalar_whitespace(self):
+        self.reusable('lines', 'Line one.\n\n  Line two.')
+        source = '---\nproduct: |+\n  Prefix: {% data reusables.lines %}\n    Existing indentation.\n\n---\nBody\n'
+        # Literal YAML indentation is decoded before data substitution. Only
+        # whitespace from the author and reusable may enter this scalar.
+        expected = 'Prefix: Line one.\n\n  Line two.\n  Existing indentation.\n'
+        output = self.resolve(source)
+        self.assertEqual(yaml.safe_load(r.FRONT.match(output)[1]), {'product': expected})
+        self.assertEqual(self.resolve(output), output)
+
+    def test_frontmatter_and_body_use_distinct_continuation_rules(self):
+        self.reusable('lines', 'Line one.\n\nLine two.')
+        source = '---\nproduct: "Prefix: {% data reusables.lines %}"\n---\n- {% data reusables.lines %}\n'
+        output = self.resolve(source)
+        self.assertEqual(yaml.safe_load(r.FRONT.match(output)[1]),
+                         {'product': 'Prefix: Line one.\n\nLine two.'})
+        self.assertEqual(output[r.FRONT.match(output).end():], '- Line one.\n  \n  Line two.\n')
+
     def test_multiline_plain_scalar_boundary(self):
         source = '---\nintro: This describes\n  {% data variables.product.name %}.\nversions:\n  feature: copilot\n---\n'
         parsed = yaml.safe_load(r.FRONT.match(self.resolve(source))[1])

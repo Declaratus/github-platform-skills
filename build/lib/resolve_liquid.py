@@ -159,7 +159,13 @@ def render_tables(text, tables):
     return re.sub(r'\x00DOCS(\d+)\x00', lambda m: protected[int(m[1])], rendered)
 
 
-def resolve(text, variables, reusables_dir, tables, missing=None, context=None):
+def resolve(text, variables, reusables_dir, tables, missing=None, context=None, *, scalar=False):
+    """Expand docs macros, with continuation indentation only for page bodies.
+
+    Decoded YAML strings already carry their semantic whitespace. Reusable
+    substitution in those strings must not add Markdown continuation padding,
+    including inside nested reusables or the candidate YAML spelling.
+    """
     protected = []
     def raw(m):
         protected.append(m.group())
@@ -181,7 +187,7 @@ def resolve(text, variables, reusables_dir, tables, missing=None, context=None):
             if m.re is INDENTED_TAG:
                 indent = ' ' * int(m[2])
                 return indent + value.replace('\n', '\n' + indent)
-            if '\n' in value:
+            if not scalar and '\n' in value:
                 prefix = s[s.rfind('\n', 0, m.start()) + 1:m.start()]
                 indent = prefix if not prefix.strip() else ' ' * len(prefix)
                 value = value.replace('\n', '\n' + indent)
@@ -212,14 +218,14 @@ def resolve(text, variables, reusables_dir, tables, missing=None, context=None):
             s = render_tables(s, tables)
             s = expand(s)
         return OCTICON_TAG.sub(r'(icon: \1)', s)
-    front = FRONT.match(text)
+    front = None if scalar else FRONT.match(text)
     if front:
         source = front[1]
         tree = yaml.compose(source)
         replacements = []
         def visit(node):
             if isinstance(node, yaml.ScalarNode) and node.tag == 'tag:yaml.org,2002:str':
-                value = resolve(node.value, variables, reusables_dir, tables, missing, context)
+                value = resolve(node.value, variables, reusables_dir, tables, missing, context, scalar=True)
                 if value != node.value:
                     start, end = node.start_mark.index, node.end_mark.index
                     suffix = '\n' if source[start:end].endswith('\n') else ''
@@ -227,7 +233,7 @@ def resolve(text, variables, reusables_dir, tables, missing=None, context=None):
                     # Retain author formatting when expansion of the original
                     # scalar spelling parses to the exact intended string.
                     # Otherwise JSON quoting is a YAML-safe string encoding.
-                    candidate = resolve(source[start:end], variables, reusables_dir, tables, missing, context)
+                    candidate = resolve(source[start:end], variables, reusables_dir, tables, missing, context, scalar=True)
                     try:
                         if yaml.safe_load('value: ' + candidate) == {'value': value}:
                             replacement = candidate

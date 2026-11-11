@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "frozen": "f4db74d994b2efaa51d70fb92b6458402e8f59c2",
+  "command": [
+    "git",
+    "-c",
+    "core.longpaths=true",
+    "ls-tree",
+    "-r",
+    "f4db74d994b2efaa51d70fb92b6458402e8f59c2",
+    "--",
+    "plugins/github-copilot-docs/skills/github-copilot-docs/references/"
+  ],
+  "comparison": "Exact Git blob SHA-1 vs current file bytes (no newline normalization)",
+  "markdown_byte_preserved": 567,
+  "markdown_changed": 1,
+  "all_changed_references": [
+    "SOURCE.json",
+    "concepts/customizations/plugins.md"
+  ]
+}

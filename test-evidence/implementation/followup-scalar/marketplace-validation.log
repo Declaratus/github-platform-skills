@@ -1,0 +1,8 @@
+Validating marketplace manifest: C:\Users\barry\Documents\GitHub-Skills-PR1-Tests-2026-11-11\source\.fix\impl\.claude-plugin\marketplace.json
+
+‼ Found 2 warnings:
+
+  > plugins[0] plugin.json → version: No version specified. Consider adding a version following semver (e.g., "1.0.0")
+  > plugins[1] plugin.json → version: No version specified. Consider adding a version following semver (e.g., "1.0.0")
+
+√ Validation passed with warnings

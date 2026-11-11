@@ -9,6 +9,8 @@ from pathlib import Path
 
 import yaml
 
+from frontmatter_oracle import metadata_oracle
+
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / 'build/lib'))
 import resolve_liquid as r
@@ -67,23 +69,16 @@ class SnapshotTests(unittest.TestCase):
         self.assertEqual(revision, source['revision'])
         variables = r.load_variables(upstream / 'data'); tables = r.load_tables(upstream / 'data')
         reusables = upstream / 'data/reusables'; context = r.site_context(upstream)
-        def semantic(node):
-            if isinstance(node, str):
-                return r.resolve(node, variables, reusables, tables, context=context)
-            if isinstance(node, list):
-                return [semantic(n) for n in node]
-            if isinstance(node, dict):
-                return {semantic(k): semantic(v) for k, v in node.items()}
-            return node
+        # Expected values use a data-only oracle that never calls the renderer.
+        oracle_variables = {p.stem: yaml.safe_load(p.read_text(encoding='utf-8')) or {}
+                            for p in (upstream / 'data/variables').glob('*.yml')}
         for original in (upstream / 'content/copilot').rglob('*.md'):
             relative = original.relative_to(upstream / 'content/copilot')
             with self.subTest(page=relative):
                 generated = (REFS / relative).read_text(encoding='utf-8')
                 source_metadata = yaml.safe_load(r.FRONT.match(original.read_text(encoding='utf-8'))[1])
                 actual_metadata = yaml.safe_load(r.FRONT.match(generated)[1])
-                # This compares decoded source values expanded independently of
-                # document-level YAML quoting/replacement, including all 15 cases.
-                self.assertEqual(actual_metadata, semantic(source_metadata))
+                self.assertEqual(actual_metadata, metadata_oracle(source_metadata, oracle_variables, reusables))
                 self.assertEqual(r.resolve(generated, variables, reusables, tables, context=context), generated)
         code = (upstream / 'data/reusables/copilot/java-int-snippet.md').read_text(encoding='utf-8').strip()
         expected = '   ' + code.replace('\n', '\n   ')

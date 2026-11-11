@@ -12,6 +12,12 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[2]
 E = Path(__file__).resolve().parent
+label = sys.argv[1] if len(sys.argv) > 1 else ''
+if label and not re.fullmatch('[a-zA-Z0-9_-]+', label):
+    raise ValueError('Validation label must contain only letters, digits, _ or -')
+if label:
+    E = E / label
+    E.mkdir(parents=True, exist_ok=True)
 REFS = ROOT / 'plugins/github-copilot-docs/skills/github-copilot-docs/references'
 PIN = '7c3387d3b513ed43ea26c9b2e4c0e1b12234c010'
 BASE = '875c75bc9c8bbf9f010e16633ef0c25475a3e1b3'
@@ -50,9 +56,6 @@ command('pinned-repeat', [sys.executable, 'build/lib/rebuild_copilot_docs.py', '
 record('repeat-byte-idempotence', first, inventory(REFS), 'SHA-256 inventory before/after second pinned rebuild')
 
 # The real cold and refresh entry points, not just a mocked fetch or fixture.
-label = sys.argv[1] if len(sys.argv) > 1 else ''
-if label and not re.fullmatch('[a-zA-Z0-9_-]+', label):
-    raise ValueError('Cold fixture label must contain only letters, digits, _ or -')
 cold = ROOT / ('.build-cache/validation-cold-root' + ('-' + label if label else ''))
 if cold.exists():
     raise AssertionError('Cold validation root already exists; preserve it and choose a fresh directory')
