@@ -40,6 +40,7 @@ Read `references/SOURCE.json` for the immutable upstream revision, source commit
 **Billing, spend, and metrics**
 - `concepts/billing-and-usage/`, `reference/copilot-billing/`
 - Budgets: `how-tos/manage-and-track-spending/`, `tutorials/budgets/`
+- Pricing: `reference/copilot-billing/models-and-pricing.md`. Distinguish token/AI-credit pricing from legacy annual Pro/Pro+ request multipliers in `reference/copilot-billing/request-based-billing-legacy/model-multipliers-for-annual-plans.md`; those multipliers do not apply to usage-based billing.
 - Usage metrics: `reference/copilot-usage-metrics/`, `reference/metrics-data.md`, `how-tos/administer-copilot/view-usage-and-adoption.md`
 
 **Models**: `concepts/models/`, `reference/ai-models/`
@@ -61,9 +62,11 @@ Read `references/SOURCE.json` for the immutable upstream revision, source commit
 
 For customization semantics, also read `concepts/prompting-and-context/custom-instructions.md` and `concepts/customizations/`. Most clients, including CLI and VS Code, combine applicable instructions without a general override order. The personal/repository/organization precedence documented for GitHub.com Chat must not be applied to every client or cloud-agent feature. Read the exact surface row in `reference/custom-instructions-support.md`.
 
-For hook configuration, distinguish `reference/hooks-reference.md` (CLI/cloud schemas and execution environments) from VS Code preview behavior in `reference/customization-cheat-sheet.md` and the linked IDE documentation. Do not promise identical discovery, event names, payloads, commands or permission decisions across surfaces. Cloud runs non-interactively on Linux; CLI user/policy/settings sources do not automatically propagate. Check custom-agent field compatibility separately in `reference/custom-agents-configuration.md`.
+For hook configuration, distinguish `reference/hooks-reference.md` (CLI/cloud schemas and execution environments) from VS Code preview behavior in `reference/customization-cheat-sheet.md` and the linked IDE documentation. Agent-scoped YAML `hooks:` are Copilot CLI only, for local/repository agents; remote or organization-hosted agent definitions do not run them. Do not promise identical discovery, event names, payloads, commands or permission decisions across surfaces. Cloud runs non-interactively on Linux; CLI user/policy/settings sources do not automatically propagate. Check custom-agent field compatibility separately in `reference/custom-agents-configuration.md`.
 
 **Feature availability by plan and surface**: `reference/copilot-feature-matrix.md`
+
+**GHES**: Read `copilot-on-ghes/about-copilot-on-ghes.md` alongside `concepts/models/bring-your-own-key.md`; preserve the local BYOK license exception and client-specific support limits. Distinguish Copilot cloud sign-in from MCP-server authentication; do not infer MCP-to-GHES credentials from Copilot sign-in.
 
 **Rollout**: `tutorials/roll-out-at-scale/`
 

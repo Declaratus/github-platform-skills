@@ -1,0 +1,149 @@
+test_cold_build_and_authoritative_default (test_rebuild.RebuildTests.test_cold_build_and_authoritative_default) ... warning: filtering not recognized by server, ignoring
+From C:\Users\barry\Documents\GitHub-Skills-PR1-Tests-2026-11-11\source\.fix\impl\.build-cache\test-temp\tmp_jfacsre\upstream
+ * branch            9d21af8b1e111379c0a856c6dca89839d767c870 -> FETCH_HEAD
+HEAD is now at 9d21af8 fixture
+ok
+test_cold_render_failure_preserves_snapshot (test_rebuild.RebuildTests.test_cold_render_failure_preserves_snapshot) ... warning: filtering not recognized by server, ignoring
+From C:\Users\barry\Documents\GitHub-Skills-PR1-Tests-2026-11-11\source\.fix\impl\.build-cache\test-temp\tmp3yuuivjd\upstream
+ * branch            73d79b9a8edd4cdc964f52c908059b8b47790bc0 -> FETCH_HEAD
+HEAD is now at 73d79b9 fixture
+ok
+test_cross_filesystem_workspace_fails_before_fetch_or_publish (test_rebuild.RebuildTests.test_cross_filesystem_workspace_fails_before_fetch_or_publish) ... ok
+test_dependency_failure_exits_before_any_mutation (test_rebuild.RebuildTests.test_dependency_failure_exits_before_any_mutation) ... ok
+test_existing_lock_preserves_previous_and_lock (test_rebuild.RebuildTests.test_existing_lock_preserves_previous_and_lock) ... ok
+test_fetch_failure_preserves_snapshot_and_cleans_lock (test_rebuild.RebuildTests.test_fetch_failure_preserves_snapshot_and_cleans_lock) ... warning: filtering not recognized by server, ignoring
+fatal: git upload-pack: not our ref 0000000000000000000000000000000000000000
+fatal: remote error: upload-pack: not our ref 0000000000000000000000000000000000000000
+ok
+test_interrupted_568_page_stage_outside_package_and_safe_recovery (test_rebuild.RebuildTests.test_interrupted_568_page_stage_outside_package_and_safe_recovery) ... warning: filtering not recognized by server, ignoring
+From C:\Users\barry\Documents\GitHub-Skills-PR1-Tests-2026-11-11\source\.fix\impl\.build-cache\test-temp\tmp3xogf0xp\upstream
+ * branch            c8bed760550783d3459a22013d5f7566af969c33 -> FETCH_HEAD
+HEAD is now at c8bed76 fixture
+ok
+test_missing_dependencies_on_refresh_preserves_previous (test_rebuild.RebuildTests.test_missing_dependencies_on_refresh_preserves_previous) ... warning: filtering not recognized by server, ignoring
+From C:\Users\barry\Documents\GitHub-Skills-PR1-Tests-2026-11-11\source\.fix\impl\.build-cache\test-temp\tmp_upz1_2o\upstream
+ * branch            a7f0586c1657936897cbc02b7505b8e0fe1aca6d -> FETCH_HEAD
+HEAD is now at a7f0586 fixture
+ok
+test_mutable_revision_is_rejected (test_rebuild.RebuildTests.test_mutable_revision_is_rejected) ... ok
+test_publish_failure_rolls_back_previous_directory (test_rebuild.RebuildTests.test_publish_failure_rolls_back_previous_directory) ... ok
+test_refresh_and_exact_repeat (test_rebuild.RebuildTests.test_refresh_and_exact_repeat) ... warning: filtering not recognized by server, ignoring
+From C:\Users\barry\Documents\GitHub-Skills-PR1-Tests-2026-11-11\source\.fix\impl\.build-cache\test-temp\tmp2urfb05n\upstream
+ * branch            6ca2b69010ce15c2b36c6f6c9467697a18002a04 -> FETCH_HEAD
+HEAD is now at 6ca2b69 fixture
+warning: filtering not recognized by server, ignoring
+From C:\Users\barry\Documents\GitHub-Skills-PR1-Tests-2026-11-11\source\.fix\impl\.build-cache\test-temp\tmp2urfb05n\upstream
+ * branch            6ca2b69010ce15c2b36c6f6c9467697a18002a04 -> FETCH_HEAD
+HEAD is now at 6ca2b69 fixture
+warning: filtering not recognized by server, ignoring
+From C:\Users\barry\Documents\GitHub-Skills-PR1-Tests-2026-11-11\source\.fix\impl\.build-cache\test-temp\tmp2urfb05n\upstream
+ * branch            609937e0018aa6b2a09e73ae7ec7746cf6979af7 -> FETCH_HEAD
+Warning: you are leaving 1 commit behind, not connected to
+any of your branches:
+
+  6ca2b69 fixture
+
+If you want to keep it by creating a new branch, this may be a good time
+to do so with:
+
+ git branch <new-branch-name> 6ca2b69
+
+HEAD is now at 609937e fixture
+ok
+test_refresh_missing_table_preserves_snapshot (test_rebuild.RebuildTests.test_refresh_missing_table_preserves_snapshot) ... warning: filtering not recognized by server, ignoring
+From C:\Users\barry\Documents\GitHub-Skills-PR1-Tests-2026-11-11\source\.fix\impl\.build-cache\test-temp\tmp65p1jol9\upstream
+ * branch            a5286ff63b5ae7418e035918736af373f503bfde -> FETCH_HEAD
+HEAD is now at a5286ff fixture
+warning: filtering not recognized by server, ignoring
+From C:\Users\barry\Documents\GitHub-Skills-PR1-Tests-2026-11-11\source\.fix\impl\.build-cache\test-temp\tmp65p1jol9\upstream
+ * branch            ee95b8f2cfd4f960381052387cbe0884895b7121 -> FETCH_HEAD
+Warning: you are leaving 1 commit behind, not connected to
+any of your branches:
+
+  a5286ff fixture
+
+If you want to keep it by creating a new branch, this may be a good time
+to do so with:
+
+ git branch <new-branch-name> a5286ff
+
+HEAD is now at ee95b8f fixture
+ok
+test_refresh_validation_failure_preserves_snapshot (test_rebuild.RebuildTests.test_refresh_validation_failure_preserves_snapshot) ... warning: filtering not recognized by server, ignoring
+From C:\Users\barry\Documents\GitHub-Skills-PR1-Tests-2026-11-11\source\.fix\impl\.build-cache\test-temp\tmpznsw4g4e\upstream
+ * branch            159055dc29ed243905392f1d606e568a08367565 -> FETCH_HEAD
+HEAD is now at 159055d fixture
+warning: filtering not recognized by server, ignoring
+From C:\Users\barry\Documents\GitHub-Skills-PR1-Tests-2026-11-11\source\.fix\impl\.build-cache\test-temp\tmpznsw4g4e\upstream
+ * branch            ec41a69133bb81a4efe08c9739ba0df23289f747 -> FETCH_HEAD
+Warning: you are leaving 1 commit behind, not connected to
+any of your branches:
+
+  159055d fixture
+
+If you want to keep it by creating a new branch, this may be a good time
+to do so with:
+
+ git branch <new-branch-name> 159055d
+
+HEAD is now at ec41a69 fixture
+ok
+test_render_failure_cli_nonzero (test_rebuild.RebuildTests.test_render_failure_cli_nonzero) ... ok
+test_stage_and_backup_are_outside_package_on_same_filesystem (test_rebuild.RebuildTests.test_stage_and_backup_are_outside_package_on_same_filesystem) ... warning: filtering not recognized by server, ignoring
+From C:\Users\barry\Documents\GitHub-Skills-PR1-Tests-2026-11-11\source\.fix\impl\.build-cache\test-temp\tmpc6yvlveq\upstream
+ * branch            95c19023b7064f47431eafb895fc930b51f1d1d3 -> FETCH_HEAD
+HEAD is now at 95c1902 fixture
+ok
+test_unknown_site_algorithm_fails_before_publish (test_rebuild.RebuildTests.test_unknown_site_algorithm_fails_before_publish) ... warning: filtering not recognized by server, ignoring
+From C:\Users\barry\Documents\GitHub-Skills-PR1-Tests-2026-11-11\source\.fix\impl\.build-cache\test-temp\tmpmhdu62ey\upstream
+ * branch            2b4ca34ca39e747132375c047c4d62206cc506ff -> FETCH_HEAD
+HEAD is now at 2b4ca34 fixture
+ok
+test_unterminated_frontmatter_preserves_previous (test_rebuild.RebuildTests.test_unterminated_frontmatter_preserves_previous) ... warning: filtering not recognized by server, ignoring
+From C:\Users\barry\Documents\GitHub-Skills-PR1-Tests-2026-11-11\source\.fix\impl\.build-cache\test-temp\tmp_av5j19b\upstream
+ * branch            7fd05c8669598fcc6ba9d0de8695fc707cf4a27d -> FETCH_HEAD
+HEAD is now at 7fd05c8 fixture
+ok
+test_api_default_requires_context (test_resolver.ResolverTests.test_api_default_requires_context) ... ok
+test_constant_condition_in_version_inside_loop (test_resolver.ResolverTests.test_constant_condition_in_version_inside_loop) ... ok
+test_cycle_is_named (test_resolver.ResolverTests.test_cycle_is_named) ... ok
+test_data_carried_by_table_value (test_resolver.ResolverTests.test_data_carried_by_table_value) ... ok
+test_depth_and_idempotence (test_resolver.ResolverTests.test_depth_and_idempotence) ... ok
+test_dotted_key_and_zero (test_resolver.ResolverTests.test_dotted_key_and_zero) ... ok
+test_frontmatter_and_body_use_distinct_continuation_rules (test_resolver.ResolverTests.test_frontmatter_and_body_use_distinct_continuation_rules) ... ok
+test_frontmatter_multiline_reusable_has_no_body_padding (test_resolver.ResolverTests.test_frontmatter_multiline_reusable_has_no_body_padding) ... ok
+test_frontmatter_preserves_existing_scalar_whitespace (test_resolver.ResolverTests.test_frontmatter_preserves_existing_scalar_whitespace) ... ok
+test_frontmatter_semantics_quotes_unicode_newline (test_resolver.ResolverTests.test_frontmatter_semantics_quotes_unicode_newline) ... ok
+test_indented_code_inclusion (test_resolver.ResolverTests.test_indented_code_inclusion) ... ok
+test_literal_raw_and_fence_survive_adjacent_table (test_resolver.ResolverTests.test_literal_raw_and_fence_survive_adjacent_table) ... ok
+test_literal_table_example_in_fence (test_resolver.ResolverTests.test_literal_table_example_in_fence) ... ok
+test_loop_and_if_wrapper_rows (test_resolver.ResolverTests.test_loop_and_if_wrapper_rows) ... ok
+test_loop_local_does_not_evaluate_unrelated_prose (test_resolver.ResolverTests.test_loop_local_does_not_evaluate_unrelated_prose) ... ok
+test_malformed_data_inclusion_fails (test_resolver.ResolverTests.test_malformed_data_inclusion_fails) ... ok
+test_malformed_table_program_fails (test_resolver.ResolverTests.test_malformed_table_program_fails) ... ok
+test_missing_table_output_and_iteration (test_resolver.ResolverTests.test_missing_table_output_and_iteration) ... ok
+test_missing_variable_and_reusable (test_resolver.ResolverTests.test_missing_variable_and_reusable) ... ok
+test_multiline_plain_scalar_boundary (test_resolver.ResolverTests.test_multiline_plain_scalar_boundary) ... ok
+test_nested_multiline_list (test_resolver.ResolverTests.test_nested_multiline_list) ... ok
+test_nested_version_inside_table (test_resolver.ResolverTests.test_nested_version_inside_table) ... ok
+test_no_empty_loop_wrapper_rows (test_resolver.ResolverTests.test_no_empty_loop_wrapper_rows) ... ok
+test_ordinary_table_and_row_condition (test_resolver.ResolverTests.test_ordinary_table_and_row_condition) ... ok
+test_preserve_unrelated_empty_table_row (test_resolver.ResolverTests.test_preserve_unrelated_empty_table_row) ... ok
+test_raw_scalar_and_fenced_raw_idempotence (test_resolver.ResolverTests.test_raw_scalar_and_fenced_raw_idempotence) ... ok
+test_size_is_bounded (test_resolver.ResolverTests.test_size_is_bounded) ... ok
+test_table_in_both_version_alternatives (test_resolver.ResolverTests.test_table_in_both_version_alternatives) ... ok
+test_tree_validation_before_any_write (test_resolver.ResolverTests.test_tree_validation_before_any_write) ... ok
+test_unrelated_output_prose_and_conditions (test_resolver.ResolverTests.test_unrelated_output_prose_and_conditions) ... ok
+test_version_outside_table (test_resolver.ResolverTests.test_version_outside_table) ... ok
+test_writer_comment_does_not_parse_literal_tags (test_resolver.ResolverTests.test_writer_comment_does_not_parse_literal_tags) ... ok
+test_all_frontmatters_valid_and_page_count (test_snapshot.SnapshotTests.test_all_frontmatters_valid_and_page_count) ... ok
+test_gating_and_attribution_retained (test_snapshot.SnapshotTests.test_gating_and_attribution_retained) ... ok
+test_manifests_marketplace_and_skill_paths (test_snapshot.SnapshotTests.test_manifests_marketplace_and_skill_paths) ... ok
+test_no_unresolved_build_constructs (test_snapshot.SnapshotTests.test_no_unresolved_build_constructs) ... ok
+test_provenance_generator_hashes (test_snapshot.SnapshotTests.test_provenance_generator_hashes) ... ok
+test_source_values_and_idempotence_against_pinned_upstream (test_snapshot.SnapshotTests.test_source_values_and_idempotence_against_pinned_upstream) ... ok
+
+----------------------------------------------------------------------
+Ran 55 tests in 16.122s
+
+OK
