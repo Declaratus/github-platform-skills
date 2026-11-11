@@ -39,9 +39,11 @@ The following table shows the model multipliers per supported model.
 
 | Model | Multiplier |
 | --- | ---: |
-| {% for entry in tables.copilot.annual-subscriber-model-multipliers %} |
-| {{ entry.model }} | {{ entry.new_multiplier }} |
-| {% endfor %} |
+| Claude Haiku 4.5 | 0.33 |
+| Claude Opus 4.8 | 27 |
+| Claude Sonnet 4.6 | 9 |
+| GPT-5.3-Codex | 6 |
+| MAI-Code-1.1-Flash | 0.25 |
 
 ### Model multiplier for Copilot code review
 

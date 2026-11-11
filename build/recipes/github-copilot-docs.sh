@@ -3,7 +3,7 @@
 # from content/copilot in https://github.com/github/docs.
 #
 # Invoked by build/build.sh. Expects REPO_ROOT to point at the marketplace repo root.
-# Never touches SKILL.md. Needs python3 with PyYAML for Liquid resolution.
+# Never touches SKILL.md. Needs python3 with PyYAML and python-liquid.
 
 set -euo pipefail
 
@@ -11,7 +11,7 @@ set -euo pipefail
 
 PLUGIN="github-copilot-docs"
 UPSTREAM="https://github.com/github/docs.git"
-SPARSE=(content/copilot data/variables data/reusables)
+SPARSE=(content/copilot data/variables data/reusables data/tables)
 
 CACHE="$REPO_ROOT/.build-cache/$PLUGIN"
 DEST="$REPO_ROOT/plugins/$PLUGIN/skills/$PLUGIN/references"
@@ -39,7 +39,7 @@ cp    "$CACHE/LICENSE"             "$DEST/LICENSE"
 # 3. Strip anything that isn't markdown (images, etc.)
 find "$DEST" -type f ! -name '*.md' ! -name 'LICENSE' -delete
 
-# 4. Resolve {% data %} variables and reusables so pages read as plain prose
+# 4. Expand data/tables loops, resolve {% data %} variables and reusables
 python3 "$REPO_ROOT/build/lib/resolve_liquid.py" "$CACHE/data" "$DEST"
 
 # 5. Report

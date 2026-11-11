@@ -41,9 +41,24 @@ GPT-5.6 Sol, GPT-5.6 Terra, GPT-5.6 Luna, GPT-6 Astra, GPT-6 Luna, GPT-6 Sol, GP
 
 | Model | Release status | Category | Tier | Threshold (input tokens) | Input | Cached input | Cache write | Output |
 | --- | --- | --- | --- | --- | ---: | ---: | ---: | ---: |
-| {% for entry in tables.copilot.models-and-pricing %}{% if entry.provider == "openai" %} |
-| {{ entry.model }} | {{ entry.release_status }} | {{ entry.category }} | {{ entry.tier }} | {{ entry.threshold }} | {{ entry.input }} | {{ entry.cached_input }} | {{ entry.cache_write }} | {{ entry.output }} |
-| {% endif %}{% endfor %} |
+| GPT-5.3-Codex | GA | Powerful | Default | Not applicable | $1.75 | $0.175 | Not applicable | $14.00 |
+| GPT-5.4 nano | GA | Lightweight | Default | Not applicable | $0.20 | $0.02 | Not applicable | $1.25 |
+| GPT-5.6 Luna | GA | Lightweight | Default | ≤ 200K | $0.20 | $0.02 | $0.25 | $1.20 |
+| GPT-5.6 Luna | GA | Lightweight | Long context | > 200K | $0.40 | $0.04 | $0.50 | $1.80 |
+| GPT-5.6 Sol | GA | Powerful | Default | ≤ 272K | $4.00 | $0.40 | $5.00 | $20.00 |
+| GPT-5.6 Sol | GA | Powerful | Long context | > 272K | $8.00 | $0.80 | $10.00 | $30.00 |
+| GPT-5.6 Terra | GA | Versatile | Default | ≤ 272K | $2.00 | $0.20 | $2.50 | $12.00 |
+| GPT-5.6 Terra | GA | Versatile | Long context | > 272K | $4.00 | $0.40 | $5.00 | $18.00 |
+| GPT-6 Astra | GA | Powerful | Default | ≤ 272K | $10.00 | $1.00 | $12.50 | $50.00 |
+| GPT-6 Astra | GA | Powerful | Long context | > 272K | $20.00 | $2.00 | $25.00 | $75.00 |
+| GPT-6 Luna | GA | Lightweight | Default | ≤ 272K | $0.10 | $0.01 | $0.125 | $0.50 |
+| GPT-6 Luna | GA | Lightweight | Long context | > 272K | $0.20 | $0.02 | $0.25 | $0.75 |
+| GPT-6 Sol | GA | Powerful | Default | ≤ 272K | $2.00 | $0.20 | $2.50 | $10.00 |
+| GPT-6 Sol | GA | Powerful | Long context | > 272K | $4.00 | $0.40 | $5.00 | $15.00 |
+| GPT-6.1 Sol | GA | Powerful | Default | ≤ 272K | $2.00 | $0.10 | $2.50 | $10.00 |
+| GPT-6.1 Sol | GA | Powerful | Long context | > 272K | $4.00 | $0.20 | $5.00 | $15.00 |
+| GPT-6.1 Terra | GA | Versatile | Default | ≤ 272K | $1.00 | $0.05 | $1.25 | $5.00 |
+| GPT-6.1 Terra | GA | Versatile | Long context | > 272K | $2.00 | $0.10 | $2.50 | $7.50 |
 
 ### Anthropic
 
@@ -53,9 +68,20 @@ Anthropic models include a cache write cost in addition to cached input.
 
 | Model | Release status | Category | Tier | Threshold (input tokens) | Input | Cached input | Cache write | Output |
 | --- | --- | --- | --- | --- | ---: | ---: | ---: | ---: |
-| {% for entry in tables.copilot.models-and-pricing %}{% if entry.provider == "anthropic" %} |
-| {{ entry.model }} | {{ entry.release_status }} | {{ entry.category }} | {% if entry.tier %}{{ entry.tier }}{% else %}Default{% endif %} | {% if entry.threshold %}{{ entry.threshold }}{% else %}Not applicable{% endif %} | {{ entry.input }} | {{ entry.cached_input }} | {{ entry.cache_write }} | {{ entry.output }} |
-| {% endif %}{% endfor %} |
+| Claude Haiku 4.5 | GA | Versatile | Default | Not applicable | $1.00 | $0.10 | $1.25 | $5.00 |
+| Claude Haiku 5.5 | GA | Lightweight | Default | ≤ 100K | $0.10 | $0.01 | $0.125 | $0.50 |
+| Claude Haiku 5.5 | GA | Lightweight | Long context | > 100K | $0.50 | $0.05 | $0.625 | $2.50 |
+| Claude Sonnet 4 | GA | Versatile | Default | Not applicable | $3.00 | $0.30 | $3.75 | $15.00 |
+| Claude Sonnet 4.6 | GA | Versatile | Default | Not applicable | $3.00 | $0.30 | $3.75 | $15.00 |
+| Claude Opus 4.8 | GA | Powerful | Default | Not applicable | $5.00 | $0.50 | $6.25 | $25.00 |
+| Claude Opus 5 | GA | Powerful | Default | Not applicable | $5.00 | $0.50 | $6.25 | $25.00 |
+| Claude Opus 5.5 | GA | Powerful | Default | Not applicable | $4.00 | $0.20 | $5.00 | $20.00 |
+| Claude Sonnet 5 | GA | Versatile | Default | Not applicable | $2.00 | $0.20 | $2.50 | $10.00 |
+| Claude Sonnet 5.5 | GA | Versatile | Default | Not applicable | $2.00 | $0.10 | $2.50 | $10.00 |
+| Claude Opus 4.8 (fast mode) (preview) | GA | Powerful | Default | Not applicable | $10.00 | $1.00 | $12.50 | $50.00 |
+| Claude Fable 5 | GA | Powerful | Default | Not applicable | $10.00 | $1.00 | $12.50 | $50.00 |
+| Claude Fable 5.1 | GA | Powerful | Default | Not applicable | $10.00 | $0.25 | $12.50 | $50.00 |
+| Claude Fable 5.2 | GA | Powerful | Default | Not applicable | $8.00 | $0.20 | $10.00 | $40.00 |
 
 ### Google
 
@@ -63,25 +89,20 @@ Anthropic models include a cache write cost in addition to cached input.
 
 | Model | Release status | Category | Tier | Threshold (input tokens) | Input | Cached input | Output |
 | --- | --- | --- | --- | --- | ---: | ---: | ---: |
-| {% for entry in tables.copilot.models-and-pricing %}{% if entry.provider == "google" %} |
-| {{ entry.model }} | {{ entry.release_status }} | {{ entry.category }} | {{ entry.tier }} | {{ entry.threshold }} | {{ entry.input }} | {{ entry.cached_input }} | {{ entry.output }} |
-| {% endif %}{% endfor %} |
+| Gemini 3.8 Flash[^gemini-flash-promo] | GA | Versatile | Default | Not applicable | $0.75 | $0.075 | $3.75 |
+| Gemini 4 Argon[^gemini-4-argon-promo] | GA | Powerful | Default | Not applicable | $2.00 | $0.10 | $10.00 |
+| Gemini 4 Carbon[^gemini-4-carbon-promo] | GA | Powerful | Default | Not applicable | $2.00 | $0.10 | $10.00 |
 
 ### Fine-tuned (GitHub)
 
 | Model | Release status | Category | Input | Cached input | Output |
 | --- | --- | --- | ---: | ---: | ---: |
-| {% for entry in tables.copilot.models-and-pricing %}{% if entry.provider == "github" %} |
-| {{ entry.model }} | {{ entry.release_status }} | {{ entry.category }} | {{ entry.input }} | {{ entry.cached_input }} | {{ entry.output }} |
-| {% endif %}{% endfor %} |
 
 ### Microsoft
 
 | Model | Release status | Category | Input | Cached input | Output |
 | --- | --- | --- | ---: | ---: | ---: |
-| {% for entry in tables.copilot.models-and-pricing %}{% if entry.provider == "microsoft" %} |
-| {{ entry.model }} | {{ entry.release_status }} | {{ entry.category }} | {{ entry.input }} | {{ entry.cached_input }} | {{ entry.output }} |
-| {% endif %}{% endfor %} |
+| MAI-Code-1.1-Flash | GA | Lightweight | $0.20 | $0.02 | $1.20 |
 
 ### xAI
 
@@ -89,17 +110,18 @@ Anthropic models include a cache write cost in addition to cached input.
 
 | Model | Release status | Category | Tier | Threshold (input tokens) | Input | Cached input | Output |
 | --- | --- | --- | --- | --- | ---: | ---: | ---: |
-| {% for entry in tables.copilot.models-and-pricing %}{% if entry.provider == "xai" %} |
-| {{ entry.model }} | {{ entry.release_status }} | {{ entry.category }} | {{ entry.tier }} | {{ entry.threshold }} | {{ entry.input }} | {{ entry.cached_input }} | {{ entry.output }} |
-| {% endif %}{% endfor %} |
+| Grok 4.5 | GA | Versatile | Default | ≤ 200K | $2.00 | $0.50 | $6.00 |
+| Grok 4.5 | GA | Versatile | Long context | > 200K | $4.00 | $1.00 | $12.00 |
+| Grok 4.6 | GA | Versatile | Default | ≤ 200K | $2.00 | $0.50 | $6.00 |
+| Grok 4.6 | GA | Versatile | Long context | > 200K | $4.00 | $1.00 | $12.00 |
+| Grok 4.7 | GA | Versatile | Default | ≤ 200K | $2.00 | $0.50 | $6.00 |
+| Grok 4.7 | GA | Versatile | Long context | > 200K | $4.00 | $1.00 | $12.00 |
 
 ### Moonshot AI
 
 | Model | Release status | Category | Input | Cached input | Output |
 | --- | --- | --- | ---: | ---: | ---: |
-| {% for entry in tables.copilot.models-and-pricing %}{% if entry.provider == "moonshot_ai" %} |
-| {{ entry.model }} | {{ entry.release_status }} | {{ entry.category }} | {{ entry.input }} | {{ entry.cached_input }} | {{ entry.output }} |
-| {% endif %}{% endfor %} |
+| Kimi K3 | GA | Powerful | $3.00 | $0.30 | $15.00 |
 
 ### Image generation models
 
@@ -107,9 +129,7 @@ Image generation models are billed separately from the model you use for your se
 
 | Model | Release status | Text input | Cached text input | Image input | Cached image input | Image output |
 | --- | --- | ---: | ---: | ---: | ---: | ---: |
-| {% for entry in tables.copilot.image-models-and-pricing %} |
-| {{ entry.model }} | {{ entry.release_status }} | {{ entry.text_input }} | {{ entry.cached_text_input }} | {{ entry.image_input }} | {{ entry.cached_image_input }} | {{ entry.image_output }} |
-| {% endfor %} |
+| GPT Image 2.5 Flare | Public preview | $5.00 | $1.25 | $8.00 | $2.00 | $30.00 |
 
 ## Code completions
 

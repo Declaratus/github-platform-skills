@@ -38,9 +38,36 @@ This table lists the AI models available in Copilot, along with their release st
 
 | Model name                                             | Provider  | Release status             |
 |--------------------------------------------------------|-----------|----------------------------|
-| {% for model in tables.copilot.model-release-status %} |
-| {{ model.name }}{% if model.name == 'GPT-5.4 nano' %}[^gpt54nano]{% endif %}{% if model.name == 'MAI-Code-1.1-Flash' %}[^mai-models]{% endif %}{% if model.name == 'Claude Fable 5' or model.name == 'Claude Fable 5.1' or model.name == 'Claude Fable 5.2' %}[^claude-fable-5]{% endif %}| {{ model.provider }} | {{ model.release_status }} |
-| {% endfor %}                                           |
+| GPT-5.3-Codex| OpenAI | GA |
+| GPT-5.4 nano[^gpt54nano]| OpenAI | GA |
+| GPT-5.6 Luna| OpenAI | GA |
+| GPT-5.6 Sol| OpenAI | GA |
+| GPT-5.6 Terra| OpenAI | GA |
+| GPT-6 Astra| OpenAI | GA |
+| GPT-6 Luna| OpenAI | GA |
+| GPT-6 Sol| OpenAI | GA |
+| GPT-6.1 Sol| OpenAI | GA |
+| GPT-6.1 Terra| OpenAI | GA |
+| Claude Fable 5[^claude-fable-5]| Anthropic | GA |
+| Claude Fable 5.1[^claude-fable-5]| Anthropic | GA |
+| Claude Fable 5.2[^claude-fable-5]| Anthropic | GA |
+| Claude Haiku 4.5| Anthropic | GA |
+| Claude Haiku 5.5| Anthropic | GA |
+| Claude Opus 4.8| Anthropic | GA |
+| Claude Opus 4.8 (fast mode) (preview)| Anthropic | GA |
+| Claude Opus 5| Anthropic | GA |
+| Claude Opus 5.5| Anthropic | GA |
+| Claude Sonnet 4.6| Anthropic | GA |
+| Claude Sonnet 5| Anthropic | GA |
+| Claude Sonnet 5.5| Anthropic | GA |
+| Gemini 3.8 Flash| Google | GA |
+| Gemini 4 Argon| Google | GA |
+| Gemini 4 Carbon| Google | GA |
+| MAI-Code-1.1-Flash[^mai-models]| Microsoft | GA |
+| Kimi K3| Moonshot AI | GA |
+| Grok 4.5| xAI | GA |
+| Grok 4.6| xAI | GA |
+| Grok 4.7| xAI | GA |
 
 {% endrowheaders %}
 
@@ -54,9 +81,21 @@ This table lists the supported AI models for Auto model selection. Available mod
 
 | Model | Copilot cloud agent | Copilot Chat | Copilot CLI | GitHub Copilot app |
 | --- | --- | --- | --- | --- |
-| {% for model in tables.copilot.auto-model-selection %} |
-| {{ model.name }} | {% if model.cloud_agent == true %}(icon: check){% else %}(icon: x){% endif %} | {% if model.chat == true %}(icon: check){% else %}(icon: x){% endif %} | {% if model.cli == true %}(icon: check){% else %}(icon: x){% endif %} | {% if model.app == true %}(icon: check){% else %}(icon: x){% endif %} |
-| {% endfor %} |
+| GPT-5.6 Luna | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| GPT-5.6 Sol | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| GPT-5.6 Terra | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| GPT-6 Astra | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| GPT-6 Luna | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| GPT-6 Sol | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| GPT-6.1 Sol | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| Claude Haiku 4.5 | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| Claude Opus 4.8 | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| Claude Opus 5 | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| Claude Opus 5.5 | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| Claude Sonnet 5 | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| Claude Sonnet 5.5 | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| Gemini 3.8 Flash | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| MAI-Code-1.1-Flash | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
 
 {% endrowheaders %}
 
@@ -110,9 +149,35 @@ The following table shows which models are available in each client.
 
 | Model | GitHub.com | Copilot CLI | Visual Studio Code | Visual Studio | Eclipse | Xcode | JetBrains IDEs |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| {% for model in tables.copilot.model-supported-clients %} |
-| {{ model.name }}{% if model.name == 'GPT-5.4 nano' %}[^gpt54nano]{% endif %} | {% if model.dotcom == true %}(icon: check){% else %}(icon: x){% endif %} | {% if model.cli == true %}(icon: check){% else %}(icon: x){% endif %} | {% if model.vscode == true %}(icon: check){% else %}(icon: x){% endif %} | {% if model.vs == true %}(icon: check){% else %}(icon: x){% endif %} | {% if model.eclipse == true %}(icon: check){% else %}(icon: x){% endif %} | {% if model.xcode == true %}(icon: check){% else %}(icon: x){% endif %} | {% if model.jetbrains == true %}(icon: check){% else %}(icon: x){% endif %} |
-| {% endfor %} |
+| Claude Haiku 4.5 | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| Claude Haiku 5.5 | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| Claude Opus 4.8 | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| Claude Opus 4.8 (fast mode) (preview) | (icon: x) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| Claude Opus 5 | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| Claude Opus 5.5 | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| Claude Fable 5 | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| Claude Fable 5.1 | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| Claude Fable 5.2 | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| Claude Sonnet 4.6 | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: x) | (icon: x) | (icon: x) |
+| Claude Sonnet 5 | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| Claude Sonnet 5.5 | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| Gemini 3.8 Flash | (icon: x) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| Gemini 4 Argon | (icon: x) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| Gemini 4 Carbon | (icon: x) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| MAI-Code-1.1-Flash | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| GPT-5.3-Codex | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| GPT-5.4 nano[^gpt54nano] | (icon: x) | (icon: x) | (icon: x) | (icon: x) | (icon: x) | (icon: x) | (icon: x) |
+| GPT-5.6 Luna | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: x) | (icon: x) | (icon: x) |
+| GPT-5.6 Sol | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: x) | (icon: x) | (icon: x) |
+| GPT-5.6 Terra | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: x) | (icon: x) | (icon: x) |
+| GPT-6 Astra | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| GPT-6 Luna | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| GPT-6 Sol | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| GPT-6.1 Terra | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| Grok 4.5 | (icon: x) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| Grok 4.6 | (icon: x) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| Grok 4.7 | (icon: x) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| Kimi K3 | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
 
 {% endrowheaders %}
 
@@ -172,9 +237,36 @@ The following table shows which AI models are available in each Copilot plan. Fo
 
 | Available models                               | Copilot Pro  | Copilot Pro+ | Copilot Max | Copilot Business | Copilot Enterprise |
 |---------------------------------------------------------|-------------------------------------------------|-----------------------------------------------------|------------------------------------------------|-----------------------------------------------------|-------------------------------------------------------|
-| {% for model in tables.copilot.model-supported-plans %} |
-| {{ model.name }}{% if model.name == 'GPT-5.4 nano' %}[^gpt54nano]{% endif %}{% if model.name == 'Claude Fable 5' or model.name == 'Claude Fable 5.1' or model.name == 'Claude Fable 5.2' %}[^claude-fable-5]{% endif %}{% if model.name == 'Claude Sonnet 4.6' %}[^claude-sonnet-46-plans]{% endif %} | {% if model.pro == true %}(icon: check){% else %}(icon: x){% endif %} | {% if model.pro_plus == true %}(icon: check){% else %}(icon: x){% endif %} | {% if model.max == true %}(icon: check){% else %}(icon: x){% endif %} | {% if model.business == true %}(icon: check){% else %}(icon: x){% endif %} | {% if model.enterprise == true %}(icon: check){% else %}(icon: x){% endif %} |
-| {% endfor %}                                            |
+| Claude Haiku 4.5 | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| Claude Haiku 5.5 | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| Claude Opus 4.8 | (icon: x) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| Claude Opus 4.8 (fast mode) (preview) | (icon: x) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| Claude Opus 5 | (icon: x) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| Claude Opus 5.5 | (icon: x) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| Claude Fable 5[^claude-fable-5] | (icon: x) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| Claude Fable 5.1[^claude-fable-5] | (icon: x) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| Claude Fable 5.2[^claude-fable-5] | (icon: x) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| Claude Sonnet 4.6[^claude-sonnet-46-plans] | (icon: check) | (icon: check) | (icon: x) | (icon: x) | (icon: x) |
+| Claude Sonnet 5 | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| Claude Sonnet 5.5 | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| Gemini 3.8 Flash | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| Gemini 4 Argon | (icon: x) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| Gemini 4 Carbon | (icon: x) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| GPT-5.3-Codex | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| GPT-5.4 nano[^gpt54nano] | (icon: x) | (icon: check) | (icon: check) | (icon: x) | (icon: x) |
+| GPT-5.6 Luna | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| GPT-5.6 Sol | (icon: x) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| GPT-5.6 Terra | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| GPT-6 Astra | (icon: x) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| GPT-6 Luna | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| GPT-6 Sol | (icon: x) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| GPT-6.1 Sol | (icon: x) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| GPT-6.1 Terra | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| Grok 4.5 | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| Grok 4.6 | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| Grok 4.7 | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| Kimi K3 | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| MAI-Code-1.1-Flash | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
 
 {% endrowheaders %}
 
@@ -238,9 +330,47 @@ The following table lists AI models that are retired or scheduled for retirement
 
 | Model name                                                  | Retirement date             | Suggested alternative             |
 |-------------------------------------------------------------|-----------------------------|-----------------------------------|
-| {% for model in tables.copilot.model-deprecation-history %} |
-| {{ model.name }}{% if model.name == 'Claude Sonnet 4.6' %}[^claude-sonnet-46-annual]{% endif %} | {{ model.retirement_date }} | {{ model.suggested_alternative }} |
-| {% endfor %}                                                |
+| Gemini 3.7 Flash | 2026-10-19 | Latest Gemini Flash model |
+| GPT-5 mini | 2026-10-19 | Latest GPT Luna model |
+| GPT-5.4 | 2026-10-19 | Latest GPT Sol model |
+| GPT-5.4 mini | 2026-10-19 | Latest GPT Luna model |
+| GPT-5.5 | 2026-10-19 | Latest GPT Sol model |
+| Claude Opus 4.7 | 2026-10-02 | Latest Claude Opus model |
+| Gemini 3.5 Flash | 2026-10-02 | Latest Gemini Flash model |
+| Gemini 3.6 Flash | 2026-10-02 | Latest Gemini Flash model |
+| Kimi K2.7 Code | 2026-10-02 | Latest Kimi model |
+| MAI-Code-1-Flash | 2026-09-10 | Latest MAI-Code model |
+| Claude Opus 4.5 | 2026-09-01 | Latest Claude Opus model |
+| Claude Opus 4.6 | 2026-09-01 | Latest Claude Opus model |
+| Claude Sonnet 4.5 | 2026-09-01 | Latest Claude Sonnet model |
+| Claude Sonnet 4.6[^claude-sonnet-46-annual] | 2026-09-01 | Latest Claude Sonnet model |
+| Gemini 3.1 Pro | 2026-09-01 | Latest Gemini Flash model |
+| Raptor mini | 2026-09-01 | Latest MAI-Code model |
+| Gemini 2.5 Pro | 2026-07-31 | Latest Gemini Flash model |
+| Gemini 3 Flash | 2026-07-31 | Latest Gemini Flash model |
+| Claude Opus 4.6 (fast mode) (preview) | 2026-06-29 | Latest Claude Opus model in fast mode |
+| GPT-5.2 | 2026-06-05 | Latest GPT model |
+| GPT-5.2-Codex | 2026-06-05 | Latest GPT Codex model |
+| GPT-4.1 | 2026-06-01 | Latest GPT model |
+| Grok Code Fast 1 | 2026-05-15 | Latest GPT mini model |
+| Claude Sonnet 4 | 2026-05-01 | Latest Claude Sonnet model |
+| GPT-5.1 | 2026-04-15 | Latest GPT Codex model |
+| GPT-5.1-Codex | 2026-04-01 | Latest GPT Codex model |
+| GPT-5.1-Codex-Max | 2026-04-01 | Latest GPT Codex model |
+| GPT-5.1-Codex-Mini | 2026-04-01 | Latest GPT Codex model |
+| Gemini 3 Pro | 2026-03-26 | Latest Gemini Flash model |
+| Claude Opus 4.1 | 2026-02-17 | Latest Claude Opus model |
+| GPT-5 | 2026-02-17 | Latest GPT model |
+| GPT-5-Codex | 2026-02-17 | Latest GPT Codex model |
+| Claude Sonnet 3.5 | 2025-11-06 | Latest Claude Haiku model |
+| Claude Opus 4 | 2025-10-23 | Latest Claude Opus model |
+| Claude Sonnet 3.7 | 2025-10-23 | Latest Claude Sonnet model |
+| Claude Sonnet 3.7 Thinking | 2025-10-23 | Latest Claude Sonnet model |
+| Gemini 2.0 Flash | 2025-10-23 | Latest Gemini Flash model |
+| o1-mini | 2025-10-23 | Latest GPT mini model |
+| o3 | 2025-10-23 | Latest GPT model |
+| o3-mini | 2025-10-23 | Latest GPT mini model |
+| o4-mini | 2025-10-23 | Latest GPT mini model |
 
 {% endrowheaders %}
 

@@ -13,9 +13,7 @@ This reference article provides details of which types of custom instructions ar
 
 ## GitHub.com
 
-{% comment %}
-WRITING NOTE: The following tables have been written using HTML rather than Markdown due to the poor column width rendering of Markdown tables. In Markdown the columns have equal width, resulting in the first column being too wide, and the second column being too narrow for the text it contains.
-{% endcomment %}
+
 
 <table>
   <thead>

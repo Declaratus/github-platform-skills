@@ -76,4 +76,4 @@ Checks `marketplace.json` syntax, plugin names, source paths, and version cohere
 
 MIT. Bundled upstream content remains under its own license, with attribution in each skill's `SKILL.md`. `github-well-architected` is MIT. `github-copilot-docs` is CC BY 4.0 (GitHub Docs content) and ships the upstream `LICENSE` in its `references/`.
 
-The `github-copilot-docs` recipe needs `python3` with PyYAML to resolve Liquid tags (`build/lib/resolve_liquid.py`).
+The `github-copilot-docs` recipe needs `python3` with PyYAML and python-liquid to resolve Liquid tags and expand table data (`build/lib/resolve_liquid.py`).
