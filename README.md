@@ -32,7 +32,9 @@ Then ask Claude anything that fits the skill's scope (organization-level decisio
 │       └── references/                   # curated from upstream by build/recipes/
 ├── build/
 │   ├── build.sh                          # dispatch: ./build/build.sh <plugin> [--all]
-│   └── recipes/<plugin-name>.sh          # per-plugin: upstream URL + curation
+│   ├── <name>-source.json                # pinned upstream repo + commit per recipe
+│   ├── bump_sources.py                   # moves every pin to its upstream head
+│   └── recipes/<plugin-name>.sh          # per-plugin: curation from the pinned commit
 └── .build-cache/                         # gitignored: shallow clones of upstream
 ```
 
@@ -46,7 +48,7 @@ Then ask Claude anything that fits the skill's scope (organization-level decisio
    ```
 3. Write `plugins/<name>/.claude-plugin/plugin.json` (use `github-well-architected`'s as a template).
 4. Write `plugins/<name>/skills/<name>/SKILL.md` — the hand-edited source-of-truth. The YAML `description` field is what Claude uses to decide when to load the skill; be specific about triggers.
-5. If the skill bundles content from an upstream repo, add `build/recipes/<name>.sh` (copy the well-architected recipe and adapt the upstream URL + curation rules).
+5. If the skill bundles content from an upstream repo, add `build/<name>-source.json` with the repository URL and a full commit SHA, and `build/recipes/<name>.sh` (copy the well-architected recipe and adapt the pin file and curation rules). The scheduled refresh picks up any `build/*-source.json` automatically.
 6. Add the plugin entry to `.claude-plugin/marketplace.json`.
 7. Run `claude plugin validate .` to sanity-check.
 8. Commit and push.
@@ -59,11 +61,26 @@ Then ask Claude anything that fits the skill's scope (organization-level decisio
 ```
 
 The build script:
-- shallow-clones (or refreshes) the upstream into `.build-cache/<name>/`
-- restages the curated subset under `plugins/<name>/skills/<name>/references/`
+- fetches the commit pinned in `build/<name>-source.json` into `.build-cache/<name>/`
+- restages the curated subset under `plugins/<name>/skills/<name>/references/`, with a `SOURCE.json` recording the commit
 - never touches `SKILL.md`
 
 `git diff` after a rebuild shows exactly what upstream changed in the references — review before committing.
+
+### Scheduled refresh
+
+`.github/workflows/refresh-upstream.yml` runs daily (and on demand). It moves every pin to its upstream head with `build/bump_sources.py`, rebuilds, runs the tests, and opens or updates one PR from `automation/refresh-upstream` with compare links for each pin. If tests fail the PR is opened as a draft with the failure output. Nothing merges automatically.
+
+Upstream restructures can break paths that a `SKILL.md` points at, and the recipes never edit `SKILL.md`. Check the entry points in each `SKILL.md` against the refresh diff before merging.
+
+PRs opened with the workflow's `GITHUB_TOKEN` do not trigger other workflows, so `Repository hygiene` does not run on them. The refresh job runs the same checks itself. Close and reopen the PR, or push to the branch, if you want the hygiene workflow to run too.
+
+To refresh by hand:
+
+```bash
+python build/bump_sources.py
+./build/build.sh --all
+```
 
 ## Validate before pushing
 

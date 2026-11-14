@@ -30,7 +30,8 @@ class SnapshotTests(unittest.TestCase):
         source = json.loads((REFS / 'SOURCE.json').read_text())
         pages = list(REFS.rglob('*.md'))
         self.assertEqual(len(pages), source['markdown_pages'])
-        self.assertEqual(len(pages), 568)
+        # Upstream adds pages; this only catches a build that lost most of them.
+        self.assertGreater(len(pages), 400)
         for page in pages:
             with self.subTest(page=page.relative_to(REFS)):
                 front = r.FRONT.match(page.read_text(encoding='utf-8'))
@@ -48,7 +49,7 @@ class SnapshotTests(unittest.TestCase):
 
     def test_gating_and_attribution_retained(self):
         text = (REFS / 'copilot-on-ghes/about-copilot-on-ghes.md').read_text(encoding='utf-8')
-        for expected in ['{% ifversion copilot-cli-ghes %}', '{% ifversion copilot-cli-ghes-ga %}', '3.22.3']:
+        for expected in ['{% ifversion copilot-cli-ghes %}', '{% ifversion copilot-cli-ghes-ga %}']:
             self.assertIn(expected, text)
         self.assertIn('Attribution', (REFS / 'LICENSE').read_text(encoding='utf-8'))
 
