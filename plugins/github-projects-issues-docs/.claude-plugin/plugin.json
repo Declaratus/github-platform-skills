@@ -1,0 +1,9 @@
+{
+  "name": "github-projects-issues-docs",
+  "description": "GitHub Projects and Issues documentation skill: the full content/issues tree from github/docs, bundled locally with Liquid variables resolved, plus a changelog pointer for newer changes.",
+  "author": {
+    "name": "Declaratus"
+  },
+  "homepage": "https://github.com/github/docs/tree/main/content/issues",
+  "license": "CC-BY-4.0"
+}

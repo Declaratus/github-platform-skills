@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Stage and validate a pinned Copilot snapshot before publishing references.
+"""Stage and validate a pinned github/docs snapshot before publishing references.
+
+Defaults build github-copilot-docs; --plugin/--content/--source reuse it for
+another content/ section.
 
 Dependency imports happen before any cache or destination mutation. Publication
 uses same-filesystem renames with rollback on replacement failure, not delete/copy.
@@ -19,9 +22,12 @@ import liquid
 import yaml
 from resolve_liquid import resolve_tree, site_context
 
-INPUTS = ['content/copilot', 'data/variables', 'data/reusables', 'data/tables',
-          'src/rest/lib', 'src/frame/middleware/context', 'src/versions/lib']
-PLUGIN = 'plugins/github-copilot-docs/skills/github-copilot-docs'
+NAME = 'github-copilot-docs'
+CONTENT = 'content/copilot'
+SHARED_INPUTS = ['data/variables', 'data/reusables', 'data/tables',
+                 'src/rest/lib', 'src/frame/middleware/context', 'src/versions/lib']
+INPUTS = [CONTENT, *SHARED_INPUTS]
+PLUGIN = f'plugins/{NAME}/skills/{NAME}'
 
 
 def git(cache, *args, raw=False):
@@ -44,15 +50,16 @@ def publish(stage, destination, backup):
         raise
 
 
-def rebuild(root, revision, upstream):
+def rebuild(root, revision, upstream, name=NAME, content=CONTENT):
     if not re.fullmatch(r'[0-9a-f]{40}', revision):
         raise ValueError('Use a full immutable 40-character upstream commit SHA')
-    cache = root / '.build-cache/github-copilot-docs'
-    destination = root / PLUGIN / 'references'
+    inputs = [content, *SHARED_INPUTS]
+    cache = root / '.build-cache' / name
+    destination = root / f'plugins/{name}/skills/{name}' / 'references'
     destination.parent.mkdir(parents=True, exist_ok=True)
     # Corpora must never be staged inside the packaged plugin. An interrupted
     # process may leave this ignored workspace behind; do not adopt/delete it.
-    workspace = root / '.build-cache/github-copilot-docs-staging'
+    workspace = root / '.build-cache' / f'{name}-staging'
     workspace.mkdir(parents=True, exist_ok=True)
     if workspace.stat().st_dev != destination.parent.stat().st_dev:
         raise ValueError('Build workspace and references must be on the same filesystem')
@@ -67,7 +74,7 @@ def rebuild(root, revision, upstream):
         if git(cache, 'remote', 'get-url', 'origin') != upstream:
             raise ValueError('Cache origin differs from requested upstream')
         git(cache, 'sparse-checkout', 'init', '--cone')
-        git(cache, 'sparse-checkout', 'set', *INPUTS)
+        git(cache, 'sparse-checkout', 'set', *inputs)
         git(cache, 'fetch', '--depth', '1', '--filter=blob:none', 'origin', revision)
         git(cache, 'checkout', '--detach', '--force', revision)
         if git(cache, 'rev-parse', 'HEAD') != revision:
@@ -80,7 +87,7 @@ def rebuild(root, revision, upstream):
                 'revision': revision,
             }, indent=2) + '\n', encoding='utf-8', newline='\n')
             stage = temp / 'references'
-            shutil.copytree(cache / 'content/copilot', stage)
+            shutil.copytree(cache / content, stage)
             # Exact Git object avoids platform checkout line-ending differences.
             (stage / 'LICENSE').write_bytes(git(cache, 'show', revision + ':LICENSE', raw=True))
             for path in stage.rglob('*'):
@@ -93,7 +100,7 @@ def rebuild(root, revision, upstream):
             provenance = {
                 'schema': 1, 'repository': upstream, 'revision': revision,
                 'upstream_committed_at': git(cache, 'show', '-s', '--format=%cI', revision),
-                'markdown_pages': count, 'source_inputs': INPUTS,
+                'markdown_pages': count, 'source_inputs': inputs,
                 'site_context': context,
                 'site_context_sources': ['src/rest/lib/config.json',
                     'src/frame/middleware/context/context.ts', 'src/versions/lib/all-versions.ts'],
@@ -103,7 +110,7 @@ def rebuild(root, revision, upstream):
             }
             (stage / 'SOURCE.json').write_text(json.dumps(provenance, indent=2) + '\n', encoding='utf-8', newline='\n')
             publish(stage, destination, temp / 'previous')
-        print(f'Built {count} Copilot markdown pages from {revision}')
+        print(f'Built {count} {name} markdown pages from {revision}')
     finally:
         lock.rmdir()
 
@@ -111,10 +118,13 @@ def rebuild(root, revision, upstream):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--repo-root', type=Path, default=Path(__file__).resolve().parents[2])
-    parser.add_argument('--revision', help='Full immutable upstream commit; defaults to build/copilot-docs-source.json')
+    parser.add_argument('--revision', help='Full immutable upstream commit; defaults to the --source pin')
+    parser.add_argument('--plugin', default=NAME, help='Plugin and skill name to publish into')
+    parser.add_argument('--content', default=CONTENT, help='github/docs content folder to bundle')
+    parser.add_argument('--source', default='build/copilot-docs-source.json', help='Pin file, relative to --repo-root')
     args = parser.parse_args()
-    source = json.loads((args.repo_root / 'build/copilot-docs-source.json').read_text(encoding='utf-8'))
-    rebuild(args.repo_root, args.revision or source['revision'], source['repository'])
+    source = json.loads((args.repo_root / args.source).read_text(encoding='utf-8'))
+    rebuild(args.repo_root, args.revision or source['revision'], source['repository'], args.plugin, args.content)
 
 
 if __name__ == '__main__':

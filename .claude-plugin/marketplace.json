@@ -23,6 +23,15 @@
       "homepage": "https://docs.github.com/en/copilot",
       "category": "platform",
       "tags": ["github", "copilot", "docs", "enterprise", "ai", "governance"]
+    },
+    {
+      "name": "github-projects-issues-docs",
+      "source": "./plugins/github-projects-issues-docs",
+      "description": "GitHub's official Projects and Issues documentation, bundled locally from github/docs, plus a changelog pointer for newer changes. Covers Projects fields, views, hierarchy, built-in workflows and auto-add, Actions and API automation, access and visibility, sub-issues, dependencies, issue types, issue fields, labels and milestones.",
+      "license": "CC-BY-4.0",
+      "homepage": "https://docs.github.com/en/issues",
+      "category": "platform",
+      "tags": ["github", "projects", "issues", "docs", "planning", "automation"]
     }
   ]
 }

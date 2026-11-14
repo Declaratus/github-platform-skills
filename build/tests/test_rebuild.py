@@ -73,6 +73,18 @@ class RebuildTests(unittest.TestCase):
         self.assertEqual((self.dest / 'LICENSE').read_bytes(), license_blob)
         self.assert_clean()
 
+    def test_other_content_section_publishes_to_its_own_plugin(self):
+        self.write('content/issues/index.md', '---\ntitle: Issues\n---\n{% data variables.product.name %}\n')
+        revision = self.commit()
+        with contextlib.redirect_stdout(io.StringIO()):
+            b.rebuild(self.target, revision, str(self.upstream), 'other-docs', 'content/issues')
+        other = self.target / 'plugins/other-docs/skills/other-docs/references'
+        self.assertIn("organization's Copilot", (other / 'index.md').read_text())
+        source = json.loads((other / 'SOURCE.json').read_text())
+        self.assertEqual(source['source_inputs'][0], 'content/issues')
+        self.assertEqual(inventory(self.dest), self.original)
+        self.assertTrue((self.target / '.build-cache/other-docs/.git').is_dir())
+
     def test_refresh_and_exact_repeat(self):
         self.build(); first = inventory(self.dest); self.build()
         self.assertEqual(inventory(self.dest), first)
