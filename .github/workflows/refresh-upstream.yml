@@ -1,0 +1,100 @@
+name: Refresh upstream
+
+on:
+  schedule:
+    - cron: '17 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: refresh-upstream
+  cancel-in-progress: false
+
+env:
+  BRANCH: automation/refresh-upstream
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out main
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: main
+
+      - name: Install build dependencies
+        run: |
+          python3 -m venv .build-cache/venv
+          .build-cache/venv/bin/pip install --quiet -r requirements.txt
+
+      - name: Move pins to upstream heads
+        run: python3 build/bump_sources.py --summary .build-cache/refresh-summary.md
+
+      - name: Rebuild references
+        run: PYTHON="$PWD/.build-cache/venv/bin/python" ./build/build.sh --all
+
+      - name: Check for changes
+        id: diff
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "Upstream unchanged, nothing to do."
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Run tests
+        id: tests
+        if: steps.diff.outputs.changed == 'true'
+        # A failing test still opens the PR, as a draft, so the upstream change is visible.
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          .build-cache/venv/bin/python build/check_repository_hygiene.py
+          .build-cache/venv/bin/python -m unittest discover -s build/tests 2>&1 | tee .build-cache/test-output.txt
+
+      - name: Open or update the refresh PR
+        if: steps.diff.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TESTS: ${{ steps.tests.outcome }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898283+github-actions[bot]@users.noreply.github.com'
+          git switch -C "$BRANCH"
+          git add -A
+          git commit --quiet -m 'refresh upstream references'
+          git push --force origin "$BRANCH"
+
+          {
+            echo 'Scheduled rebuild of bundled references from upstream.'
+            echo
+            cat .build-cache/refresh-summary.md
+            echo
+            git diff --stat origin/main...HEAD | tail -1
+            echo
+            if [ "$TESTS" = success ]; then
+              echo 'Tests passed.'
+            else
+              echo 'Tests failed, see the workflow run. Last lines:'
+              echo
+              echo '```'
+              tail -30 .build-cache/test-output.txt
+              echo '```'
+            fi
+            echo
+            echo "Run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+          } > .build-cache/pr-body.md
+
+          existing=$(gh pr list --head "$BRANCH" --state open --json number --jq '.[0].number')
+          if [ -n "$existing" ]; then
+            gh pr edit "$existing" --body-file .build-cache/pr-body.md
+            if [ "$TESTS" = success ]; then gh pr ready "$existing" || true; else gh pr ready "$existing" --undo || true; fi
+          else
+            draft=$([ "$TESTS" = success ] || echo --draft)
+            gh pr create --base main --head "$BRANCH" --title 'Refresh upstream references' \
+              --body-file .build-cache/pr-body.md $draft
+          fi

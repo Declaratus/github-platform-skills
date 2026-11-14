@@ -1,15 +1,25 @@
 ---
 name: github-copilot-docs
-description: Look up GitHub's official Copilot documentation (content/copilot from github/docs), bundled locally. Covers Copilot plans and billing, AI credits and budgets, enterprise and org policies, model availability, content exclusion, MCP management, cloud agent, code review, Copilot CLI, custom instructions, custom agents, hooks, usage metrics, network allowlists, and rollout guidance. Use when the user asks how a Copilot feature works, how to configure or administer Copilot, what a Copilot setting, policy, metric, or model does, or needs the documented answer instead of a guess.
+description: Look up GitHub's official Copilot documentation (content/copilot from github/docs), bundled locally. Covers Copilot plans and billing, AI credits and budgets, enterprise and org policies, model availability, content exclusion, MCP management, cloud agent, code review, Copilot CLI, custom instructions, custom agents, hooks, usage metrics, network allowlists, and rollout guidance. Use when the user asks how a Copilot feature works, how to configure or administer Copilot, what a Copilot setting, policy, metric, or model does, or needs the documented answer instead of a guess. Runs in an isolated subagent that cannot see the conversation, so pass the complete question as the argument, including deployment (GitHub.com, GHE.com, GHES and version), plan, and client or surface when known.
+argument-hint: "<question, with deployment, plan and surface>"
+context: fork
+agent: Explore
+background: false
 ---
 
 # GitHub Copilot docs
 
-Local copy of https://docs.github.com/en/copilot, built from `content/copilot` in https://github.com/github/docs. Answers "how does Copilot do X" and "how do I configure X". For "what should our org do and why" (rollout strategy, governance design), pair with the `github-well-architected` skill.
+Question: $ARGUMENTS
+
+Answer the question above from GitHub's Copilot documentation. You cannot see the conversation that asked it. If the deployment, plan or surface matters and the question does not say, answer for each relevant case instead of guessing one.
+
+Local copy of https://docs.github.com/en/copilot, built from `content/copilot` in https://github.com/github/docs. Answers "how does Copilot do X" and "how do I configure X". For "what should our org do and why" (rollout strategy, governance design), say in your answer that the `github-well-architected` skill covers it.
+
+All `references/` paths below are under `${CLAUDE_SKILL_DIR}/references/`.
 
 Copilot changes fast. Prefer these docs over memory for feature names, policy names, model lists, and billing rules, and cite the page you used.
 
-Read `references/SOURCE.json` for the immutable upstream revision, source commit date, build inputs and dependencies. These pages are a snapshot, not a claim about today's availability or prices. Preserve plan, preview, client and deployment qualifications. If current behavior matters, explicitly identify what needs checking against the live page; do not silently substitute memory for the snapshot.
+Read `references/SOURCE.json` for the immutable upstream revision, source commit date, build inputs and dependencies. These pages are a snapshot, not a claim about today's availability or prices. Preserve plan, preview, client and deployment qualifications. When current behavior matters, check the live page (see "Checking the live page"); do not silently substitute memory for the snapshot.
 
 ## How to find the right page
 
@@ -81,7 +91,39 @@ Product-name variables and reusable snippets are already resolved at build time.
 - `(icon: name)` marks a UI icon next to a button label.
 - Images were stripped. `![...]` references point at assets that are not bundled; the alt text still describes the screenshot.
 
-When citing, give the live URL: `references/how-tos/foo/bar.md` is `https://docs.github.com/en/copilot/how-tos/foo/bar`.
+When citing, give the live URL: `references/how-tos/foo/bar.md` is `https://docs.github.com/en/copilot/how-tos/foo/bar`, and `references/how-tos/foo/index.md` is `https://docs.github.com/en/copilot/how-tos/foo`.
+
+## Checking the live page
+
+You must fetch the live page before answering when the answer depends on prices, model lists, preview or GA status, policy names, or plan availability, or when the question says "current", "latest" or "now". Find the page in the snapshot first, then fetch its live version. Skip this for stable concepts and procedures.
+
+Append `.md` to the live URL to get the rendered page as markdown, with versioning and variables already resolved for that deployment:
+
+```bash
+curl -sL https://docs.github.com/en/copilot/how-tos/foo/bar.md
+```
+
+Pick the version prefix that matches the user's deployment:
+
+| Deployment | URL prefix |
+|---|---|
+| GitHub.com | `https://docs.github.com/en/copilot/` |
+| GHE.com (Enterprise Cloud) | `https://docs.github.com/en/enterprise-cloud@latest/copilot/` |
+| GHES | `https://docs.github.com/en/enterprise-server@<version>/copilot/` (or `@latest`) |
+
+To find pages added since the snapshot, `curl -sL https://docs.github.com/api/pagelist/en/free-pro-team@latest` lists every live path; filter for `/en/copilot/`.
+
+If the live page differs from the snapshot on something that affects the answer, use the live text and say what changed. If the fetch fails, answer from the snapshot and say it was not checked live.
+
+## What to return
+
+Your answer is all the caller sees. Return:
+
+- The direct answer, with the plan, preview, deployment and surface qualifications that apply.
+- The live URL of each page relied on.
+- Whether each key fact came from the snapshot (give the commit date from `SOURCE.json`) or was checked live, and anything left unverified.
+
+Keep it short. Do not paste whole pages.
 
 ## Source attribution
 
