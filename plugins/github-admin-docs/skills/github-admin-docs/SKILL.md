@@ -31,7 +31,13 @@ Say which branch you used ("on GHES 3.20 and later..."), so the user can spot a 
 
 ## Check for newer changes
 
-The docs snapshot lags the product and does not include GHES release notes. Read `changelog.md` (next to this file) when the question is about recent features, preview vs GA status, known issues, or upgrade planning for a specific GHES version. Compare against `upstream_committed_at` in `references/SOURCE.json`.
+The docs snapshot lags the product. For Enterprise Cloud and GHE.com, read `changelog.md` (next to this file) when the question is about recent features or preview vs GA status. It lists GitHub Changelog entries up to its build date and names the label feeds for anything later. Compare against `upstream_committed_at` in `references/SOURCE.json`.
+
+GHES release notes are not bundled (the local `release-notes.md` and `all-releases.md` are layout stubs). For known issues, deprecations, patch-level fixes or upgrade planning on a specific version, use the live pages:
+
+- Release notes for one version: `https://docs.github.com/en/enterprise-server@<version>/admin/release-notes` (for example `@3.22`).
+- Support window, closing-down dates and minimum supporting versions: https://docs.github.com/en/enterprise-server@latest/admin/all-releases
+- Supported upgrade paths: `references/upgrading-your-instance/preparing-to-upgrade/upgrade-requirements.md`, then the target version's release notes.
 
 ## How to find the right page
 
@@ -85,7 +91,7 @@ These live in other `content/` sections upstream. Cite them live:
 - Billing, licences and cost centres: https://docs.github.com/en/billing
 - Organization-level settings: https://docs.github.com/en/organizations
 - Migrations to GitHub (GEI, ADO, Bitbucket, GHES to Cloud): https://docs.github.com/en/migrations
-- GHES release notes and the support matrix: see `changelog.md`.
+- GHES release notes and the support matrix: see "Check for newer changes" above.
 
 ## Reading the pages
 

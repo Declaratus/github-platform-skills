@@ -34,6 +34,15 @@
       "tags": ["github", "projects", "issues", "docs", "planning", "automation"]
     },
     {
+      "name": "github-code-security-docs",
+      "source": "./plugins/github-code-security-docs",
+      "description": "GitHub's official code security and GHAS documentation, bundled locally from github/docs, plus changelog pointers for newer changes. Covers Secret Protection and Code Security licensing, security configurations, code scanning and CodeQL, Copilot Autofix, secret scanning and push protection, Dependabot, dependency review, SBOM and attestations, advisories, security overview, campaigns and the GHAS rollout guide.",
+      "license": "CC-BY-4.0",
+      "homepage": "https://docs.github.com/en/code-security",
+      "category": "platform",
+      "tags": ["github", "ghas", "security", "codeql", "secret-scanning", "dependabot", "docs"]
+    },
+    {
       "name": "github-admin-docs",
       "source": "./plugins/github-admin-docs",
       "description": "GitHub's official enterprise administration documentation, bundled locally from github/docs, with a generated GHES release and feature-flag table. Covers Enterprise Cloud accounts, Enterprise Managed Users, GHE.com data residency, GHES install, upgrades, backups, HA and clustering, SAML, OIDC, SCIM, enterprise roles and policies, audit log streaming, and Actions and Packages on GHES.",
