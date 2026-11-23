@@ -78,7 +78,7 @@ When citing, give the live URL: `references/a/b.md` is `https://docs.github.com/
 
 ## Checking for newer changes
 
-Read `${CLAUDE_SKILL_DIR}/changelog.md` and check the feed it points at whenever preview or GA status, limits or supported paths matter. The live docs lag the changelog, so a live page that still says "public preview" does not settle it. For example, ELM from Azure DevOps went GA on 2026-11-19 while the docs still said preview.
+Read `${CLAUDE_SKILL_DIR}/changelog.md` whenever preview or GA status, limits or supported paths matter. It is a generated list of migration changelog entries from before the snapshot date up to the date it was built; for anything after that, check the feed it points at. The live docs lag the changelog, so a live page that still says "public preview" does not settle it. For example, ELM from Azure DevOps went GA on 2026-11-19 while the docs still said preview.
 
 ELM from Azure DevOps is documented by Microsoft, not GitHub. For its data coverage, limits and workflow, fetch https://learn.microsoft.com/azure/devops/repos/enterprise-live-migrations/overview and say the facts came from there.
 

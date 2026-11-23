@@ -1,0 +1,96 @@
+---
+title: Prioritizing Dependabot alerts using metrics
+shortTitle: Prioritize Dependabot alerts using metrics
+intro: You can prioritize Dependabot alerts in your organization by analyzing the provided metrics. Using this approach, you can tell your developers to focus on the most important vulnerabilities first.
+allowTitleToDifferFromFilename: true
+product: 'Organizations owned by a GitHub Team account with GitHub Code Security, or owned by a GitHub Enterprise account with GitHub Code Security'
+permissions: 'Organization owners, security managers, and organization members with the **admin** role'
+versions:
+  fpt: '*'
+  ghec: '*'
+  ghes: '*'
+contentType: tutorials
+redirect_from:
+  - /code-security/securing-your-organization/understanding-your-organizations-exposure-to-vulnerabilites/prioritizing-dependabot-alerts-using-metrics
+  - /code-security/securing-your-organization/understanding-your-organizations-exposure-to-vulnerabilities/prioritizing-dependabot-alerts-using-metrics
+  - /code-security/securing-your-organization/understanding-your-organizations-exposure-to-vulnerabilities
+category:
+  - Secure your dependencies
+---
+
+## Prioritizing Dependabot alerts using metrics
+
+Application Security (AppSec) managers often face a flood of Dependabot alerts, making it challenging to determine which vulnerabilities to address first. Dependabot metrics provide valuable insights that help prioritize alerts efficiently, ensuring that critical security issues are resolved promptly. Users can make informed decisions, focusing resources on the most impactful vulnerabilities. This approach strengthens the organization’s security posture and streamlines vulnerability management.
+
+## Understanding Dependabot metrics
+
+Dependabot metrics offer detailed information about vulnerabilities detected in your dependencies. Key metrics include:
+
+* **Severity**: Indicates the potential impact of a vulnerability (e.g., low, medium, high, critical).
+* **Exploitability**: Assesses how easily a vulnerability can be exploited.
+* **Dependency relationship**: Differentiates between direct and transitive dependencies.
+* **Dependency scope**: Differentiates between runtime and development dependencies.
+* **Alerts closed in the last 30 days, including the number of alerts fixed by Dependabot, manually dismissed, and auto dismissed**: Tracks alert resolution progress. Illustrates how GitHub Code Security can help you detect vulnerabilities early.
+* **Table showing the total number of open alerts for each repository, as well as severity and expoitability data**: Allows you to dig deeper at the repository level.
+
+For more information about these metrics, see [AUTOTITLE](/code-security/concepts/supply-chain-security/dependabot-alert-metrics).
+
+Additionally, you can specify complex filters, which are combinations of the individual filters that are available. For more information about filters, see [Dependabot dashboard view filters](/code-security/reference/security-at-scale/overview-dashboard-filters#dependabot-dashboard-filters).
+
+## Steps to prioritize alerts
+
+These first steps help you identify the Dependabot alerts that put your organization the most at risk, so that you can tell your developers which alerts to focus on for remediation.
+
+### 1. Tailor the funnel order to suit your organization's needs
+
+You can customize the default funnel order on the "Alert prioritization" graph to ensure it reflects the unique risk profile, business priorities, and compliance requirements of your organization. See [AUTOTITLE](/code-security/how-tos/view-and-interpret-data/analyze-organization-data/viewing-metrics-for-dependabot-alerts#configuring-funnel-categories).
+
+### 2. Focus on critical and high severity alerts
+
+Start by identifying alerts with the highest severity by using the `severity-critical` or `severity-high` filters. These vulnerabilities pose the greatest risk and are often prioritized by compliance standards.
+
+### 3. Assess exploitability{% ifversion dependabot-reachability %} and reachability{% endif %}
+
+Prioritize vulnerabilities that are the most likely to be exploited in your codebase. To identify alerts that are most likely to be exploited, you can use the `epss-percentage` filter associated to a value (for example `epss-percentage:>=0.10`).
+
+{% ifversion dependabot-reachability %}
+
+> [!NOTE]
+> Reachability analysis for Dependabot alerts is in public preview and subject to change.
+
+For JavaScript repositories that use npm, pnpm, or Yarn, and TypeScript repositories, use reachability analysis to assess whether your application can call vulnerable functions in its dependencies. This is a separate signal from exploitability: a call path does not prove that an attacker can exploit a vulnerability.
+
+1. Open a repository's Dependabot alerts and filter for `reachability:reachable,potentially-reachable`.
+1. Prioritize these alerts alongside severity and EPSS. For reachable alerts, review the call-path evidence to understand how your code calls the vulnerable function. See [AUTOTITLE](/code-security/how-tos/manage-security-alerts/manage-dependabot-alerts/view-dependabot-alerts#reviewing-reachability-evidence).
+
+For "Reachability unavailable" results, use severity, EPSS, dependency scope, and dependency relationship to prioritize alerts. An unavailable result does not mean the vulnerable function cannot be called.
+
+Give "Unreachable" alerts a lower priority, but do not close or dismiss an alert solely because of its verdict. Verdicts are point-in-time assessments and can change as your code or an advisory changes.
+
+{% endif %}
+
+### 4. Review dependency scope and relationship
+
+Direct dependencies are typically easier to update and may have a greater impact on your application’s security. We recommend addressing these before transitive dependencies when possible.
+Filtering alerts using the `relationship:direct` filter allows us to see vulnerabilities on direct dependencies for supported ecosystems like npm.
+
+Runtime dependencies are used by an application in production. Updating this sort of dependency can address security vulnerabilities, bug fixes, and performance improvements that affect your end users or systems directly. On the other hand, development dependencies are only used during development, testing, or build processes. While important, issues in these dependencies usually don’t impact your running application or its users.
+
+You can use the `scope:runtime` or `scope:development` filters to only display alerts for runtime or development dependencies, respectively.
+
+### 5. Consider the age of alerts
+
+Older alerts may indicate long-standing risks. Regularly review and address aged alerts to prevent security debt from accumulating. For example, once you establish that a specific repository has more alerts that need prioritizing than other repositories, you can:
+1. Click the repository name on the per-repository table to display the alerts for that repository only.
+1. Use the "Older" filter in the **Sort** dropdown list, as well as other sorting criteria, to fine-tune the visualization to alerts meeting your criteria by age.
+
+### 6. Leverage automation
+
+Use Dependabot’s automated pull requests to quickly remediate vulnerabilities. Integrate these updates into your CI/CD pipeline for faster resolution and improved efficiency.
+
+## Best practices
+
+* **Establish Service Level Agreements (SLAs)** for resolving vulnerabilities based on severity.
+* **Monitor metrics regularly** to identify trends and recurring issues.
+* **Collaborate with developers** to ensure timely updates and minimize disruption.
+* **Document decisions** to provide transparency and support future prioritization.

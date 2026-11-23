@@ -1,0 +1,50 @@
+---
+title: Setting code coverage thresholds for pull requests
+shortTitle: Set coverage thresholds
+intro: Prevent pull requests from being merged when uploaded code coverage falls below the levels your team requires.
+allowTitleToDifferFromFilename: true
+versions:
+  feature: code-quality
+permissions: 'Repository owners, organization owners, and users with the **admin** role'
+contentType: how-tos
+category:
+  - Improve code quality
+---
+
+> [!NOTE]
+> This feature is in public preview and subject to change.
+
+## How the code coverage rule works
+
+The **Restrict code coverage** rule evaluates uploaded line coverage data against the configured thresholds. It does not wait for coverage uploads to complete.
+
+To prevent a pull request from being merged before all expected coverage results are available, make each status check associated with an expected coverage upload a required status check. This includes coverage uploaded from separate jobs or workflows.
+
+For more information about line coverage, see [AUTOTITLE](/code-security/reference/code-quality/code-coverage).
+
+## Prerequisites
+
+* GitHub Code Quality is enabled on the repository.
+* Code coverage data is uploaded to GitHub for the pull request branch. See [AUTOTITLE](/code-security/how-tos/maintain-quality-code/set-up-code-coverage).
+
+## Creating a coverage threshold rule
+
+1. On GitHub, navigate to the main page of the repository.
+1. Under your repository name, click **(icon: gear) Settings**. If you cannot see the "Settings" tab, select the **(icon: kebab-horizontal)** dropdown menu, then click **Settings**.
+
+   ![Screenshot of a repository header showing the tabs. The "Settings" tab is highlighted by a dark orange outline.](/assets/images/help/repository/repo-actions-settings.png)
+1. In the left sidebar, under{% ifversion fpt or ghec %} "Code, planning, and automation"{% elsif ghes %} "Code and automation"{% endif %}, click **Rulesets**, then click **Rulesets**.
+1. Create a new branch ruleset or click an existing one to edit it.
+1. Under "Branch rules", select **Restrict code coverage**.
+1. Expand **Additional settings** to configure thresholds. A value of 0 means that the threshold is disabled.
+
+   * **Minimum line coverage percentage**: enter a value to block pull requests where aggregated line coverage falls below this percentage.
+   * **Maximum line coverage drop**: enter a value to block pull requests where line coverage drops by more than this many percentage points relative to the default branch.
+
+1. Click **Create** or **Save changes**.
+
+{% ifversion repo-rules-enterprise %}
+
+> [!TIP]
+> Consider setting your ruleset to **Evaluate** mode before switching to **Active**. This lets you observe which pull requests would have been blocked without enforcing the rule, giving you a chance to calibrate your thresholds.
+{% endif %}

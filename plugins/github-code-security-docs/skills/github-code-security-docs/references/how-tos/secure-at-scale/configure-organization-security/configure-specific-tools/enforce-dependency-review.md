@@ -1,0 +1,43 @@
+---
+title: Enforcing dependency review across an organization
+intro: Dependency review lets you catch insecure dependencies before you introduce them to your environment. You can enforce the use of the dependency review action across your organization.
+shortTitle: Enforce dependency review
+permissions: 'Organization owners, security managers, and organization members with the **admin** role'
+versions:
+  fpt: '*'
+  ghec: '*'
+  ghes: '*'
+redirect_from:
+  - /code-security/supply-chain-security/understanding-your-software-supply-chain/enforcing-dependency-review-across-an-organization
+  - /code-security/how-tos/secure-at-scale/configure-organization-security/configure-specific-tools/enforcing-dependency-review-across-an-organization
+contentType: how-tos
+category:
+  - Secure at scale
+---
+
+You can enforce the use of the dependency review action in your organization by setting up a repository ruleset that will require a workflow that runs dependency review to pass before pull requests can be merged. For more information about the action, see [AUTOTITLE](/code-security/concepts/supply-chain-security/dependency-review#about-the-dependency-review-action).
+
+## Prerequisites
+
+You need to add the dependency review action to one of the repositories in your organization, and configure the action. For more information, see [Configuring the dependency review action](/code-security/how-tos/secure-your-supply-chain/manage-your-dependency-security/configure-dependency-review-action).
+
+## Enforcing dependency review for your organization
+
+1. In the upper-right corner of GitHub, click your profile picture, then click **(icon: organization) Organizations**.
+1. Select an organization by clicking it.
+1. Under your organization name, click **(icon: gear) Settings**. If you cannot see the "Settings" tab, select the **(icon: kebab-horizontal)** dropdown menu, then click **Settings**.
+
+   ![Screenshot of the tabs in an organization's profile. The "Settings" tab is outlined in dark orange.](/assets/images/help/discussions/org-settings-global-nav-update.png)
+1. In the sidebar, under "Code, planning, and automation", click **(icon: repo) Repository**, then click **Rulesets**.
+1. Click the **New ruleset** dropdown menu, and select **New branch ruleset**.
+1. To help identify your ruleset and clarify its purpose, give the ruleset a name in **Ruleset Name**.
+1. Set **Enforcement status** to **(icon: play) Active**.
+1. Optionally, you can target specific repositories in your organization. For more information, see [Choosing which repositories to target in your organization](/organizations/managing-organization-settings/creating-rulesets-for-repositories-in-your-organization#choosing-which-repositories-to-target-in-your-organization).
+1. In the "Rules" section, select the "Require workflows to pass before merging" option.
+1. In "Workflow configurations", click **Add workflow**.
+1. In the dialog, select the repository that you added the dependency review action to. For more information, see [Prerequisites](#prerequisites).
+1. Select a branch and the workflow file for dependency review in the enhanced dialog.
+
+   ![Screenshot of the Add required workflow dialog. You need to specify a repository, branch, and workflow.](/assets/images/help/repository/add-required-workflow-dialog.png)
+
+1. Click **Create**.
