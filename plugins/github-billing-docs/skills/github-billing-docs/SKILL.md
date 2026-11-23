@@ -11,7 +11,7 @@ Billing changed a lot in 2025 and 2026 (enhanced billing platform, metered enter
 
 ## Check for newer changes first
 
-The docs snapshot lags the product. Read `changelog.md` (next to this file) for anything newer than the `upstream_committed_at` date in `references/SOURCE.json`. Budget limits, SKU lists and REST endpoints move fastest.
+The docs snapshot lags the product. Read `changelog.md` (next to this file), a generated list of changelog entries from before the snapshot date up to the date it was built. For anything after that date, check the label feeds it points at. Budget limits, SKU lists and REST endpoints move fastest. The changelog has no billing label, so the list is filtered from Account management and Enterprise management tools and can include unrelated Copilot entries.
 
 ## Copilot billing lives in another skill
 

@@ -27,6 +27,6 @@
   },
   "generator_sha256": {
     "rebuild_copilot_docs.py": "82eb51ea8882fc35ef9e3c43b93b53268ca6b52e7c0ce2b35127bc4dc7f97a94",
-    "resolve_liquid.py": "555ddeb2ceef5d167d37940088812a738974efa553cde37f62a323cb426e414b"
+    "resolve_liquid.py": "76f99c7b270654ed2171b66fe0ee35af027430d0ff163501c3293b24c9379a61"
   }
 }

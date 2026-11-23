@@ -1,0 +1,66 @@
+---
+title: Excluding folders and files from secret scanning
+intro: You can customize secret scanning to automatically close alerts for secrets found in specific directories or files by configuring a `secret_scanning.yml` file in your repository.
+permissions: 'Repository owners, organization owners, security managers, and users with the **admin** role'
+shortTitle: Exclude folders and files
+versions:
+  fpt: '*'
+  ghes: '*'
+  ghec: '*'
+contentType: how-tos
+redirect_from:
+  - /code-security/secret-scanning/using-advanced-secret-scanning-and-push-protection-features/excluding-folders-and-files-from-secret-scanning
+  - /code-security/how-tos/secure-your-secrets/customize-leak-detection/excluding-folders-and-files-from-secret-scanning
+category:
+  - Protect your secrets
+---
+
+You may have a reason to commit a secret to a repository, such as when you want to provide a fake secret in documentation, or in an example application. In these scenarios, you can quickly dismiss the alert and document the reasons. However, there may be cases where you want to ignore a directory entirely to avoid creating false positive alerts at scale. For example, you might have a monolithic application with several integrations containing a file of dummy keys that could set off numerous false alerts to triage.
+
+You can configure a `secret_scanning.yml` file to automatically close alerts found in specific directories from secret scanning, and exclude these directories included in push protection. These alerts are closed as "ignored by configuration". They do not trigger `secret_scanning_alert` or `secret_scanning_alert_location` webhook events.
+
+## Excluding directories from {% ifversion fpt or ghec %}secret scanning alerts for users{% else %}secret scanning{% endif %}
+
+1. On GitHub, navigate to the main page of the repository.
+1. Above the list of files, select the **Add file** (icon: triangle-down) dropdown menu, then click **(icon: plus) Create new file**.
+
+   Alternatively, you can click (icon: plus) in the file tree view on the left.
+
+   ![Screenshot of the main page of a repository highlighting both the "Add file" and the "plus sign" icon, described above, with an orange outline.](/assets/images/help/repository/add-file-buttons.png)
+1. In the file name field, enter ".github/secret_scanning.yml".
+1. Under **Edit new file**, type `paths-ignore:` followed by the paths you want to exclude from secret scanning.
+
+    ``` yaml copy
+    paths-ignore:
+      - "docs/**"
+    ```
+
+    This tells secret scanning to automatically close alerts for everything in the `docs` directory. You can use this example file as a template to add the files and folders you’d like to exclude from your own repositories.
+
+    You can also use special characters, such as `*` to filter paths. For more information about filter patterns, see [Workflow syntax for GitHub Actions](/actions/reference/workflows-and-actions/workflow-syntax#filter-pattern-cheat-sheet).
+
+    ``` yaml copy
+    paths-ignore:
+      - "foo/bar/*.js"
+    ```
+
+    > [!NOTE]
+    > * If there are more than 1,000 entries in `paths-ignore`, secret scanning will only exclude the first 1,000 directories from scans.
+    > * If `secret_scanning.yml` is larger than 1 MB, secret scanning will ignore the entire file.
+
+## Verifying that the folder is excluded from secret scanning
+
+1. Open a file in a directory that you have excluded from secret scanning
+1. Paste a pre-invalidated secret, or a test secret.
+1. Commit the change.
+1. On GitHub, navigate to the main page of the repository.
+1. Under the repository name, click the **(icon: shield) {% ifversion security-and-quality-tab %}Security and quality{% else %}Security{% endif %}** tab. If you cannot see the "(icon: shield) {% ifversion security-and-quality-tab %}Security and quality{% else %}Security{% endif %}" tab, select the **(icon: kebab-horizontal)** dropdown menu, and then click **(icon: shield) {% ifversion security-and-quality-tab %}Security and quality{% else %}Security{% endif %}**. There should be no new open alerts for the secret you just introduced into the file.
+
+## Best practices
+
+Best practices include:
+
+* Minimizing the number of directories excluded and being as precise as possible when defining exclusions. This ensures that the instructions are as clear as possible, and that exclusions work as intended.
+* Explaining why a particular file or folder is excluded in a comment in the `secret_scanning.yml` file. As with regular code, using comments clarifies your intention, making it easier for others to understand the desired behavior.
+* Reviewing the `secret_scanning.yml` file on a regular basis. Some exclusions may no longer apply with time, and it is good practice to keep the file clean and current. The use of comments, as advised above, can help with this.
+* Informing the security team what files and folders you've excluded, and why. Good communication is vital in ensuring that everyone is on the same page, and understands why specific folders or files are excluded.

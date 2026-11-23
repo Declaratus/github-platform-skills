@@ -19,6 +19,7 @@ Then ask Claude anything that fits the skill's scope (organization-level decisio
 | [`github-well-architected`](plugins/github-well-architected/) | The five pillars + recommendations from [github/github-well-architected](https://github.com/github/github-well-architected). Use for ruleset design, GHAS rollout, polyrepo vs monorepo, ADO migrations, governance policies. |
 | [`github-copilot-docs`](plugins/github-copilot-docs/) | The full Copilot section of [GitHub Docs](https://docs.github.com/en/copilot) (`content/copilot` from [github/docs](https://github.com/github/docs)). Use for Copilot policies, billing and budgets, models, content exclusion, MCP, cloud agent, CLI, customization, metrics. |
 | [`github-projects-issues-docs`](plugins/github-projects-issues-docs/) | The Projects and Issues section of [GitHub Docs](https://docs.github.com/en/issues) (`content/issues` from [github/docs](https://github.com/github/docs)), plus a pointer to the [Projects and Issues changelog](https://github.blog/changelog/label/projects-and-issues/) for newer changes. Use for Projects fields, views, hierarchy, built-in workflows, access, sub-issues, issue types and fields, and the Projects API. |
+| [`github-code-security-docs`](plugins/github-code-security-docs/) | The code security section of [GitHub Docs](https://docs.github.com/en/code-security) (`content/code-security` from [github/docs](https://github.com/github/docs)), plus pointers to the application-security and supply-chain-security changelogs. Use for GHAS licensing and rollout, security configurations, code scanning and CodeQL, secret scanning and push protection, Dependabot, dependency review, advisories and security overview. |
 | [`github-billing-docs`](plugins/github-billing-docs/) | The Billing section of [GitHub Docs](https://docs.github.com/en/billing) (`content/billing` from [github/docs](https://github.com/github/docs)), plus a changelog pointer for newer changes. Use for budgets and alerts, cost centers, per-product billing (Actions, GHAS committers, Codespaces, Packages), SKU names, usage reporting, billing roles, Azure and GHES licensing. Copilot-specific billing detail stays in `github-copilot-docs`. |
 
 ## Repo layout
@@ -35,6 +36,7 @@ Then ask Claude anything that fits the skill's scope (organization-level decisio
 │   ├── build.sh                          # dispatch: ./build/build.sh <plugin> [--all]
 │   ├── <name>-source.json                # pinned upstream repo + commit per recipe
 │   ├── bump_sources.py                   # moves every pin to its upstream head
+│   ├── changelog.json                    # changelog labels per docs plugin, see docs/changelog-strategy.md
 │   └── recipes/<plugin-name>.sh          # per-plugin: curation from the pinned commit
 └── .build-cache/                         # gitignored: shallow clones of upstream
 ```
@@ -132,7 +134,7 @@ Ignoring files does not remove previously committed copies from Git history.
 
 ## License
 
-MIT. Bundled upstream content remains under its own license, with attribution in each skill's `SKILL.md`. `github-well-architected` is MIT. `github-copilot-docs`, `github-projects-issues-docs` and `github-billing-docs` are CC BY 4.0 (GitHub Docs content) and ship the upstream `LICENSE` in their `references/`.
+MIT. Bundled upstream content remains under its own license, with attribution in each skill's `SKILL.md`. `github-well-architected` is MIT. `github-copilot-docs`, `github-projects-issues-docs`, `github-code-security-docs` and `github-billing-docs` are CC BY 4.0 (GitHub Docs content) and ship the upstream `LICENSE` in their `references/`.
 
 The `github-copilot-docs` recipe needs `python3` with PyYAML and python-liquid to resolve Liquid tags and expand table data (`build/lib/resolve_liquid.py`).
 

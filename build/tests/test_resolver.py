@@ -33,8 +33,9 @@ class ResolverTests(unittest.TestCase):
         self.assertEqual(self.resolve('{% data variables.product.qwen3.8 %}/{% data variables.product.zero %}'), 'Qwen/0')
 
     def test_plus_in_reusable_name(self):
-        self.reusable('bullets+extra', 'Plus {% data variables.product.name %}')
-        self.assertEqual(self.resolve('{% data reusables.bullets+extra %}'), 'Plus Copilot')
+        # Upstream variant files such as ghas-products-bullets+ghas.md.
+        self.reusable('bullets+ghas', 'Variant')
+        self.assertEqual(self.resolve('{% data reusables.bullets+ghas %}'), 'Variant')
 
     def test_nested_multiline_list(self):
         self.reusable('outer', '{% data reusables.inner %}')

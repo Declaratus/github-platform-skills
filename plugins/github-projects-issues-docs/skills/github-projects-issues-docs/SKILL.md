@@ -11,7 +11,7 @@ Projects and Issues changed a lot in 2025 and 2026 (sub-issues, issue types, iss
 
 ## Check for newer changes first
 
-The docs snapshot lags the product. Read `changelog.md` (next to this file) and check the label feed it points at for anything newer than the `upstream_committed_at` date in `references/SOURCE.json`. Some recent features (for example hierarchy view, multi-select fields and the "Relates to" relationship) may be described only in the changelog at snapshot time. Preserve preview vs GA status and plan or account-type qualifications as stated.
+The docs snapshot lags the product. Read `changelog.md` (next to this file), a generated list of changelog entries from before the snapshot date up to the date it was built. For anything after that date, check the label feed it points at. Some recent features (for example hierarchy view, multi-select fields and the "Relates to" relationship) may be described only in the changelog at snapshot time. Preserve preview vs GA status and plan or account-type qualifications as stated.
 
 ## How to find the right page
 

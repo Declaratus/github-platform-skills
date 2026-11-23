@@ -8,7 +8,6 @@ from pathlib import Path
 import liquid
 import yaml
 
-# Upstream reusable file names can contain '+' (ghas-products-bullets+ghas).
 DATA_TAG = re.compile(r"{%-?\s*data\s+([\w.\-+]+)\s*-?%}")
 INDENTED_TAG = re.compile(r"{%-?\s*indented_data_reference\s+([\w.\-+]+)\s+spaces=(\d+)\s*-?%}")
 OCTICON_TAG = re.compile(r'{%-?\s*octicon\s+"([\w\-]+)"[^%]*-?%}')
