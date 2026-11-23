@@ -23,6 +23,15 @@
         "supply-chain-security"
       ],
       "lookback_days": 180
+    },
+    "github-admin-docs": {
+      "title": "Enterprise admin",
+      "labels": [
+        "enterprise-management-tools",
+        "platform-governance",
+        "account-management"
+      ],
+      "lookback_days": 120
     }
   }
 }

@@ -43,6 +43,15 @@
       "tags": ["github", "ghas", "security", "codeql", "secret-scanning", "dependabot", "docs"]
     },
     {
+      "name": "github-admin-docs",
+      "source": "./plugins/github-admin-docs",
+      "description": "GitHub's official enterprise administration documentation, bundled locally from github/docs, with a generated GHES release and feature-flag table. Covers Enterprise Cloud accounts, Enterprise Managed Users, GHE.com data residency, GHES install, upgrades, backups, HA and clustering, SAML, OIDC, SCIM, enterprise roles and policies, audit log streaming, and Actions and Packages on GHES.",
+      "license": "CC-BY-4.0",
+      "homepage": "https://docs.github.com/en/admin",
+      "category": "platform",
+      "tags": ["github", "enterprise", "admin", "ghes", "emu", "docs"]
+    },
+    {
       "name": "github-billing-docs",
       "source": "./plugins/github-billing-docs",
       "description": "GitHub's official billing documentation, bundled locally from github/docs, plus a changelog pointer for newer changes. Covers metered and volume billing, budgets and alerts, cost centers, per-product billing (Actions, Packages, Codespaces, LFS, Advanced Security), SKU names, usage and license reports, billing roles, Azure and Visual Studio billing, GHES licenses, and payment troubleshooting.",

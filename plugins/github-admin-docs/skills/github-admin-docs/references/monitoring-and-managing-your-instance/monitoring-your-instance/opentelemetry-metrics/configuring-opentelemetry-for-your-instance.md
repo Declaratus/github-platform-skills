@@ -1,0 +1,211 @@
+---
+title: Configuring OpenTelemetry for your instance
+intro: Learn how to configure OpenTelemetry metrics collection on your GitHub Enterprise Server instance for enhanced monitoring and observability.
+versions:
+  feature: ghes-opentelemetry
+shortTitle: Configure OpenTelemetry
+contentType: how-tos
+category:
+  - Monitor and audit your enterprise
+---
+
+{% ifversion ghes-opentelemetry %}
+
+OpenTelemetry metrics are the foundation for monitoring GitHub Enterprise Server, available from version 3.18 onward. This monitoring stack provides enhanced observability and management capabilities compared to the legacy collectd system.
+
+{% ifversion ghes-collectd-available %}
+
+New installations of version 3.19 and later use OpenTelemetry metrics by default. Upgrades from versions earlier than 3.21 to 3.21 or 3.22 also enable OpenTelemetry and disable collectd, but you can re-enable collectd after the upgrade.
+
+Collectd remains supported in this release but is retired in version 3.23, and upgrading to 3.23 disables it. For the migration timeline and steps to migrate instances that still use collectd, see [AUTOTITLE](/admin/monitoring-and-managing-your-instance/monitoring-your-instance/opentelemetry-metrics/migration-guidance).
+
+{% else %}
+
+Collectd is retired in this release and can no longer be run. Upgrading to version 3.23 disables collectd, and OpenTelemetry metrics become the only metrics stack. For information about post-upgrade checks, see [AUTOTITLE](/admin/monitoring-and-managing-your-instance/monitoring-your-instance/opentelemetry-metrics/migration-guidance).
+
+{% endif %}
+
+{% endif %}
+
+## Prerequisites
+
+* GitHub Enterprise Server 3.18 or later
+* Administrative access to the Management Console
+* SSH access to your GitHub Enterprise Server appliance
+
+## Enabling OpenTelemetry metrics
+
+{% ifversion ghes-collectd-available %}
+
+OpenTelemetry metrics are enabled by default for **new installations** of GitHub Enterprise Server 3.19 and later. Upgrades from versions earlier than 3.21 to 3.21 or 3.22 also enable OpenTelemetry and disable collectd. For the migration timeline and the procedure for instances that still use collectd, see [AUTOTITLE](/admin/monitoring-and-managing-your-instance/monitoring-your-instance/opentelemetry-metrics/migration-guidance).
+
+### Using the Management Console
+
+1. From an administrative account on GitHub Enterprise Server, in the upper-right corner of any page, click (icon: rocket).
+1. If you're not already on the "Site admin" page, in the upper-left corner, click **Site admin**.
+1. In the "(icon: rocket) Site admin" sidebar, click **Management Console**.
+
+1. In the monitoring settings, select **Enable OpenTelemetry**.
+
+1. Under the "Settings" sidebar, click **Save settings**.
+
+   > [!NOTE]
+   > Saving settings in the Management Console restarts system services, which could result in user-visible downtime.
+
+1. Wait for the configuration run to complete.
+
+### Using the command line
+
+1. SSH into {% ifversion ghes %}your GitHub Enterprise Server instance{% else %}GitHub.com{% endif %}. If your instance comprises multiple nodes, for example if high availability or geo-replication are configured, SSH into the primary node. If you use a cluster, you can SSH into any node. Replace HOSTNAME with the hostname for your instance, or the hostname or IP address of a node. For more information, see [AUTOTITLE]({% ifversion not ghes %}/enterprise-server@latest{% endif %}/admin/administering-your-instance/administering-your-instance-from-the-command-line/accessing-the-administrative-shell-ssh).
+
+   ```shell copy
+   ssh -p 122 admin@HOSTNAME
+   ```
+1. Run the following command to enable OpenTelemetry metrics.
+
+   ```shell
+   ghe-config observability.metrics.next-enabled true
+   ```
+
+1. To apply the configuration, run the following command.
+
+   > [!NOTE]
+   > During a configuration run, services on {% ifversion ghes %}your GitHub Enterprise Server instance{% else %}GitHub.com{% endif %} may restart, which can cause brief downtime for users.
+
+    ```shell copy
+    ghe-config-apply
+    ```
+
+1. Wait for the configuration run to complete.
+
+{% else %}
+
+OpenTelemetry metrics are always enabled and are the only supported metrics stack. Collectd is retired in GitHub Enterprise Server 3.23 and later, and upgrading from an earlier version disables it. For information about post-upgrade checks and historical collectd data, see [AUTOTITLE](/admin/monitoring-and-managing-your-instance/monitoring-your-instance/opentelemetry-metrics/migration-guidance).
+
+{% endif %}
+
+## Performance considerations
+
+When configuring OpenTelemetry metrics, consider the following performance factors:
+
+* **Collection frequency**: More frequent collection increases system load
+* **Data retention**: Longer retention periods require more storage
+* **Custom exporters**: Additional exporters may increase CPU and memory usage
+* **Network bandwidth**: External metric shipping affects network usage
+
+## Configuring metrics collection
+
+After enabling OpenTelemetry metrics, you can customize various aspects of the metrics collection process.
+
+### Setting collection intervals
+
+The default metrics collection interval is 30 seconds. You can adjust this based on your monitoring needs.
+
+> [!IMPORTANT]
+> Setting shorter intervals increases the precision of metrics but also increases storage requirements and system load. Consider your system resources and monitoring requirements before adjusting this setting.
+
+#### Using the Management Console to set intervals
+
+1. From an administrative account on GitHub Enterprise Server, in the upper-right corner of any page, click (icon: rocket).
+1. If you're not already on the "Site admin" page, in the upper-left corner, click **Site admin**.
+1. In the "(icon: rocket) Site admin" sidebar, click **Management Console**.
+
+1. In the monitoring settings, under **Metrics scrape interval**, enter the desired interval in seconds (for example, `60`).
+
+1. Under the "Settings" sidebar, click **Save settings**.
+
+   > [!NOTE]
+   > Saving settings in the Management Console restarts system services, which could result in user-visible downtime.
+
+1. Wait for the configuration run to complete.
+
+#### Using the command line to set intervals
+
+SSH into your GitHub Enterprise Server appliance and run the following commands:
+
+```shell
+# Set scrape interval to 60 seconds
+ghe-config observability.metrics.interval 60
+ghe-config-apply
+```
+
+### Configuring data retention
+
+By default, metrics data is retained for 30 days. You can modify this setting using either the Management Console or command line.
+
+#### Using the Management Console to configure retention
+
+1. From an administrative account on GitHub Enterprise Server, in the upper-right corner of any page, click (icon: rocket).
+1. If you're not already on the "Site admin" page, in the upper-left corner, click **Site admin**.
+1. In the "(icon: rocket) Site admin" sidebar, click **Management Console**.
+
+1. In the monitoring settings, under **Metrics retention**, enter the desired retention period in days (for example, `15`).
+
+1. Under the "Settings" sidebar, click **Save settings**.
+
+   > [!NOTE]
+   > Saving settings in the Management Console restarts system services, which could result in user-visible downtime.
+
+1. Wait for the configuration run to complete.
+
+#### Using the command line to configure retention
+
+SSH into your GitHub Enterprise Server appliance and run the following commands:
+
+```shell
+# Set retention to 15 days
+ghe-config observability.metrics.retention 15
+ghe-config-apply
+```
+
+### Configuring the verbosity level for internal telemetry
+
+The OpenTelemetry collector generates its own internal telemetry data for monitoring the health and performance of the collector itself. You can configure the verbosity of this internal telemetry using the command line.
+
+The available telemetry levels are:
+* `none`: Disables internal telemetry
+* `basic`: Provides essential telemetry data (default)
+* `normal`: Provides standard telemetry data
+* `detailed`: Provides verbose telemetry data for debugging
+
+SSH into your GitHub Enterprise Server appliance and run the following commands:
+
+```shell
+# Set internal telemetry level to normal
+ghe-config observability.metrics.internal-otel-telemetry-level normal
+ghe-config-apply
+```
+
+> [!NOTE]
+> Higher telemetry levels provide more detailed information about the collector's internal operations but also increase resource usage. The `basic` level is recommended for production environments unless you need to troubleshoot collector issues.
+
+## Troubleshooting configuration issues
+
+If you encounter problems with OpenTelemetry configuration, the following information can help you identify and resolve common issues.
+
+### Common configuration problems
+
+* **Service startup failures**: Check system logs for error messages
+* **Resource constraints**: Monitor system resources when adjusting collection intervals
+
+### Viewing local logs
+
+SSH into the node you want to debug and run the following commands:
+
+View OpenTelemetry collector logs:
+
+```shell
+sudo journalctl -u otelcol-contrib -f
+```
+
+View VictoriaMetrics logs:
+
+```shell
+sudo journalctl -u victoriametrics -f
+```
+
+## Next steps
+
+* To enable advanced monitoring dashboards, see [AUTOTITLE](/admin/monitoring-and-managing-your-instance/monitoring-your-instance/opentelemetry-metrics/advanced-dashboards)
+* To explore OpenTelemetry metrics, see [AUTOTITLE](/admin/monitoring-and-managing-your-instance/monitoring-your-instance/opentelemetry-metrics/using-grafana-to-analyze-opentelemetry-metrics)
+* To set up external monitoring, see [AUTOTITLE](/admin/monitoring-and-managing-your-instance/monitoring-your-instance/opentelemetry-metrics/setting-up-external-monitoring-with-opentelemetry).
