@@ -1,0 +1,9 @@
+{
+  "name": "github-code-security-docs",
+  "description": "GitHub code security and GHAS documentation skill: the full content/code-security tree from github/docs, bundled locally with Liquid variables resolved, plus a changelog pointer for newer changes.",
+  "author": {
+    "name": "Declaratus"
+  },
+  "homepage": "https://github.com/github/docs/tree/main/content/code-security",
+  "license": "CC-BY-4.0"
+}

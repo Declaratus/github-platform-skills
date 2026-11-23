@@ -1,0 +1,96 @@
+---
+title: Configuring secret scanning for your appliance
+shortTitle: Configure secret scanning
+intro: You can enable, configure, and disable secret scanning for GitHub Enterprise Server. Secret scanning allows users to scan code for accidentally committed secrets.
+redirect_from:
+  - /admin/configuration/configuring-secret-scanning-for-your-appliance
+  - /admin/advanced-security/configuring-secret-scanning-for-your-appliance
+  - /admin/code-security/managing-github-advanced-security-for-your-enterprise/configuring-secret-scanning-for-your-appliance
+  - /admin/managing-code-security/managing-github-advanced-security-for-your-enterprise/configuring-secret-scanning-for-your-appliance
+  - /code-security/how-tos/secure-at-scale/configure-enterprise-security/configure-specific-tools/configuring-secret-scanning-for-your-appliance
+versions:
+  ghes: '*'
+contentType: how-tos
+category:
+  - Secure at scale
+---
+
+## About secret scanning
+
+If someone checks a secret with a known pattern into a repository, secret scanning catches the secret as it's checked in, and helps you mitigate the impact of the leak. Repository administrators are notified about any commit that contains a secret, and they can quickly view all detected secrets in the **(icon: shield) {% ifversion security-and-quality-tab %}Security and quality{% else %}Security{% endif %}** tab for the repository. See [AUTOTITLE](/code-security/concepts/secret-security/secret-scanning).
+
+## Availability
+
+When the enterprise has [GitHub Secret Protection](/get-started/learning-about-github/about-github-advanced-security) enabled, Secret scanning is available for organization-owned and user-owned repositories.
+
+## Checking whether your license includes Advanced Security
+
+You can identify if your enterprise has a license for Advanced Security products by reviewing your enterprise settings. For more information, see [AUTOTITLE](/code-security/how-tos/secure-at-scale/configure-enterprise-security/establish-complete-coverage/enabling-github-advanced-security-for-your-enterprise#checking-whether-your-license-includes-advanced-security).
+## Prerequisites for secret scanning
+
+* The SSSE3 (Supplemental Streaming SIMD Extensions 3) CPU flag needs to be enabled on the VM/KVM that runs GitHub Enterprise Server. For more information about SSSE3, see [Intel 64 and IA-32 Architectures Optimization Reference Manual](https://cdrdv2-public.intel.com/671488/248966-Software-Optimization-Manual-R047.pdf) in the Intel documentation.
+
+* A license for GitHub Secret Protection or GitHub Advanced Security (see [AUTOTITLE](/billing/concepts/product-billing/github-advanced-security))
+
+* Secret scanning enabled in the management console (see [AUTOTITLE](/code-security/how-tos/secure-at-scale/configure-enterprise-security/establish-complete-coverage/enabling-github-advanced-security-for-your-enterprise))
+
+### Checking support for the SSSE3 flag on your vCPUs
+
+The SSSE3 set of instructions is required because secret scanning leverages hardware accelerated pattern matching to find potential credentials committed to your GitHub repositories. SSSE3 is enabled for most modern CPUs. You can check whether SSSE3 is enabled for the vCPUs available to your GitHub Enterprise Server instance.
+
+1. Connect to the administrative shell for your GitHub Enterprise Server instance. See [AUTOTITLE](/admin/administering-your-instance/administering-your-instance-from-the-command-line/accessing-the-administrative-shell-ssh).
+1. Enter the following command:
+
+   ```shell
+   grep -iE '^flags.*ssse3' /proc/cpuinfo >/dev/null; echo $?
+   ```
+
+   If this returns the value `0`, it means that the SSSE3 flag is available and enabled. You can now enable secret scanning. See [Enabling secret scanning](#enabling-secret-scanning) below.
+
+   If this doesn't return `0`, SSSE3 is not enabled on your VM/KVM. You need to refer to the documentation of the hardware/hypervisor on how to enable the flag, or make it available to guest VMs.
+
+## Enabling secret scanning
+
+> [!WARNING]
+> * Changing this setting will cause user-facing services on GitHub Enterprise Server to restart. You should time this change carefully, to minimize downtime for users.{% ifversion security-configurations-ghes-only %}
+> * You should communicate any changes you plan to make to feature enablement settings to organization owners before making them, so as not to impact existing security configurations that have been rolled out by organizations in your enterprise.{% endif %}
+
+1. From an administrative account on GitHub Enterprise Server, in the upper-right corner of any page, click (icon: rocket).
+1. If you're not already on the "Site admin" page, in the upper-left corner, click **Site admin**.
+1. In the "(icon: rocket) Site admin" sidebar, click **Management Console**.
+1. In the "Settings" sidebar, click **Security**.
+1. Under "Security," select **Secret scanning**.{% ifversion secret-scanning-validity-check-partner-patterns %}
+1. Under the "Settings" sidebar, click **Save settings**.
+
+   > [!NOTE]
+   > Saving settings in the Management Console restarts system services, which could result in user-visible downtime.
+
+1. Wait for the configuration run to complete.
+
+    Optionally, to allow your users to enable validity checks at the enterprise, organization, or repository level, configure validity checks for secret scanning.
+
+1. Click **secret scanning validity checks**. For information about validity checks, see [AUTOTITLE](/code-security/how-tos/secure-your-secrets/customize-leak-detection/enable-validity-checks#enabling-validity-checks).
+
+    > [!NOTE]
+    > Enabling validity checks will send outbound requests to partner services to verify detected secrets. This means secret metadata will leave your instance. You need to ensure that this aligns with your enterprise's security and compliance policies before enabling.
+
+1. To run a simple connection test to verify that outbound connections are possible, click **Validity checks connection test**.
+{% endif %}
+
+## Disabling secret scanning
+
+> [!WARNING]
+> * Changing this setting will cause user-facing services on GitHub Enterprise Server to restart. You should time this change carefully, to minimize downtime for users.{% ifversion security-configurations-ghes-only %}
+> * You should communicate any changes you plan to make to feature enablement settings to organization owners before making them, so as not to impact existing security configurations that have been rolled out by organizations in your enterprise.{% endif %}
+
+1. From an administrative account on GitHub Enterprise Server, in the upper-right corner of any page, click (icon: rocket).
+1. If you're not already on the "Site admin" page, in the upper-left corner, click **Site admin**.
+1. In the "(icon: rocket) Site admin" sidebar, click **Management Console**.
+1. In the "Settings" sidebar, click **Security**.
+1. Under "Security," deselect **Secret scanning**.
+1. Under the "Settings" sidebar, click **Save settings**.
+
+   > [!NOTE]
+   > Saving settings in the Management Console restarts system services, which could result in user-visible downtime.
+
+1. Wait for the configuration run to complete.
