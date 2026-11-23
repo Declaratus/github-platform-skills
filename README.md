@@ -21,6 +21,7 @@ Then ask Claude anything that fits the skill's scope (organization-level decisio
 | [`github-projects-issues-docs`](plugins/github-projects-issues-docs/) | The Projects and Issues section of [GitHub Docs](https://docs.github.com/en/issues) (`content/issues` from [github/docs](https://github.com/github/docs)), plus a pointer to the [Projects and Issues changelog](https://github.blog/changelog/label/projects-and-issues/) for newer changes. Use for Projects fields, views, hierarchy, built-in workflows, access, sub-issues, issue types and fields, and the Projects API. |
 | [`github-code-security-docs`](plugins/github-code-security-docs/) | The code security section of [GitHub Docs](https://docs.github.com/en/code-security) (`content/code-security` from [github/docs](https://github.com/github/docs)), plus pointers to the application-security and supply-chain-security changelogs. Use for GHAS licensing and rollout, security configurations, code scanning and CodeQL, secret scanning and push protection, Dependabot, dependency review, advisories and security overview. |
 | [`github-admin-docs`](plugins/github-admin-docs/) | The enterprise administration section of [GitHub Docs](https://docs.github.com/en/admin) (`content/admin` from [github/docs](https://github.com/github/docs)), plus a generated table of supported GHES releases and feature-flag version ranges. Use for Enterprise Cloud and EMU setup, GHE.com, SAML/OIDC/SCIM, enterprise roles and policies, audit log streaming, and GHES install, upgrades, backups, HA and clustering. |
+| [`github-migrations-docs`](plugins/github-migrations-docs/) | The migrations section of [GitHub Docs](https://docs.github.com/en/migrations) (`content/migrations` from [github/docs](https://github.com/github/docs)). Use for picking a migration path and tool, GEI runs from ADO, Bitbucket Server, GitLab and GHES, ELM to GHE.com, ghe-migrator, what is and isn't migrated, mannequins, and troubleshooting. |
 
 ## Repo layout
 
@@ -134,7 +135,7 @@ Ignoring files does not remove previously committed copies from Git history.
 
 ## License
 
-MIT. Bundled upstream content remains under its own license, with attribution in each skill's `SKILL.md`. `github-well-architected` is MIT. `github-copilot-docs`, `github-projects-issues-docs`, `github-code-security-docs` and `github-admin-docs` are CC BY 4.0 (GitHub Docs content) and ship the upstream `LICENSE` in their `references/`.
+MIT. Bundled upstream content remains under its own license, with attribution in each skill's `SKILL.md`. `github-well-architected` is MIT. `github-copilot-docs`, `github-projects-issues-docs`, `github-code-security-docs`, `github-admin-docs` and `github-migrations-docs` are CC BY 4.0 (GitHub Docs content) and ship the upstream `LICENSE` in their `references/`.
 
 The `github-copilot-docs` recipe needs `python3` with PyYAML and python-liquid to resolve Liquid tags and expand table data (`build/lib/resolve_liquid.py`).
 

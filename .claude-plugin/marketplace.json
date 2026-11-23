@@ -50,6 +50,15 @@
       "homepage": "https://docs.github.com/en/admin",
       "category": "platform",
       "tags": ["github", "enterprise", "admin", "ghes", "emu", "docs"]
+    },
+    {
+      "name": "github-migrations-docs",
+      "source": "./plugins/github-migrations-docs",
+      "description": "GitHub's official migrations documentation, bundled locally from github/docs. Covers choosing a migration path, GitHub Enterprise Importer from Azure DevOps, Bitbucket Server, GitLab, GHES and GitHub.com, Enterprise Live Migrations to GHE.com, ghe-migrator, source-only imports, migrated data and limits, mannequins, access and troubleshooting.",
+      "license": "CC-BY-4.0",
+      "homepage": "https://docs.github.com/en/migrations",
+      "category": "platform",
+      "tags": ["github", "migrations", "docs", "enterprise", "gei", "importer"]
     }
   ]
 }
