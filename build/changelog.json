@@ -29,7 +29,7 @@
       "labels": [
         "enterprise-management-tools"
       ],
-      "match": "migrat|importer|\bGEI\b|\bELM\b|ghe-migrator|mannequin"
+      "match": "migrat|importer|\\bGEI\\b|\\bELM\\b|ghe-migrator|mannequin"
     }
   }
 }
