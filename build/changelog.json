@@ -32,6 +32,13 @@
         "account-management"
       ],
       "lookback_days": 120
+    },
+    "github-migrations-docs": {
+      "title": "Migrations",
+      "labels": [
+        "enterprise-management-tools"
+      ],
+      "match": "migrat|importer|\\bGEI\\b|\\bELM\\b|ghe-migrator|mannequin"
     }
   }
 }

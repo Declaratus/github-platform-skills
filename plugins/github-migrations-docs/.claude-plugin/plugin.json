@@ -1,0 +1,9 @@
+{
+  "name": "github-migrations-docs",
+  "description": "GitHub migrations documentation skill: the full content/migrations tree from github/docs, bundled locally with Liquid variables resolved.",
+  "author": {
+    "name": "Declaratus"
+  },
+  "homepage": "https://github.com/github/docs/tree/main/content/migrations",
+  "license": "CC-BY-4.0"
+}
