@@ -85,6 +85,35 @@ class RebuildTests(unittest.TestCase):
         self.assertEqual(inventory(self.dest), self.original)
         self.assertTrue((self.target / '.build-cache/other-docs/.git').is_dir())
 
+    def test_versions_table_lists_releases_and_flags_the_pages_use(self):
+        self.write('content/admin/index.md', '---\ntitle: Admin\nversions:\n  feature: page-flag\n---\n'
+                   '{% ifversion ghes > 3.19 or body-flag %}x{% elsif not ghec %}y{% endif %}\n')
+        self.write('data/features/page-flag.yml', "versions:\n  ghes: '>=3.18'\n")
+        self.write('data/features/body-flag.yml', "versions:\n  ghec: '*'\n  ghes: '>=3.20'\n")
+        self.write('data/features/unused.yml', "versions:\n  fpt: '*'\n")
+        self.write('src/versions/lib/enterprise-server-releases.ts',
+                   "export const supported = ['3.21', '3.20']\nexport const releaseCandidate = '3.21'\n")
+        revision = self.commit()
+        with contextlib.redirect_stdout(io.StringIO()):
+            b.rebuild(self.target, revision, str(self.upstream), 'admin-docs', 'content/admin', features=True)
+        refs = self.target / 'plugins/admin-docs/skills/admin-docs/references'
+        table = (refs / 'VERSIONS.md').read_text()
+        self.assertIn('Supported, newest first: 3.21, 3.20.', table)
+        self.assertIn('Release candidate: 3.21', table)
+        self.assertIn("| `body-flag` | ghec `*`, ghes `>=3.20` |", table)
+        self.assertIn("| `page-flag` | ghes `>=3.18` |", table)
+        self.assertNotIn('unused', table)
+        self.assertIn('data/features', json.loads((refs / 'SOURCE.json').read_text())['source_inputs'])
+
+    def test_versions_missing_flag_fails(self):
+        self.write('content/admin/index.md', '---\ntitle: Admin\n---\n{% ifversion ghost-flag %}x{% endif %}\n')
+        self.write('data/features/other.yml', "versions:\n  fpt: '*'\n")
+        self.write('src/versions/lib/enterprise-server-releases.ts',
+                   "export const supported = ['3.21']\nexport const releaseCandidate = null\n")
+        revision = self.commit()
+        with contextlib.redirect_stdout(io.StringIO()), self.assertRaisesRegex(ValueError, 'ghost-flag'):
+            b.rebuild(self.target, revision, str(self.upstream), 'admin-docs', 'content/admin', features=True)
+
     def test_refresh_and_exact_repeat(self):
         self.build(); first = inventory(self.dest); self.build()
         self.assertEqual(inventory(self.dest), first)

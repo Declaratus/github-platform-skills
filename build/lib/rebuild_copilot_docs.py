@@ -50,10 +50,48 @@ def publish(stage, destination, backup):
         raise
 
 
-def rebuild(root, revision, upstream, name=NAME, content=CONTENT):
+FLAG_RE = re.compile(r'{%-?\s*(?:els)?ifversion\s+(.*?)-?%}')
+FLAG_WORDS = {'or', 'and', 'not', 'fpt', 'ghec', 'ghes'}
+
+
+def write_versions(stage, cache):
+    """GHES releases and the feature flags the pages use, so agents can resolve version gates offline."""
+    releases = (cache / 'src/versions/lib/enterprise-server-releases.ts').read_text(encoding='utf-8')
+    supported = re.search(r"^export const supported = \[([^\]]*)\]", releases, re.M)
+    candidate = re.search(r"^export const releaseCandidate = (?:'([0-9.]+)'|null)", releases, re.M)
+    if not supported or not candidate:
+        raise ValueError('Cannot read GHES releases from enterprise-server-releases.ts')
+    supported = re.findall(r"'([0-9.]+)'", supported.group(1))
+    used = set()
+    for page in stage.rglob('*.md'):
+        text = page.read_text(encoding='utf-8')
+        for expr in FLAG_RE.findall(text):
+            used.update(w for w in re.findall(r'[a-z][a-z0-9_-]*', expr) if w not in FLAG_WORDS)
+        used.update(re.findall(r'^\s+feature:\s*[\'"]?([a-z0-9_-]+)', text, re.M))
+    rows = []
+    for flag in sorted(used):
+        path = cache / 'data/features' / f'{flag}.yml'
+        if not path.is_file():
+            raise ValueError(f'Feature flag {flag} has no data/features entry')
+        versions = (yaml.safe_load(path.read_text(encoding='utf-8')) or {}).get('versions') or {}
+        rows.append(f"| `{flag}` | {', '.join(f'{k} `{v}`' for k, v in versions.items())} |")
+    rc = candidate.group(1)
+    (stage / 'VERSIONS.md').write_text(
+        '# Versions at this snapshot\n\n'
+        'Generated from upstream `src/versions/lib/enterprise-server-releases.ts` and `data/features/` '
+        'at the pinned commit (see `SOURCE.json`).\n\n'
+        f"## GitHub Enterprise Server releases\n\nSupported, newest first: {', '.join(supported)}.\n"
+        + (f'Release candidate: {rc} (not yet generally available).\n' if rc else 'No release candidate.\n')
+        + '\n## Feature flags used in these pages\n\n'
+        '`{% ifversion <flag> %}` and `versions: feature: <flag>` text applies only to the versions listed. '
+        '`fpt` is GitHub Free/Pro/Team, `ghec` is GitHub Enterprise Cloud, `ghes` is GitHub Enterprise Server.\n\n'
+        '| Flag | Versions |\n|---|---|\n' + '\n'.join(rows) + '\n', encoding='utf-8', newline='\n')
+
+
+def rebuild(root, revision, upstream, name=NAME, content=CONTENT, features=False):
     if not re.fullmatch(r'[0-9a-f]{40}', revision):
         raise ValueError('Use a full immutable 40-character upstream commit SHA')
-    inputs = [content, *SHARED_INPUTS]
+    inputs = [content, *SHARED_INPUTS, *(['data/features'] if features else [])]
     cache = root / '.build-cache' / name
     destination = root / f'plugins/{name}/skills/{name}' / 'references'
     destination.parent.mkdir(parents=True, exist_ok=True)
@@ -97,6 +135,8 @@ def rebuild(root, revision, upstream, name=NAME, content=CONTENT):
             count = len(list(stage.rglob('*.md')))
             if not count:
                 raise ValueError('Refusing an empty references snapshot')
+            if features:
+                write_versions(stage, cache)
             provenance = {
                 'schema': 1, 'repository': upstream, 'revision': revision,
                 'upstream_committed_at': git(cache, 'show', '-s', '--format=%cI', revision),
@@ -122,9 +162,11 @@ def main():
     parser.add_argument('--plugin', default=NAME, help='Plugin and skill name to publish into')
     parser.add_argument('--content', default=CONTENT, help='github/docs content folder to bundle')
     parser.add_argument('--source', default='build/copilot-docs-source.json', help='Pin file, relative to --repo-root')
+    parser.add_argument('--features', action='store_true', help='Also write VERSIONS.md (GHES releases, feature flags)')
     args = parser.parse_args()
     source = json.loads((args.repo_root / args.source).read_text(encoding='utf-8'))
-    rebuild(args.repo_root, args.revision or source['revision'], source['repository'], args.plugin, args.content)
+    rebuild(args.repo_root, args.revision or source['revision'], source['repository'],
+            args.plugin, args.content, args.features)
 
 
 if __name__ == '__main__':

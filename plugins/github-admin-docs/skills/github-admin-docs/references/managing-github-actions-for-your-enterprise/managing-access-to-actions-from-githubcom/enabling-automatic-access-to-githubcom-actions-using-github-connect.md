@@ -1,0 +1,70 @@
+---
+title: Enabling automatic access to GitHub.com actions using GitHub Connect
+intro: To allow GitHub Actions in your enterprise to use actions from GitHub.com, you can connect your enterprise instance to GitHub Enterprise Cloud.
+permissions: Enterprise owners can enable access to public GitHub.com actions.
+redirect_from:
+  - /enterprise/admin/github-actions/enabling-automatic-access-to-githubcom-actions-using-github-connect
+  - /admin/github-actions/enabling-automatic-access-to-githubcom-actions-using-github-connect
+  - /admin/github-actions/managing-access-to-actions-from-githubcom/enabling-automatic-access-to-githubcom-actions-using-github-connect
+versions:
+  ghes: '*'
+shortTitle: Use GitHub Connect for actions
+contentType: how-tos
+category:
+  - Enable GitHub features for your enterprise
+---
+
+{% ifversion ghes %}
+
+> [!NOTE]
+> GitHub Enterprise Server users should use self-hosted runners. GitHub-hosted runners are **not** supported.
+
+{% endif %}
+
+## About automatic access to GitHub.com actions
+
+By default, GitHub Actions workflows on GitHub Enterprise Server cannot use actions directly from GitHub.com or [GitHub Marketplace](https://github.com/marketplace?type=actions). To make public actions from GitHub.com available on your enterprise instance, you can use GitHub Connect to integrate GitHub Enterprise Server with GitHub Enterprise Cloud.
+
+If your cloud deployment is on GHE.com, GitHub Connect can still resolve public actions from GitHub.com. This requires GitHub Enterprise Server version 3.20.6 or later, or any feature release from 3.21.0.
+
+To use actions from GitHub.com,{% ifversion ghes %} both GitHub Enterprise Server and{% endif %} your self-hosted runners must be able to make outbound connections to GitHub.com. No inbound connections from GitHub.com are required. For more information, see [AUTOTITLE](/actions/reference/runners/self-hosted-runners#communication-with-githubcom).
+
+Alternatively, if you want stricter control over which actions are allowed in your enterprise, you can manually download and sync public actions onto your enterprise instance using the `actions-sync` tool. For more information, see [AUTOTITLE](/admin/managing-github-actions-for-your-enterprise/managing-access-to-actions-from-githubcom/manually-syncing-actions-from-githubcom).
+
+## About resolution for actions using GitHub Connect
+
+When a workflow uses an action by referencing the repository where the action is stored, GitHub Actions will first try to find the repository on {% ifversion ghes %}your GitHub Enterprise Server instance{% else %}GitHub.com{% endif %}. If the repository does not exist on {% ifversion ghes %}your GitHub Enterprise Server instance{% else %}GitHub.com{% endif %}, and if you have automatic access to GitHub.com enabled, GitHub Actions will try to find the repository on GitHub.com.
+
+If a user has already created an organization and repository in your enterprise that matches an organization and repository name on GitHub.com, the repository on your enterprise will be used instead of the GitHub.com repository. For more information, see [Automatic retirement of namespaces for actions accessed on GitHub.com](#automatic-retirement-of-namespaces-for-actions-accessed-on-githubcom).
+
+## Enabling automatic access to public GitHub.com actions
+
+Before enabling access to public actions from GitHub.com for your enterprise, you must:
+* Configure {% ifversion ghes %}your GitHub Enterprise Server instance{% else %}GitHub.com{% endif %} to use GitHub Actions. For more information, see [AUTOTITLE](/admin/managing-github-actions-for-your-enterprise/getting-started-with-github-actions-for-your-enterprise/getting-started-with-github-actions-for-github-enterprise-server).
+* Enable GitHub Connect. For more information, see [AUTOTITLE](/admin/configuring-settings/configuring-github-connect/enabling-github-connect-for-githubcom) or [AUTOTITLE](/admin/configuring-settings/configuring-github-connect/enabling-github-connect-for-ghecom).
+
+{%- ifversion ghes %}
+1. In the top-right corner of GitHub Enterprise Server, click your profile picture, then click **Enterprise settings**.
+{%- else %}
+1. Navigate to your enterprise. For example, from the [Enterprises](https://github.com/settings/enterprises?ref_product=ghec&ref_type=engagement&ref_style=text) page on GitHub.com.
+{%- endif %}
+1. At the top of the page, click **(icon: plug) GitHub Connect**.
+1. Under "Users can utilize actions from GitHub.com in workflow runs", use the drop-down menu and select **Enabled**.
+1. After you enable GitHub Connect, you can use policies to restrict which public actions can be used in repositories in your enterprise. For more information, see [AUTOTITLE](/admin/enforcing-policies/enforcing-policies-for-your-enterprise/enforcing-policies-for-github-actions-in-your-enterprise).
+
+## Automatic retirement of namespaces for actions accessed on GitHub.com
+
+When you enable GitHub Connect, users see no change in behavior for existing workflows because GitHub Actions searches {% ifversion ghes %}your GitHub Enterprise Server instance{% else %}GitHub.com{% endif %} for each action before falling back to GitHub.com. This ensures that any custom versions of actions your enterprise has created are used in preference to their counterparts on GitHub.com.
+
+To ensure workflows use their intended actions and to block the potential for abuse, once an action on GitHub.com is used for the first time, the namespace associated with that action is retired in your enterprise. This blocks users from creating an organization and repository in your enterprise that match the action's namespace on GitHub.com.
+
+After using an action from GitHub.com, if you want to create an action in {% ifversion ghes %}your GitHub Enterprise Server instance{% else %}GitHub.com{% endif %} with the same name, first you need to make the namespace for that organization and repository available.
+
+1. From an administrative account on GitHub Enterprise Server, in the upper-right corner of any page, click (icon: rocket).
+1. If you're not already on the "Site admin" page, in the upper-left corner, click **Site admin**.
+1. In the left sidebar, under **Site admin** click **Retired namespaces**.
+1. To the right of the namespace that you want use in {% ifversion ghes %}your GitHub Enterprise Server instance{% else %}GitHub.com{% endif %}, click **Unretire**.
+1. Go to the relevant organization and create a new repository.
+
+   > [!TIP]
+   > When you unretire a namespace, always create the new repository with that name as soon as possible. If a workflow calls the associated action on GitHub.com before you create the local repository, the namespace will be retired again. For actions used in workflows that run frequently, you may find that a namespace is retired again before you have time to create the local repository. In this case, you can temporarily disable the relevant workflows until you have created the new repository.

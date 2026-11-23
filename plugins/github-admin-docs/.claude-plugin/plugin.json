@@ -1,0 +1,9 @@
+{
+  "name": "github-admin-docs",
+  "description": "GitHub Enterprise administration documentation skill: the full content/admin tree from github/docs (Enterprise Cloud, EMU, data residency and Enterprise Server), bundled locally with Liquid variables resolved, a generated GHES release and feature-flag table, and a changelog pointer for newer changes.",
+  "author": {
+    "name": "Declaratus"
+  },
+  "homepage": "https://github.com/github/docs/tree/main/content/admin",
+  "license": "CC-BY-4.0"
+}

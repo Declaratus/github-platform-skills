@@ -1,0 +1,179 @@
+---
+title: Getting started with self-hosted runners for your enterprise
+shortTitle: Self-hosted runners
+intro: You can configure a runner machine for your enterprise so your developers can start automating workflows with GitHub Actions.
+versions:
+  ghec: '*'
+  ghes: '*'
+permissions: Enterprise owners{% ifversion custom-org-roles %} and users with permissions{% endif %} can configure policies for GitHub Actions and add self-hosted runners to the enterprise.
+redirect_from:
+  - /admin/github-actions/getting-started-with-github-actions-for-your-enterprise/getting-started-with-self-hosted-runners-for-your-enterprise
+contentType: get-started
+category:
+  - Enable GitHub features for your enterprise
+---
+
+## About self-hosted runners for GitHub Actions
+
+GitHub Actions allows users in your enterprise to improve productivity by automating every phase of the software development workflow. For more information, see [AUTOTITLE](/admin/managing-github-actions-for-your-enterprise/getting-started-with-github-actions-for-your-enterprise/about-github-actions-for-enterprises).
+
+With GitHub Actions, developers can write and combine individual tasks called actions to create custom workflows. {% ifversion ghes %}To enable GitHub Actions for  {% ifversion ghes %}your GitHub Enterprise Server instance{% else %}GitHub.com{% endif %}, you must host at least one machine to execute jobs.{% endif %} {% ifversion ghec %}You can host your own runner machine to execute jobs, and this{% elsif ghes %}This{% endif %} machine is called a self-hosted runner. Your runner machine connects to GitHub using the GitHub Actions self-hosted runner application. {% ifversion ghec %}All{% elsif ghes %}Self-hosted{% endif %} runners can run Linux, Windows, or macOS. For more information, see [AUTOTITLE](/actions/concepts/runners/self-hosted-runners).
+
+{% ifversion ghec %}
+
+Alternatively, you can use runner machines that GitHub hosts. GitHub-hosted runners are outside the scope of this guide. For more information, see [AUTOTITLE](/actions/concepts/runners/github-hosted-runners).
+
+{% endif %}
+
+This guide shows you how to apply a centralized management approach to self-hosted runners for GitHub Actions in your enterprise. In the guide, you'll complete the following tasks.
+
+1. Configure a limited policy to restrict the actions{% ifversion actions-workflow-policy %} and reusable workflows{% endif %} that can run within your enterprise
+1. Deploy a self-hosted runner for your enterprise
+1. Create a group to manage access to the runners available to your enterprise
+1. Optionally, further restrict the repositories that can use the runner
+1. Optionally, to build and scale self-hosted runners automatically, use Actions Runner Controller (ARC). For more information, see [AUTOTITLE](/actions/concepts/runners/actions-runner-controller).
+
+You'll also find additional information about how to monitor and secure your self-hosted runners,{% ifversion ghes %} how to access actions from GitHub.com,{% endif %} and how to customize the software on your runner machines.
+
+After you finish the guide, {% ifversion ghec %}members of your enterprise{% elsif ghes %}users of {% ifversion ghes %}your GitHub Enterprise Server instance{% else %}GitHub.com{% endif %}{% endif %} will be able to run workflow jobs from GitHub Actions on a self-hosted runner machine.
+
+## Prerequisites
+
+{%- ifversion ghes %}
+* GitHub Actions must be enabled for GitHub Enterprise Server. A site administrator can enable and configure GitHub Actions for your instance. For more information, see [AUTOTITLE](/admin/managing-github-actions-for-your-enterprise/getting-started-with-github-actions-for-your-enterprise/getting-started-with-github-actions-for-github-enterprise-server).
+{%- endif %}
+
+* You must have access to the machine you will use as a self-hosted runner in your environment.
+
+{% ifversion ghes %}- The connection between self-hosted runners and GitHub is over {% ifversion ghes %}HTTP (port 80) or {% endif %}HTTPS (port 443). {% ifversion ghes %}To ensure connectivity over HTTPS, configure TLS for GitHub Enterprise Server. For more information, see [AUTOTITLE](/admin/configuring-settings/hardening-security-for-your-enterprise/configuring-tls).{% endif %}{% endif %}
+
+* Your enterprise must own at least one organization. For more information, see [AUTOTITLE](/organizations/collaborating-with-groups-in-organizations/about-organizations) and [AUTOTITLE](/organizations/collaborating-with-groups-in-organizations/creating-a-new-organization-from-scratch).
+
+## 1. Configure policies for GitHub Actions
+
+First, enable GitHub Actions for all organizations, and configure a policy to restrict the actions{% ifversion actions-workflow-policy %} and reusable workflows{% endif %} that can run {% ifversion ghec %}within your enterprise{% elsif ghes %}on {% ifversion ghes %}your GitHub Enterprise Server instance{% else %}GitHub.com{% endif %}{% endif %}. Optionally, organization owners can further restrict these policies for each organization.
+
+{%- ifversion ghes %}
+1. In the top-right corner of GitHub Enterprise Server, click your profile picture, then click **Enterprise settings**.
+{%- else %}
+1. Navigate to your enterprise. For example, from the [Enterprises](https://github.com/settings/enterprises?ref_product=ghec&ref_type=engagement&ref_style=text) page on GitHub.com.
+{%- endif %}
+1. At the top of the page, click **(icon: law) Policies**.
+1. Under "(icon: law) Policies", click **Actions**.
+1. Under "Policies", select **Enable for all organizations**.
+1. To enable local actions{% ifversion actions-workflow-policy %} and reusable workflows, {% endif %} and actions created by GitHub, select {% ifversion actions-workflow-policy %}{% ifversion ghec or ghes %}**Allow enterprise, and select non-enterprise, actions and reusable workflows**{% else %}**Allow _OWNER_, and select non-_OWNER_, actions and reusable workflows**{% endif %}{% else %}**Allow select actions**{% endif %}, then select **Allow actions created by GitHub**.
+1. Click **Save**.
+
+You can configure additional policies to restrict the actions available to {% ifversion ghec %}enterprise members{% elsif ghes %}users of {% ifversion ghes %}your GitHub Enterprise Server instance{% else %}GitHub.com{% endif %}{% endif %}. For more information, see [AUTOTITLE](/admin/enforcing-policies/enforcing-policies-for-your-enterprise/enforcing-policies-for-github-actions-in-your-enterprise#allowing-select-actions-to-run).
+
+## 2. Deploy the self-hosted runner for your enterprise
+
+Next, add a self-hosted runner to your enterprise. GitHub will guide you through installation of the necessary software on the runner machine. After you deploy the runner, you can verify connectivity between the runner machine and {% ifversion ghec %}your enterprise{% elsif ghes %}{% ifversion ghes %}your GitHub Enterprise Server instance{% else %}GitHub.com{% endif %}{% endif %}.
+
+### Adding the self-hosted runner
+
+{%- ifversion ghes %}
+1. In the top-right corner of GitHub Enterprise Server, click your profile picture, then click **Enterprise settings**.
+{%- else %}
+1. Navigate to your enterprise. For example, from the [Enterprises](https://github.com/settings/enterprises?ref_product=ghec&ref_type=engagement&ref_style=text) page on GitHub.com.
+{%- endif %}
+1. At the top of the page, click **(icon: law) Policies**.
+1. Under "(icon: law) Policies", click **Actions**.
+1. Click the **Runners** tab.
+{% ifversion actions-hosted-runners %}1. Click **New runner**, then click **New self-hosted runner**.{% else %}1. Click **New runner**.{% endif %}
+1. Select the operating system image and architecture of your self-hosted runner machine.
+
+   ![Screenshot of the choice of operating system and architecture. These options are highlighted with a dark orange outline.](/assets/images/help/actions/creating-selfhosted-runner.png)
+
+1. You will see instructions showing you how to download the runner application and install it on your self-hosted runner machine.
+
+   Open a shell on your self-hosted runner machine and run each shell command in the order shown.
+
+   > [!NOTE]
+   > On Windows, if you want to install the self-hosted runner application as a service, you must open a shell with administrator privileges. We also recommend that you use `C:\actions-runner` as the directory for the self-hosted runner application so that Windows system accounts can access the runner directory.
+
+   The instructions walk you through completing these tasks:
+   * Downloading and extracting the self-hosted runner application.
+   * Running the `config` script to configure the self-hosted runner application and register it with GitHub Actions. The `config` script requires the destination URL and an automatically-generated time-limited token to authenticate the request. The token expires after one hour.
+     * On Windows, the `config` script also asks if you would like to install the self-hosted runner application as a service. For Linux and macOS, you can install a service after you finish adding the runner. For more information, see [AUTOTITLE](/actions/how-tos/manage-runners/self-hosted-runners/configure-the-application).
+   * Running the self-hosted runner application to connect the machine to GitHub Actions.
+
+### Checking that your self-hosted runner was successfully added
+
+After completing the steps to add a self-hosted runner, the runner and its status are now listed under {% ifversion fpt or ghec %}"Runners"{% elsif ghes %}"Self-hosted runners"{% endif %}.
+
+The self-hosted runner application must be active for the runner to accept jobs. When the runner application is connected to GitHub and ready to receive jobs, you will see the following message on the machine's terminal.
+
+```shell
+√ Connected to GitHub
+
+2019-10-24 05:45:56Z: Listening for Jobs
+```
+
+## 3. Manage access to the self-hosted runner using a group
+
+You can create a runner group to manage access to the runner that you added to your enterprise. You'll use the group to choose which organizations can execute jobs from GitHub Actions on the runner.
+
+GitHub adds all new runners to a group. Runners can be in one group at a time. By default, GitHub adds new runners to the "Default" group.
+
+{%- ifversion ghes %}
+1. In the top-right corner of GitHub Enterprise Server, click your profile picture, then click **Enterprise settings**.
+{%- else %}
+1. Navigate to your enterprise. For example, from the [Enterprises](https://github.com/settings/enterprises?ref_product=ghec&ref_type=engagement&ref_style=text) page on GitHub.com.
+{%- endif %}
+1. At the top of the page, click **(icon: law) Policies**.
+1. Under "(icon: law) Policies", click **Actions**.
+1. Click the **Runner groups** tab.
+1. Click **New runner group**.
+1. Under "Group name", type a name for your runner group.
+1. To choose a policy for organization access, under "Organization access", select the **Organization access** drop-down, and click **Selected organizations**.
+1. To the right of the drop-down with the organization access policy, click (icon: gear).
+1. Select the organizations you'd like to grant access to the runner group.
+1. Optionally, to allow public repositories in the selected organizations to use runners in the group, select **Allow public repositories**.
+
+   > [!WARNING]
+   > We recommend that you only use self-hosted runners with private repositories. This is because forks of your public repository can potentially run dangerous code on your self-hosted runner machine by creating a pull request that executes the code in a workflow.
+   >
+   > For more information, see [AUTOTITLE](/actions/reference/security/secure-use).
+
+1. Click **Create group** to create the group and apply the policy.
+1. Click the "Runners" tab.
+1. In the list of runners, click the runner that you deployed in the previous section.
+1. Click **Edit**.
+1. Click **Runner groups (icon: gear)**.
+1. In the list of runner groups, click the name of the group that you previously created.
+1. Click **Save** to move the runner to the group.
+
+You've now deployed a self-hosted runner that can run jobs from GitHub Actions within the organizations that you specified.
+
+## 4. Further restrict access to the self-hosted runner
+
+Optionally, organization owners{% ifversion custom-org-roles %} and users with the "Manage organization runners and runner groups" permission{% endif %} can further restrict the access policy of the runner group that you created. For example, an organization owner could allow only certain repositories in the organization to use the runner group.
+
+For more information, see [AUTOTITLE](/actions/how-tos/manage-runners/self-hosted-runners/manage-access#changing-which-repositories-can-access-a-runner-group).
+
+{% ifversion custom-org-roles %}For more information about custom organization roles, see [AUTOTITLE](/organizations/managing-peoples-access-to-your-organization-with-roles/permissions-of-custom-organization-roles).{% endif %}
+
+## 5. Automatically scale your self-hosted runners
+
+Optionally, you can use Actions Runner Controller (ARC) to automatically scale self-hosted runners. Actions Runner Controller (ARC) is a Kubernetes operator that orchestrates and scales self-hosted runners for GitHub Actions. For more information, see [Operator pattern](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/) in the Kubernetes documentation.
+                                                                                                                                          
+                                                                                                                                          With ARC, you can create runner scale sets that automatically scale based on the number of workflows running in your repository, organization, or enterprise. Because controlled runners can be ephemeral and based on containers, new runner instances can scale up or down rapidly and cleanly. For more information about autoscaling, see [AUTOTITLE](/actions/reference/runners/self-hosted-runners).
+
+## Next steps
+
+* You can monitor self-hosted runners and troubleshoot common issues. For more information, see [AUTOTITLE](/actions/how-tos/manage-runners/self-hosted-runners/monitor-and-troubleshoot).
+
+* GitHub recommends that you review security considerations for self-hosted runner machines. For more information, see [AUTOTITLE](/actions/reference/security/secure-use#hardening-for-self-hosted-runners).
+
+* {% ifversion ghec %}If you use GitHub Enterprise Server, you{% elsif ghes %}You{% endif %} can manually sync repositories on GitHub.com containing actions to your enterprise on GitHub Enterprise Server. Alternatively, you can allow members of your enterprise to automatically access actions from GitHub.com by using GitHub Connect. For more information, see the following.
+
+  * [AUTOTITLE]({% ifversion ghec %}/enterprise-server@latest{% endif %}/admin/managing-github-actions-for-your-enterprise/managing-access-to-actions-from-githubcom/manually-syncing-actions-from-githubcom){% ifversion ghec %} in the GitHub Enterprise Server documentation{% endif %}
+  * [AUTOTITLE]({% ifversion ghec %}/enterprise-server@latest{% endif %}/admin/managing-github-actions-for-your-enterprise/managing-access-to-actions-from-githubcom/enabling-automatic-access-to-githubcom-actions-using-github-connect){% ifversion ghec %} in the GitHub Enterprise Server documentation{% endif %}
+
+* You can customize the software available on your self-hosted runner machines, or configure your runners to run software similar to GitHub-hosted runners{% ifversion ghes %} available for customers using GitHub.com{% endif %}. The software that powers runner machines for GitHub Actions is open source. For more information, see the [`actions/runner`](https://github.com/actions/runner) and [`actions/runner-images`](https://github.com/actions/runner-images) repositories.
+
+## Further reading
+
+* [AUTOTITLE](/actions/how-tos/manage-runners/self-hosted-runners/configure-the-application)
+* [AUTOTITLE](/actions/how-tos/manage-runners/self-hosted-runners/use-in-a-workflow)
