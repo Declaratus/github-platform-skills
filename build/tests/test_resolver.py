@@ -32,6 +32,11 @@ class ResolverTests(unittest.TestCase):
     def test_dotted_key_and_zero(self):
         self.assertEqual(self.resolve('{% data variables.product.qwen3.8 %}/{% data variables.product.zero %}'), 'Qwen/0')
 
+    def test_plus_in_reusable_name(self):
+        # Upstream variant files such as ghas-products-bullets+ghas.md.
+        self.reusable('bullets+ghas', 'Variant')
+        self.assertEqual(self.resolve('{% data reusables.bullets+ghas %}'), 'Variant')
+
     def test_nested_multiline_list(self):
         self.reusable('outer', '{% data reusables.inner %}')
         self.reusable('inner', 'First\nSecond {% data variables.product.name %}')

@@ -1,0 +1,67 @@
+---
+title: CodeQL-powered analysis for Code Quality
+shortTitle: CodeQL analysis
+allowTitleToDifferFromFilename: true
+intro: Information on how CodeQL-powered analysis for Code Quality works, the workflow used, and the status checks reported on pull requests.
+versions:
+  feature: code-quality
+contentType: reference
+redirect_from:
+  - /code-security/code-quality/reference/codeql-detection
+category:
+  - Improve code quality
+---
+
+## CodeQL-powered analysis
+
+Code Quality uses CodeQL to perform rule-based analysis of pull requests and your default branch.
+
+* Findings for your **default branch** appear under the "Standard findings" dashboard under your repository's **(icon: shield) {% ifversion security-and-quality-tab %}Security and quality{% else %}Security{% endif %}** tab.
+
+* Findings **on pull requests** appear as comments made by `github-code-quality[bot]`.
+
+Copilot Autofix suggestions are provided for findings where possible.
+
+### Query lists for supported languages
+
+Each Code Quality rule is written as a query in CodeQL and then run using GitHub Actions.
+
+The rules are continually refined by both GitHub and open source developers.
+
+* [AUTOTITLE](/code-security/reference/code-quality/codeql-queries/csharp-queries)
+* [AUTOTITLE](/code-security/reference/code-quality/codeql-queries/go-queries)
+* [AUTOTITLE](/code-security/reference/code-quality/codeql-queries/java-queries)
+* [AUTOTITLE](/code-security/reference/code-quality/codeql-queries/javascript-queries)
+* [AUTOTITLE](/code-security/reference/code-quality/codeql-queries/python-queries)
+* [AUTOTITLE](/code-security/reference/code-quality/codeql-queries/ruby-queries)
+
+For more information about the CodeQL project, see [https://codeql.github.com/](https://codeql.github.com).
+
+## Workflow used for code quality analysis
+
+Each CodeQL analysis will use GitHub Actions minutes. You can see all workflow runs for Code Quality on the repository's **Actions** tab. 
+
+Code Quality and code scanning runs both use the workflow name CodeQL. You can identify Code Quality runs by the actor `github-code-quality` or by their run name, for example, "Code Quality: push on main."
+
+By default, the Code Quality workflow runs on standard GitHub runners but you can configure Code Quality to use runners with a specific label. These may be hosted by GitHub or self-hosted.
+
+If your organization has configured caching of private registries, these will be available for code quality analysis to use to resolve dependencies.
+
+For more information, see:
+
+* [AUTOTITLE](/code-security/how-tos/maintain-quality-code/enable-code-quality)
+* [AUTOTITLE](/code-security/how-tos/secure-at-scale/configure-organization-security/manage-usage-and-access/giving-org-access-private-registries#code-quality-access-to-private-registries)
+
+## Pull request status checks
+
+When code quality analysis runs on a pull request, the "CodeQL - Code Quality / Analyze" check is shown in the "Checks" section at the bottom of the pull request.
+
+Any code problems identified by the scan are reported in comments on the pull request. The comment is made by the `github-code-quality[bot]` and includes a Copilot Autofix suggestion.
+
+### Status check failures
+
+The workflow failed to run. For example, your budget for actions minutes is exhausted. See [Viewing logs to diagnose failures](/actions/how-tos/monitor-workflows/use-workflow-run-logs#viewing-logs-to-diagnose-failures).
+
+### Merging is blocked: Code quality findings were detected
+
+The scan found problems in the code that exceed the quality gate set by a code quality branch rule for the repository. You need to resolve these problems before you can merge the pull request. See [AUTOTITLE](/code-security/how-tos/maintain-quality-code/unblock-your-pr).

@@ -1,0 +1,235 @@
+---
+title: Configuring global security settings for your organization
+shortTitle: Configure global settings
+intro: Customize Advanced Security features for your organization by defining global settings that ensure consistent security standards and safeguard all your repositories.
+permissions: 'Organization owners, security managers, and organization members with the **admin** role'
+versions:
+  fpt: '*'
+  ghec: '*'
+  ghes: '*'
+redirect_from:
+  - /code-security/securing-your-organization/enabling-security-features-in-your-organization/configuring-global-security-settings-for-your-organization
+  - /code-security/how-tos/secure-at-scale/configure-organization-security/establish-complete-coverage/configuring-global-security-settings-for-your-organization
+contentType: how-tos
+category:
+  - Secure at scale
+---
+
+## Accessing the global settings page for your organization
+
+1. In the upper-right corner of GitHub, click your profile picture, then click **(icon: organization) Organizations**.
+1. Under your organization name, click **(icon: gear) Settings**. If you cannot see the "Settings" tab, select the **(icon: kebab-horizontal)** dropdown menu, then click **Settings**.
+
+   ![Screenshot of the tabs in an organization's profile. The "Settings" tab is outlined in dark orange.](/assets/images/help/discussions/org-settings-global-nav-update.png)
+1. In the "Security" section of the sidebar, select the **Advanced Security** dropdown menu, then click **Global settings**.
+
+## Configuring global Dependabot settings
+
+You can customize several global settings for Dependabot:
+
+* [Creating and managing Dependabot auto-triage rules](#creating-and-managing-dependabot-auto-triage-rules)
+* [Grouping Dependabot security updates](#grouping-dependabot-security-updates){% ifversion dependabot-on-actions-opt-in %}
+* [Enabling dependency updates on GitHub Actions runners](#enabling-dependency-updates-on-github-actions-runners){% endif %}{% ifversion dependabot-self-hosted-labels %}
+* [Configuring the runner type for Dependabot](#configuring-the-runner-type-for-dependabot){% endif %}{% ifversion fpt %}
+* [Granting Dependabot access to private repositories](#granting-dependabot-access-to-private-repositories){% else %}
+* [Granting Dependabot access to private and internal repositories](#granting-dependabot-access-to-private-and-internal-repositories){% endif %}
+
+### Creating and managing Dependabot auto-triage rules
+
+You can create and manage Dependabot auto-triage rules to instruct Dependabot to automatically dismiss or snooze Dependabot alerts, and even open pull requests to attempt to resolve them. To configure Dependabot auto-triage rules, click (icon: gear), then create or edit a rule:
+  * You can create a new rule by clicking **New rule**, then entering the details for your rule and clicking **Create rule**.
+  * You can edit an existing rule by clicking (icon: pencil), then making the desired changes and clicking **Save rule**.
+
+For more information on Dependabot auto-triage rules, see [AUTOTITLE](/code-security/concepts/supply-chain-security/dependabot-auto-triage-rules) and [AUTOTITLE](/code-security/how-tos/secure-your-supply-chain/manage-your-dependency-security/auto-triage-dependabot-alerts#adding-custom-auto-triage-rules-to-your-organization).
+
+### Grouping Dependabot security updates
+
+Dependabot can group all automatically suggested security updates into a single pull request. To enable grouped security updates, select **Grouped security updates**. For more information about grouped updates and customization options, see [AUTOTITLE](/code-security/how-tos/secure-your-supply-chain/secure-your-dependencies/configure-security-updates#grouping-dependabot-security-updates-into-a-single-pull-request).
+
+{% ifversion dependabot-on-actions-opt-in %}
+
+### Enabling dependency updates on GitHub Actions runners
+
+If both Dependabot and GitHub Actions are enabled for existing repositories in your organization, GitHub will automatically use GitHub-hosted runners to run dependency updates for those repositories.
+
+Otherwise, to allow Dependabot to use GitHub Actions runners to perform dependency updates for all existing repositories in the organization, select "Dependabot on Actions runners".
+
+For more information, see [AUTOTITLE](/code-security/concepts/supply-chain-security/dependabot-on-actions).
+
+{% endif %}
+
+{% ifversion dependabot-self-hosted-labels %}
+
+### Configuring the runner type for Dependabot
+
+You can configure which type of runner Dependabot uses to scan for version and security updates. By default, Dependabot uses standard **GitHub-hosted runners**. You can configure Dependabot to use **labeled runners**, which allows you to integrate with existing runner infrastructure such as Actions Runner Controller (ARC).
+
+> [!NOTE]
+> * For security reasons, Dependabot uses GitHub-hosted runners for public repositories, even when you configure labeled runners.
+> * Labeled runners **do not work** for public repositories.
+
+To configure the runner type:
+
+1. Under "Dependabot", next to "Runner type", select (icon: pencil).
+1. In the "Edit runner type for Dependabot" dialog, select the runner type you want Dependabot to use:
+   * **Standard GitHub runner**.
+   * **Labeled runner**: If you select this option, Dependabot will use {% ifversion fpt or ghec %}self-hosted or larger runners{% else %}self-hosted runners{% endif %} that match the label you specify.
+1. If you selected **Labeled runner**:
+   * In "Runner label", enter the label assigned to your runners. Dependabot will use runners with this label. By default, the `dependabot` label is used, but you can specify a custom label to match your existing runner infrastructure.
+   * Optionally, in "Runner group name", enter the name of a runner group if you want to target a specific group of runners.
+1. Click **Save runner selection**.
+
+{% endif %}
+
+{% ifversion dependabot-on-actions-self-hosted %}
+
+For more information about configuring self-hosted runners for Dependabot, see [AUTOTITLE](/code-security/how-tos/secure-your-supply-chain/manage-your-dependency-security/configure-on-self-hosted-runners).
+
+{% endif %}
+
+### Granting Dependabot access to private {% ifversion ghec or ghes %}and internal {% endif %}repositories
+
+To update private dependencies of repositories in your organization, Dependabot needs access to those repositories. To grant Dependabot access to the desired private {% ifversion ghec or ghes %}or internal {% endif %}repository, scroll down to the "Grant Dependabot access to private repositories" section, then use the search bar to find and select the desired repository. Be aware that granting Dependabot access to a repository means all users in your organization will have access to the contents of that repository through Dependabot updates. For more information about the supported ecosystems for private repositories, see [AUTOTITLE](/code-security/reference/supply-chain-security/supported-ecosystems-and-repositories).
+
+## Configuring global code scanning settings
+
+Code scanning is a feature that you use to analyze the code in a GitHub repository to find security vulnerabilities and coding errors. Any problems identified by the analysis are shown in your repository.
+
+{% ifversion ghes %}
+<!-- There is only one bullet point in this section, so we don't display a list for GHES 3.17+. -->
+
+You can recommend that repositories in your organization use the "Extended" query suite instead of the "Default" query suite for broader code scanning coverage across your organization. See [Recommending the extended query suite for default setup](#recommending-the-extended-query-suite-for-default-setup).
+
+{% else %}
+
+You can customize several global settings for code scanning:
+
+* [Recommending the extended query suite for default setup](#recommending-the-extended-query-suite-for-default-setup)
+{%- ifversion code-scanning-autofix %}
+* [Enabling Copilot Autofix for CodeQL](#enabling-copilot-autofix-for-codeql)
+{%- endif %}
+{%- ifversion ai-powered-security-detections %}
+* [Enabling AI Scan for pull requests](#enabling-ai-scan-for-pull-requests)
+{%- endif %}
+{%- ifversion ai-scan-for-repositories %}
+* [Enabling AI Scan for repositories](#enabling-ai-scan-for-repositories)
+{%- endif %}
+{%- ifversion ai-applications-scanning %}
+* [Enabling AI applications scanning](#enabling-ai-applications-scanning)
+{%- endif %}
+* [Expanding CodeQL analysis](#expanding-codeql-analysis)
+{%- ifversion code-scanning-inactive-repos %}
+* [Continuing scans on inactive repositories](#continuing-scans-on-inactive-repositories)
+{%- endif %}
+
+{% endif %}
+
+### Recommending the extended query suite for default setup
+
+Code scanning offers specific groups of CodeQL queries, called CodeQL query suites, to run against your code. By default, the "Default" query suite is run. GitHub also offers the "Extended" query suite, which contains all the queries in the "Default" query suite, plus additional queries with lower precision and severity. To suggest the "Extended" query suite across your organization, select **Recommend the extended query suite for repositories enabling default setup**. For more information on built-in query suites for CodeQL default setup, see [AUTOTITLE](/code-security/concepts/code-scanning/codeql/codeql-query-suites).
+
+{% ifversion code-scanning-autofix %}
+
+### Enabling Copilot Autofix for CodeQL
+
+You can select **Copilot Autofix** to enable Copilot Autofix for all the repositories in your organization that use CodeQL default setup or CodeQL advanced setup. Copilot Autofix is an expansion of code scanning that suggests fixes for code scanning alerts. For more information, see [AUTOTITLE](/code-security/responsible-use/security-and-quality-ai-features).
+
+{% endif %}
+
+{% ifversion ai-powered-security-detections %}
+
+### Enabling AI Scan for pull requests
+
+You can select **AI Scan for pull requests** to enable the feature for eligible repositories in your organization where code scanning is enabled. Repositories inherit the organization setting, but repository administrators can opt out for individual repositories. See [AUTOTITLE](/code-security/concepts/code-scanning/ai-powered-security-detections).
+
+{% endif %}
+
+{% ifversion ai-scan-for-repositories %}
+
+### Enabling AI Scan for repositories
+
+You can select **AI Scan for repositories** to enable the feature for eligible repositories in your organization where code scanning is enabled. Repositories inherit the organization setting, but repository administrators can opt out for individual repositories. See [AUTOTITLE](/code-security/concepts/code-scanning/ai-scan-for-repositories).
+
+After enabling the setting, you can start one-off scans of up to 20 repositories. Enabling the setting alone does not start scans. Alternatively, you can start an AI scan for an individual repository from its code scanning repository alerts page.
+
+You can also manage this setting with the REST API by using the `repository_scan` property. See [AUTOTITLE](/rest/code-scanning/code-scanning#update-the-ai-scan-setting-for-an-organization).
+
+{% endif %}
+
+{% ifversion ai-applications-scanning %}
+
+### Enabling AI applications scanning
+
+You can select **Scan for AI applications** to enable AI applications scanning for eligible repositories in your organization. This setting is separate from **AI Scan** and controls a different detector. Repositories inherit the organization setting, but repository administrators can opt out for individual repositories. See [AUTOTITLE](/code-security/concepts/code-scanning/ai-applications-scanning-for-pull-requests).
+
+If your organization already has AI Scan enabled for pull requests, or you're moving from the private preview of AI applications scanning, you still need to select **Scan for AI applications** separately. Enabling AI Scan doesn't enable AI applications scanning.
+
+{% endif %}
+
+### Expanding CodeQL analysis
+
+You can expand CodeQL analysis coverage for all repositories in your organization that use default setup by configuring CodeQL model packs. Model packs extend the CodeQL analysis to recognize additional frameworks and libraries that are not included in the standard CodeQL libraries. This global configuration applies to repositories using default setup and allows you to specify model packs published via the container registry. For more information, see [AUTOTITLE](/code-security/how-tos/find-and-fix-code-vulnerabilities/manage-your-configuration/edit-default-setup#extending-coverage-for-all-repositories-in-an-organization).
+
+{% ifversion code-scanning-inactive-repos %}
+
+### Continuing scans on inactive repositories
+
+{% ifversion code-scanning-scheduled-scan-activity %}
+
+By default, code scanning default setup runs weekly scheduled scans only on active repositories. A repository is active if a push or pull request has triggered a default setup scan in the last 180 days. Initial scans, scans triggered by configuration or language changes, and scheduled scans do not count as activity.
+
+When you enable default setup, an initial scan runs, but weekly scheduled scans do not start until a push or pull request triggers a scan. Pushes and pull requests from before default setup was enabled do not count as activity.
+
+{% else %}
+
+By default, code scanning default setup pauses weekly scheduled scans on repositories that have had no commits pushed or pull requests opened for 180 days.
+
+{% endif %} You can select **Keep scheduled scans running every 30 days for inactive repositories** to override this behavior in an organization. The scan period is not configurable.
+
+{% endif %}
+
+## Configuring global secret scanning settings
+
+Secret scanning is a security tool that scans the entire Git history of repositories, as well as issues, pull requests, discussions, and wikis in those repositories, for leaked secrets that have been accidentally committed, such as tokens or private keys.
+
+You can customize several global settings for secret scanning:
+
+* [Adding a resource link for blocked commits](#adding-a-resource-link-for-blocked-commits)
+* [Defining custom patterns](#defining-custom-patterns)
+* [Specifying patterns to include in push protection](#specifying-patterns-to-include-in-push-protection)
+
+### Adding a resource link for blocked commits
+
+To provide context for developers when secret scanning blocks a commit, you can display a link with more information on why the commit was blocked. To include a link, select **Add a resource link in the CLI and the web UI when a commit is blocked**. In the text box, type the link to the desired resource, then click **Save Link**.
+
+### Defining custom patterns
+
+You can define custom patterns for secret scanning with regular expressions. Custom patterns can identify secrets that are not detected by the default patterns supported by secret scanning. To create a custom pattern, click **New pattern**, then enter the details for your pattern and click **Save and dry run**. For more information on custom patterns, see [AUTOTITLE](/code-security/how-tos/secure-your-secrets/customize-leak-detection/define-custom-patterns).
+
+### Specifying patterns to include in push protection
+
+> [!NOTE]
+> The configuration of patterns for push protection at enterprise and organization level is currently in public preview and subject to change.
+
+You can customize which secret patterns are included in push protection, giving security teams greater control over what types of secrets are blocked in the repositories in your organization.
+
+1. Under "Additional settings", in the "Secret scanning" section and to the right of "Pattern configurations", click **(icon: gear)**.
+1. In the page that gets displayed, make the desired changes in the "Organization setting" column.
+
+You can enable or disable push protection for individual patterns by using the toggle in the relevant column: "Enterprise setting" at the enterprise level, and "Organization setting" at the organization level.
+
+   The data is limited to the scope, therefore the alert volume, false positives, bypass rate, or availability of custom patterns is reflective of user / alert activity within the _enterprise_ or _organization_.
+
+   The GitHub default may change over time as we increase precision and promote patterns.
+
+   > [!NOTE] Organization administrators and security teams can override settings configured at the enterprise level.
+
+For more information on how to read data on the secret scanning pattern configuration page, see [AUTOTITLE](/code-security/reference/secret-security/secret-pattern-data).
+
+## Creating security managers for your organization
+
+The security manager role grants members of your organization the ability to manage security settings and alerts across your organization. Security managers can view data for all repositories in your organization through security overview.
+
+To learn more about the security manager role, see [AUTOTITLE](/organizations/managing-peoples-access-to-your-organization-with-roles/managing-security-managers-in-your-organization).
+
+To assign the security manager role, see [AUTOTITLE](/organizations/managing-peoples-access-to-your-organization-with-roles/using-organization-roles#assigning-an-organization-role).
