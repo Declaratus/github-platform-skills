@@ -19,6 +19,7 @@ Then ask Claude anything that fits the skill's scope (organization-level decisio
 | [`github-well-architected`](plugins/github-well-architected/) | The five pillars + recommendations from [github/github-well-architected](https://github.com/github/github-well-architected). Use for ruleset design, GHAS rollout, polyrepo vs monorepo, ADO migrations, governance policies. |
 | [`github-copilot-docs`](plugins/github-copilot-docs/) | The full Copilot section of [GitHub Docs](https://docs.github.com/en/copilot) (`content/copilot` from [github/docs](https://github.com/github/docs)). Use for Copilot policies, billing and budgets, models, content exclusion, MCP, cloud agent, CLI, customization, metrics. |
 | [`github-projects-issues-docs`](plugins/github-projects-issues-docs/) | The Projects and Issues section of [GitHub Docs](https://docs.github.com/en/issues) (`content/issues` from [github/docs](https://github.com/github/docs)), plus a pointer to the [Projects and Issues changelog](https://github.blog/changelog/label/projects-and-issues/) for newer changes. Use for Projects fields, views, hierarchy, built-in workflows, access, sub-issues, issue types and fields, and the Projects API. |
+| [`github-migrations-docs`](plugins/github-migrations-docs/) | The migrations section of [GitHub Docs](https://docs.github.com/en/migrations) (`content/migrations` from [github/docs](https://github.com/github/docs)). Use for picking a migration path and tool, GEI runs from ADO, Bitbucket Server, GitLab and GHES, ELM to GHE.com, ghe-migrator, what is and isn't migrated, mannequins, and troubleshooting. |
 
 ## Repo layout
 
@@ -131,7 +132,7 @@ Ignoring files does not remove previously committed copies from Git history.
 
 ## License
 
-MIT. Bundled upstream content remains under its own license, with attribution in each skill's `SKILL.md`. `github-well-architected` is MIT. `github-copilot-docs` and `github-projects-issues-docs` are CC BY 4.0 (GitHub Docs content) and ship the upstream `LICENSE` in their `references/`.
+MIT. Bundled upstream content remains under its own license, with attribution in each skill's `SKILL.md`. `github-well-architected` is MIT. `github-copilot-docs`, `github-projects-issues-docs` and `github-migrations-docs` are CC BY 4.0 (GitHub Docs content) and ship the upstream `LICENSE` in their `references/`.
 
 The `github-copilot-docs` recipe needs `python3` with PyYAML and python-liquid to resolve Liquid tags and expand table data (`build/lib/resolve_liquid.py`).
 
