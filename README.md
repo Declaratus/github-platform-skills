@@ -34,6 +34,7 @@ Then ask Claude anything that fits the skill's scope (organization-level decisio
 │   ├── build.sh                          # dispatch: ./build/build.sh <plugin> [--all]
 │   ├── <name>-source.json                # pinned upstream repo + commit per recipe
 │   ├── bump_sources.py                   # moves every pin to its upstream head
+│   ├── changelog.json                    # changelog labels per docs plugin, see docs/changelog-strategy.md
 │   └── recipes/<plugin-name>.sh          # per-plugin: curation from the pinned commit
 └── .build-cache/                         # gitignored: shallow clones of upstream
 ```
