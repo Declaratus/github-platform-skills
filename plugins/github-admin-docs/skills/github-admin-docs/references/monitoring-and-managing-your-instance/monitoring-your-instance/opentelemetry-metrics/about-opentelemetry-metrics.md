@@ -1,0 +1,76 @@
+---
+title: About OpenTelemetry metrics
+intro: OpenTelemetry metrics provide a comprehensive monitoring solution for GitHub Enterprise Server instances, offering enhanced observability and management capabilities.
+versions:
+  feature: ghes-opentelemetry
+shortTitle: OpenTelemetry metrics
+contentType: concepts
+category:
+  - Monitor and audit your enterprise
+---
+
+{% ifversion ghes-opentelemetry %}
+
+OpenTelemetry metrics are the foundation for monitoring GitHub Enterprise Server, available from version 3.18 onward. This monitoring stack provides enhanced observability and management capabilities compared to the legacy collectd system.
+
+{% ifversion ghes-collectd-available %}
+
+New installations of version 3.19 and later use OpenTelemetry metrics by default. Upgrades from versions earlier than 3.21 to 3.21 or 3.22 also enable OpenTelemetry and disable collectd, but you can re-enable collectd after the upgrade.
+
+Collectd remains supported in this release but is retired in version 3.23, and upgrading to 3.23 disables it. For the migration timeline and steps to migrate instances that still use collectd, see [AUTOTITLE](/admin/monitoring-and-managing-your-instance/monitoring-your-instance/opentelemetry-metrics/migration-guidance).
+
+{% else %}
+
+Collectd is retired in this release and can no longer be run. Upgrading to version 3.23 disables collectd, and OpenTelemetry metrics become the only metrics stack. For information about post-upgrade checks, see [AUTOTITLE](/admin/monitoring-and-managing-your-instance/monitoring-your-instance/opentelemetry-metrics/migration-guidance).
+
+{% endif %}
+
+{% endif %}
+
+## About OpenTelemetry metrics
+
+The OpenTelemetry monitoring stack is based on industry-standard observability tools and includes various components for collecting, processing, and storing metrics. This comprehensive approach provides a complete view of your system's performance and health across all components of your GitHub Enterprise Server instance.
+
+### Benefits of OpenTelemetry metrics
+
+OpenTelemetry metrics offer several advantages{% ifversion ghes-collectd-available %} over the legacy collectd system{% endif %}:
+
+* **Industry standard**: Based on widely adopted OpenTelemetry and Prometheus standards
+* **Scalable storage**: VictoriaMetrics provides efficient time-series data storage
+* **Rich visualization**: Grafana offers advanced dashboard and alerting capabilities
+* **Extensible**: Support for custom metrics and external monitoring integrations
+* **Native endpoints**: Direct integration with service `/metrics` endpoints for efficient monitoring
+
+With OpenTelemetry, advanced Grafana dashboards with enhanced visualization and monitoring capabilities are available, see: [AUTOTITLE](/admin/monitoring-and-managing-your-instance/monitoring-your-instance/opentelemetry-metrics/advanced-dashboards).
+
+## Key components
+
+The OpenTelemetry monitoring stack includes the following components:
+
+* **OpenTelemetry Collector**: Receives, processes, and exports telemetry data, acting as the central hub for collecting metrics from various sources
+* **VictoriaMetrics**: A fast, efficient, and scalable time-series database that stores all metrics collected from your GitHub Enterprise Server instance
+* **Grafana**: Provides powerful visualization capabilities for time-series data, allowing you to create, explore, and share dashboards
+* **Exporters**: Specialized components that collect metrics from specific services, including:
+  * [Node exporter](https://github.com/prometheus/node_exporter): System-level metrics including CPU, memory, disk, and network statistics
+  * [Process exporter](https://github.com/ncabatoff/process-exporter): Detailed process-level metrics and resource utilization
+  * [StatsD exporter](https://github.com/prometheus/statsd_exporter): Used by GitHub components to expose application-level metrics using the StatsD protocol
+  * [HAProxy exporter](https://github.com/prometheus/haproxy_exporter): Load balancer metrics for frontend, cluster, and data tiers
+  * Nomad exporter: Job scheduler and resource allocation metrics (native Nomad `/v1/metrics` endpoint)
+  * [MySQL exporter](https://github.com/prometheus/mysqld_exporter): Database performance and query metrics (when MySQL is enabled)
+  * [Elasticsearch exporter](https://github.com/prometheus-community/elasticsearch_exporter): Search engine performance and indexing metrics (when Elasticsearch is enabled)
+  * [Redis exporter](https://github.com/oliver006/redis_exporter): Cache performance and memory usage metrics (when Redis is enabled)
+  * [Memcached exporter](https://github.com/prometheus/memcached_exporter): Cache hit rates and memory statistics (when Memcached is enabled)
+  * MinIO exporter: Object storage cluster metrics (native MinIO `/minio/v2/metrics/cluster` endpoint, when MinIO is enabled)
+  * [Nginx exporter](https://github.com/nginxinc/nginx-prometheus-exporter): Web server performance and request metrics (when Nginx is enabled)
+  * [SQL exporter](https://github.com/burningalchemist/sql_exporter): Microsoft SQL Server metrics (when SQL Server is enabled)
+  * [Blackbox exporter](https://github.com/prometheus/blackbox_exporter): Network probe and connectivity metrics (in cluster deployments)
+* **Custom metrics services**: Additional GitHub-specific services that push OpenTelemetry metrics directly to the collector, including:
+  * **Resque metrics**: Background job processing and queue metrics
+  * **Postfix metrics**: Email delivery and mail server performance metrics
+  * **Listener stats metrics**: Connection and request handling statistics
+  * **WireGuard metrics**: VPN tunnel and network encryption metrics
+
+## Next steps
+
+* To enable and configure OpenTelemetry metrics, see [AUTOTITLE](/admin/monitoring-and-managing-your-instance/monitoring-your-instance/opentelemetry-metrics/configuring-opentelemetry-for-your-instance).
+* To set up external monitoring, see [AUTOTITLE](/admin/monitoring-and-managing-your-instance/monitoring-your-instance/opentelemetry-metrics/setting-up-external-monitoring-with-opentelemetry).
