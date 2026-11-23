@@ -1,0 +1,9 @@
+{
+  "name": "github-billing-docs",
+  "description": "GitHub billing documentation skill: the full content/billing tree from github/docs, bundled locally with Liquid variables resolved, plus a changelog pointer for newer changes.",
+  "author": {
+    "name": "Declaratus"
+  },
+  "homepage": "https://github.com/github/docs/tree/main/content/billing",
+  "license": "CC-BY-4.0"
+}

@@ -1,0 +1,36 @@
+---
+title: Canceling a sponsorship
+intro: You can cancel your sponsorship.
+versions:
+  fpt: '*'
+  ghec: '*'
+shortTitle: Cancel sponsorship
+contentType: how-tos
+category:
+  - Pay third parties and manage client accounts
+---
+
+**When you cancel a sponsorship, the change will become effective on your next billing date**. There are no refunds for payments for GitHub Sponsors.
+
+## Canceling a sponsorship
+
+1. In the upper-right corner of any page on GitHub, click your profile picture, then click **(icon: gear) Settings**.
+1. In the "Access" section of the sidebar, click **(icon: credit-card) Billing and licensing**, then click **Additional billing details**.
+1. Optionally, to manage your sponsorship on behalf of an organization, in the upper-left corner, select the **Switch to another account** dropdown menu, then click the organization.
+1. Under "GitHub Sponsors", next to the sponsored account, click your current tier amount, then click **Cancel sponsorship**.
+1. Review the alert about canceling your sponsorship, then click **OK**.
+
+## Canceling a scheduled sponsorship
+
+Organizations that pay for GitHub Sponsors by invoice can schedule the first payment for the next billing date. You can cancel the scheduled sponsorship before it becomes active.
+
+1. In the upper-right corner of GitHub, click your profile picture, then click **(icon: organization) Organizations**.
+1. Select an organization by clicking it.
+1. Under your organization name, click **(icon: gear) Settings**. If you cannot see the "Settings" tab, select the **(icon: kebab-horizontal)** dropdown menu, then click **Settings**.
+
+   ![Screenshot of the tabs in an organization's profile. The "Settings" tab is outlined in dark orange.](/assets/images/help/discussions/org-settings-global-nav-update.png)
+1. In the "Access" section of the sidebar, click **(icon: credit-card) Billing and licensing**.
+1. Under "GitHub Sponsors", in the yellow banner with the start date, click **Undo**.
+1. Review the alert about undoing the activation of the sponsorship, then click **OK**.
+
+For information about _downgrading_ a sponsorship, see [AUTOTITLE](/billing/how-tos/pay-third-parties/downgrade-sponsorship).

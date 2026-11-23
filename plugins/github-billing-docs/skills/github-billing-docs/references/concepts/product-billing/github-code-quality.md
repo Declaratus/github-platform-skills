@@ -1,0 +1,57 @@
+---
+title: 'GitHub Code Quality billing'
+intro: 'In addition to standard GitHub Actions minutes, GitHub Code Quality billing has two parts: a per-committer license and AI credit usage for AI-powered features.'
+product: "{% ifversion fpt or ghec %}\nGitHub Team or GitHub Enterprise Cloud\n{% endif %}"
+versions:
+  feature: code-quality
+shortTitle: GitHub Code Quality
+contentType: concepts
+docsTeamMetrics:
+  - code-quality
+category:
+  - Understand product costs
+---
+
+## How GitHub Code Quality billing is measured
+
+Use of Code Quality incurs three types of costs for an organization:
+
+* [GitHub Actions minutes](#github-actions-minutes)
+* [GitHub AI Credits](#github-ai-credits)
+* [Active and unique committers](#active-and-unique-committers)
+
+### GitHub Actions minutes
+
+Code Quality scans run as GitHub Actions workflows and consume GitHub Actions minutes, unless you use self-hosted runners. See [AUTOTITLE](/billing/concepts/product-billing/github-actions).
+
+In a detailed usage report, you can identify usage from Code Quality scans by filtering the `workflow_path` field for `dynamic/github-code-quality/codeql`.
+
+### GitHub AI Credits
+
+Code Quality features that use AI models consume AI credits from your shared AI credits pool, rather than a separate Code Quality allowance. Each interaction is priced based on the number of tokens consumed, where 1 AI credit = $0.01 USD. 
+
+Code Quality is a purpose-built product that uses a carefully tuned mix of models, prompts, and system behaviors to deliver consistent, high-quality analysis across a wide range of codebases. Model switching is not supported, as changing the model is likely to compromise the reliability and accuracy of analysis results.
+
+For more information about how AI credits work, see [AUTOTITLE](/copilot/concepts/billing-and-usage/organizations-and-enterprises/billing).
+
+### Active and unique committers
+
+Code Quality is a standalone product with its own license, and does not consume GitHub Advanced Security or any other product's licenses. GitHub App bots are ignored. For information about differences between bot and machine accounts, see [AUTOTITLE](/apps/oauth-apps/building-oauth-apps/differences-between-github-apps-and-oauth-apps#machine-vs-bot-accounts).
+
+* Your license usage is calculated based on the number of unique, active committers to repositories with Code Quality enabled. 
+* Each **active committer** uses **one Code Quality license**. 
+* A committer is considered active if one of their commits has been pushed to the repository within the last 90 days, regardless of when it was originally authored.
+
+To understand your license usage, and which licenses you can free up, it helps to distinguish between active and unique committers. You can see the number of licenses you're using on the **Licensing** page for your organization or enterprise, shown as **"Consumed licenses"**:
+* **Active committers** are committers who contributed to at least one repository and have a GitHub Team or GitHub Enterprise license with your organization or enterprise. This includes members, enterprise-managed users, external collaborators, and people with a pending invitation to join your organization or enterprise.
+* **Unique committers** is the number of active committers who contributed only to one repository, or only to repositories in one organization. You can free these licenses for the next billing period by disabling Code Quality for that repository or organization. This doesn't reduce your license charge for the current period.
+
+Users can contribute to multiple repositories or organizations. Usage is measured across the whole organization or enterprise to ensure that each member uses one license regardless of how many repositories or organizations the user contributes to.
+
+To see which committers and repositories contribute to your license usage, download the Code Quality CSV report from the **Licensing** page. See [AUTOTITLE](/billing/how-tos/products/download-license-use).
+
+## Further reading
+
+* [AUTOTITLE](/code-security/tutorials/improve-code-quality/catch-issues-before-merge)
+* [AUTOTITLE](/billing/concepts/product-billing/github-actions)
+* [AUTOTITLE](/copilot/concepts/billing-and-usage/organizations-and-enterprises/billing)

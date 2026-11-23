@@ -32,6 +32,10 @@ class ResolverTests(unittest.TestCase):
     def test_dotted_key_and_zero(self):
         self.assertEqual(self.resolve('{% data variables.product.qwen3.8 %}/{% data variables.product.zero %}'), 'Qwen/0')
 
+    def test_plus_in_reusable_name(self):
+        self.reusable('bullets+extra', 'Plus {% data variables.product.name %}')
+        self.assertEqual(self.resolve('{% data reusables.bullets+extra %}'), 'Plus Copilot')
+
     def test_nested_multiline_list(self):
         self.reusable('outer', '{% data reusables.inner %}')
         self.reusable('inner', 'First\nSecond {% data variables.product.name %}')

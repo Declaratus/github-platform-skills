@@ -32,6 +32,15 @@
       "homepage": "https://docs.github.com/en/issues",
       "category": "platform",
       "tags": ["github", "projects", "issues", "docs", "planning", "automation"]
+    },
+    {
+      "name": "github-billing-docs",
+      "source": "./plugins/github-billing-docs",
+      "description": "GitHub's official billing documentation, bundled locally from github/docs, plus a changelog pointer for newer changes. Covers metered and volume billing, budgets and alerts, cost centers, per-product billing (Actions, Packages, Codespaces, LFS, Advanced Security), SKU names, usage and license reports, billing roles, Azure and Visual Studio billing, GHES licenses, and payment troubleshooting.",
+      "license": "CC-BY-4.0",
+      "homepage": "https://docs.github.com/en/billing",
+      "category": "platform",
+      "tags": ["github", "billing", "docs", "enterprise", "budgets", "cost-centers"]
     }
   ]
 }
