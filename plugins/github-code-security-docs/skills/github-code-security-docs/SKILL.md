@@ -11,7 +11,7 @@ GHAS packaging, setup types and AI features changed a lot in 2025 and 2026 (the 
 
 ## Check for newer changes first
 
-The docs snapshot lags the product. Read `changelog.md` (next to this file) and check the label feeds it points at for anything newer than the `upstream_committed_at` date in `references/SOURCE.json`. New secret detectors, CodeQL releases, Dependabot ecosystems and preview features often appear only in the changelog at snapshot time. Preserve preview vs GA status and plan or account-type qualifications as stated.
+The docs snapshot lags the product. Read `changelog.md` (next to this file), a generated list of changelog entries from before the snapshot date up to the date it was built. For anything after that date, check the label feeds it points at. New secret detectors, CodeQL releases, Dependabot ecosystems and preview features often appear only in the changelog at snapshot time. Preserve preview vs GA status and plan or account-type qualifications as stated.
 
 ## How to find the right page
 
