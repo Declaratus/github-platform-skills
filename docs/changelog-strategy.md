@@ -1,6 +1,6 @@
 # GitHub Changelog entries newer than the docs snapshots
 
-Status: proposed, 2026-11-23. Prototype on this branch.
+Status: accepted, 2026-11-23. Shipped in #8 and #10.
 
 ## Decision
 
