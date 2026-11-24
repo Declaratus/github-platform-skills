@@ -131,9 +131,8 @@ On Copilot Free and Copilot Student plans, access to models is available through
 |---------------------------------------------------------|-------------------------------------------------|-----------------------------------------------------|------------------------------------------------|
 | Claude Haiku 4.5 | (icon: check) | (icon: check) | (icon: check) |
 | Claude Haiku 5.5 | (icon: check) | (icon: check) | (icon: check) |
-| Claude Opus 4.8 | (icon: x) | (icon: check) | (icon: check) |
+| Claude Opus 4.8 | (icon: x) | (icon: check) | (icon: x) |
 | Claude Opus 4.8 (fast mode) (preview) | (icon: x) | (icon: check) | (icon: check) |
-| Claude Opus 5 | (icon: x) | (icon: check) | (icon: check) |
 | Claude Opus 5.5 | (icon: x) | (icon: check) | (icon: check) |
 | Claude Fable 5[^claude-fable-5] | (icon: x) | (icon: check) | (icon: check) |
 | Claude Fable 5.1[^claude-fable-5] | (icon: x) | (icon: check) | (icon: check) |
@@ -144,21 +143,26 @@ On Copilot Free and Copilot Student plans, access to models is available through
 | Gemini 3.8 Flash | (icon: check) | (icon: check) | (icon: check) |
 | Gemini 4 Argon | (icon: x) | (icon: check) | (icon: check) |
 | Gemini 4 Carbon | (icon: x) | (icon: check) | (icon: check) |
+| Gemini 4 Hydrogen | (icon: check) | (icon: check) | (icon: check) |
+| Gemini 4 Neon | (icon: x) | (icon: check) | (icon: check) |
 | GPT-5.3-Codex | (icon: check) | (icon: check) | (icon: check) |
 | GPT-5.4 nano[^gpt54nano] | (icon: x) | (icon: check) | (icon: check) |
 | GPT-5.6 Luna | (icon: check) | (icon: check) | (icon: check) |
 | GPT-5.6 Sol | (icon: x) | (icon: check) | (icon: check) |
-| GPT-5.6 Terra | (icon: check) | (icon: check) | (icon: check) |
 | GPT-6 Astra | (icon: x) | (icon: check) | (icon: check) |
 | GPT-6 Luna | (icon: check) | (icon: check) | (icon: check) |
 | GPT-6 Sol | (icon: x) | (icon: check) | (icon: check) |
 | GPT-6.1 Sol | (icon: x) | (icon: check) | (icon: check) |
 | GPT-6.1 Terra | (icon: check) | (icon: check) | (icon: check) |
+| GPT-6.2 Astra | (icon: x) | (icon: check) | (icon: check) |
+| GPT-6.2 Sol | (icon: x) | (icon: check) | (icon: check) |
 | Grok 4.5 | (icon: check) | (icon: check) | (icon: check) |
 | Grok 4.6 | (icon: check) | (icon: check) | (icon: check) |
 | Grok 4.7 | (icon: check) | (icon: check) | (icon: check) |
 | Kimi K3 | (icon: check) | (icon: check) | (icon: check) |
 | MAI-Code-1.1-Flash | (icon: check) | (icon: check) | (icon: check) |
+| MAI Code 2 | (icon: check) | (icon: check) | (icon: check) |
+| MAI Code 2 Flash | (icon: check) | (icon: check) | (icon: check) |
 
 {% endrowheaders %}
 
@@ -269,9 +273,8 @@ Chat features are available in all plans:
 |---------------------------------------------------------|-----------------------------------------------------|-------------------------------------------------------|
 | Claude Haiku 4.5 | (icon: check) | (icon: check) |
 | Claude Haiku 5.5 | (icon: check) | (icon: check) |
-| Claude Opus 4.8 | (icon: check) | (icon: check) |
+| Claude Opus 4.8 | (icon: x) | (icon: x) |
 | Claude Opus 4.8 (fast mode) (preview) | (icon: check) | (icon: check) |
-| Claude Opus 5 | (icon: check) | (icon: check) |
 | Claude Opus 5.5 | (icon: check) | (icon: check) |
 | Claude Fable 5[^claude-fable-5] | (icon: check) | (icon: check) |
 | Claude Fable 5.1[^claude-fable-5] | (icon: check) | (icon: check) |
@@ -282,21 +285,26 @@ Chat features are available in all plans:
 | Gemini 3.8 Flash | (icon: check) | (icon: check) |
 | Gemini 4 Argon | (icon: check) | (icon: check) |
 | Gemini 4 Carbon | (icon: check) | (icon: check) |
+| Gemini 4 Hydrogen | (icon: check) | (icon: check) |
+| Gemini 4 Neon | (icon: check) | (icon: check) |
 | GPT-5.3-Codex | (icon: check) | (icon: check) |
 | GPT-5.4 nano[^gpt54nano] | (icon: x) | (icon: x) |
 | GPT-5.6 Luna | (icon: check) | (icon: check) |
 | GPT-5.6 Sol | (icon: check) | (icon: check) |
-| GPT-5.6 Terra | (icon: check) | (icon: check) |
 | GPT-6 Astra | (icon: check) | (icon: check) |
 | GPT-6 Luna | (icon: check) | (icon: check) |
 | GPT-6 Sol | (icon: check) | (icon: check) |
 | GPT-6.1 Sol | (icon: check) | (icon: check) |
 | GPT-6.1 Terra | (icon: check) | (icon: check) |
+| GPT-6.2 Astra | (icon: check) | (icon: check) |
+| GPT-6.2 Sol | (icon: check) | (icon: check) |
 | Grok 4.5 | (icon: check) | (icon: check) |
 | Grok 4.6 | (icon: check) | (icon: check) |
 | Grok 4.7 | (icon: check) | (icon: check) |
 | Kimi K3 | (icon: check) | (icon: check) |
 | MAI-Code-1.1-Flash | (icon: check) | (icon: check) |
+| MAI Code 2 | (icon: check) | (icon: check) |
+| MAI Code 2 Flash | (icon: check) | (icon: check) |
 
 {% endrowheaders %}
 

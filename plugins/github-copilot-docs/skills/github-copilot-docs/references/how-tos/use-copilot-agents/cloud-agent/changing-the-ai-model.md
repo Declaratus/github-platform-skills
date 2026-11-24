@@ -30,7 +30,6 @@ You may find that different models perform better, or provide more useful respon
 The following options are currently available:
 
 * Auto 
-* Claude Opus 5
 * Claude Opus 5.5
 * Claude Sonnet 5.5
 * Claude Haiku 4.5
@@ -38,18 +37,23 @@ The following options are currently available:
 * Gemini 3.8 Flash
 * Gemini 4 Argon
 * Gemini 4 Carbon
+* Gemini 4 Hydrogen
+* Gemini 4 Neon
 * GPT-5.6 Luna
 * GPT-5.6 Sol
-* GPT-5.6 Terra
 * GPT-6 Astra
 * GPT-6 Luna
 * GPT-6 Sol
 * GPT-6.1 Sol
 * GPT-6.1 Terra
+* GPT-6.2 Astra
+* GPT-6.2 Sol
 * Grok 4.5
 * Grok 4.6
 * Grok 4.7
 * MAI Code 1.1 Flash
+* MAI Code 2
+* MAI Code 2 Flash
 
 > [!NOTE] 
 > If you select **Auto**, auto model selection will select the best model based on the task. See [AUTOTITLE](/copilot/concepts/models/auto-model-selection).

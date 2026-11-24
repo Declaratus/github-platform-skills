@@ -44,6 +44,8 @@ The following table shows the model multipliers per supported model.
 | Claude Sonnet 4.6 | 9 |
 | GPT-5.3-Codex | 6 |
 | MAI-Code-1.1-Flash | 0.25 |
+| MAI Code 2 | 1 |
+| MAI Code 2 Flash | 0.33 |
 
 ### Model multiplier for Copilot code review
 

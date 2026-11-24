@@ -6,6 +6,8 @@ intro: 'GitHub Code Quality can cover one repository or thousands from a single 
 versions:
   feature: code-quality
 contentType: concepts
+docsTeamMetrics:
+  - code-quality
 product: "{% ifversion fpt or ghec %}\nGitHub Team or GitHub Enterprise Cloud\n{% endif %}"
 audience:
   - driver

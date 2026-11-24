@@ -1,6 +1,7 @@
 ---
 title: AI Scan for a repository's backlog
-shortTitle: AI Scan for repositories
+shortTitle: 'AI Scan for repositories'
+allowTitleToDifferFromFilename: true
 intro: 'Find additional security vulnerabilities across languages and manage the results in your existing code scanning backlog.'
 versions:
   feature: ai-scan-for-repositories
@@ -39,15 +40,15 @@ For public repositories owned by a personal account, usage is billed to that per
 
 If the billing account receives included AI credits through a GitHub Copilot entitlement, AI Scan uses those credits first. After the included credits are exhausted, or if the account has no included credits, usage is metered and governed by the applicable budgets. If a hard budget leaves no Code Security AI credits available, AI Scan cannot produce findings. Scanning resumes when an administrator increases the limiting budget or a new billing cycle begins.
 
-AI scan for repositories has some limits to prevent it from consuming very high amounts of budget. Detection steps are limited to 30 minutes and 150,000 AI credits.
+AI Scan for repositories has some limits to prevent it from consuming very high amounts of budget. Detection steps are limited to 30 minutes and 150,000 AI credits.
 
 For more information, see [AUTOTITLE](/billing/concepts/product-billing/github-advanced-security#how-ai-feature-usage-is-billed).
 
-## How AI Scan works
+## How AI Scan for repositories works
 
 Users with **write access** to a repository manually trigger a scan of the repository's default branch. The AI agent searches across the repository to identify files and functions to examine. It selects code for further analysis rather than reading every file in full. The agent runs within a time budget. When that budget is exhausted, it stops searching and reports its findings.
 
-AI Scan runs independently of CodeQL. If the repository already has CodeQL alerts, AI Scan uses those alerts to suppress matching findings.
+AI Scan for repositories runs independently of CodeQL. If the repository already has CodeQL alerts, AI Scan uses those alerts to suppress matching findings.
 
 ## How AI Scan findings appear in the code scanning backlog
 
@@ -75,6 +76,9 @@ For guidance on using AI-powered security features responsibly, see [AUTOTITLE](
 AI Scan for repositories supports all languages, including languages already supported by CodeQL. Use it alongside CodeQL to find additional vulnerabilities, or to extend scanning coverage to languages that CodeQL does not support.
 
 ## Enabling AI Scan for repositories
+
+> [!NOTE]
+> AI Scan features do not respect the models enabled in the Copilot **Configure models** policy for your enterprise or organization, so AI Scan may use models that the policy doesn't allow. To control whether AI Scan can run, use the AI Scan settings and enterprise policy instead.
 
 Before enabling AI Scan for repositories, confirm repository eligibility, review the billing account's included AI credits, and configure budgets for metered usage.
 

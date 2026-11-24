@@ -3,7 +3,7 @@
 
 github/docs does not carry the GitHub Changelog. The bundled `references/` tree is a snapshot (see `upstream_committed_at` in `references/SOURCE.json`), and features often ship, change status or get renamed before the docs catch up.
 
-This list covers 2026-07-26 to 2026-11-23. Where an entry and the docs disagree, the newer dated source wins; say which one you used and read the linked entry for scope and limits before relying on it. For anything after 2026-11-23, check the label feeds:
+This list covers 2026-07-27 to 2026-11-24. Where an entry and the docs disagree, the newer dated source wins; say which one you used and read the linked entry for scope and limits before relying on it. For anything after 2026-11-24, check the label feeds:
 
 - https://github.blog/changelog/label/enterprise-management-tools/feed/
 - https://github.blog/changelog/label/platform-governance/feed/
@@ -13,6 +13,7 @@ Older entries are on `?paged=2`, `?paged=3` and so on.
 
 | Date | Type | Entry |
 |---|---|---|
+| 2026-11-23 | Improvement | [Usage reports will include a user ID column starting December 1](https://github.blog/changelog/2026-11-23-usage-reports-will-include-a-user-id-column-starting-december-1) |
 | 2026-11-20 | Improvement | [Security advisory permissions are now generally available](https://github.blog/changelog/2026-11-20-security-advisory-permissions-are-now-generally-available) |
 | 2026-11-19 | New | [Enterprise Live Migrations from Azure DevOps generally available](https://github.blog/changelog/2026-11-19-enterprise-live-migrations-from-azure-devops-generally-available) |
 | 2026-11-19 | Improvement | [S3 audit log streaming with OpenID Connect expands to GHE.com](https://github.blog/changelog/2026-11-19-s3-audit-log-streaming-with-openid-connect-expands-to-ghe-com) |

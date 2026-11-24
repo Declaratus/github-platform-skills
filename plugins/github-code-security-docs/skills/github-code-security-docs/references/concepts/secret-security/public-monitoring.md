@@ -7,6 +7,8 @@ versions:
   feature: secret-scanning-public-monitoring
 product: 'Public monitoring is available for enterprises on GitHub Enterprise Cloud with GitHub Advanced Security or GitHub Secret Protection enabled, including those on GitHub Enterprise Cloud with data residency.'
 contentType: concepts
+docsTeamMetrics:
+  - secret-protection
 category:
   - Protect your secrets
 ---

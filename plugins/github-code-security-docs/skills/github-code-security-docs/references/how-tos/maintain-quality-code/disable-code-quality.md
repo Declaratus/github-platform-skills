@@ -9,6 +9,8 @@ permissions: 'Repository owners, organization owners, and users with the **admin
 audience:
   - driver
 contentType: how-tos
+docsTeamMetrics:
+  - code-quality
 category:
   - Improve code quality
 ---

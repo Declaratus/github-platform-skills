@@ -37,7 +37,7 @@ All prices are **per 1 million tokens**.
 
 > [!NOTE] Models with a **Long context** tier, offer extended capabilities and longer context windows. See [AUTOTITLE](/copilot/reference/ai-models/supported-models#models-with-extended-capabilities)
 
-GPT-5.6 Sol, GPT-5.6 Terra, GPT-5.6 Luna, GPT-6 Astra, GPT-6 Luna, GPT-6 Sol, GPT-6.1 Sol, and GPT-6.1 Terra include a cache write cost in addition to cached input. Earlier OpenAI models have no cache write cost.
+GPT-5.6 Sol, GPT-5.6 Luna, GPT-6 Astra, GPT-6 Luna, GPT-6 Sol, GPT-6.1 Sol, GPT-6.1 Terra, GPT-6.2 Astra, and GPT-6.2 Sol include a cache write cost in addition to cached input. Earlier OpenAI models have no cache write cost.
 
 | Model | Release status | Category | Tier | Threshold (input tokens) | Input | Cached input | Cache write | Output |
 | --- | --- | --- | --- | --- | ---: | ---: | ---: | ---: |
@@ -47,8 +47,6 @@ GPT-5.6 Sol, GPT-5.6 Terra, GPT-5.6 Luna, GPT-6 Astra, GPT-6 Luna, GPT-6 Sol, GP
 | GPT-5.6 Luna | GA | Lightweight | Long context | > 200K | $0.40 | $0.04 | $0.50 | $1.80 |
 | GPT-5.6 Sol | GA | Powerful | Default | ≤ 272K | $4.00 | $0.40 | $5.00 | $20.00 |
 | GPT-5.6 Sol | GA | Powerful | Long context | > 272K | $8.00 | $0.80 | $10.00 | $30.00 |
-| GPT-5.6 Terra | GA | Versatile | Default | ≤ 272K | $2.00 | $0.20 | $2.50 | $12.00 |
-| GPT-5.6 Terra | GA | Versatile | Long context | > 272K | $4.00 | $0.40 | $5.00 | $18.00 |
 | GPT-6 Astra | GA | Powerful | Default | ≤ 272K | $10.00 | $1.00 | $12.50 | $50.00 |
 | GPT-6 Astra | GA | Powerful | Long context | > 272K | $20.00 | $2.00 | $25.00 | $75.00 |
 | GPT-6 Luna | GA | Lightweight | Default | ≤ 272K | $0.10 | $0.01 | $0.125 | $0.50 |
@@ -59,6 +57,10 @@ GPT-5.6 Sol, GPT-5.6 Terra, GPT-5.6 Luna, GPT-6 Astra, GPT-6 Luna, GPT-6 Sol, GP
 | GPT-6.1 Sol | GA | Powerful | Long context | > 272K | $4.00 | $0.20 | $5.00 | $15.00 |
 | GPT-6.1 Terra | GA | Versatile | Default | ≤ 272K | $1.00 | $0.05 | $1.25 | $5.00 |
 | GPT-6.1 Terra | GA | Versatile | Long context | > 272K | $2.00 | $0.10 | $2.50 | $7.50 |
+| GPT-6.2 Astra | GA | Powerful | Default | ≤ 272K | $8.00 | $0.40 | $10.00 | $40.00 |
+| GPT-6.2 Astra | GA | Powerful | Long context | > 272K | $16.00 | $0.80 | $20.00 | $60.00 |
+| GPT-6.2 Sol | GA | Powerful | Default | ≤ 272K | $2.00 | $0.10 | $2.50 | $10.00 |
+| GPT-6.2 Sol | GA | Powerful | Long context | > 272K | $4.00 | $0.20 | $5.00 | $15.00 |
 
 ### Anthropic
 
@@ -74,7 +76,6 @@ Anthropic models include a cache write cost in addition to cached input.
 | Claude Sonnet 4 | GA | Versatile | Default | Not applicable | $3.00 | $0.30 | $3.75 | $15.00 |
 | Claude Sonnet 4.6 | GA | Versatile | Default | Not applicable | $3.00 | $0.30 | $3.75 | $15.00 |
 | Claude Opus 4.8 | GA | Powerful | Default | Not applicable | $5.00 | $0.50 | $6.25 | $25.00 |
-| Claude Opus 5 | GA | Powerful | Default | Not applicable | $5.00 | $0.50 | $6.25 | $25.00 |
 | Claude Opus 5.5 | GA | Powerful | Default | Not applicable | $4.00 | $0.20 | $5.00 | $20.00 |
 | Claude Sonnet 5 | GA | Versatile | Default | Not applicable | $2.00 | $0.20 | $2.50 | $10.00 |
 | Claude Sonnet 5.5 | GA | Versatile | Default | Not applicable | $2.00 | $0.10 | $2.50 | $10.00 |
@@ -92,6 +93,8 @@ Anthropic models include a cache write cost in addition to cached input.
 | Gemini 3.8 Flash[^gemini-flash-promo] | GA | Versatile | Default | Not applicable | $0.75 | $0.075 | $3.75 |
 | Gemini 4 Argon[^gemini-4-argon-promo] | GA | Powerful | Default | Not applicable | $2.00 | $0.10 | $10.00 |
 | Gemini 4 Carbon[^gemini-4-carbon-promo] | GA | Powerful | Default | Not applicable | $2.00 | $0.10 | $10.00 |
+| Gemini 4 Hydrogen | GA | Versatile | Default | Not applicable | $1.50 | $0.075 | $7.50 |
+| Gemini 4 Neon | GA | Versatile | Default | Not applicable | $3.00 | $0.15 | $15.00 |
 
 ### Fine-tuned (GitHub)
 
@@ -103,6 +106,8 @@ Anthropic models include a cache write cost in addition to cached input.
 | Model | Release status | Category | Input | Cached input | Output |
 | --- | --- | --- | ---: | ---: | ---: |
 | MAI-Code-1.1-Flash | GA | Lightweight | $0.20 | $0.02 | $1.20 |
+| MAI Code 2[^mai-code-2-promo] | GA | Powerful | $0.50 | $0.025 | $2.50 |
+| MAI Code 2 Flash[^mai-code-2-flash-promo] | GA | Lightweight | $0.05 | $0.005 | $0.25 |
 
 ### xAI
 
@@ -151,6 +156,8 @@ The number of AI credits a review consumes depends on the review effort level. T
 
 These figures are estimates only. Consumption generally increases with pull request size and repository custom instructions. Actual costs can fall outside these ranges and may change as models evolve. Estimates exclude GitHub Actions minutes.
 
+If you choose Adaptive as the review effort level, Copilot selects Lite, Balanced, or Max within the configured maximum review effort. Estimated consumption varies depending on the effort level selected.
+
 GitHub Actions minutes are attributed to the repository, and from there to the enterprise or cost center where applicable. For requests associated with organization members who have paid Copilot licenses, AI credits are charged to the member or organization, depending on how the **Choose how members with a Copilot license are billed** policy is configured.
 
 If the person associated with a review does not have a Copilot seat, usage is billed to the enterprise or cost center instead. For pull requests authored by Copilot cloud agent, usage is attributed first to the human co-author associated with the change. If the co-author cannot be billed, usage is billed directly to the organization. For pull requests authored by other bots, or when a bot requests the review, usage is also billed directly to the organization. These pull requests are eligible for agentic review.
@@ -173,3 +180,11 @@ Copilot Pro and Copilot Pro+ subscribers on **existing annual billing plans** us
 [^gemini-4-carbon-promo]: Gemini 4 Carbon is available at the promotional pricing of $2.00 per 1M input tokens, $0.10 per 1M cached input tokens, and $10.00 per 1M output tokens until December 1, 2026. Starting December 1, 2026, pricing is $4.00 per 1M input tokens, $0.20 per 1M cached input tokens, and $20.00 per 1M output tokens.
 
 <!-- end expires 2026-12-01 -->
+
+<!-- expires 2027-05-17 -->
+
+[^mai-code-2-promo]: MAI Code 2 is available at the promotional pricing of $0.50 per 1M input tokens, $0.025 per 1M cached input tokens, and $2.50 per 1M output tokens until May 17, 2027. Starting May 17, 2027, pricing is $1.00 per 1M input tokens, $0.05 per 1M cached input tokens, and $5.00 per 1M output tokens.
+
+[^mai-code-2-flash-promo]: MAI Code 2 Flash is available at the promotional pricing of $0.05 per 1M input tokens, $0.005 per 1M cached input tokens, and $0.25 per 1M output tokens until May 17, 2027. Starting May 17, 2027, pricing is $0.10 per 1M input tokens, $0.01 per 1M cached input tokens, and $0.50 per 1M output tokens.
+
+<!-- end expires 2027-05-17 -->

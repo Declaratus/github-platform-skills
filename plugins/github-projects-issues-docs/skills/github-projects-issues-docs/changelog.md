@@ -3,7 +3,7 @@
 
 github/docs does not carry the GitHub Changelog. The bundled `references/` tree is a snapshot (see `upstream_committed_at` in `references/SOURCE.json`), and features often ship, change status or get renamed before the docs catch up.
 
-This list covers 2025-11-13 to 2026-11-23. Where an entry and the docs disagree, the newer dated source wins; say which one you used and read the linked entry for scope and limits before relying on it. For anything after 2026-11-23, check the label feeds:
+This list covers 2025-11-24 to 2026-11-24. Where an entry and the docs disagree, the newer dated source wins; say which one you used and read the linked entry for scope and limits before relying on it. For anything after 2026-11-24, check the label feeds:
 
 - https://github.blog/changelog/label/projects-and-issues/feed/
 
@@ -11,6 +11,7 @@ Older entries are on `?paged=2`, `?paged=3` and so on.
 
 | Date | Type | Entry |
 |---|---|---|
+| 2026-11-23 | New | [Issue statuses and repository boards are in public preview](https://github.blog/changelog/2026-11-23-issue-statuses-and-repository-boards-are-in-public-preview) |
 | 2026-11-11 | Improvement | [Issue types and fields are available for personal accounts](https://github.blog/changelog/2026-11-11-issue-types-and-fields-are-available-for-personal-accounts) |
 | 2026-10-28 | New | [Issue artifacts are now in public preview](https://github.blog/changelog/2026-10-28-issue-artifacts-are-now-in-public-preview) |
 | 2026-10-08 | Improvement | [Screen readers can navigate timelines as lists](https://github.blog/changelog/2026-10-08-screen-readers-can-navigate-timelines-as-lists) |

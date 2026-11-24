@@ -9,6 +9,8 @@ product: 'Copilot Business, Copilot Enterprise, or the Copilot access plan for e
 contentType: tutorials
 category:
   - Manage Copilot for a team
+docsTeamMetrics:
+  - enterprise-onboarding
 ---
 
 Set budget controls before rolling out Copilot so that usage stays within your approved spending limits. A heavy user or automated agent session can consume a large amount of AI credits in a short time.

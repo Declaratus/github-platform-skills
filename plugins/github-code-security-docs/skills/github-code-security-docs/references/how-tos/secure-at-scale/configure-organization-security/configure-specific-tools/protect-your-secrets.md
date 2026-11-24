@@ -5,6 +5,8 @@ intro: Secure your organization's secrets within your budget by enabling GitHub 
 product: Organizations on GitHub Team or GitHub Enterprise
 allowTitleToDifferFromFilename: true
 contentType: how-tos
+docsTeamMetrics:
+  - secret-protection
 versions:
   fpt: '*'
   ghec: '*'

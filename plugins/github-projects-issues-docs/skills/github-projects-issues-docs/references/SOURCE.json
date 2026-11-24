@@ -1,9 +1,9 @@
 {
   "schema": 1,
   "repository": "https://github.com/github/docs.git",
-  "revision": "d59b2631959db46d71ca5f7748ec04311c6d0870",
-  "upstream_committed_at": "2026-11-13T15:26:07-08:00",
-  "markdown_pages": 88,
+  "revision": "44f009da482ef1470b37ffea456821014d892a1f",
+  "upstream_committed_at": "2026-11-24T06:28:18-08:00",
+  "markdown_pages": 89,
   "source_inputs": [
     "content/issues",
     "data/variables",

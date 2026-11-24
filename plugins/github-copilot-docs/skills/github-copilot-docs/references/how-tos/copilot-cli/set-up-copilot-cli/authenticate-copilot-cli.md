@@ -14,7 +14,7 @@ docsTeamMetrics:
 
 ## About authentication
 
-If you use your own LLM provider API keys (BYOK), GitHub authentication is not required.
+GitHub authentication is not required if you use your own LLM provider API keys (BYOK) or sign in with a Microsoft Entra account.
 
 Authentication is required for any other GitHub Copilot CLI usage.
 
@@ -26,9 +26,12 @@ When authentication is required, Copilot CLI supports several methods. The metho
 
 Once authenticated, Copilot CLI remembers your login and automatically uses the token for all Copilot API requests. You can log in with multiple accounts, and the CLI will remember the last-used account. Token lifetime and expiration depend on how the token was created on your account or organization settings.
 
-## Unauthenticated use
+## Using Copilot CLI without GitHub authentication
 
-If you configure Copilot CLI to use your own LLM provider API keys (BYOK), GitHub authentication is **not required**. Copilot CLI can connect directly to your configured provider without a GitHub account or token.
+GitHub authentication is **not required** if you use either of the following for AI model requests:
+
+* **Your own LLM provider API keys (BYOK)**: Copilot CLI connects directly to your configured provider without a GitHub account or token.
+* **A Microsoft Entra account**: If your Microsoft Entra tenant uses OpenID Connect (OIDC) to connect to GitHub Enterprise Managed Users, you can use your Microsoft Entra account to sign in on Windows or macOS. If a Microsoft 365 Copilot license exists for that Microsoft Entra user, model requests can go to Microsoft 365 Copilot. See [Authenticating with Microsoft Entra](#authenticating-with-microsoft-entra).
 
 However, without GitHub authentication, the following features are **not available**:
 
@@ -36,17 +39,17 @@ However, without GitHub authentication, the following features are **not availab
 * GitHub MCP server: Requires authentication to access GitHub APIs
 * GitHub Code Search: Requires authentication to query GitHub's search index
 
-You can combine BYOK with GitHub authentication to get the best of both: your preferred model for AI responses, plus access to GitHub-hosted features like `/delegate` and code search.
+You can combine BYOK or Microsoft Entra authentication with GitHub authentication to get the best of both: your preferred model for AI responses, plus access to GitHub-hosted features like `/delegate` and code search.
 
 ### Offline mode
 
- If you set the `COPILOT_OFFLINE` environment variable to `true`, Copilot CLI runs without contacting GitHub's servers. In offline mode:
+If you set the `COPILOT_OFFLINE` environment variable to `true`, Copilot CLI runs in offline mode:
 
 * No GitHub authentication is attempted.
-* The CLI only makes network requests to your configured BYOK provider.
-* Telemetry is fully disabled.
+* Model requests use your configured provider.
+* First-party client-side telemetry is disabled. OpenTelemetry exports configured by you or your enterprise can still be sent.
 
-Offline mode is **only fully air-gapped** if your BYOK provider is local or otherwise within the same isolated environment (for example, a model running on-premises with no external network access). If `COPILOT_PROVIDER_BASE_URL` points to a remote or internet-accessible endpoint, prompts and code context will still be sent over the network to that provider. Without offline mode, even when using BYOK without GitHub authentication, telemetry is still sent normally.
+Offline mode does not enforce network isolation. For an air-gapped setup, your model provider and any configured MCP servers, telemetry exporters, and shell commands must remain within the isolated environment. If `COPILOT_PROVIDER_BASE_URL` points to a remote or internet-accessible endpoint, prompts and code context will still be sent over the network to that provider. Without offline mode, even when using BYOK without GitHub authentication, telemetry is still sent normally.
 
 ### Supported token types
 
@@ -67,7 +70,7 @@ By default, the CLI stores your OAuth token in your operating system's keychain 
 | Windows | Credential Manager |
 | Linux | libsecret (GNOME Keyring, KWallet) |
 
-If the system keychain is unavailable—for example, on a headless Linux server without `libsecret` installed—the CLI prompts you to store the token in a plaintext configuration file at `~/.copilot/config.json`.
+If the system keychain is unavailable—for example, on a headless Linux server without `libsecret` installed—the CLI prompts you to store the token in a plaintext configuration file, by default at `~/.copilot/config.json`.
 
 When you run a command, Copilot CLI checks for credentials in the following order:
 
@@ -78,7 +81,7 @@ When you run a command, Copilot CLI checks for credentials in the following orde
 1. GitHub CLI (`gh auth token`) fallback
 
 > [!NOTE]
-> * An environment variable silently overrides a stored OAuth token. If you set `GH_TOKEN` for another tool, the CLI uses that token instead of the OAuth token from `copilot login`. To avoid unexpected behavior, unset environment variables you do not intend the CLI to use. There is one exception: in GitHub Codespaces, the `GITHUB_TOKEN` that is injected automatically does not take precedence over an account you signed in with using `/login`. A `GITHUB_TOKEN`, `COPILOT_GITHUB_TOKEN`, or `GH_TOKEN` that you export explicitly still does.
+> * An environment variable silently overrides a stored OAuth token. If you set `GH_TOKEN` for another tool, the CLI uses that token instead of the OAuth token from `copilot login`. To avoid unexpected behavior, unset environment variables you do not intend the CLI to use. There is one exception: in GitHub Codespaces, when `GITHUB_TOKEN` has a `ghu_` or `ghs_` prefix and neither `COPILOT_GITHUB_TOKEN` nor `GH_TOKEN` has a nonempty value, a stored `/login` account takes precedence. This applies even if you set `GITHUB_TOKEN` yourself.
 > * When you configure BYOK provider environment variables (for example, `COPILOT_PROVIDER_BASE_URL`, `COPILOT_PROVIDER_API_KEY`), Copilot CLI uses these for AI model requests regardless of your GitHub authentication status. GitHub tokens are only needed for GitHub-hosted features.
 
 ## Authenticating with OAuth
@@ -93,12 +96,13 @@ OAuth is the default authentication method for interactive use. You can authenti
    /login
    ```
 
-1. Select the account you want to authenticate with. For GitHub Enterprise Cloud with data residency, enter the hostname of your instance
+1. Select the account you want to authenticate with. For GitHub Enterprise Cloud with data residency, enter the hostname of your instance when prompted. If you select **Your organization (Microsoft Entra)**, follow the prompts to sign in, then skip the remaining steps.
 
    ```text
    What account do you want to log into?
     1. GitHub.com
     2. GitHub Enterprise Cloud with data residency (*.ghe.com)
+    3. Your organization (Microsoft Entra)
    ```
 
 1. Choose how you want to sign in. The recommended option is listed first, and depends on your environment: the browser flow on a local terminal, or the device code flow in a remote or headless environment. The following example shows the prompt in a local terminal:
@@ -121,7 +125,7 @@ OAuth is the default authentication method for interactive use. You can authenti
      Press any key to copy to clipboard and open browser...
      ```
 
-     Navigate to the verification URL at `https://github.com/login/device` if your browser did not open automatically, then paste the one-time code in the field on the page.
+     Navigate to the verification URL displayed in the CLI if your browser did not open automatically, then paste the one-time code in the field on the page.
 
 1. If your organization uses SAML SSO, click **Authorize** next to each organization you want to grant access to.
 1. Review the requested permissions and click **Authorize GitHub Copilot CLI**.
@@ -174,6 +178,34 @@ OAuth is the default authentication method for interactive use. You can authenti
    Signed in successfully as Octocat.
    ```
 
+## Authenticating with Microsoft Entra
+
+> [!NOTE]
+> Using Microsoft Entra with Copilot CLI is in public preview and subject to change.
+
+Authentication with a Microsoft Entra account is supported on Windows and macOS in Copilot CLI version 1.0.113 and later.
+
+### Prerequisites for using GitHub Enterprise Managed Users
+
+Your Microsoft Entra tenant must use OIDC to connect to GitHub Enterprise Managed Users. For more information, see [AUTOTITLE](/enterprise-cloud@latest/admin/managing-iam/configuring-authentication-for-enterprise-managed-users/about-enterprise-managed-authorization).
+
+### Prerequisites for using Microsoft 365 Copilot models
+
+Copilot CLI supports Microsoft 365 Copilot licenses for [Frontier](https://learn.microsoft.com/microsoft-365/admin/manage/get-started-frontier?view=o365-worldwide) customers only. To use this feature, you must have:
+
+* A Microsoft Entra account with access to Microsoft 365 Copilot through your organization.
+* An administrator must enable the following settings in the [Microsoft 365 admin center](https://admin.cloud.microsoft.com/):
+  * The Microsoft Copilot **Code** spending policy for [usage-based billing](https://learn.microsoft.com/microsoft-365/copilot/usage-based-billing-overview-copilot-credits). Your organization's [Billing Administrator](https://learn.microsoft.com/entra/identity/role-based-access-control/permissions-reference#billing-administrator) or [Global Administrator](https://learn.microsoft.com/entra/identity/role-based-access-control/permissions-reference#global-administrator) can enable this policy.
+  * The **Copilot Frontier** setting. Your organization's [AI Administrator](https://learn.microsoft.com/entra/identity/role-based-access-control/permissions-reference#ai-administrator) or Global Administrator can update this setting.
+  * The **GitHub Copilot access (Frontier)** setting, which is disabled by default. Your organization's Global Administrator can update this setting.
+
+### Signing in with your organization
+
+1. Run `/login` in Copilot CLI.
+1. Select **Your organization (Microsoft Entra)** and follow the prompts to select an account or sign in.
+
+After you sign in, models permitted by your entitlements appear in the `/model` picker. For more information on how this works with Microsoft 365 Copilot, see [AUTOTITLE](/copilot/concepts/copilot-surfaces/copilot-cli#using-microsoft-365-copilot-models).
+
 ## Authenticating with environment variables
 
 For non-interactive environments, you can authenticate by setting an environment variable with a supported token. This is ideal for CI/CD pipelines, containers, or headless servers.
@@ -218,7 +250,7 @@ To add another account, run `copilot login` from a new terminal session, or run 
 
 ## Signing out and removing credentials
 
-To sign out, type `/logout` at the Copilot CLI prompt. This removes the locally stored token but does not revoke it on GitHub.
+To sign out of an account you added with `/login` or `copilot login`, type `/logout` at the Copilot CLI prompt. This removes the locally stored token but does not revoke it on GitHub. The command does not remove environment-variable tokens or sign out of GitHub CLI. These credential sources can be configured at the same time, so signing out of one may leave another available when you restart the CLI. To stop the CLI from using those sources, exit the CLI, unset every configured `COPILOT_GITHUB_TOKEN`, `GH_TOKEN`, or `GITHUB_TOKEN` environment variable, and run `gh auth logout` if you also use a GitHub CLI account.
 
 To revoke the OAuth app authorization on GitHub and prevent it from being used elsewhere, follow these steps.
 

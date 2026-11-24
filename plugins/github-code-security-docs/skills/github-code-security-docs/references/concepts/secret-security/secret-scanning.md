@@ -16,6 +16,8 @@ versions:
   ghec: '*'
 shortTitle: Secret scanning
 contentType: concepts
+docsTeamMetrics:
+  - secret-protection
 category:
   - Protect your secrets
 ---
@@ -83,7 +85,7 @@ Beyond the default detection of partner and provider secrets, you can expand and
 * **Validity checks.** Prioritize remediation by checking whether detected secrets are still active.
 {% endif %}
 {% ifversion secret-scanning-ai-generic-secret-detection %}
-* **AI-detected secrets.** Use AI to detect unstructured secrets like passwords.
+* **AI-detected secrets.** Use AI to detect unstructured secrets like passwords.{% ifversion ghes %} On GitHub Enterprise Server, classification runs locally on your appliance, so it works in air-gapped and network-isolated environments.{% endif %}
 {% endif %}
 {% ifversion secret-scanning-custom-pattern-ai-generated %}
 * **AI-generated regular expressions.** Use AI to generate regular expressions for custom patterns.

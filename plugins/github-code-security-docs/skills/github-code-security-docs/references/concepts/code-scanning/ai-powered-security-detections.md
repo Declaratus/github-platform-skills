@@ -1,6 +1,6 @@
 ---
 title: AI Scan for pull requests
-shortTitle: AI Scan for pull requests
+shortTitle: 'AI Scan for pull requests'
 allowTitleToDifferFromFilename: true
 intro: 'AI Scan uses an AI-based scanning engine to find security vulnerabilities in pull requests for languages and frameworks not covered by CodeQL.'
 versions:
@@ -110,6 +110,9 @@ Before enabling AI Scan on pull requests for an organization, confirm repository
 Enabling the organization setting enables AI Scan immediately for all eligible repositories where code scanning is enabled. Repository administrators can then opt out, but qualifying pull requests can consume Code Security AI Credits before they do.
 
 You do not need to select a model to enable AI Scan.
+
+> [!NOTE]
+> AI Scan features do not respect the models enabled in the Copilot **Configure models** policy for your enterprise or organization, so AI Scan may use models that the policy doesn't allow. To control whether AI Scan can run, use the AI Scan settings and enterprise policy instead.
 
 * **Enterprise**: Enterprise owners can allow or prevent organizations from enabling AI Scan. The policy is set to "Not allowed" by default. This policy controls both AI Scan on pull requests and AI Scan for a repository's backlog. Allowing AI Scan does not enable it automatically. See [AUTOTITLE](/enterprise-cloud@latest/admin/enforcing-policies/enforcing-policies-for-your-enterprise/enforcing-policies-for-code-security-and-analysis-for-your-enterprise#enforcing-a-policy-to-manage-ai-scan-in-your-enterprises-repositories).
 * **Organization**: Organization owners and security managers can enable AI Scan for pull requests for eligible repositories. Repositories inherit the organization setting. See [AUTOTITLE](/code-security/how-tos/secure-at-scale/configure-organization-security/establish-complete-coverage/configure-global-settings#enabling-ai-scan-for-pull-requests).

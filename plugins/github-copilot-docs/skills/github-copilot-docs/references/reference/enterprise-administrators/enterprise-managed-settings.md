@@ -27,6 +27,7 @@ For instructions on creating the file, see [AUTOTITLE](/copilot/how-tos/administ
 | `permissions.disableAssistedPermissionsMode` | Prevents users from enabling assisted permissions |
 | `permissions.defaultMode` | Controls the default permission mode for new sessions |
 | `features.computerUse` | Controls whether users can enable computer use |
+| `features.browserUse` | Controls whether users can enable browser use |
 | `model` | Sets your preferred model as the default for new conversations |
 | `fusionTier` | Sets the default effort level for new conversations when the selected model is `fusion` |
 | `autoTier` | Sets the default Auto routing tier for new conversations |
@@ -34,6 +35,7 @@ For instructions on creating the file, see [AUTOTITLE](/copilot/how-tos/administ
 | `enabledPlugins` | Enables or disables specific plugins by key |
 | `extraKnownMarketplaces` | Adds plugin marketplaces that users can access |
 | `strictKnownMarketplaces` | Restricts plugin installation to explicitly listed marketplaces |
+| `strictPluginOnlyCustomization` | Requires selected customization categories to come from eligible plugins or managed settings |
 | `telemetry` | Configures OpenTelemetry export, routing Copilot usage data to a collector of your choice |
 | `remoteControl` | Restricts whether sessions hosted on this device can be remotely controlled, based on the controlling client's SSO authorization status for the listed organizations. Doesn't affect the user's ability to remotely control sessions hosted on other devices |
 | `forceRemoteSettingsRefresh` | Requires a fresh server-managed settings fetch on client startup |
@@ -60,8 +62,9 @@ Some keys require a minimum version in certain clients. See the footnotes in the
 | `permissions.disableAssistedPermissionsMode` | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: x) | (icon: x) |
 | `permissions.defaultMode` | (icon: check) | (icon: check) | (icon: check) | (icon: x) | (icon: x) | (icon: x) |
 | `features.computerUse` | (icon: check) | (icon: x) | (icon: check) | (icon: x) | (icon: x) | (icon: x) |
+| `features.browserUse` | (icon: check) | (icon: check) | (icon: check) | (icon: x) | (icon: x) | (icon: check) |
 | `model` | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: x) |
-| `fusionTier` | (icon: check)[^fusion-tier-cli] | (icon: check)[^fusion-tier-vscode] | (icon: check)[^fusion-tier-app] | (icon: x) | (icon: x) | (icon: x) |
+| `fusionTier` | (icon: check)[^fusion-tier-cli] | (icon: check)[^fusion-tier-vscode] | (icon: check)[^fusion-tier-app] | (icon: x) | (icon: x) | (icon: check)[^fusion-tier-jetbrains] |
 | `autoTier` | (icon: check)[^auto-tier-cli] | (icon: check)[^auto-tier-vscode] | (icon: x) | (icon: x) | (icon: x) | (icon: x) |
 | `communication.support.url` | (icon: check) | (icon: x) | (icon: x) | (icon: x) | (icon: x) | (icon: x) |
 | `enabledPlugins` | (icon: check) | (icon: check) | (icon: check) | (icon: x) | (icon: check) | (icon: check) |
@@ -83,6 +86,8 @@ Some keys require a minimum version in certain clients. See the footnotes in the
 [^fusion-tier-vscode]: `fusionTier` requires VS Code 1.144.0 or later.
 
 [^fusion-tier-app]: `fusionTier` requires the GitHub Copilot app 1.1.33-4 or later.
+
+[^fusion-tier-jetbrains]: `fusionTier` requires version 1.21.0 or later of the GitHub Copilot plugin for JetBrains IDEs.
 
 [^auto-tier-cli]: `autoTier` requires Copilot CLI 1.0.87-0 or later.
 
@@ -111,7 +116,8 @@ The following example shows these keys in one managed settings file.
 ```json
 {
   "features": {
-    "computerUse": false
+    "computerUse": false,
+    "browserUse": false
   },
   "model": "auto",
   "autoTier": "intelligence",
@@ -207,6 +213,13 @@ The following example shows these keys in one managed settings file.
 
 Controls whether users can enable computer use in GitHub Copilot CLI and the GitHub Copilot app. Set `features.computerUse` to `false` to prevent users from enabling computer use. A local setting cannot override this restriction. Set the value to `true`, or omit the key, to allow users to control computer use through their local settings.
 
+## features.browserUse
+
+> [!NOTE]
+> Browser use is in public preview and subject to change.
+
+Controls whether users can enable browser use in a Copilot surface. Set `features.browserUse` to `false` to prevent users from enabling browser use. A local setting cannot override this restriction. Set the value to `true`, or omit the key, to allow users to control browser use through their local settings.
+
 ## enabledPlugins
 
 Defines plugins that are automatically installed or blocked for all enterprise users. Each entry uses the format `PLUGIN-NAME@MARKETPLACE-NAME` as the key, with a boolean value: `true` to require the plugin to be enabled, or `false` to require it to be disabled. See [AUTOTITLE](/copilot/concepts/enterprise/plugin-standards).
@@ -274,6 +287,64 @@ This key is overridable for enterprise teams. Wrap the complete allowlist in `ov
 ```
 
 Use a regular array in the enterprise team file to replace the default allowlist. Omitting the key retains the enterprise default. An explicit empty array, `[]`, means complete lockdown, not an unmanaged policy.
+
+## strictPluginOnlyCustomization
+
+Choose which customization categories must come from eligible plugins or managed settings instead of standalone user, workspace, or project configuration. This controls their sources without disabling the capabilities entirely. Other policies still determine which customizations can load.
+
+The setting accepts these values:
+
+* `true`: Restricts all five supported categories.
+* `false` or omitted: Adds no restriction from this key.
+* An array: Restricts only the listed categories.
+
+The supported category names are:
+
+{% rowheaders %}
+
+| Category | Customizations |
+| --- | --- |
+| `skills` | Agent skills |
+| `agents` | Custom agents |
+| `hooks` | Hooks |
+| `mcp` | MCP servers |
+| `extensions` | Executable Copilot extensions, including canvas providers. This does not refer to VS Code Marketplace extensions. |
+
+{% endrowheaders %}
+
+For `extensions`, the restriction also blocks standalone extensions loaded from session-state directories. There is no separate category for canvases.
+
+For example, restrict standalone MCP servers and executable extensions while leaving skills, agents, and hooks unrestricted by this key:
+
+```json
+{
+  "strictPluginOnlyCustomization": ["mcp", "extensions"]
+}
+```
+
+For server-managed deployments, wrap the value in `{ "overridable": VALUE }` to allow the following managed settings to replace the enterprise default:
+
+* Enterprise-team settings
+* Organization settings
+* Organization-team settings
+
+These sources can replace the default only when they apply to the user. Without an applicable replacement, the default remains. None of these layers can relax an unwrapped enterprise restriction.
+
+The server resolves the wrapper before sending the effective value to clients. User settings and repository settings cannot relax that value.
+
+Restrictions from overlapping enterprise team settings are combined. A category restricted by any matching team stays restricted, even if another team sets the key to `false` or omits that category.
+
+After the server resolves overrides, restrictions from server-managed, device-managed, and policy-helper settings are combined. Device-managed settings include both native MDM policies and administrator-deployed `managed-settings.json` files.
+
+A category restricted by any of these sources stays restricted, even if another source sets the key to `false` or omits that category. An enterprise team override cannot relax a device-managed restriction.
+
+For an example that allows a designated team to develop standalone MCP servers, see [AUTOTITLE](/copilot/how-tos/administer-copilot/manage-for-enterprise/use-managed-settings/override-settings-for-teams#allow-an-mcp-development-team-to-use-standalone-servers).
+
+Plugins can remain eligible even if the enterprise does not require them through `enabledPlugins`. Use `strictKnownMarketplaces` separately to restrict marketplace sources. For a combined example, see [AUTOTITLE](/copilot/how-tos/administer-copilot/manage-for-enterprise/use-managed-settings/manage-plugin-marketplaces-and-plugins#restrict-standalone-customizations).
+
+MCP server allowlists and denylists, stricter managed-only policies, permissions, and sandbox restrictions still apply. Allowing a customization's source does not grant it additional access.
+
+In VS Code, this behavior applies to Copilot sessions that use Agent Host. Do not rely on this setting to enforce the same restrictions in other session types.
 
 ## model
 
@@ -453,6 +524,8 @@ Omit this key entirely to allow all servers, subject to any entries in `deniedMc
 
 When multiple settings sources define `allowedMcpServers`, the effective allowlist is the intersection of all sources. A server must be permitted by every source to run.
 
+In Copilot CLI, set the `allowManagedMcpServersOnly` key in MDM managed settings to `true` to restrict server eligibility to the managed `allowedMcpServers` allowlist, servers from managed or force-enabled plugins, and any fixed managed-MCP deployment. Lower-precedence user or workspace allowlist entries cannot broaden this policy. `deniedMcpServers` still applies, and trusted first-party servers remain exempt.
+
 Each entry must contain exactly one matcher property.
 
 | Property | Matching behavior | Applicable servers |
@@ -478,7 +551,9 @@ Before comparing a `serverUrl` pattern with a server URL, the client normalizes 
 
 Defines MCP servers that are unconditionally blocked. A server matching any entry is blocked even if it also matches an entry in `allowedMcpServers`. Deny rules always take precedence over allow rules.
 
-First-party Copilot servers, such as the built-in GitHub MCP server, are exempt from deny rules and cannot be blocked.
+First-party Copilot servers, such as the built-in GitHub MCP server, are exempt from these deny rules.
+
+In Copilot CLI, the account's Copilot MCP policy still applies to trusted first-party servers despite their exemption from `allowedMcpServers` and `deniedMcpServers`. If that policy disables MCP, the built-in GitHub MCP server does not start.
 
 When multiple settings sources define `deniedMcpServers`, the effective denylist is the union of all sources. A server blocked by any source is blocked for all.
 
@@ -503,7 +578,7 @@ The following sub-properties are supported:
 * `allowBypass`: `false` prevents individual commands from running outside the sandbox and prevents users from disabling sandboxing for the rest of the current session from an active sandbox-bypass permission prompt. In Copilot CLI, it also prevents users from disabling sandboxing with `/sandbox disable`.
 * `addCurrentWorkingDirectory`: `false` prevents the runtime from automatically adding the current working directory to the sandbox's read/write paths.
 * `sandboxMcpServers`: `true` requires local MCP servers started in the session to run in the sandbox. Remote MCP servers do not run in the local sandbox.
-* `sandboxLspServers`: `true` requires language servers started in the session to run in the sandbox.
+* `sandboxLspServers`: `true` requires language servers started in the session to run in the sandbox. In Copilot CLI, this Boolean defaults to `true` and applies when sandboxing is enabled.
 * `auth.git`: `false` prevents the runtime from injecting a GitHub token for authenticated Git HTTPS operations in the sandbox.
 * `auth.gh`: `false` prevents the runtime from injecting a GitHub token for GitHub CLI in the sandbox.
 * `allowDevToolAccess`: `false` prevents automatic access to development-tool configuration, caches, registries, and toolchains. These locations can contain package registry credentials or tokens. Disabling access can cause package restoration, authenticated registry operations, or builds that use shared caches to fail unless you explicitly grant the required paths.
@@ -546,15 +621,15 @@ Configures filesystem access for sandboxed processes. Paths should be absolute. 
 
 ### `sandbox.userPolicy.network`
 
-Configures network access for sandboxed processes.
+Configures network access for sandboxed processes. Server-managed settings support the following properties:
 
 * `allowOutbound`: `false` blocks outbound network access.
 * `allowLocalNetwork`: `false` restricts local network access. Its effect on sandboxed commands differs by operating system. Windows proxying and host rules require local network access, so a policy that combines them with `false` prevents those commands from starting.
-* `allowedHosts`: An array of hostnames or IP addresses that sandboxed processes are allowed to reach. A non-empty list blocks hosts that do not match. Entries can be exact hostnames, exact IP addresses, `*.example.com` for subdomains but not the root domain, or `*` for every host. Do not include URLs or ports. User and managed allowlists are combined restrictively. If they have no overlapping hosts, all hosts are denied.
-* `blockedHosts`: An array of hostnames or IP addresses that sandboxed processes cannot reach. Blocked hosts take precedence over allowed hosts, and blocking a domain also blocks its subdomains.
 * `proxy`: An object that routes sandboxed network traffic through an upstream HTTP proxy. Set `proxy.url` to the proxy URL. Platform support and enforcement vary.
 
-In Copilot CLI, host rules and upstream proxies use a built-in local proxy. On macOS and Linux, the sandbox prevents programs from bypassing it with direct connections. On Windows, the sandbox relies on programs honoring the proxy settings. As a result, on Windows, these controls do not provide the same protection against direct connections. For platform requirements and limitations, see [Configuring network settings](/copilot/how-tos/cloud-and-local-sandboxes/configuring-local-sandbox-settings#configuring-network-settings).
+In Copilot CLI, `allowedHosts` and `blockedHosts`, including IPv4 and IPv6 CIDR rules, can be configured through user or device-managed settings. These properties are not supported in the server-managed `managed-settings.json` file. For host-rule configuration, validation, and platform limitations, see [Configuring network settings](/copilot/how-tos/cloud-and-local-sandboxes/configuring-local-sandbox-settings#configuring-network-settings).
+
+In Copilot CLI, host rules and upstream proxies use a built-in local proxy. On macOS and Linux, the sandbox prevents programs from bypassing it with direct connections. On Windows, the sandbox relies on programs honoring the proxy settings. As a result, on Windows, these controls do not provide the same protection against direct connections.
 
 ### `sandbox.userPolicy.seatbelt`
 

@@ -7,6 +7,8 @@ versions:
 product: "{% ifversion fpt or ghec %}\nGitHub Team or GitHub Enterprise Cloud\n{% endif %}"
 permissions: 'Users with **write** access'
 contentType: tutorials
+docsTeamMetrics:
+  - code-quality
 redirect_from:
   - /code-security/code-quality/tutorials/fix-findings-in-prs
   - /code-security/tutorials/improve-code-quality/fix-findings-in-prs

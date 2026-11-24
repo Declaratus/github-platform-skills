@@ -7,6 +7,8 @@ permissions: 'Repository owners, organization owners, security managers, and use
 versions:
   feature: secret-scanning-ai-generic-secret-detection
 contentType: how-tos
+docsTeamMetrics:
+  - secret-protection
 redirect_from:
   - /code-security/secret-scanning/enabling-ai-powered-generic-secret-detection
   - /code-security/secret-scanning/using-advanced-secret-scanning-and-push-protection-features/generic-secret-detection/enabling-ai-powered-generic-secret-detection
@@ -24,7 +26,11 @@ To use scanning for AI-detected secrets, an enterprise owner must first set a po
 
 {% endif %}
 
-You can enable scanning for AI-detected secrets in the security settings page of your repository or organization.
+{% ifversion ghes %}
+For GitHub Enterprise Server, a site administrator must first enable AI-detected secrets for the instance so that repository and security-configuration controls are available. If you don't have site administrator access, ask your GitHub Enterprise Server administrator to enable this setting first. See [AUTOTITLE](/code-security/how-tos/secure-at-scale/configure-enterprise-security/configure-specific-tools/configure-secret-scanning#enabling-ai-detected-secrets).
+
+{% endif %}
+Enabling scanning for AI-detected secrets queues a historical scan of existing code. Findings appear in the **Generic** alerts list. Disabling AI-detected secrets doesn't disable standard secret scanning.
 
 {% ifversion secret-scanning-ai-generic-secret-detection %}
 

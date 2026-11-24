@@ -1,6 +1,6 @@
 ---
 title: Viewing and managing AI Scan alerts on your repository''s default branch
-shortTitle: Manage AI Scan backlog alerts
+shortTitle: 'Manage AI Scan backlog alerts'
 intro: 'Run an AI Scan, review the alerts in your code scanning backlog, and check fixes for security vulnerabilities.'
 allowTitleToDifferFromFilename: true
 permissions: 'Users with **write** access'

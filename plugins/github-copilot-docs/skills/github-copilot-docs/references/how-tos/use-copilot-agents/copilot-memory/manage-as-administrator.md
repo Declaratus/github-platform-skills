@@ -9,6 +9,7 @@ versions:
 contentType: how-tos
 category:
   - Manage Copilot for a team
+  - Build agents at enterprise scale
 ---
 
 Copilot Memory lets Copilot learn about your codebase and your personal preferences, helping Copilot agents work more effectively. For more information, see [AUTOTITLE](/copilot/concepts/prompting-and-context/copilot-memory).
@@ -26,7 +27,7 @@ Repository-level facts are controlled separately through repository access setti
 
 For defaults by plan and surface, see [AUTOTITLE](/copilot/concepts/prompting-and-context/copilot-memory#default-settings).
 
-Users on supported paid plans can opt out of user-level preferences in their personal Copilot settings. This affects only their sessions. It does not disable repository-level facts or change other users' sessions.
+Users on supported paid plans can allow user memories, repository memories, both, or neither in their personal Copilot settings. This choice restricts memory use in work they start, including agent sessions and user-initiated code reviews, without changing shared repository settings or other users' choices. Organization-triggered work does not use a personal scope preference. Disabling only user memories can leave repository memories enabled. Copilot code review never uses user-level preferences.
 
 Local client settings, such as `/memory off` in Copilot CLI, can disable both types of memory for that client. See [AUTOTITLE](/copilot/how-tos/use-copilot-agents/copilot-memory/manage-for-yourself).
 
@@ -54,6 +55,8 @@ The procedure below sets the enterprise policy for **user-level preferences**—
 
 Organization owners can enable or disable Copilot Memory for storing and using user-level preferences, for all members of the organization with a Copilot license.
 
+The organization's Copilot Memory section has separate **User memories** and **Repository memories** controls. Each controls its own type of memory independently.
+
 If the organization belongs to an enterprise, the ability for organization owners to enable or disable Copilot Memory may be controlled by the enterprise-level policy.
 
 1. In the upper-right corner of GitHub, click your profile picture, then click **(icon: organization) Organizations**.
@@ -63,11 +66,11 @@ If the organization belongs to an enterprise, the ability for organization owner
    ![Screenshot of the tabs in an organization's profile. The "Settings" tab is outlined in dark orange.](/assets/images/help/discussions/org-settings-global-nav-update.png)
 1. In the sidebar, under "Code, planning, and automation", click **(icon: copilot) Copilot**, then click **Policies**.
 1. Under "Features", scroll down to the setting for **Copilot Memory**.
-1. Click the dropdown button and select **Enabled**.
+1. In the **User memories** dropdown, select **Enabled**.
 
-   User-level preferences are enabled for all members of the organization who have a Copilot license.
+   User-level preferences are allowed for members of the organization who have a Copilot license, subject to their personal settings and other applicable restrictions.
 
-   Configure repository-level facts separately with the **Repository access** controls. See [Managing Copilot Memory for repositories from an organization's settings](#managing-copilot-memory-for-repositories-from-an-organizations-settings) later in this article.
+   Configure repository-level facts separately with the **Repository memories** control. See [Managing Copilot Memory for repositories from an organization's settings](#managing-copilot-memory-for-repositories-from-an-organizations-settings) later in this article.
 
 ## Enabling Copilot Dreaming
 
@@ -113,7 +116,7 @@ If your organization belongs to an enterprise, the enterprise must select **Let 
    ![Screenshot of the tabs in an organization's profile. The "Settings" tab is outlined in dark orange.](/assets/images/help/discussions/org-settings-global-nav-update.png)
 1. In the sidebar, under "Code, planning, and automation", click **(icon: copilot) Copilot**, then click **Policies**.
 1. Find the "Memory" section.
-1. Review the **Repository access** setting before enabling Copilot Dreaming. When you enable Copilot Dreaming, it will be enabled for all of the repositories covered by the current repository access setting.
+1. Review the **Repository memories** setting before enabling Copilot Dreaming. When you enable Copilot Dreaming, it will be enabled for all of the repositories covered by that setting.
 1. In the **Dreaming** dropdown, select **Enabled**.
 
    The **Enabled** option only applies to repositories in the Copilot Memory repository selection. Removing a repository from this selection disables both Copilot Memory and Copilot Dreaming for that repository.
@@ -299,13 +302,13 @@ Organization owners can allow storage and use of repository-level facts for all,
 1. In the sidebar, under "Code, planning, and automation", click **(icon: copilot) Copilot**, then click **Policies**.
 1. Under "Features", scroll down to the setting for **Copilot Memory**.
 
-1. Click the dropdown button for "Repository access" and choose one of the options:
+1. In the **Repository memories** dropdown, choose one of the options:
 
    * **No repositories**: Repository-level facts are not stored or used for any repositories owned by this organization.
    * **All repositories**: Repository-level facts are stored and used for all repositories owned by this organization.
    * **Selected repositories**: Repository-level facts are only stored and used for the repositories you select.
 
-1. If you chose **Selected repositories**, click the button beside "Selected repositories" and choose the repositories for which you want to enable repository-level facts.
+1. If you chose **Selected repositories**, use the repository picker in the **Repository memories** row to choose the repositories for which you want to enable repository-level facts.
 
 ### Managing Copilot Memory from a repository's settings
 
@@ -329,7 +332,7 @@ When you disable Copilot Memory for a repository, Copilot stops creating and app
 
 #### Viewing and deleting repository-level facts
 
-To view or delete repository-level facts in the repository's settings, you must have write access to the repository and user-level preferences enabled for your account, including permission from any applicable enterprise or organization policy. This requirement applies to the settings page. Whether agents can use repository-level facts is controlled separately by repository access settings and applicable client settings.
+To view or delete repository-level facts in the repository's settings, you must have write access and be eligible to use repository memories. Your personal scope choice must allow repository memories, and applicable repository, organization, and enterprise restrictions must also allow them. User-level preferences do not need to be enabled. See [AUTOTITLE](/copilot/concepts/prompting-and-context/copilot-memory#summary-of-when-copilot-memory-is-used).
 
 You can review the stored facts and delete any that are inappropriate, misleading, or incorrect. Only repository administrators can change the repository's Copilot Memory setting.
 

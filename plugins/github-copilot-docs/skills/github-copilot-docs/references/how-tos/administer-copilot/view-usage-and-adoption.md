@@ -6,6 +6,8 @@ permissions: 'Enterprise owners, enterprise billing managers, organization owner
 versions:
   feature: copilot
 contentType: how-tos
+docsTeamMetrics:
+  - copilot-usage-metrics
 allowTitleToDifferFromFilename: true
 redirect_from:
   - /copilot/how-tos/administer-copilot/manage-for-enterprise/view-usage-and-adoption

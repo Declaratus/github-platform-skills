@@ -9,6 +9,8 @@ permissions: 'Enterprise owners, organization owners, billing managers, and pers
 audience:
   - driver
 contentType: how-tos
+docsTeamMetrics:
+  - code-quality
 category:
   - Improve code quality
 ---
