@@ -12,6 +12,8 @@ Claude Code marketplace of skills for working with GitHub at the **platform / or
 
 Then ask Claude anything that fits the skill's scope (organization-level decisions about GitHub) and it will load the relevant content automatically.
 
+Some skills check the live docs.github.com page for fast-moving facts (prices, model lists, preview status). That runs `curl` through Bash, so allow `Bash(curl:*)` to skip the prompt. See [docs/docs-freshness-strategy.md](docs/docs-freshness-strategy.md).
+
 ## Available plugins
 
 | Plugin | What it gives Claude |
@@ -94,6 +96,8 @@ claude plugin validate .
 ```
 
 Checks `marketplace.json` syntax, plugin names, source paths, and version coherence.
+
+CI doesn't run this, because the Claude CLI isn't on the runner.
 
 ### Keep generated validation output out of Git
 
