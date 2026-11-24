@@ -3,7 +3,7 @@
 
 github/docs does not carry the GitHub Changelog. The bundled `references/` tree is a snapshot (see `upstream_committed_at` in `references/SOURCE.json`), and features often ship, change status or get renamed before the docs catch up.
 
-This list covers 2026-05-17 to 2026-11-23. Where an entry and the docs disagree, the newer dated source wins; say which one you used and read the linked entry for scope and limits before relying on it. For anything after 2026-11-23, check the label feeds:
+This list covers 2026-05-28 to 2026-11-24. Where an entry and the docs disagree, the newer dated source wins; say which one you used and read the linked entry for scope and limits before relying on it. For anything after 2026-11-24, check the label feeds:
 
 - https://github.blog/changelog/label/application-security/feed/
 - https://github.blog/changelog/label/supply-chain-security/feed/
@@ -155,12 +155,3 @@ Older entries are on `?paged=2`, `?paged=3` and so on.
 | 2026-06-02 | New | [Cloud and local sandboxes for GitHub Copilot now in public preview](https://github.blog/changelog/2026-06-02-cloud-and-local-sandboxes-for-github-copilot-now-in-public-preview) |
 | 2026-05-28 | New | [Hard budget limits now available for GitHub Advanced Security](https://github.blog/changelog/2026-05-28-hard-budget-limits-now-available-for-github-advanced-security) |
 | 2026-05-28 | Improvement | [CodeQL 2.25.5 improves query accuracy for GitHub Actions](https://github.blog/changelog/2026-05-28-codeql-2-25-5-improves-query-accuracy-for-github-actions) |
-| 2026-05-26 | New | [GitHub Code Quality: Repository Enablement API](https://github.blog/changelog/2026-05-26-github-code-quality-repository-enablement-api) |
-| 2026-05-26 | New | [Dependabot version updates now support the sbt ecosystem](https://github.blog/changelog/2026-05-26-dependabot-version-updates-now-support-the-sbt-ecosystem) |
-| 2026-05-26 | Improvement | [Filter secret scanning approval requests by sort order and bypass status](https://github.blog/changelog/2026-05-26-filter-secret-scanning-approval-requests-by-sort-order-and-bypass-status) |
-| 2026-05-26 | New | [Code coverage on pull requests is now in public preview](https://github.blog/changelog/2026-05-26-code-coverage-in-pull-requests-is-now-in-public-preview) |
-| 2026-05-22 | New | [Staged publishing and new install-time controls for npm](https://github.blog/changelog/2026-05-22-staged-publishing-and-new-install-time-controls-for-npm) |
-| 2026-05-19 | Deprecation | [Upcoming deprecation of Python 3.9 for Dependabot](https://github.blog/changelog/2026-05-19-upcoming-deprecation-of-python-3-9-for-dependabot) |
-| 2026-05-19 | Improvement | [Expanded OIDC support for Dependabot and code scanning](https://github.blog/changelog/2026-05-19-expanded-oidc-support-for-dependabot-and-code-scanning) |
-| 2026-05-19 | Improvement | [Start a GitHub Advanced Security trial from a risk assessment](https://github.blog/changelog/2026-05-19-start-a-github-advanced-security-trial-from-a-risk-assessment) |
-| 2026-05-19 | Deprecation | [Removal of code_scanning_upload field from rate_limit API endpoint](https://github.blog/changelog/2026-05-19-removal-of-code_scanning_upload-field-from-rate_limit-api-endpoint) |

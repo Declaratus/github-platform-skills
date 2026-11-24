@@ -65,7 +65,6 @@ Cross-cutting content lives outside the pillar tree:
 - `references/charter.md` — framework charter, mission, scope
 - `references/framework-overview.md` — pillars, layers, comparison vs Azure/AWS WAF
 - `references/taxonomies.md` — how content is categorized (use when authoring or organizing)
-- `references/library/_index.md` — content library landing
 - `references/library/overview/` — getting-started checklist, layers, assessment
 - `references/library/scenarios/` — cross-pillar scenarios:
   - `anti-patterns.md` — what *not* to do
@@ -79,8 +78,8 @@ Cross-cutting content lives outside the pillar tree:
 These are the recommendations most likely to come up:
 
 **Governance** (`references/library/governance/recommendations/`):
-- `governance-administration-essentials/` — admin baseline
-- `governance-policies-best-practices/` — policy design
+- `governance-administration-essentials.md` — admin baseline
+- `governance-policies-best-practices.md` — policy design
 - `governing-agents.md` — governing AI/Copilot agents
 - `managing-ai-credits.md` — AI credit allocation
 - `managing-repositories-at-scale/` — including `rulesets-best-practices.md` and `custom-properties-best-practices.md`
@@ -89,24 +88,24 @@ These are the recommendations most likely to come up:
 - `implementing-polyrepo-engineering.md` — polyrepo strategy
 - `scaling-git-repositories/` — large repos, when to use LFS, repo architecture
 - `deploying-actions-runner-controller.md` — self-hosted ARC
-- `hosted-runner-private-networking/` — VNet-injected runners
+- `hosted-runner-private-networking.md` — VNet-injected runners
 - `expanding-enterprise-custom-agents-context.md`
 
 **Application Security** (`references/library/application-security/recommendations/`):
-- `enforce-ghas-at-scale/` — rolling out GitHub Advanced Security
-- `actions-security/` — securing Actions workflows
-- `prioritizing-alerts/`
+- `enforce-ghas-at-scale.md` — rolling out GitHub Advanced Security
+- `actions-security.md` — securing Actions workflows
+- `prioritizing-alerts.md`
 - `managing-dependency-threats.md`
 - `securing-developer-workspace.md`
-- `threat-model/` — threat modeling
+- `threat-model.md` — threat modeling
 
 **Collaboration** (`references/library/collaboration/recommendations/`):
 - `applying-devops-methodology.md`
-- `champion-program/` — internal champions
-- `scaling-actions-reusability/` — reusable workflows
+- `champion-program.md` — internal champions
+- `scaling-actions-reusability.md` — reusable workflows
 
 **Productivity** (`references/library/productivity/recommendations/`):
-- `adopting-copilot-at-scale/`
+- `adopting-copilot-at-scale.md`
 - `engineering-system-metrics.md`
 
 ## Source attribution

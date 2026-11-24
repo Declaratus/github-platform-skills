@@ -64,6 +64,8 @@ You can work with Copilot to design your automation, setting up the triggers, to
 
 Copilot can even help you create self-improving groups of automations which learn from outcomes and suggest improvements to themselves.
 
+Group members with the same ownership share persistent artifact storage, while access to other information depends on each automation's tools and permissions. See [Proposed improvements](/copilot/concepts/agent-capabilities/agent-powered-workflows-and-operations/about-automations#proposed-improvements).
+
 ### Creating an automation manually
 
 1. Enter a **name** for the automation.
@@ -80,6 +82,9 @@ Copilot can even help you create self-improving groups of automations which lear
    * **What resources on GitHub can be updated during the run**. From the **Configured tools can change** dropdown, choose **Anything in this repository** to let GitHub tools create and update any resource in the repository. Choose **Only this issue** to limit those tools' writes to the issue or pull request that triggered the run and any resources created during the run. This setting doesn't limit tools from MCP servers, which can access resources allowed by their server configuration and credentials. Depending on your repository configuration, the **Anything in this repository** option may not be available.
    * **Whether activity from Copilot in the cloud can trigger this automation**: From the **Can be triggered by** dropdown, pick **Anyone except Copilot in the cloud** to ignore events triggered by Copilot, including automations. Pick **Anyone** to listen for all events, including events triggered by Copilot.
    * **Whether users with only read access to the repository can trigger this automation**: By default, automations ignore activity from users who don't have write access to the repository. Uncheck the **Ignore events triggered by users without write access to this repository** box to listen for these events. Depending on your repository configuration, the **Ignore events triggered by users without write access to this repository** option may be locked in an enabled state.
+
+> [!NOTE]
+> Some events created by GitHub Apps cannot trigger automations. An app-authored label, assignment, closure, comment, and review events are filtered out, regardless of the app's repository permissions. Granting the app write access does not allow the event to trigger automations.
 
 1. In the **prompt** field, describe the task you want Copilot to perform each time the automation runs.
 

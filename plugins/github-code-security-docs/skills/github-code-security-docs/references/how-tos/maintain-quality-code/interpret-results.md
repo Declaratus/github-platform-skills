@@ -10,6 +10,8 @@ permissions: 'Users with **write** access'
 audience:
   - driver
 contentType: how-tos
+docsTeamMetrics:
+  - code-quality
 redirect_from:
   - /code-security/code-quality/how-tos/interpret-results
 category:

@@ -88,6 +88,28 @@ Store additional personal instruction files here as `*.instructions.md` files. T
 
 Defines MCP (Model Context Protocol) servers available at the user level. These servers are available in all your sessions, regardless of which project directory you're in. Project-level MCP configurations (in `.mcp.json` or `.github/mcp.json`) take precedence over user-level definitions when server names conflict.
 
+Server definitions are keyed by server name inside a top-level `mcpServers` object:
+
+```json
+{
+  "mcpServers": {
+    "my-server": {
+      "command": "npx",
+      "args": ["-y", "@example/mcp-server"],
+      "tools": ["*"]
+    }
+  }
+}
+```
+
+Configuration values support shell-style environment variable expansion.
+
+| Syntax | Description |
+|--------|-------------|
+| `$VAR` | Expands to the value of the `VAR` environment variable. |
+| `${VAR}` | Expands to the value of the `VAR` environment variable. |
+| `${VAR:-default}` | Expands to the value of `VAR`, or `default` if the variable is undefined. |
+
 For more information, see [AUTOTITLE](/copilot/how-tos/copilot-cli/customize-copilot/add-mcp-servers).
 
 ### `lsp-config.json`
@@ -700,6 +722,8 @@ Settings are applied in this order (later overrides earlier):
 
 MDM managed settings load at startup and merge with user settings as a policy baseline. For most keys, user settings can override that baseline. For `permissions.disableBypassPermissionsMode`, an MDM value of `"disable"` always wins. Managed `sandbox` settings are another exception. Instead of being overridable, each managed `sandbox` value sets a floor that you cannot relax. If your own setting is more permissive, the managed value wins. The `sandbox.failIfUnavailable` setting can only be set by an administrator. For more information, see [MDM managed settings](#mdm-managed-settings).
 
+Managed `strictPluginOnlyCustomization` restrictions also cannot be relaxed by user, repository, or local settings.
+
 | Scope | Location | Purpose |
 |-------|----------|---------|
 | User | `~/.copilot/settings.json` | Global defaults for all repositories. Use the `COPILOT_HOME` environment variable to specify an alternative path. |
@@ -714,6 +738,8 @@ Repository defaults are optional: set `enabledPlugins` entries to `false` in rep
 
 These settings apply across all your sessions and repositories. You can use the `/settings` slash command to run an interactive dialog, or use specific slash commands to update individual values, or edit this file directly.
 
+Only settings with a public description can be changed with `/settings KEY VALUE`. Array and record settings, and some security-sensitive keys such as `statusLine.command`, must be edited through the dialog or directly in `settings.json`.
+
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | `allowedUrls` | `string[]` | `[]` | URLs or domains allowed without prompting. Supports exact URLs, domain patterns, and wildcard subdomains (for example, `"*.github.com"`). |
@@ -727,10 +753,10 @@ These settings apply across all your sessions and repositories. You can use the 
 | `beepOnSchedule` | `boolean` | `true` | Play an audible beep when a scheduled `/every` or `/after` run finishes. |
 | `colorMode` | `"default"` \| `"github"` \| `"dim"` \| `"high-contrast"` \| `"colorblind"` | `"github"` | Deprecated alias for `theme`. Prefer `theme`. | <!-- markdownlint-disable-line GHD046 -->
 | `commandHistoryMaxSize` | `number` | `50` | Maximum number of recent commands retained for input history and reverse search. Must be an integer between `1` and `1000`. |
-| `compactPaste` | `boolean` | `true` | Collapse large pastes (more than 10 lines) into compact tokens. |
+| `compactPaste` | `boolean` | `true` | Collapse large pastes (more than 10 lines) into compact tokens. In shell mode or after a leading slash command, pastes are inserted in full. |
 | `companyAnnouncements` | `string[]` | `[]` | Custom messages shown randomly on startup. One message is randomly selected each time the CLI starts. Useful for team announcements or reminders. |
 | `connectors` | `boolean` | `true` | Enable Copilot Connectors when available. Set to `false` to disable. |
-| `continueOnAutoMode` | `boolean` | `false` | Automatically switch to auto mode when rate-limited. When `true`, eligible rate limit errors trigger an automatic switch to auto mode and retry. Does not apply to global rate limits or BYOK providers. |
+| `continueOnAutoMode` | `boolean` | `false` | Automatically switch to auto mode and retry when a per-model, weekly, or integration rate limit is reached. Also applies to Copilot rate limit errors without a specific code. Does not apply to global rate limits or BYOK providers. |
 | `copyOnSelect` | `boolean` | `true` (macOS), `false` (other) | Automatically copy mouse-selected text to the system clipboard. |
 | `customAgents.defaultLocalOnly` | `boolean` | `false` | Only use local custom agents (no remote organization or enterprise agents). |
 | `defaultMode` | `"interactive"` \| `"plan"` \| `"autopilot"` | `"interactive"` | The agent mode that new interactive sessions start in. The `--mode`, `--autopilot`, and `--plan` options take precedence. Resumed sessions keep their own mode, and the setting is ignored for `-p`/`--prompt`, `--server`, and `--acp` runs. |
@@ -741,7 +767,7 @@ These settings apply across all your sessions and repositories. You can use the 
 | `disabledSkills` | `string[]` | `[]` | Skill names to disable. Listed skills are discovered but not loaded. |
 | `dynamicRetrieval` | `{ skills?: boolean }` | unset | Per-category control of embeddings-based dynamic instruction retrieval. Set `skills` to `false` to disable retrieval for skills. |
 | `editorMode` | `"normal"` \| `"vim"` | `"normal"` | Input composer editing mode. Set by toggling the `/vim` slash command. See [AUTOTITLE](/copilot/reference/copilot-cli-reference/cli-command-reference#slash-commands-in-the-interactive-interface). |
-| `effortLevel` | `string` | `"medium"` | Reasoning effort level for extended thinking: `"low"`, `"medium"`, `"high"`, or `"xhigh"`. Higher levels use more compute. |
+| `effortLevel` | `string` | Model-dependent (usually `"medium"`) | Reasoning effort level for extended thinking. Valid values are `"none"`, `"minimal"`, `"low"`, `"medium"`, `"high"`, `"xhigh"`, and `"max"`. Available levels depend on the model. When unset, the model's own default applies. Higher levels use more compute. |
 | `enabledMcpServers` | `string[]` | `[]` | Enable built-in MCP servers that are disabled by default. |
 | `enabledPlugins` | `Record<string, boolean>` | `{}` | Declarative plugin auto-install. Keys are plugin specs; values are `true` (enabled) or `false` (disabled). |
 | `experimental` | `boolean` | `false` | Enable experimental features. Can also be enabled with the `--experimental` command-line option or the `/experimental` slash command. |
@@ -755,7 +781,7 @@ These settings apply across all your sessions and repositories. You can use the 
 | `inlineImages` | `boolean` | `true` | Render images inline using the Kitty graphics protocol. Requires a supported terminal (Ghostty, kitty, WezTerm, or a herdr pane whose graphics renderer is enabled, which is detected automatically). When disabled, image attachments show a text placeholder. |
 | `keepAlive` | `"on"` \| `"off"` \| `"busy"` | `"off"` | Keep-alive mode applied at CLI startup. `"on"` always prevents the system from sleeping, `"busy"` prevents sleeping only while the agent is running, and `"off"` disables keep-alive. Also configurable with the `/keep-alive` slash command. |
 | `logLevel` | `"none"` \| `"error"` \| `"warning"` \| `"info"` \| `"debug"` \| `"all"` \| `"default"` | `"default"` | Logging verbosity. |
-| `mergeStrategy` | `"rebase"` \| `"merge"` | — | Conflict resolution strategy for `/pr fix conflicts`. When set to `"rebase"`, conflicts are resolved by rebasing onto the base branch. When set to `"merge"`, the base branch is merged into the feature branch. If not configured, a picker dialog is shown. |
+| `mergeStrategy` | `"rebase"` \| `"merge"` | — | How `/pr fix conflicts`, `/pr fix all`, `/pr auto`, and `/pr agentmerge` bring the base branch into your pull request branch. `"rebase"` rebases and force-pushes with `--force-with-lease`. `"merge"` pushes a merge commit. When unset, `/pr fix` commands ask each time and `/pr auto` lets the agent choose. |
 | `model` | `string` | varies | AI model to use. Set to `"auto"` to let Copilot pick the best available model automatically. Managed by the `/model` slash command. |
 | `mouse` | `boolean` | `true` | Enable mouse support. Can also be set with `--mouse` or `--no-mouse`. |
 | `permissions.disableBypassPermissionsMode` | `string` | — | Set to `"disable"` to block all allow-all options (`--allow-all-tools`, `--allow-all-paths`, `--allow-all-urls`, `--allow-all`, `--yolo`). This setting does not block assisted permissions, which are controlled separately. Other values are treated as an alias of `"disable"` and a warning is written to the log. See [AUTOTITLE](/copilot/reference/copilot-cli-reference/cli-command-reference#restricting-the-allow-all-options). |
@@ -773,19 +799,20 @@ These settings apply across all your sessions and repositories. You can use the 
 | `sandbox.auth.git` | `boolean` | `true` | Inject Git credentials into the sandbox so commands running inside it can authenticate with Git. Set to `false` to opt out. Renamed from `sandbox.gitAuth`; the old key has no migration and is ignored wherever it still appears. |
 | `sandbox.auth.gh` | `boolean` | `true` | Inject GitHub CLI (`gh`) credentials into the sandbox so commands running inside it can authenticate with the GitHub CLI. Set to `false` to opt out. Renamed from `sandbox.ghAuth`; the old key has no migration and is ignored wherever it still appears. |
 | `sandbox.credentials` | `object` | unset | Mask selected environment variables in sandboxed processes. Contains an `envVars` object keyed by variable name, with a non-empty `injectHosts` array for each entry. Processes receive placeholders, and the local proxy supplies the real values only in HTTPS request headers to those hosts. Stores variable names and host rules, not secret values. Requires sandboxing to be enabled. Configure from the `/sandbox` dialog's **Credentials** tab under **Masked environment variables**. See [AUTOTITLE](/copilot/how-tos/cloud-and-local-sandboxes/configuring-local-sandbox-settings#masking-environment-variables). |
-| `sandbox.userPolicy.network.allowLocalNetwork` | `boolean` | `false` | Control local network access, such as connections to local development servers. The effect on sandboxed commands depends on the operating system. On supported Windows hosts, enabling this setting also allows connections to the host's localhost. Older Windows versions keep localhost blocked even with this setting enabled. Windows proxying and host rules require this to be `true`. |
+| `sandbox.userPolicy.network.allowOutbound` | `boolean` | `true` | Allow connections to public and private networks, subject to host rules. Host-local access is controlled separately by `allowLocalNetwork`. CIDR grants do not override these controls. |
+| `sandbox.userPolicy.network.allowLocalNetwork` | `boolean` | `false` | Control host-local access, such as connections to local development servers. Private IP ranges follow outbound and host rules rather than granting localhost access. The effect on sandboxed commands depends on the operating system. On supported Windows hosts, enabling this setting also allows connections to the host's localhost. Older Windows versions keep localhost blocked even with this setting enabled. Windows proxying and host rules require this to be `true`. |
 | `sandbox.userPolicy.network.proxy` | `object` | unset | Route sandboxed network traffic through an HTTP(S) proxy. Fields: `url` (required), `username` (optional), `password` (optional). The URL must not contain credentials. Configure credentials in the `/sandbox` dialog's **Network** tab, which masks the password field. Literal passwords use the OS credential store when available, with a local file fallback. `settings.json` holds a secret reference. The password can instead be a whole-field `${VAR}` or `$VAR` environment-variable reference. Proxy enforcement differs by platform, as described below. |
-| `sandbox.userPolicy.network.allowedHosts` | `string[]` | `[]` | Hosts a sandboxed command is allowed to reach. Entries are exact hostnames, IP addresses, or `*.example.com` for subdomains but not the root domain (`*` matches every host). CIDR blocks are not supported. Do not include URLs or ports. A non-empty list blocks unmatched hosts, except for `localhost`, `127.0.0.1`, and `::1` when outbound and local network access are both enabled. These automatic entries do not change your saved list. Explicit deny rules and enterprise allowlists still apply. Configure from the `/sandbox` dialog's **Network** tab under **Host rules**. |
-| `sandbox.userPolicy.network.blockedHosts` | `string[]` | `[]` | Hosts a sandboxed command is denied from reaching, matched the same way as `allowedHosts`. `blockedHosts` always takes precedence over a matching `allowedHosts` entry, and denying a domain also denies its subdomains. Configure from the `/sandbox` dialog's **Network** tab under **Host rules**. |
+| `sandbox.userPolicy.network.allowedHosts` | `string[]` | `[]` | Destinations a sandboxed command is allowed to reach. Entries are exact hostnames, IP addresses, IPv4 or IPv6 CIDR blocks (such as `10.0.0.0/8` or `fd00::/8`), or `*.example.com` for subdomains but not the root domain (`*` matches every host). Do not include URLs or ports. Empty lists add no restriction. A non-empty list blocks unmatched destinations, except for `localhost`, `127.0.0.1`, and `::1` when outbound and local network access are both enabled. These automatic entries do not change your saved list. Explicit deny rules and device-managed allowlists still apply. Configure from the `/sandbox` dialog's **Network** tab under **Host rules**. |
+| `sandbox.userPolicy.network.blockedHosts` | `string[]` | `[]` | Destinations a sandboxed command is denied from reaching. Accepts hostnames, IP addresses, IPv4 or IPv6 CIDR blocks, and wildcards as described for `allowedHosts`. Deny rules take precedence, including CIDR denials against allowed hostnames' resolved addresses. Denying a domain also denies its subdomains. Configure from the `/sandbox` dialog's **Network** tab under **Host rules**. |
 | `sandbox.userPolicy.filesystem.readonlyPaths` | `string[]` | `[]` | Additional file or directory paths that sandboxed commands can read but not modify. |
 | `sandbox.userPolicy.filesystem.readwritePaths` | `string[]` | `[]` | Additional file or directory paths that sandboxed commands can read and modify. |
 | `sandbox.userPolicy.filesystem.deniedPaths` | `string[]` | `[]` | Paths that sandboxed commands are denied access to. Windows requires a version that supports denied paths. If the host cannot enforce them, the command fails rather than running with weaker restrictions. Missing denied paths and their parents are created as directories before launch and are not automatically removed, even for a name such as `.env`. Preparation errors stop launch. The read-only `/sandbox policy` preview creates nothing and omits missing denied paths on Linux. |
 | `sandbox.userPolicy.seatbelt.keychainAccess` | `boolean` | `false` | macOS only. Grant sandboxed commands access to the system keychain. Configurable only in `settings.json`, not through `/sandbox` or `/settings`. |
-| `screenReader` | `boolean` | `false` | Enable screen reader optimizations. |
+| `screenReader` | `boolean` | `false` | Enable screen reader optimizations. Changes require a restart. The `--screen-reader` option enables this mode for one session only and offers to save it to your settings. |
 | `scrollbar` | `boolean` | `true` | Show the scrollbar in scrollable views. Set to `false` to hide it and use the full terminal width. |
 | `shellShortcut` | `boolean` | `true` | Let a lone `$` at the prompt, followed by <kbd>Enter</kbd>, open an interactive shell rooted at the session's working directory (activates only for a local, trusted, idle session on a real TTY). User- or managed-scoped only—not repo-overridable. |
 | `showReasoning` | `boolean` | None | Show model reasoning in the timeline. You can set this with `/config` or `/settings`, or toggle it with <kbd>Ctrl</kbd>+<kbd>T</kbd>. Your preference is saved across sessions. |
-| `showTimestamps` | `boolean` | `true` | Show dim `HH:mm` timestamps next to user messages in the timeline. |
+| `showTimestamps` | `boolean` | `true` | Show dim `HH:mm` timestamps next to your messages in the timeline. Assistant replies and tool calls do not get timestamps. |
 | `showTipsOnStartup` | `boolean` | `true` | Show a random command tip when the CLI starts. |
 | `sidebar` | `boolean` | `true` | Enable the current-session sidebar. Set to `false` to disable it entirely, hiding the composer hint and the <kbd>←</kbd> open gesture. See [AUTOTITLE](/copilot/reference/copilot-cli-reference/cli-command-reference#sidebar-and-sessions-tab-shortcuts). |
 | `skillDirectories` | `string[]` | `[]` | Additional directories to search for custom skill definitions (in addition to `~/.copilot/skills/`). |
@@ -817,7 +844,15 @@ These settings apply across all your sessions and repositories. You can use the 
 
 The `/sandbox` dialog groups Git authentication, `gh` authentication, and masked environment variables under a dedicated **Credentials** tab, and shows the `settings.json` path where the current sandbox configuration is stored. On the **Filesystem** tab, the configured path list is summarized by permission (for example, `2 read/write, 1 read-only`) behind a **User-configured paths** row. Press <kbd>Enter</kbd> on that row to open the full list, which takes over the cursor and tab bar until you press <kbd>Esc</kbd>. Configured paths are displayed as absolute paths rather than `./`-relative or `~`-shortened forms. Typing `~/path` when adding a path still expands it to your home directory. Press <kbd>Ctrl</kbd>+<kbd>E</kbd> in the `/sandbox` dialog to save any pending changes and open `settings.json` in your editor (`COPILOT_EDITOR`, `VISUAL`, or `EDITOR`), matching the same shortcut in `/settings`. The dialog reloads its state from disk after you edit and save the file.
 
-Host rules and `sandbox.userPolicy.network.proxy` use a built-in local proxy. When both are configured, the local proxy applies the host rules before forwarding traffic to the upstream proxy. Upstream credentials stay outside the sandboxed child process. Host rules and proxy settings are inactive when outbound access is off.
+Host rules and `sandbox.userPolicy.network.proxy` use a built-in local proxy. When both are configured, the local proxy applies the host rules before forwarding traffic to the upstream proxy. Upstream credentials stay outside the sandboxed child process. Turning outbound access off disables the upstream proxy, but host rules still apply to permitted local connections.
+
+CIDR prefixes range from `/0` to `/32` for IPv4 and `/0` to `/128` for IPv6. CIDRs must use the network address, with zero host bits. For example, `10.1.2.3/16` is rejected with a suggestion to use `10.1.0.0/16`.
+
+When the local proxy resolves a hostname, a matching hostname, IP address, or CIDR is an alternative grant within each allowlist. Every resolved address must satisfy every non-empty user and device-managed allowlist, and any matching deny rule blocks the request. For example, a user hostname grant can combine with a managed CIDR restriction without identical entries in the lists.
+
+Host rules can be configured in user settings or device-managed settings. `allowedHosts` and `blockedHosts` are not supported in server-managed enterprise settings files. CIDR support does not extend to credential-injection destinations in `sandbox.credentials`.
+
+An upstream proxy resolves hostnames itself. CIDR-only allow rules cannot authorize unresolved hostnames, and IP or CIDR deny rules cannot constrain the addresses selected by that proxy. Enforce those address restrictions on the upstream proxy.
 
 When no proxy is set in sandbox settings, the local proxy selects its upstream proxy from the first non-empty environment variable on the host in this order: `HTTPS_PROXY`, `HTTP_PROXY`, `ALL_PROXY`. Only `http://` and `https://` proxies are supported, not `socks5`.
 
@@ -825,9 +860,45 @@ Destinations matching the host's `NO_PROXY` bypass only this inherited upstream 
 
 On macOS and Linux, the sandbox restricts direct connections so programs cannot avoid the proxy. On Windows, the sandbox relies on programs honoring the proxy settings. As a result, programs that ignore the proxy settings on Windows can connect directly and get around your host rules. Windows proxying and host rules also require a supported host and `allowLocalNetwork: true`, which permits private-network access. On Linux, proxy settings reject IPv6 address literals other than the `[::]` dual-stack wildcard. Use an IPv4 endpoint or a hostname with IPv4 support.
 
+On macOS, sandboxed commands can open direct TCP connections to local ports, such as a build daemon or test server they started, only when outbound connections are allowed and no host rules (`allowedHosts` or `blockedHosts`) apply. When host rules apply, localhost is reachable only through the local proxy as an HTTP request. Direct TCP connections to localhost are blocked.
+
 Sandbox settings are user-level or enterprise-managed. They are not repository-overridable. For configuration steps and network limitations, see [AUTOTITLE](/copilot/how-tos/cloud-and-local-sandboxes/configuring-local-sandbox-settings).
 
 Sandboxing is powered by [Microsoft eXecution Container (MXC)](https://github.com/microsoft/mxc?utm_source=cli-config-directory-reference-article-microsoft-mxc&utm_medium=docs&utm_campaign=universe-2026), which provides platform-specific containment backends. Copilot CLI uses Seatbelt on macOS, Bubblewrap on Linux, and ProcessContainer on Windows.
+
+#### Proxy client certificates
+
+When an `https://` proxy configured through `proxyUrl`, `HTTPS_PROXY`, or `HTTP_PROXY` requests a client certificate, the CLI automatically selects an operating-system-managed identity for mutual TLS (mTLS). No certificate path, private key, or passphrase setting is required, and private keys remain in the platform store.
+
+| Platform | Identity source |
+|----------|-----------------|
+| Windows | Current user's `MY` certificate store |
+| macOS | User Keychain search list, including a preferred identity for the proxy host |
+| Linux (glibc) | Chromium-compatible NSS database and its configured PKCS#11 modules |
+| Linux (musl) and other platforms | Unsupported. Ordinary proxy behavior is unchanged. |
+
+Client identity selection applies only to `https://` proxies, not direct requests, `NO_PROXY` matches, or `http://` proxies. The CLI reads the platform store on every request, so certificate rotation or smart-card insertion does not require a restart.
+
+#### PowerShell startup flags
+
+The `powershellFlags` setting controls flags passed before the runtime's own flags. Removing `-NoProfile`, for example by setting `["-NoLogo"]`, loads your PowerShell profile, including its aliases, modules, and functions. This can slow startup, produce unexpected output, or change shell behavior.
+
+An empty array loads the profile and shows the PowerShell version banner. You can also add `-Sta` for single-threaded apartment mode for COM interoperability, or `-ExecutionPolicy`, followed by `Bypass`, to change the execution policy.
+
+Do not include flags that conflict with the runtime's command execution, lifecycle, or output handling:
+
+| Flags | Conflict |
+|-------|----------|
+| `-Command`, `-c`, `-CommandWithArgs`, `-cwa` | Replace or conflict with the runtime's command |
+| `-File`, `-f` | Execute a script file instead of the runtime's command |
+| `-EncodedCommand`, `-e` | Replace the command source with Base64-encoded input |
+| `-NoExit`, `-noe` | Prevent runtime-managed shutdown |
+| `-NonInteractive`, `-noni` | Suppress runtime-managed prompts |
+| `-InputFormat`, `-OutputFormat` | Change serialization and break text-based output parsing |
+| `-ServerMode`, `-SSHServerMode` | Start a remoting endpoint instead of a shell |
+| `-Help`, `-?`, `-Version` | Print information and exit instead of running commands |
+
+The runtime uses `-NoExit -Command` for interactive sessions and `-Command` for one-shot execution.
 
 ### Repository settings (`.github/copilot/settings.json`)
 
@@ -846,12 +917,12 @@ Only the keys listed in the following table are supported at the repository leve
 | `disableAllHooks` | `boolean` | Repository takes precedence | Disable all hooks. |
 | `disabledMcpServers` | `string[]` | Union—repository can add entries, never remove | MCP servers configured but not started. |
 | `disabledSkills` | `string[]` | Union—repository can add entries, never remove | Skills discovered but not loaded. |
-| `effortLevel` | `string` | Replaced—repository takes precedence | Pin the default reasoning effort. |
+| `effortLevel` | `string` | Replaced—repository takes precedence | Pin the default reasoning effort. Accepts `none`, `minimal`, `low`, `medium`, `high`, `xhigh`, or `max`, depending on the model. When unset, the model's default applies, which is `medium` for most models. |
 | `enabledPlugins` | `Record<string, boolean>` | Merged—repository overrides user for same key | Declarative plugin auto-install. |
 | `extraKnownMarketplaces` | `Record<string, {...}>` | Merged—repository overrides user for same key | Plugin marketplaces available in this repository. Each entry's `source` is required. An `autoUpdate: true` on an entry is accepted at the repository level but currently ignored—the auto-update opt-in is only honored when set in the user's own settings or in managed (MDM/server) settings. |
 | `hooks` | `object` | Merged—repository overrides user for same key | Hook definitions scoped to this repository. See [AUTOTITLE](/copilot/how-tos/copilot-cli/customize-copilot/use-hooks). |
 | `includeCoAuthoredBy` | `boolean` | Replaced—repository takes precedence | Add a `Co-authored-by` trailer to commits. |
-| `mergeStrategy` | `"rebase"` \| `"merge"` | Replaced—repository takes precedence | Conflict resolution strategy for `/pr fix conflicts`. |
+| `mergeStrategy` | `"rebase"` \| `"merge"` | Replaced—repository takes precedence | How `/pr fix conflicts`, `/pr fix all`, `/pr auto`, and `/pr agentmerge` bring the base branch into your pull request branch. `rebase` force-pushes with `--force-with-lease`, while `merge` pushes a merge commit. When unset, `/pr fix` commands ask each time and `/pr auto` lets the agent choose. |
 | `model` | `string` | Replaced—repository takes precedence | Pin the default model for this repo. |
 | `respectGitignore` | `boolean` | Tighten-only—repository can enable, never disable | Exclude gitignored files from the `@` file mention picker. |
 
@@ -897,7 +968,9 @@ IT administrators can push baseline policy using Mobile Device Management (MDM) 
 
 Managed settings apply uniformly across every session-hosting mode—interactive, `-p`, `--acp`, `--ahp-host`, and `--server`—so enterprise MCP, permission, and plugin policy can't be bypassed by starting a session through a different entry point.
 
-Copilot CLI also loads server-managed settings at startup, in addition to MDM. Device-managed (MDM) and server-managed settings are resolved **per key**: MDM's value wins for any key it sets, and the server's value fills in keys MDM leaves unset. This lets an organization set some policy via MDM (for example, `permissions`) while still receiving other managed defaults (for example, `model`) from the server.
+Copilot CLI also loads server-managed settings at startup, in addition to MDM. Except for keys with restrictive composition rules, MDM and server-managed settings are resolved **per key**: MDM's value wins for any key it sets, and the server's value fills in keys MDM leaves unset. This lets an organization set some policy via MDM while still receiving other managed defaults, such as `model`, from the server.
+
+For `strictPluginOnlyCustomization`, restrictions are combined across native MDM, administrator-deployed `managed-settings.json` files, server-managed settings, and policy-helper settings. A category restricted by any source stays restricted. Setting the key to `false` or a narrower array in another source cannot remove that restriction.
 
 Long-running sessions re-fetch and re-apply managed settings hourly, so policy changes—for example, an organization enabling `permissions.disableBypassPermissionsMode`—take effect without restarting the session.
 
@@ -939,6 +1012,7 @@ Only the following keys are supported in MDM managed settings.
 | Key | Description |
 |-----|-------------|
 | `allowedMcpServers` | Allowlist of MCP servers users may load, matched by `serverUrl`, `serverCommand`, or `serverName`. Trusted first-party servers (for example, the built-in GitHub MCP server) are always exempt. Leaving this key unset allows all non-default servers; an empty array denies all of them. See [Managed MCP server allow/deny list](#managed-mcp-server-allowdeny-list). |
+| `allowManagedMcpServersOnly` | Set to `true` to prevent user or workspace allowlists from broadening the managed MCP server allowlist. Servers from managed or force-enabled plugins and any fixed managed-MCP deployment remain eligible. Deny rules still apply, and trusted first-party servers remain exempt. |
 | `autoTier` | Set a default Auto routing tier (`"efficiency"`, `"balance"`, or `"intelligence"`) for sessions with `model` set to `auto`. A bare string strictly locks the tier, overriding user and repository settings and hiding it from `/settings`. Use `{"overridable": "TIER"}` instead to set an organization default that users and repositories may still override. `"fast"` is no longer selectable and falls back to `"balance"` with a warning. |
 | `communication.support.url` | Absolute `http` or `https` URL of an organization help page. Informational only. Clients can link to it wherever they would otherwise tell users to contact their administrator. The whole `communication` block is taken from the highest-priority channel that supplies it. |
 | `deniedMcpServers` | Denylist of MCP servers that must never load, matched the same way as `allowedMcpServers`. A matching non-default server is blocked regardless of the allowlist—deny always wins. See [Managed MCP server allow/deny list](#managed-mcp-server-allowdeny-list). |
@@ -952,8 +1026,11 @@ Only the following keys are supported in MDM managed settings.
 | `remoteControl` | Control whether sessions on this device can be controlled from other devices. `mode` is `"enabled"`, `"disabled"`, or `"requireSSO"` (requires `githubDotComOrganizations` when set). |
 | `requireBase64ImageAttachments` | When `true`, require base64-encoded image attachments instead of attachment URLs. `false` or unset keeps existing behavior. |
 | `sandbox` | Set a sandbox policy floor that users cannot relax. Supported settings include `enabled`, `failIfUnavailable`, `allowBypass`, `addCurrentWorkingDirectory`, `sandboxMcpServers`, `sandboxLspServers`, `auth.git`, `auth.gh`, `allowDevToolAccess`, `learningMode`, and the `userPolicy.*` filesystem and network rules. The managed value always takes precedence over a user's own value in the safer direction. Turning the sandbox on, requiring it to succeed, and sandboxing MCP and LSP servers cannot be turned off. Disabling bypass or credential injection cannot be re-enabled. Filesystem allow lists can only be narrowed, and denied paths can only be added to. `failIfUnavailable` can only be set by an administrator and blocks the session when the sandbox cannot be established. For the settings users can set themselves, see [User settings](#user-settings-copilotsettingsjson) or run `copilot help sandbox`. |
+| `sandbox.sandboxLspServers` | Boolean, defaults to `true`. When sandboxing is enabled, language servers start under the session's sandbox policy. Set to `false` to run language servers outside the sandbox, subject to the managed sandbox policy floor. |
 | `shellShortcut` | Force-enable or force-disable the `$` interactive shell shortcut for all users. A managed value always overrides the user's own `shellShortcut` setting. |
 | `strictKnownMarketplaces` | Restrict plugins to an allowlist of known marketplaces (a JSON array of marketplace specs). The allowlist also governs built-in marketplaces once set—an empty array (`[]`) hides and blocks every marketplace, including built-ins, not just user- or repository-added ones. |
+| `strictPluginOnlyCustomization` | Require selected customization categories to come from eligible plugins or managed settings. Restrictions combine across managed sources and cannot be relaxed by user or repository settings. See [`strictPluginOnlyCustomization`](/copilot/reference/enterprise-administrators/enterprise-managed-settings#strictpluginonlycustomization). |
+| `allowManagedHooksOnly` | Restrict hook sources to enterprise-managed hooks and hooks from plugins required by managed policy. For hook-specific restrictions, see [AUTOTITLE](/copilot/reference/hooks-reference#managed-hook-restrictions). |
 | `telemetry` | Push baseline OpenTelemetry export configuration: `enabled`, `endpoint`, `protocol`, `headers`, `resourceAttributes`, `captureContent`, `lockCaptureContent`, `serviceName`, and `headersProvider`. See [AUTOTITLE](/copilot/reference/enterprise-administrators/opentelemetry-reference). |
 
 > [!NOTE]
@@ -1035,7 +1112,7 @@ Each entry identifies a server by exactly one of the following matchers.
 
 Rules:
 
-* **Trusted first-party servers** (for example, the built-in GitHub MCP server) are always exempt from both lists.
+* **Trusted first-party servers** (for example, the built-in GitHub MCP server) are always exempt from both lists. Your account's Copilot MCP policy still applies. If that policy disables MCP, the built-in GitHub MCP server does not start.
 * **Unset `allowedMcpServers`** allows all non-default servers; an **empty array** blocks all of them (deny-all).
 * **Unset or empty `deniedMcpServers`** blocks nothing.
 * **Deny always wins**—a server matching `deniedMcpServers` is blocked even if it also matches `allowedMcpServers`.

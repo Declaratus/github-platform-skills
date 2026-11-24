@@ -3,6 +3,7 @@
 # SPDX-License-Identifier: MIT
 draft: false # Set to false when ready to publish
 title: 'Managing large Git Repositories'
+weight: 3
 publishDate: 2024-09-03
 params:
   authors: [{ name: 'Steffen Hiller', handle: 'steffen' }]
@@ -115,7 +116,7 @@ This section defines the key design strategies that a company could employ to im
 
 ### 2. **Efficient Storage Management**
 
-- **Using Git LFS**: Using Git Large File Storage (LFS) to manage large files outside of the Git repository will help keep the repository size mangeable and improve performance for standard Git operations. Moving files to LFS after they have already been committed to the repository will require rewriting history. See [When to use Git LFS](/library/architecture/recommendations/scaling-git-repositories/when-to-use-git-lfs/).
+- **Using Git LFS**: Using Git Large File Storage (LFS) to manage large files outside of the Git repository will help keep the repository size mangeable and improve performance for standard Git operations. Moving files to LFS after they have already been committed to the repository will require rewriting history. See [When to use Git LFS](./when-to-use-git-lfs).
 - **Managing Old Data**: A well-maintained repository not only improves collaboration but also reduces potential workload on Git servers. Cleaning up stale pull requests and removing or archiving obsolete branches and tags helps streamline the repository and minimize storage usage. Consistently maintaining a tidy repository will keep the size manageable and reduce the likelihood of performance issues.
 
 ### 3. **History and Version Control Optimization**
@@ -125,7 +126,7 @@ This section defines the key design strategies that a company could employ to im
 
 ### 4. **Improved Cloning and Fetching Mechanisms**
 
-- **Shallow Clones**: Encouraging the use of shallow clones (`git clone --depth=1`) or partial clones ([`git clone --filter=blob:none` or `--filter=blob:limit=<size>`](https://git-scm.com/docs/git-rev-list#Documentation/git-rev-list.txt---filterltfilter-specgt)) to minimize the amount of data cloned, which speeds up the initial setup for new developers and reduces bandwidth usage.
+- **Shallow Clones**: Encouraging the use of shallow clones (`git clone --depth=1`) or partial clones ([`git clone --filter=blob:none` or `--filter=blob:limit=<size>`](https://git-scm.com/docs/git-rev-list#Documentation/git-rev-list.txt---filterfilter-spec)) to minimize the amount of data cloned, which speeds up the initial setup for new developers and reduces bandwidth usage.
 - **Shallow Directory Structure**: Deeply-nested directory structures increase the number of tree and blob objects created over time, which can lead to repository bloat and reduce the efficiency of object packing and delta compression during Git operations.
 - **Fetch Often**: The further the client and server drift from one another, the longer each push will take. Fetching regularly can reduce the time it takes to complete a push.
 
@@ -329,13 +330,13 @@ If you have questions or need help implementing the proposed repository architec
 #### 1. **GitHub Support**
 
 - **GitHub Support Portal**: Visit the [GitHub Support Portal](https://support.github.com) for a comprehensive collection of articles, tutorials, and guides on using GitHub features and services.
-- **GitHub Community Forum**: Join the [GitHub Community Forum](https://github.community) to ask questions, share knowledge, and connect with other GitHub users. It's a great place to get advice and solutions from experienced developers.
+- **GitHub Community Forum**: Join the [GitHub Community Forum](https://github.com/orgs/community/discussions) to ask questions, share knowledge, and connect with other GitHub users. It's a great place to get advice and solutions from experienced developers.
 - **GitHub Support Ticket**: If you need direct assistance from GitHub’s support team, you can submit a ticket through the [GitHub Support Portal](https://support.github.com). Various support plans are available, including free, premium, and enterprise options, depending on your needs.
 
 #### 2. **GitHub Expert Services**
 
-- **Consulting Services**: GitHub Expert Services offers expert consulting to help you optimize your GitHub workflows, implement best practices, and ensure successful deployment of your repository architecture strategy. Learn more about these services at [GitHub Expert Services](https://services.github.com).
-- **Training and Workshops**: GitHub provides training sessions and workshops to help your team get up to speed with GitHub tools and features. These can be customized to address specific needs and use cases. Learn more about these services at [GitHub Expert Services](https://services.github.com).
+- **Consulting Services**: GitHub Expert Services offers expert consulting to help you optimize your GitHub workflows, implement best practices, and ensure successful deployment of your repository architecture strategy. Learn more about these services at [GitHub Expert Services](https://github.com/services/).
+- **Training and Workshops**: GitHub provides training sessions and workshops to help your team get up to speed with GitHub tools and features. These can be customized to address specific needs and use cases. Learn more about these services at [GitHub Expert Services](https://github.com/services/).
 
 #### 3. **GitHub Partner Community**
 
@@ -348,7 +349,7 @@ If you have questions or need help implementing the proposed repository architec
 
 #### 5. **Local and Virtual Meetups**
 
-- **GitHub Events**: Attend GitHub-hosted events such as GitHub Universe, GitHub Satellite, and local meetups to network with other developers, learn from experts, and stay updated on the latest GitHub features and trends. Check out upcoming events at [GitHub Events](https://github.com/events).
+- **GitHub Events**: Attend GitHub-hosted events such as GitHub Universe, GitHub Satellite, and local meetups to network with other developers, learn from experts, and stay updated on the latest GitHub features and trends. Check out upcoming events at [GitHub Events](https://github.com/resources/events).
 
 By leveraging these resources and support options, you can gain the knowledge and assistance needed to successfully implement and optimize your repository architecture strategy on GitHub.
 

@@ -27,8 +27,8 @@ To find out about Copilot CLI before you install it, see [AUTOTITLE](/copilot/co
 
 ## Prerequisites
 
-* **An active GitHub Copilot subscription**. See [Copilot plans](https://github.com/features/copilot/plans?ref_product=copilot&ref_type=engagement&ref_style=text).
-* (On Windows) **PowerShell** v6 or higher
+* **An active GitHub Copilot subscription**, unless you use your own model provider or sign in with an eligible Microsoft Entra account. Your model provider may charge separately for usage. Microsoft Entra sign-in is currently supported only on Windows and macOS. For account requirements, see [AUTOTITLE](/copilot/how-tos/copilot-cli/set-up-copilot-cli/authenticate-copilot-cli).
+* (On Windows) **PowerShell**. Copilot CLI can also use Windows PowerShell 5.1.
 
 If you have access to GitHub Copilot via your organization or enterprise, you cannot use Copilot CLI if your organization owner or enterprise administrator has disabled it in the organization or enterprise settings. See [AUTOTITLE](/copilot/how-tos/administer-copilot/manage-for-organization/manage-policies).
 
@@ -107,13 +107,13 @@ curl -fsSL https://gh.io/copilot-install | VERSION="v0.0.369" PREFIX="$HOME/cust
 
 ### Download from GitHub.com
 
-You can download the executables directly from [the `copilot-cli` repository](https://github.com/github/copilot-cli/releases/).
+You can download the executables directly from [the `copilot-cli` repository](https://github.com/github/copilot-cli/releases/?utm_source=docs-article-cli-releases&utm_medium=docs&utm_campaign=ignite-nov-2026).
 
 Download the executable for your platform, unpack it, and run.
 
 ## Authenticating with Copilot CLI
 
-On first launch, if you're not currently logged in to GitHub, you'll be prompted to use the `/login` slash command. Enter this command and follow the on-screen instructions to authenticate. For more information on the authentication process, see [AUTOTITLE](/copilot/how-tos/copilot-cli/set-up-copilot-cli/authenticate-copilot-cli).
+On first launch, if you're not currently logged in and no custom model provider is configured, you'll be prompted to use the `/login` slash command. Enter this command and follow the on-screen instructions to authenticate with your GitHub account or your Microsoft Entra account. For more information on the authentication process, see [AUTOTITLE](/copilot/how-tos/copilot-cli/set-up-copilot-cli/authenticate-copilot-cli).
 
 ### Authenticating with a personal access token
 

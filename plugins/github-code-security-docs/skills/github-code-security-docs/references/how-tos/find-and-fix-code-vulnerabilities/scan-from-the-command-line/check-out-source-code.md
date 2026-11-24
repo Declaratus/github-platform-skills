@@ -32,7 +32,7 @@ You should download the CodeQL bundle from https://github.com/github/codeql-acti
 {% ifversion ghes %}
 
 > [!NOTE]
-> For GitHub Enterprise Server {{ allVersions[currentVersion].currentRelease }}, we recommend CodeQL CLI version {% ifversion ghes < 3.20 %}2.22.4{% elsif ghes < 3.21 %}2.23.9{% elsif ghes < 3.22 %}2.24.3{% elsif ghes < 3.23 %}2.25.6{% endif %}.
+> For GitHub Enterprise Server {{ allVersions[currentVersion].currentRelease }}, we recommend CodeQL CLI version {% ifversion ghes < 3.20 %}2.22.4{% elsif ghes < 3.21 %}2.23.9{% elsif ghes < 3.22 %}2.24.3{% elsif ghes < 3.23 %}2.25.6{% elsif ghes < 3.24 %}2.27.0{% endif %}.
 
 {% endif %}
 

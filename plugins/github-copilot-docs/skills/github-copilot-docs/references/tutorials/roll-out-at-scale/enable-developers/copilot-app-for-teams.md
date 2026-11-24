@@ -9,6 +9,7 @@ contentType: tutorials
 category:
   - Roll Copilot out at scale
   - Manage Copilot for a team
+  - Bring Copilot into the rest of developers' work
 docsTeamMetrics:
   - ai-governance
 ---
@@ -55,10 +56,12 @@ If your organizations belong to an enterprise, first establish enterprise-level 
 
 After you configure access and policies, ask each developer to:
 
-1. Visit the [download page for the GitHub Copilot app](https://github.com/features/ai/github-app).
+1. Visit the [download page for the GitHub Copilot app](https://github.com/features/ai/github-app?utm_source=docs-article-app-marketing&utm_medium=docs&utm_campaign=ignite-nov-2026).
 1. Download and install the app for their operating system.
-1. Open the app.
-1. Click **Sign in to GitHub** and follow the prompts to authenticate.
+1. Open the app and sign in to GitHub.
+
+   * Developers should sign in to the account where they receive their Copilot license.
+   * If your repositories are hosted on GitHub Enterprise Server, developers should add their GitHub Enterprise Server account once they've set up the app.
 1. Select the pilot repository when prompted. Participants can also add an existing local repository or clone the repository later.
 1. If the pilot task requires an MCP server, in the app sidebar, click **Customize**, then **MCP**. Install an approved server required for the task.
 

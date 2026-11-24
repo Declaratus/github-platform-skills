@@ -6,6 +6,8 @@ permissions: 'Enterprise owners, enterprise billing managers, organization owner
 versions:
   feature: copilot
 contentType: reference
+docsTeamMetrics:
+  - copilot-usage-metrics
 allowTitleToDifferFromFilename: true
 redirect_from:
   - /early-access/copilot-metrics/dashboards/best-practices-for-correlating-usage-metrics

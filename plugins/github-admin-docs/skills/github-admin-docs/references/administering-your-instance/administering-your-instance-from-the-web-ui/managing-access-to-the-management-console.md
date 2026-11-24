@@ -19,27 +19,21 @@ You can access the Management Console as the root site administrator or a Manage
 
 You can also use the `gh es` GitHub CLI extension to manage the root site administrator password, which controls access to the Management Console. For more information, see the [GH ES CLI usage documentation](https://github.com/github/gh-es/blob/main/USAGE.md#gh-es-access-set-password) and [AUTOTITLE](/admin/administering-your-instance/administering-your-instance-from-the-command-line/administering-your-instance-using-the-github-cli).
 
-## Types of Management Console accounts
 
-There are two types of user accounts for the Management Console on a GitHub Enterprise Server instance. The root site administrator account authenticates with a password established during the initial setup of {% ifversion ghes %}your GitHub Enterprise Server instance{% else %}GitHub.com{% endif %}.
+## Root site administrator
 
-The root site administrator can create additional accounts.
+The root site administrator account authenticates with a password established during the initial setup of {% ifversion ghes %}your GitHub Enterprise Server instance{% else %}GitHub.com{% endif %}.
+The root site administrator password should be used for initial setup and recovery only, along with creating the first Management Console user account. Day-to-day administration should be performed with named Management Console accounts for proper attribution.
 
-### Root site administrator
+## Management Console user
 
-Root site administrators have complete control over the Management Console. They can take every action in the Management Console, including creating and deleting Management Console user accounts.
+Management Console users can perform all administrative tasks for {% ifversion ghes %}your GitHub Enterprise Server instance{% else %}GitHub.com{% endif %} including the creation or deletion of Management Console user accounts.
 
-Only the root site administrator can create and delete Management Console user accounts.
-
-### Management Console user
-
-Management Console users can perform most administrative tasks for {% ifversion ghes %}your GitHub Enterprise Server instance{% else %}GitHub.com{% endif %}. For heightened security, Management Console users cannot create or delete Management Console user accounts.
-
-Management Console users, sometimes called operators, can perform basic administrative tasks for {% ifversion ghes %}your GitHub Enterprise Server instance{% else %}GitHub.com{% endif %} in the Management Console and can add SSH keys to the Management Console to grant administrative access to the instance via SSH.
+These users, sometimes called operators, can also add SSH keys to the Management Console to grant administrative access to the instance via SSH.
 
 ## Creating or deleting a user account for the Management Console
 
-While signed into the Management Console as the root site administrator, you can create new Management Console user accounts.
+While signed into the Management Console, you can create new Management Console user accounts.
 
 1. In the top navigation bar, click **User Management**.
 1. Click **Create user**.
@@ -53,7 +47,6 @@ If you have configured email for notifications for {% ifversion ghes %}your GitH
 
 If you have not configured email notifications for {% ifversion ghes %}your GitHub Enterprise Server instance{% else %}GitHub.com{% endif %}, you must manually copy the Management Console invitation link and send it to the user. The user must set a password using the link before the user can access the Management Console.
 
-1. Sign into the Management Console as the root site administrator. For more information, see [AUTOTITLE](/admin/administering-your-instance/administering-your-instance-from-the-web-ui/accessing-the-management-console).
 1. In the top navigation bar, click **User Management**.
 1. To copy the invitation link, click (icon: link) on any Management Console user account.
 1. Send the invitation link to the Management Console user. The invitation link will lead the user through the final account setup steps.

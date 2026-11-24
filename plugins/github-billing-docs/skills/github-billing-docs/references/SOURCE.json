@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "repository": "https://github.com/github/docs.git",
-  "revision": "0cbd9291a5eac3c2e2330c8444cd37b0e9c693ea",
-  "upstream_committed_at": "2026-11-23T15:44:58Z",
+  "revision": "44f009da482ef1470b37ffea456821014d892a1f",
+  "upstream_committed_at": "2026-11-24T06:28:18-08:00",
   "markdown_pages": 100,
   "source_inputs": [
     "content/billing",

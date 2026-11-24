@@ -13,6 +13,7 @@ contentType: tutorials
 category:
   - Roll Copilot out at scale
   - Manage Copilot for a team
+  - Move review earlier and make it smarter
 ---
 
 The guide is inspired by GitHub's [Engineering System Success Playbook](https://resources.github.com/engineering-system-success-playbook/) (ESSP), which recommends strategies and metrics for driving improvements in engineering systems.
@@ -41,7 +42,7 @@ The next step is to evaluate and agree on solutions to address the barriers you 
 
 Run trials of new tools and processes with pilot groups to gather feedback and measure success. For training resources and metrics to use during trials, see [3. Implement changes](#3-implement-changes) and [Metrics to watch](#metrics-to-watch) sections.
 
-<a href="https://github.com/github-copilot/purchase?ref_product=copilot&ref_type=trial&ref_style=button" target="_blank" class="btn btn-primary mt-3 mr-3 no-underline"><span>Sign up for Copilot</span>(icon: link-external)</a>
+<a href="https://github.com/github-copilot/purchase?ref_product=copilot&ref_type=trial&ref_style=button&utm_source=docs-article-purchase-cta&utm_medium=docs&utm_campaign=ignite-nov-2026" target="_blank" class="btn btn-primary mt-3 mr-3 no-underline"><span>Sign up for Copilot</span>(icon: link-external)</a>
 
 ### How Copilot can help
 

@@ -9,6 +9,8 @@ versions:
   ghes: '*'
 permissions: 'Organization owners and security managers'
 contentType: tutorials
+docsTeamMetrics:
+  - secret-protection
 redirect_from:
   - /code-security/securing-your-organization/understanding-your-organizations-exposure-to-leaked-secrets/calculating-the-cost-savings-of-push-protection
   - /code-security/how-tos/secure-at-scale/configure-organization-security/configure-specific-tools/calculating-the-cost-savings-of-push-protection

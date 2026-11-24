@@ -7,6 +7,8 @@ product: "{% ifversion fpt or ghec %}\nGitHub Team or GitHub Enterprise Cloud\n{
 versions:
   feature: code-quality
 contentType: concepts
+docsTeamMetrics:
+  - code-quality
 audience:
   - driver
 redirect_from:

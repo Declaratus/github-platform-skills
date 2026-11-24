@@ -12,7 +12,10 @@ category:
   - Secure your dependencies
 ---
 
->[!NOTE] The implementation of this approval process can potentially cause some friction, so it's important to ensure that the team of security managers has adequate coverage to review dismissal requests regularly before proceeding.
+> [!NOTE]
+> The implementation of this approval process can potentially cause some friction, so it's important to ensure that the team of security managers has adequate coverage to review dismissal requests regularly before proceeding.
+>
+> Alert dismissal requests expire after {% ifversion dependabot-dismissal-request-expiry %}1 year{% else %}1 week{% endif %}, after which they must be resubmitted.
 
 ## Configuring delegated dismissal for a repository
 

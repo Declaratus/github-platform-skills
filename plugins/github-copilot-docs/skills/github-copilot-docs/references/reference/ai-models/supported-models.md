@@ -42,12 +42,13 @@ This table lists the AI models available in Copilot, along with their release st
 | GPT-5.4 nano[^gpt54nano]| OpenAI | GA |
 | GPT-5.6 Luna| OpenAI | GA |
 | GPT-5.6 Sol| OpenAI | GA |
-| GPT-5.6 Terra| OpenAI | GA |
 | GPT-6 Astra| OpenAI | GA |
 | GPT-6 Luna| OpenAI | GA |
 | GPT-6 Sol| OpenAI | GA |
 | GPT-6.1 Sol| OpenAI | GA |
 | GPT-6.1 Terra| OpenAI | GA |
+| GPT-6.2 Astra| OpenAI | GA |
+| GPT-6.2 Sol| OpenAI | GA |
 | Claude Fable 5[^claude-fable-5]| Anthropic | GA |
 | Claude Fable 5.1[^claude-fable-5]| Anthropic | GA |
 | Claude Fable 5.2[^claude-fable-5]| Anthropic | GA |
@@ -55,7 +56,6 @@ This table lists the AI models available in Copilot, along with their release st
 | Claude Haiku 5.5| Anthropic | GA |
 | Claude Opus 4.8| Anthropic | GA |
 | Claude Opus 4.8 (fast mode) (preview)| Anthropic | GA |
-| Claude Opus 5| Anthropic | GA |
 | Claude Opus 5.5| Anthropic | GA |
 | Claude Sonnet 4.6| Anthropic | GA |
 | Claude Sonnet 5| Anthropic | GA |
@@ -63,7 +63,11 @@ This table lists the AI models available in Copilot, along with their release st
 | Gemini 3.8 Flash| Google | GA |
 | Gemini 4 Argon| Google | GA |
 | Gemini 4 Carbon| Google | GA |
+| Gemini 4 Hydrogen| Google | GA |
+| Gemini 4 Neon| Google | GA |
 | MAI-Code-1.1-Flash[^mai-models]| Microsoft | GA |
+| MAI Code 2[^mai-models]| Microsoft | GA |
+| MAI Code 2 Flash[^mai-models]| Microsoft | GA |
 | Kimi K3| Moonshot AI | GA |
 | Grok 4.5| xAI | GA |
 | Grok 4.6| xAI | GA |
@@ -73,9 +77,9 @@ This table lists the AI models available in Copilot, along with their release st
 
 [^claude-fable-5]: When Claude Fable 5, Claude Fable 5.1, or Claude Fable 5.2 is used, Anthropic retains data, including prompts and outputs, by default to operate safety classifiers that detect harmful use. Customers can request to use Claude Fable 5, Claude Fable 5.1, or Claude Fable 5.2 with zero data retention (ZDR) through the end of 2026 under a time-bound exemption while Anthropic rolls out Enterprise Frontier Safeguards (EFS). After that point, continued use of these models would require EFS, which will enable eligible customers to keep their data under their own control while also enabling automated safety monitoring. For an enterprise that has been approved and configured for this type of access, Claude Fable 5, Claude Fable 5.1, and Claude Fable 5.2 requests will use the ZDR endpoint through the end of 2026 when the models are enabled. To learn whether your enterprise is eligible and request access, contact your GitHub account team. Approval for access does not automatically enable Claude Fable 5, Claude Fable 5.1, or Claude Fable 5.2. An enterprise or organization administrator must still enable each model before users can access it. Other Claude models, except for Claude Fable 5, Claude Fable 5.1, and Claude Fable 5.2, continue to operate under ZDR. Customers who enable a Fable model with ZDR agree to use this model only for internal operations, including to develop and evaluate products for their own customers. They may not make the model endpoints or outputs available externally. To enable these models, see [AUTOTITLE](/copilot/how-tos/copilot-on-github/set-up-copilot/configure-access-to-ai-models).
 
-## Supported AI models in Auto model selection
+## Supported AI models for Auto model selection and Copilot Fusion
 
-This table lists the supported AI models for Auto model selection. Available models may be limited by model policies. For example, as the long term support model, GPT-5.3-Codex will be used in the event no other models are available. See [AUTOTITLE](/copilot/concepts/models/fallback-and-lts-models) and [AUTOTITLE](/copilot/concepts/models/auto-model-selection).
+This table lists the supported AI models for Auto model selection and Copilot Fusion. Available models may be limited by model policies. As the long term support model, GPT-5.3-Codex will be used in the event no other models are available. See [AUTOTITLE](/copilot/concepts/models/fallback-and-lts-models) and [AUTOTITLE](/copilot/concepts/models/auto-model-selection).
 
 {% rowheaders %}
 
@@ -83,19 +87,21 @@ This table lists the supported AI models for Auto model selection. Available mod
 | --- | --- | --- | --- | --- |
 | GPT-5.6 Luna | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
 | GPT-5.6 Sol | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
-| GPT-5.6 Terra | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
 | GPT-6 Astra | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
 | GPT-6 Luna | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
 | GPT-6 Sol | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
 | GPT-6.1 Sol | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| GPT-6.1 Terra | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| GPT-6.2 Astra | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| GPT-6.2 Sol | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
 | Claude Haiku 4.5 | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
-| Claude Opus 4.8 | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
-| Claude Opus 5 | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
 | Claude Opus 5.5 | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
 | Claude Sonnet 5 | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
 | Claude Sonnet 5.5 | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
 | Gemini 3.8 Flash | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
 | MAI-Code-1.1-Flash | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| MAI Code 2 | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| MAI Code 2 Flash | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
 
 {% endrowheaders %}
 
@@ -119,7 +125,6 @@ Choosing a larger context window or higher reasoning will impact AI credits cons
 | --- | --- | --- |
 | Claude Sonnet 4.6 | (icon: check) | (icon: check) |
 | Claude Opus 4.8 | (icon: check) | (icon: check) |
-| Claude Opus 5 | (icon: check) | (icon: check) |
 | Claude Opus 5.5 | (icon: check) | (icon: check) |
 | Claude Sonnet 5 | (icon: check) | (icon: check) |
 | Claude Sonnet 5.5 | (icon: check) | (icon: check) |
@@ -131,13 +136,16 @@ Choosing a larger context window or higher reasoning will impact AI credits cons
 | GPT-5.3-Codex | (icon: check) | (icon: check) |
 | GPT-5.6 Luna | (icon: check) | (icon: check) |
 | GPT-5.6 Sol | (icon: check) | (icon: check) |
-| GPT-5.6 Terra | (icon: check) | (icon: check) |
 | GPT-6 Astra | (icon: check) | (icon: check) |
 | GPT-6 Luna | (icon: check) | (icon: check) |
 | GPT-6 Sol | (icon: check) | (icon: check) |
 | GPT-6.1 Sol | (icon: check) | (icon: check) |
 | GPT-6.1 Terra | (icon: check)  | (icon: check)  |
+| GPT-6.2 Astra | (icon: check) | (icon: check) |
+| GPT-6.2 Sol | (icon: check) | (icon: check) |
 | Kimi K3 | (icon: check) | (icon: check) |
+| MAI Code 2 | (icon: check) | (icon: check) |
+| MAI Code 2 Flash | (icon: check) | (icon: check) |
 
 {% endrowheaders %}
 
@@ -153,7 +161,6 @@ The following table shows which models are available in each client.
 | Claude Haiku 5.5 | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
 | Claude Opus 4.8 | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
 | Claude Opus 4.8 (fast mode) (preview) | (icon: x) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
-| Claude Opus 5 | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
 | Claude Opus 5.5 | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
 | Claude Fable 5 | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
 | Claude Fable 5.1 | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
@@ -164,16 +171,21 @@ The following table shows which models are available in each client.
 | Gemini 3.8 Flash | (icon: x) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
 | Gemini 4 Argon | (icon: x) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
 | Gemini 4 Carbon | (icon: x) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| Gemini 4 Hydrogen | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| Gemini 4 Neon | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
 | MAI-Code-1.1-Flash | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| MAI Code 2 | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| MAI Code 2 Flash | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
 | GPT-5.3-Codex | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
 | GPT-5.4 nano[^gpt54nano] | (icon: x) | (icon: x) | (icon: x) | (icon: x) | (icon: x) | (icon: x) | (icon: x) |
 | GPT-5.6 Luna | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: x) | (icon: x) | (icon: x) |
 | GPT-5.6 Sol | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: x) | (icon: x) | (icon: x) |
-| GPT-5.6 Terra | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: x) | (icon: x) | (icon: x) |
 | GPT-6 Astra | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
 | GPT-6 Luna | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
 | GPT-6 Sol | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
 | GPT-6.1 Terra | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| GPT-6.2 Astra | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| GPT-6.2 Sol | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
 | Grok 4.5 | (icon: x) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
 | Grok 4.6 | (icon: x) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
 | Grok 4.7 | (icon: x) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
@@ -195,17 +207,18 @@ Some Copilot models require minimum versions of supported IDEs or Copilot extens
 | Gemini 3.8 Flash     | TBD | `17.14.22` or `18.1.0`         | TBD | TBD | TBD |
 | Gemini 4 Argon      | TBD | `17.14.22` or `18.1.0`         | TBD | TBD | TBD |
 | Gemini 4 Carbon     | TBD | TBD                            | TBD | TBD | TBD |
+| Gemini 4 Hydrogen   | TBD | TBD                            | TBD | TBD | TBD |
+| Gemini 4 Neon       | TBD | TBD                            | TBD | TBD | TBD |
 | GPT-5.3-Codex        | `v1.104.1` | `17.14.19`                     | `1.5.61` | `0.45.0` | `0.13.0` |
 | GPT-5.6 Luna         | `1.128.0` | TBD | TBD | TBD | TBD |
 | GPT-5.6 Sol          | `1.128.0` | TBD | TBD | TBD | TBD |
-| GPT-5.6 Terra        | `1.128.0` | TBD | TBD | TBD | TBD |
 | GPT-6 Astra         | `1.136.1` | `17.14.19` | TBD | TBD | TBD |
 | GPT-6 Luna          | TBD | `17.14.19` | TBD | TBD | TBD |
 | GPT-6 Sol           | TBD | `17.14.19` | TBD | TBD | TBD |
 | GPT-6.1 Sol          | TBD | `17.14.19` | TBD | TBD | TBD |
 | GPT-6.1 Terra        | TBD | TBD | TBD | TBD | TBD |
-| Claude Opus 4.8      | `v1.118` | `17.14.6`                     | TBD | TBD | TBD |
-| Claude Opus 5       | `v1.128.0` | `17.14.22` | TBD | TBD | TBD |
+| GPT-6.2 Astra        | TBD | TBD | TBD | TBD | TBD |
+| GPT-6.2 Sol          | TBD | TBD | TBD | TBD | TBD |
 | Claude Opus 5.5      | TBD | `17.14.6` | TBD | TBD | TBD |
 | Claude Sonnet 5  | `v1.124` | `17.14.6` | TBD | TBD | TBD |
 | Claude Sonnet 5.5 | TBD | `17.14.6` | TBD | TBD | TBD |
@@ -215,6 +228,8 @@ Some Copilot models require minimum versions of supported IDEs or Copilot extens
 | Claude Fable 5.2    | TBD | TBD                    | TBD | TBD | TBD |
 | Kimi K3     | `v1.131` | TBD            | TBD | TBD | TBD |
 | MAI Code 1.1 Flash  | `v1.121` | TBD                            | TBD | TBD | TBD |
+| MAI Code 2          | TBD | `17.14.6` | TBD | TBD | TBD |
+| MAI Code 2 Flash    | TBD | `17.14.6` | TBD | TBD | TBD |
 | Grok 4.5             | TBD | `17.14.19` | TBD | TBD | TBD |
 | Grok 4.6             | TBD | TBD | TBD | TBD | TBD |
 | Grok 4.7             | TBD | `17.14.19` | TBD | TBD | TBD |
@@ -239,9 +254,8 @@ The following table shows which AI models are available in each Copilot plan. Fo
 |---------------------------------------------------------|-------------------------------------------------|-----------------------------------------------------|------------------------------------------------|-----------------------------------------------------|-------------------------------------------------------|
 | Claude Haiku 4.5 | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
 | Claude Haiku 5.5 | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
-| Claude Opus 4.8 | (icon: x) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| Claude Opus 4.8[^claude-opus-48-plans] | (icon: x) | (icon: check) | (icon: x) | (icon: x) | (icon: x) |
 | Claude Opus 4.8 (fast mode) (preview) | (icon: x) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
-| Claude Opus 5 | (icon: x) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
 | Claude Opus 5.5 | (icon: x) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
 | Claude Fable 5[^claude-fable-5] | (icon: x) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
 | Claude Fable 5.1[^claude-fable-5] | (icon: x) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
@@ -252,27 +266,34 @@ The following table shows which AI models are available in each Copilot plan. Fo
 | Gemini 3.8 Flash | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
 | Gemini 4 Argon | (icon: x) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
 | Gemini 4 Carbon | (icon: x) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| Gemini 4 Hydrogen | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| Gemini 4 Neon | (icon: x) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
 | GPT-5.3-Codex | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
 | GPT-5.4 nano[^gpt54nano] | (icon: x) | (icon: check) | (icon: check) | (icon: x) | (icon: x) |
 | GPT-5.6 Luna | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
 | GPT-5.6 Sol | (icon: x) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
-| GPT-5.6 Terra | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
 | GPT-6 Astra | (icon: x) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
 | GPT-6 Luna | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
 | GPT-6 Sol | (icon: x) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
 | GPT-6.1 Sol | (icon: x) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
 | GPT-6.1 Terra | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| GPT-6.2 Astra | (icon: x) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| GPT-6.2 Sol | (icon: x) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
 | Grok 4.5 | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
 | Grok 4.6 | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
 | Grok 4.7 | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
 | Kimi K3 | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
 | MAI-Code-1.1-Flash | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| MAI Code 2 | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
+| MAI Code 2 Flash | (icon: check) | (icon: check) | (icon: check) | (icon: check) | (icon: check) |
 
 {% endrowheaders %}
 
 [^gpt54nano]: GPT-5.4 nano is currently only available in the Codex Visual Studio Code extension (Copilot Pro+ only) and is not available in Copilot Chat.
 
 [^claude-sonnet-46-plans]: Claude Sonnet 4.6 was retired on September 1, 2026, but remains available to individual Copilot subscribers on annual Copilot Pro and Copilot Pro+ plans. It is not available to subscribers on monthly plans.
+
+[^claude-opus-48-plans]: Claude Opus 4.8 was retired on November 16, 2026, but remains available to individual Copilot subscribers on annual plans. It is not available to subscribers on monthly plans.
 
 > [!NOTE]
 > * If you're an organization or enterprise owner, you can enable or restrict access to specific models for your members. See [AUTOTITLE](/copilot/how-tos/copilot-on-github/set-up-copilot/configure-access-to-ai-models#setup-for-organization-and-enterprise-plans).
@@ -330,6 +351,9 @@ The following table lists AI models that are retired or scheduled for retirement
 
 | Model name                                                  | Retirement date             | Suggested alternative             |
 |-------------------------------------------------------------|-----------------------------|-----------------------------------|
+| Claude Opus 4.8[^claude-opus-48-annual] | 2026-11-16 | Latest Claude Opus model |
+| Claude Opus 5 | 2026-11-16 | Latest Claude Opus model |
+| GPT-5.6 Terra | 2026-11-16 | Latest GPT Terra model |
 | Gemini 3.7 Flash | 2026-10-19 | Latest Gemini Flash model |
 | GPT-5 mini | 2026-10-19 | Latest GPT Luna model |
 | GPT-5.4 | 2026-10-19 | Latest GPT Sol model |
@@ -375,6 +399,8 @@ The following table lists AI models that are retired or scheduled for retirement
 {% endrowheaders %}
 
 [^claude-sonnet-46-annual]: Claude Sonnet 4.6 remains available to individual Copilot subscribers on annual plans. The retirement of Claude Sonnet 4.6 does not apply to these subscribers.
+
+[^claude-opus-48-annual]: Claude Opus 4.8 remains available to individual Copilot subscribers on annual plans. The retirement of Claude Opus 4.8 does not apply to these subscribers.
 
 ## Next steps
 

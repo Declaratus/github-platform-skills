@@ -7,6 +7,8 @@ versions:
   feature: code-quality
 permissions: 'Repository owners, organization owners, and users with the **admin** role'
 contentType: how-tos
+docsTeamMetrics:
+  - code-quality
 category:
   - Improve code quality
 ---

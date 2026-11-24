@@ -6,6 +6,8 @@ permissions: 'Enterprise owners, enterprise billing managers, organization owner
 versions:
   feature: copilot
 contentType: tutorials
+docsTeamMetrics:
+  - copilot-usage-metrics
 redirect_from:
   - /copilot/tutorials/roll-out-at-scale/measure-adoption/analyze-usage-over-time
   - /copilot/managing-copilot/managing-github-copilot-in-your-organization/reviewing-activity-related-to-github-copilot-in-your-organization/analyzing-usage-over-time-with-the-copilot-metrics-api

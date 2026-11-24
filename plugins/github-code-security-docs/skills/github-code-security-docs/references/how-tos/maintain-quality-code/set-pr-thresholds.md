@@ -10,6 +10,8 @@ permissions: 'Repository owners, organization owners, and users with the **admin
 audience:
   - driver
 contentType: how-tos
+docsTeamMetrics:
+  - code-quality
 redirect_from:
   - /code-security/code-quality/how-tos/set-pr-thresholds
 category:
