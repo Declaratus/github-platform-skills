@@ -34,7 +34,7 @@ jobs:
         run: python3 build/bump_sources.py --summary .build-cache/refresh-summary.md
 
       - name: Rebuild references
-        run: PYTHON="$PWD/.build-cache/venv/bin/python" ./build/build.sh --all
+        run: PYTHON="$PWD/.build-cache/venv/bin/python" bash build/build.sh --all
 
       # Runs after the rebuild because each window starts from the new snapshot date.
       - name: Regenerate changelog lists
