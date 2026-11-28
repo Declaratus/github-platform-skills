@@ -12,6 +12,11 @@ category:
   - Build agents at enterprise scale
 ---
 
+<!-- expires 2026-12-31 -->
+> [!NOTE]
+> Through December 31, 2026, users on paid Copilot plans receive a 30% discount on model costs when using Copilot Fusion.
+<!-- end expires 2026-12-31 -->
+
 ## Overview
 
 Copilot Fusion is an intelligent runtime model router and orchestrator. It chooses models and execution patterns for your task, then returns a single response. For example, it can choose one model to draft a solution and a separate model for review.
@@ -125,10 +130,10 @@ If none of the models Copilot Fusion uses are available to you, Copilot Fusion d
 
 ## Billing for Copilot Fusion
 
-<!-- expires 2026-11-30 -->
+<!-- expires 2026-12-31 -->
 > [!NOTE]
-> Through November 30, 2026, users on paid Copilot plans receive a 30% discount on model costs when using Copilot Fusion.
-<!-- end expires 2026-11-30 -->
+> Through December 31, 2026, users on paid Copilot plans receive a 30% discount on model costs when using Copilot Fusion.
+<!-- end expires 2026-12-31 -->
 
 When you use Copilot Fusion, you're billed for each model it uses, at that model's standard rate. There's no separate charge for Copilot Fusion. Because Fusion High and Fusion Max can use more than one model for a task, a task may consume more AI credits than it would with Fusion Standard. For per-model rates, see [AUTOTITLE](/copilot/reference/copilot-billing/models-and-pricing).
 

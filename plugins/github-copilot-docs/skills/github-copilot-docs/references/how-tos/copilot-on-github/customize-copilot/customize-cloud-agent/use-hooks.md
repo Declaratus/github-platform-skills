@@ -103,6 +103,9 @@ You can debug hooks using the following methods:
 
 * **Test hooks locally** by piping test input into your hook to validate its behavior:
 
+  > [!WARNING]
+  > Hook input can include sensitive data (for example, prompts, tool arguments, or credentials). Use sanitized test payloads, avoid real secrets, and remove or redact any temporary full-input logging after debugging.
+
   ```shell copy
   # Create test input
   echo '{"timestamp":1704614400000,"cwd":"/tmp","toolName":"bash","toolArgs":"{\"command\":\"ls\"}"}' | ./my-hook.sh

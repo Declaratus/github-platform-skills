@@ -26,7 +26,7 @@ For more information, see [AUTOTITLE](/copilot/concepts/customizations/custom-ag
 
 ## Creating a custom agent
 
-Each custom agent is defined by a Markdown file with an `.agent.md` extension. You can create these files yourself, or you can add them from within the CLI, as described in the following steps.
+Each custom agent is defined by a Markdown file with an `.agent.md` or `.md` extension. You can create these files yourself, or you can add them from within the CLI, as described in the following steps.
 
 1. In interactive mode, enter `/agent`.
 1. Press <kbd>N</kbd> to create a new agent.
@@ -67,7 +67,7 @@ Each custom agent is defined by a Markdown file with an `.agent.md` extension. Y
    * Try again
    * Quit
 
-   If you choose to review the content, the agent file is opened in your default editor. You can review and make changes before continuing the agent creation process in the CLI.
+   If you choose to review the content, a preview of the agent file is opened in your default application. Changes to the preview are not applied to the agent file. To make changes, edit the agent file after you create it.
 
    To complete the creation process, choose **Continue**.
 
@@ -110,7 +110,7 @@ Custom agents can be used in the following ways:
 
 * **By inference**
 
-  Use a prompt that will trigger the use of a particular agent based on the description in the agent file. For example:
+  Use a prompt that's likely to trigger the use of a particular agent based on the description in the agent file. For example:
 
   ```copilot
   Check all TypeScript files in or under the src directory for potential security problems
@@ -122,7 +122,7 @@ Custom agents can be used in the following ways:
   seccheck /src/app/validator.go
   ```
 
-  Copilot will automatically infer the agent you want to use.
+  Copilot will typically infer and use the agent you want.
 
 * **Programmatically**
 
@@ -200,7 +200,7 @@ Review the change and flag anything that violates the repository's conventions.
 ```
 
 > [!NOTE]
-|> This setting only affects the agent when it runs as a subagent. A custom agent that you select yourself—with `--agent` or `/agent`—follows your repository's custom instructions by default, unless you use `--no-custom-instructions`. In that case, no agent receives repository custom instructions.
+> This setting only affects the agent when it runs as a subagent. A custom agent that you select yourself—with `--agent` or `/agent`—follows your repository's custom instructions by default, unless you use `--no-custom-instructions`. In that case, no agent receives repository custom instructions.
 
 For more information, including how this setting interacts with the `--no-custom-instructions` option, see [AUTOTITLE](/copilot/reference/copilot-cli-reference/cli-command-reference#repository-custom-instructions-for-subagents).
 

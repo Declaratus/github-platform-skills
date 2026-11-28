@@ -88,7 +88,7 @@ More complex interactions consume more of your usage allowance. The main factors
 
 <!-- expires 2026-11-30 -->
 > [!NOTE]
-> Through November 30, 2026, users on paid Copilot plans receive a 30% discount on model costs when using Copilot Fusion.
+> Through December 31, 2026, users on paid Copilot plans receive a 30% discount on model costs when using Copilot Fusion.
 <!-- end expires 2026-11-30 -->
 
 > [!NOTE] If you are on a paid Copilot plan, you qualify for a 10% discount on model costs while using auto model selection in Copilot Chat, or Copilot cloud agent.

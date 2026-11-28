@@ -30,6 +30,9 @@ You can configure content exclusion to make Copilot ignore certain files. For mo
 
 ## Configuring content exclusion for your repository
 
+> [!NOTE]
+> Repository-level content exclusion is available only for repositories owned by an organization with Copilot enabled—not personal repositories, even if their owner has an organization-provided Copilot seat.
+
 1. On GitHub, navigate to the main page of the repository.
 1. Under your repository name, click **(icon: gear) Settings**. If you cannot see the "Settings" tab, select the **(icon: kebab-horizontal)** dropdown menu, then click **Settings**.
 

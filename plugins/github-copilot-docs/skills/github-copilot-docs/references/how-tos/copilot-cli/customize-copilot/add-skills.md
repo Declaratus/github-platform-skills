@@ -18,6 +18,9 @@ docsTeamMetrics:
 
 Agent skills are folders of instructions, scripts, and resources that Copilot can load when relevant to improve its performance in specialized tasks. For more information, see [AUTOTITLE](/copilot/concepts/agents/about-agent-skills).
 
+> [!WARNING]
+> In Copilot CLI, omitting a tool from `allowed-tools` does not guarantee a permission prompt. Existing permission settings or approvals can still allow the tool without a prompt.
+
 ## Creating and adding a skill
 
 To create an agent skill, you write a `SKILL.md` file and, optionally, other resources, such as supplementary Markdown files, or scripts, which you reference in the `SKILL.md` instructions.
@@ -84,7 +87,7 @@ To create a skill that runs a script:
    └── convert-svg-to-png.sh
    ```
 
-1. **Optionally pre-approve the tools the skill needs.** In your `SKILL.md` frontmatter, you can use the `allowed-tools` field to list the tools Copilot may use without asking for confirmation each time. If a tool is not listed in the `allowed-tools` field, Copilot will prompt you for permission before using it.
+1. **Optionally pre-approve the tools the skill needs.** In your `SKILL.md` frontmatter, you can use the `allowed-tools` field to list the tools Copilot may use without asking for confirmation each time. If a tool is not listed in the `allowed-tools` field, Copilot will prompt you for permission before using it, except in Copilot CLI, where existing permission settings or approvals can allow the tool without a prompt.
 
    ```markdown
    ---
@@ -95,7 +98,7 @@ To create a skill that runs a script:
    ```
 
    > [!WARNING]
-   > Only pre-approve the `shell` or `bash` tools if you have reviewed this skill and any referenced scripts, and you fully trust their source. Pre-approving `shell` or `bash` removes the confirmation step for running terminal commands and can allow attacker-controlled skills or prompt injections to execute arbitrary commands in your environment. When in doubt, omit `shell` and `bash` from `allowed-tools` so that Copilot must ask for your explicit confirmation before running terminal commands.
+   > Only pre-approve the `shell` or `bash` tools if you have reviewed this skill and any referenced scripts, and you fully trust their source. Pre-approving `shell` or `bash` removes the confirmation step for running terminal commands and can allow attacker-controlled skills or prompt injections to execute arbitrary commands in your environment. When in doubt, omit `shell` and `bash` from `allowed-tools`. In Copilot CLI, existing permission settings or approvals can still allow these tools without a prompt.
 
 1. **Write instructions that tell Copilot how to use the script.** In the Markdown body of `SKILL.md`, describe when and how to run the script.
 
@@ -124,7 +127,7 @@ In addition to creating your own skills, you can also add skills that other peop
    * For **personal skills**, shared across projects: `~/.copilot/skills` or `~/.agents/skills` in your local home directory.
 
 1. Start a CLI session, or if you are currently in a CLI session enter `/skills reload`.
-1. Enter `/skills info SKILL-NAME` to check that the skill has reloaded.
+1. Enter `/skills get SKILL-NAME` to check that the skill has reloaded.
 
    SKILL-NAME is defined in the SKILL.md file and is typically the same as the name of the skill directory.
 
@@ -150,13 +153,13 @@ Use the /frontend-design skill to create a responsive navigation bar in React.
 
 * **Enable or disable specific skills:** use the command `/skills`, then use the up and down keys on your keyboard to select a skill, press <kbd>Enter</kbd>, and choose **Enable** or **Disable**.
 
-* **Find out more about a skill** (including its location): use the command `/skills info SKILL-NAME`.
+* **Find out more about a skill** (including its location): use the command `/skills get SKILL-NAME`.
 
 * **Add a skills location:** to add an alternative location in which to store skills, use the command `/skills add SKILL-DIRECTORY`, replacing `SKILL-DIRECTORY` with the directory's path.
 
 * **Reload skills:** if you have added a skill during a CLI session, you can add it using the command `/skills reload` to avoid having to restart the CLI to use it.
 
-* **Remove skills:** to remove a skill that you have added directly—not via a plugin—use the command `/skills remove SKILL-DIRECTORY`. To remove skills added as part of a plugin you must manage the plugin itself. Use the `info` subcommand to find out which plugin a skill came from.
+* **Remove skills:** to remove a personal or project skill by name, use `/skills remove SKILL-NAME`. This deletes the skill's files. To unregister a custom skills directory without deleting its files, use `/skills remove SKILL-DIRECTORY`. To remove skills added as part of a plugin you must manage the plugin itself. Use the `get` subcommand to find out which plugin a skill came from.
 
 The `/skills` commands above run inside an interactive session. The same list, add, remove, disable, and enable operations are also available from the terminal command line by using the `copilot skill` subcommand. This is useful for scripting or for setting up skills before you start a session. For example, run `copilot skill list` to list your skills, `copilot skill add <FILE | URL | DIRECTORY>` to add one, or `copilot skill disable SKILL-NAME` and `copilot skill enable SKILL-NAME` to turn a skill off and back on. For the full set of subcommands for Copilot CLI, see [AUTOTITLE](/copilot/reference/copilot-cli-reference/cli-command-reference).
 

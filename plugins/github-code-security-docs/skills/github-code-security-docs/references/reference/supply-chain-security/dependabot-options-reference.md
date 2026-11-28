@@ -942,7 +942,7 @@ In this example, Dependabot will ignore the `src/test/assets` directory, all fil
 
 ## `vendor` (icon: versions) (icon: shield-check)
 
-Supported by: `bundler` and `gomod` only.
+Supported by: `bundler` only. Vendored modules are automatically detected for `gomod`.
 
 Tell Dependabot to maintain your vendored dependencies as well as the dependencies defined by manifest files. A dependency is described as "vendored" or "cached" when you store the code within your repository, see [`bundle cache` documentation](https://bundler.io/man/bundle-cache.1.html) and [`go mod vendor` documentation](https://golang.org/ref/mod#go-mod-vendor).
 

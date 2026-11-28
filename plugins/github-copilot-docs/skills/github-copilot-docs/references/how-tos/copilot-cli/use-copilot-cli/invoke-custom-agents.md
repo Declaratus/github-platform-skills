@@ -18,7 +18,7 @@ docsTeamMetrics:
 
 A custom agent is a specialized version of Copilot. Custom agents help Copilot handle unique workflows, particular coding conventions, and specialist use cases.
 
-Copilot CLI includes a default group of custom agents for common tasks:
+Copilot CLI includes built-in agents for common tasks, such as:
 
 <table>
   <thead>
@@ -47,7 +47,7 @@ Copilot CLI includes a default group of custom agents for common tasks:
   </tbody>
 </table>
 
-The AI model being used by the CLI can choose to delegate a task to a subsidiary subagent process, that operates using a custom agent with specific expertise, if it judges that this would result in the work being completed more effectively. The model may equally choose to handle the work directly in the main agent.
+The AI model being used by the CLI can choose to delegate a task to a subsidiary subagent process that uses an agent with specific expertise, if it judges that this would result in the work being completed more effectively. The model may equally choose to handle the work directly in the main agent.
 
 You can define your own custom agents using Markdown files, called agent profiles, that specify what expertise the agent should have, what tools it can use, and any specific instructions for how it should respond.
 
@@ -60,7 +60,7 @@ You can define custom agents at the user, repository, organization, or enterpris
 | Organization-level custom agent | `/agents` directory in the organization's `.github` or `.github-private` repository | All projects within the organization |
 | Enterprise-level custom agent | `/agents` directory in the `.github-private` repository of an organization designated in enterprise settings. For more information, see [AUTOTITLE](/copilot/how-tos/administer-copilot/manage-for-enterprise/manage-agents/prepare-for-custom-agents). | All projects under the enterprise account |
 
-In the case of naming conflicts (where agents share the same filename), a user-level agent overrides a repository-level agent, a repository-level agent overrides an organization-level agent, and an organization-level agent overrides an enterprise-level agent.
+In the case of naming conflicts (where agents share the same ID), a user-level agent overrides a repository-level agent, a repository-level agent overrides an organization-level agent, and an organization-level agent overrides an enterprise-level agent.
 
 Custom agents can be used in three ways:
 
@@ -76,7 +76,7 @@ Custom agents can be used in three ways:
   Use the refactoring agent to refactor this code block
   ```
 
-  Copilot will automatically infer the agent you want to use.
+  Copilot will typically infer and use the agent you want.
 
 * Specifying the custom agent you want to use with the command-line option. For example:
 
@@ -94,7 +94,7 @@ For more information, see [AUTOTITLE](/copilot/how-tos/copilot-cli/customize-cop
 
 ## Add an MCP server
 
-Copilot CLI comes with the GitHub MCP server already configured. This MCP server allows you to interact with resources on GitHub.com—for example, allowing you to merge pull requests from the CLI.
+Copilot CLI comes with the GitHub MCP server already configured. By default, this server provides read-only access to resources on GitHub.com, such as file contents in a repository.
 
 To extend the functionality available to you in Copilot CLI, you can add more MCP servers:
 

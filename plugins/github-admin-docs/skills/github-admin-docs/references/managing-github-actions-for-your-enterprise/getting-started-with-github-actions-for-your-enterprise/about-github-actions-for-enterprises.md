@@ -40,7 +40,7 @@ GitHub Actions also includes tools to govern your enterprise's software developm
 
 Before you get started, you should make a plan for how you'll introduce GitHub Actions to your enterprise. For more information, see [AUTOTITLE](/admin/managing-github-actions-for-your-enterprise/getting-started-with-github-actions-for-your-enterprise/introducing-github-actions-to-your-enterprise).
 
-If you're migrating your enterprise to GitHub Actions from another provider, there are additional considerations. For more information, see [AUTOTITLE](/admin/managing-github-actions-for-your-enterprise/getting-started-with-github-actions-for-your-enterprise/migrating-your-enterprise-to-github-actions).
+If you're migrating your enterprise to GitHub Actions from another provider, there are additional considerations. For more information, see [AUTOTITLE](/actions/tutorials/migrate-to-github-actions/migrate-an-enterprise).
 
 {% ifversion ghes %}
 GitHub Actions is not enabled for GitHub Enterprise Server by default. After you finish planning, you can follow the instructions for enabling GitHub Actions. For example, you may need to upgrade the CPU and memory resources for {% ifversion ghes %}your GitHub Enterprise Server instance{% else %}GitHub.com{% endif %}. For more information, see [AUTOTITLE](/admin/managing-github-actions-for-your-enterprise/getting-started-with-github-actions-for-your-enterprise/getting-started-with-github-actions-for-github-enterprise-server).

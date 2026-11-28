@@ -52,7 +52,7 @@ The `codeql pack init` command creates the directory structure and configuration
 ## Creating a CodeQL model pack
 
 > [!NOTE]
-> CodeQL model packs are currently in public preview and subject to change. Model packs are supported for C/C++, C#, Java/Kotlin, Python, {% ifversion codeql-rust-available %}Ruby, and Rust{% else %}and Ruby{% endif %} analysis.
+> CodeQL model packs are currently in public preview and subject to change. Model packs are supported for GitHub Actions, C/C++, C#, Java/Kotlin, Python, {% ifversion codeql-rust-available %}Ruby, and Rust{% else %}and Ruby{% endif %} analysis.
 >
 > The CodeQL model editor in the CodeQL extension for Visual Studio Code supports modeling dependencies for C#, Java/Kotlin, Python, and Ruby.
 

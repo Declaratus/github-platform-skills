@@ -3,7 +3,7 @@
 
 github/docs does not carry the GitHub Changelog. The bundled `references/` tree is a snapshot (see `upstream_committed_at` in `references/SOURCE.json`), and features often ship, change status or get renamed before the docs catch up.
 
-This list covers 2026-07-27 to 2026-11-24. Where an entry and the docs disagree, the newer dated source wins; say which one you used and read the linked entry for scope and limits before relying on it. For anything after 2026-11-24, check the label feeds:
+This list covers 2026-07-30 to 2026-11-28. Where an entry and the docs disagree, the newer dated source wins; say which one you used and read the linked entry for scope and limits before relying on it. For anything after 2026-11-28, check the label feeds:
 
 - https://github.blog/changelog/label/enterprise-management-tools/feed/
 - https://github.blog/changelog/label/platform-governance/feed/
@@ -90,7 +90,3 @@ Older entries are on `?paged=2`, `?paged=3` and so on.
 | 2026-08-03 | New | [Enterprise team specialization for managed settings](https://github.blog/changelog/2026-08-03-enterprise-team-specialization-for-managed-settings) |
 | 2026-08-03 | New | [Migrate from GitLab to GitHub with GitHub Enterprise Importer](https://github.blog/changelog/2026-08-03-migrate-from-gitlab-to-github-with-github-enterprise-importer) |
 | 2026-07-31 | Improvement | [Enterprise teams model policy targeting in public preview](https://github.blog/changelog/2026-07-31-enterprise-teams-model-policy-targeting-in-public-preview) |
-| 2026-07-28 | Improvement | [GitHub Copilot app usage metrics now expand across report rollups](https://github.blog/changelog/2026-07-28-github-copilot-app-usage-metrics-now-expand-across-report-rollups) |
-| 2026-07-28 | New | [GitHub Copilot for JetBrains adds improved OpenTelemetry configuration and model management](https://github.blog/changelog/2026-07-27-github-copilot-for-jetbrains-adds-improvved-opentelemetry-configuration-and-model-management) |
-| 2026-07-27 | New | [Manage GitHub Copilot app access with a dedicated policy](https://github.blog/changelog/2026-07-27-manage-github-copilot-app-access-with-a-dedicated-policy) |
-| 2026-07-27 | New | [Enterprise managed settings in the GitHub Copilot app and Copilot cloud agent](https://github.blog/changelog/2026-07-27-enterprise-managed-settings-now-apply-to-the-github-copilot-app) |

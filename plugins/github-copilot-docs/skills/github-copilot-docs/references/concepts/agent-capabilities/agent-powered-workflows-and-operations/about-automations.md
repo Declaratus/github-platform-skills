@@ -96,12 +96,14 @@ An automation runs when one of its triggers fires. A wide range of triggers are 
 * **On a schedule**: the automation runs at a recurring interval—hourly, daily, or weekly.
 * **When an issue is created**: the automation runs each time an issue is opened in the repository.
 * **When a pull request is opened**: the automation runs each time a pull request is opened in the repository.
-* **When a pull request is synchronized**: the automation runs each time new commits are pushed to a pull request in the repository.
+* **When a pull request is synchronized**: the automation runs each time new commits are pushed to a pull request in the repository.{% ifversion issue-statuses %}
+* **When an issue's status changes**: the automation can run when an issue's status in the repository changes. Issue statuses are in public preview. For more information, see [AUTOTITLE](/issues/tracking-your-work-with-issues/learning-about-issues/about-issue-statuses).{% endif %}
 
 You can optionally configure filters for event-based triggers, for example:
 
 * For when **an issue is created**, add a search query filter.
-* For when **a pull request is opened** and when **a pull request is synchronized**, add a search query filter and a filter for files changed in the pull request.
+* For when **a pull request is opened** and when **a pull request is synchronized**, add a search query filter and a filter for files changed in the pull request.{% ifversion issue-statuses %}
+* For when **an issue's status changes**, choose the statuses that the issue changes to, and add a search query filter.{% endif %}
 
 To reduce the risk of prompt injection, automations ignore GitHub events triggered by users who don't have write access to the repository by default. This helps prevent untrusted users from causing Copilot to take action, for example, when an external contributor opens an issue. You can opt in to allowing these events if you need to. For more information, see [Security and safety](#security-and-safety).
 

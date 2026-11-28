@@ -49,7 +49,7 @@ AI Scan runs automatically when all the following conditions are met:
 
 * Code scanning is enabled for the repository.
 * The repository's AI Scan on pull requests setting is enabled.
-* A pull request that is not from a fork or created by Dependabot contains changes in a supported language or framework that CodeQL does not cover.
+* A pull request that is not from a fork or created by Dependabot targets the repository's default branch or a protected branch, and contains changes in a supported language or framework that CodeQL does not cover. For more information, see [AUTOTITLE](/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches) and [AUTOTITLE](/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/about-rulesets).
 
 Scans run when a pull request is created and after each new commit, as they do for CodeQL.
 
@@ -73,6 +73,7 @@ You can use the thumbs up or thumbs down control to provide feedback and help im
 
 * AI Scan findings cannot yet be used in rulesets to enforce merge requirements.
 * AI Scan does not run on pull requests from forks or pull requests created by Dependabot.
+* AI Scan only runs on pull requests that target the repository's default branch or a protected branch.
 * Self-hosted runners are not supported.
 * Detection categories and supported languages may change as the feature evolves.
 * As with any AI-based tool, AI Scan findings may include false positives. Use the feedback mechanism to report inaccurate results.

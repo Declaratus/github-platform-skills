@@ -29,6 +29,12 @@ You may also be able to assign Copilot to an issue, see [AUTOTITLE](/copilot/how
 
 Both issues and pull requests support up to 10 assignees.
 
+{% ifversion issue-statuses %}
+
+Assigning someone to an issue can also change its status, for example from Backlog to Todo. For more information, see [AUTOTITLE](/issues/tracking-your-work-with-issues/learning-about-issues/about-issue-statuses#automatic-status-changes).
+
+{% endif %}
+
 ## Assigning an individual issue or pull request
 
 1. On GitHub, navigate to the main page of the repository.
