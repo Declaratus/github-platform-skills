@@ -173,7 +173,7 @@ The following commands test a plugin in Copilot CLI.
 1. Iterate on your plugin development, as required.
 
    > [!IMPORTANT]
-   > When you install a plugin, its components are cached and Copilot CLI reads from the cache for subsequent sessions. To pick up changes made to a local plugin, install it again:
+   > When you install a plugin directly from a local path, its components are cached and Copilot CLI reads from the cache for subsequent sessions. To pick up changes made to a local plugin, install it again:
    >
    > ```shell copy
    > copilot plugin install ./my-plugin

@@ -3,7 +3,7 @@
 
 github/docs does not carry the GitHub Changelog. The bundled `references/` tree is a snapshot (see `upstream_committed_at` in `references/SOURCE.json`), and features often ship, change status or get renamed before the docs catch up.
 
-This list covers 2026-05-28 to 2026-11-24. Where an entry and the docs disagree, the newer dated source wins; say which one you used and read the linked entry for scope and limits before relying on it. For anything after 2026-11-24, check the label feeds:
+This list covers 2026-05-31 to 2026-11-28. Where an entry and the docs disagree, the newer dated source wins; say which one you used and read the linked entry for scope and limits before relying on it. For anything after 2026-11-28, check the label feeds:
 
 - https://github.blog/changelog/label/application-security/feed/
 - https://github.blog/changelog/label/supply-chain-security/feed/
@@ -153,5 +153,3 @@ Older entries are on `?paged=2`, `?paged=3` and so on.
 | 2026-06-09 | Improvement | [Security validation for third-party coding agents](https://github.blog/changelog/2026-06-09-security-validation-for-third-party-coding-agents) |
 | 2026-06-05 | Improvement | [CodeQL 2.25.6 adds Swift 6.3.2 support and improves C# coverage](https://github.blog/changelog/2026-06-05-codeql-2-25-6-adds-swift-6-3-2-support-and-improves-c-coverage) |
 | 2026-06-02 | New | [Cloud and local sandboxes for GitHub Copilot now in public preview](https://github.blog/changelog/2026-06-02-cloud-and-local-sandboxes-for-github-copilot-now-in-public-preview) |
-| 2026-05-28 | New | [Hard budget limits now available for GitHub Advanced Security](https://github.blog/changelog/2026-05-28-hard-budget-limits-now-available-for-github-advanced-security) |
-| 2026-05-28 | Improvement | [CodeQL 2.25.5 improves query accuracy for GitHub Actions](https://github.blog/changelog/2026-05-28-codeql-2-25-5-improves-query-accuracy-for-github-actions) |

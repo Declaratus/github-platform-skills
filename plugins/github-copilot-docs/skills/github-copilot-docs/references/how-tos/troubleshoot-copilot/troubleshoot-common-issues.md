@@ -48,7 +48,7 @@ For more information, see [AUTOTITLE](/copilot/how-tos/configure-content-exclusi
 
 Content exclusion can be configured at the repository{% ifversion ghec %}, organization, and enterprise{% else %} and organization{% endif %} level. The scope of the exclusion is determined by the level at which the rule is set:
 
-* **Repository administrators** can exclude content for their own repositories. This affects any Copilot users in the enterprise working within those specific repositories.
+* **Repository administrators** can exclude content for any organization-owned repositories that they administer. This affects any Copilot users working within those specific repositories.
 * **Organization owners** can exclude content for users assigned a Copilot seat through their organization.
 
 {% ifversion ghec %}

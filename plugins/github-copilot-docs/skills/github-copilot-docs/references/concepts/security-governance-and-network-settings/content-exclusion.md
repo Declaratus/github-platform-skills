@@ -27,7 +27,7 @@ You can configure content exclusion to make Copilot ignore certain files. When y
 
 Repository administrators, organization owners, and enterprise owners can configure content exclusion.
 
-* **Repository administrators** can exclude content for their own repositories. This affects any Copilot users in the enterprise working within those specific repositories.
+* **Repository administrators** can exclude content for any organization-owned repositories that they administer. This affects any Copilot users working within those specific repositories.
 * **Organization owners** can exclude content for users assigned a Copilot seat through their organization.
 
 {% ifversion ghec %}

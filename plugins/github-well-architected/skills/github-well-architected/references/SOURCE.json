@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "repository": "https://github.com/github/github-well-architected.git",
-  "revision": "07b5af891f1eacfa9e336656513f7bae4e4f714d",
-  "upstream_committed_at": "2026-11-13T19:41:21Z",
+  "revision": "2340a6c15f9f79288db3c2ed5ce543279bf8b9bb",
+  "upstream_committed_at": "2026-11-26T23:24:58Z",
   "markdown_pages": 95
 }

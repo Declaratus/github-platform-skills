@@ -110,6 +110,9 @@ Referenced files must remain within the repository, or within the custom instruc
 
 1. Add your custom instructions in natural language, using Markdown format. Whitespace between instructions is ignored, so the instructions can be written as a single paragraph, each on a new line, or separated by blank lines for legibility.
 
+> [!NOTE]
+> Path-specific instruction files with `excludeAgent: "cloud-agent"` are also ignored by Copilot CLI.
+
 ## Custom instructions in use
 
 Changes you make to custom instructions files are not immediately available for use in active CLI sessions. To apply your changes, exit the current session and then either resume it (for example, run `copilot --continue`), or start a new session (for example, use `/new` from within an interactive session).

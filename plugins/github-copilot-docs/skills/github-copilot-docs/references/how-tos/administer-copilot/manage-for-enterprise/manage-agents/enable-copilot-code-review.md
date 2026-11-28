@@ -38,6 +38,22 @@ The policy for Copilot code review allows your licensed users to request reviews
 * If you selected **Enabled everywhere**, tell organization owners that these features are enabled for all members.
 * If you selected **Let organizations decide**, discuss member enablement with organization owners.
 
+## Allowing reviews without a Copilot license
+
+Members can get reviews on GitHub.com without a Copilot license, including in enterprises that use Copilot access, so you don't need to assign seats for code review. The AI credits these reviews use are billed to your enterprise or a cost center.
+
+{%- ifversion ghes %}
+1. In the top-right corner of GitHub Enterprise Server, click your profile picture, then click **Enterprise settings**.
+{%- else %}
+1. Navigate to your enterprise. For example, from the [Enterprises](https://github.com/settings/enterprises?ref_product=ghec&ref_type=engagement&ref_style=text) page on GitHub.com.
+{%- endif %}
+1. At the top of the page, click **(icon: copilot) AI controls**.
+1. In the sidebar, click (icon: copilot) **Copilot**.
+1. Under "Billing & usage", make sure "AI credit paid usage" is enabled.
+1. Under "Features & clients", click **Configure features & clients**.
+1. Make sure "Copilot code review" is enabled.
+1. Next to "Allow members without a Copilot license to use Copilot code review in GitHub.com", turn it on for every organization, or select **Let organizations decide**. If organizations decide, their owners follow [AUTOTITLE](/copilot/how-tos/administer-copilot/manage-for-organization/enable-copilot-code-review).
+
 ## Configuring automatic code review
 
 To apply standards consistently, you can configure Copilot code review to run automatically on all pull requests opened across your enterprise or in specific repositories.

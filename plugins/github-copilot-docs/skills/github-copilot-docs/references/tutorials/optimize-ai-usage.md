@@ -51,7 +51,7 @@ Copilot Fusion keeps your main conversation on the same model whenever possible,
 
 <!-- expires 2026-11-30 -->
 > [!NOTE]
-> Through November 30, 2026, users on paid Copilot plans receive a 30% discount on model costs when using Copilot Fusion.
+> Through December 31, 2026, users on paid Copilot plans receive a 30% discount on model costs when using Copilot Fusion.
 <!-- end expires 2026-11-30 -->
 
 For more information, see [AUTOTITLE](/copilot/concepts/models/copilot-fusion).

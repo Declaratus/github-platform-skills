@@ -58,7 +58,7 @@ You can edit the threat model used in a default setup configuration. For more in
 ## Extending CodeQL coverage with CodeQL model packs in default setup
 
 > [!NOTE]
-> CodeQL model packs are currently in public preview and subject to change. Model packs are supported for C/C++, C#, Java/Kotlin, Python, {% ifversion codeql-rust-available %}Ruby, and Rust{% else %}and Ruby{% endif %} analysis.
+> CodeQL model packs are currently in public preview and subject to change. Model packs are supported for GitHub Actions, C/C++, C#, Java/Kotlin, Python, {% ifversion codeql-rust-available %}Ruby, and Rust{% else %}and Ruby{% endif %} analysis.
 >
 > The CodeQL model editor in the CodeQL extension for Visual Studio Code supports modeling dependencies for C#, Java/Kotlin, Python, and Ruby.
 
